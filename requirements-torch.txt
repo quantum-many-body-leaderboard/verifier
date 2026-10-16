@@ -1,0 +1,4 @@
+# Optional: the PyTorch adapter (--state torch:...). Install on top of requirements.txt.
+# CPU build: pip install -r requirements-torch.txt --index-url https://download.pytorch.org/whl/cpu
+# GPU hosts: the matching CUDA build of the same version.
+torch==2.14.1

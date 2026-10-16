@@ -1,0 +1,775 @@
+{
+  "model": "J1J2",
+  "lattice": "square",
+  "n_sites": 16,
+  "boundary": "P",
+  "params": {
+    "J2": 0.5
+  },
+  "instance_id": "J1J2/square_16_P_0.5",
+  "rows": [
+    {
+      "energy": -33.83169340557936,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 16,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "method_detail": "",
+      "method_as_published": "Exact diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_0.5/ed_netket.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "QMBL ED cost run checks/cost/ed/results/J1J2--square_16_P_0.5.json (checks/cost/ed/run_ed.py: NetKet 3.22.4 operator, sparse CSR built in blocks, SciPy eigsh/ARPACK k=1 SA; commit 716e043); results file read locally, no rerun",
+        "location": "checks/cost/ed/results/J1J2--square_16_P_0.5.json: fields energy, stored_exact, relative_difference, reproduces_stored",
+        "reported_as": "energy -33.83169340557939 (stored_exact -33.83169340557936, relative_difference 8.40e-16, reproduces_stored true)",
+        "conversion": "none: the cost run works in the stored convention (Pauli totals for spin models, totals for fermions and impurity)",
+        "note": "|reproduced - stored| = 2.84e-14 (relative 8.40e-16); within 1e-9 relative. Sector total Sz = 0, dimension 12870, 101 Lanczos steps (the file states no residual). The stored value is the source's own ED (varbench@2024-10-22), so two codes agree; a third code, E1's node Lanczos (qmbl-runs/qmbl-verify/out/E1-exact-recompute/results/J1J2__square_16_P_0.5.json), gives -33.83169340557994 (5.54e-13 from the cost run). Also read by VB1-varbench-code-j1j2#61 (scope config: scripts/J1J2/square_16_P_0.5/ed_netket.sh line 4; ed.py L7-10; vmc.py L65-66, L70, L92-98; ham.py L5-25).",
+        "source_entry": "VB1-varbench-code-j1j2#61, VE-exact-recompute#46 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -33.8315064,
+      "sigma": null,
+      "energy_variance": 0.007,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.00009785327174603232,
+      "method": "VQE",
+      "method_detail": "exact gradients, statevector; symmetric: unspecified",
+      "method_as_published": "VQE + symm. circuit (64 pars., exact grad, statevector)",
+      "family": "VQE / circuit",
+      "bound_type": "variational",
+      "bound_type_reason": "\\bvqe\\b|\\bcircuit\\b|\\bpq",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_0.5/vqe.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 64,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "circuit_schedule": {
+          "code": "programs/VQE/code, lattice-symmetries 0.8.4, Python 3.7.12 (programs/VQE/conda_env.yaml)",
+          "simulator": "exact state vector in the S^z = 0 sector without lattice symmetry: ls.SpinBasis(ls.Group([]), number_spins=16, hamming_weight=8), dimension C(16, 8) = 12870",
+          "gates": 64,
+          "gate": "exp(i theta P_ij), P_ij = (S_i.S_j + 1)/2 (SWAP), one parameter per gate",
+          "runs": [
+            {
+              "symmetry": 0,
+              "projector_terms": 1,
+              "iterations": 1000
+            },
+            {
+              "symmetry": 1,
+              "projector_terms": 128,
+              "iterations": 1000
+            }
+          ],
+          "optimizer": "natural gradient (optimizers.natural_gradiend_descend): metric tensor and energy gradient from Hadamard-test estimates, SR_eig_cut 3e-3, lr 1e-3; the second run continues from the first (config.mode = 'continue', shared log directory)",
+          "shots_per_estimate": 68719476736,
+          "shots_emulated": "binomial draws on exact probabilities (utils.compute_*_sample); the state-vector work does not depend on the shot count",
+          "lattice_arg": "square4x4",
+          "dimension": 12870
+        },
+        "reported_as": "method string: \"VQE + symm. circuit (64 pars., exact grad, statevector)\" || scripts/J1J2/square_16_P_0.5/vqe.sh: \"python3 code/main.py --j2=0.5 --lattice=square4x4 --symmetry=0 && python3 code/main.py --j2=0.5 --lattice=square4x4 --symmetry=1\" || programs/VQE/code/optimizers.py: \"def natural_gradiend_descend(obs, init_values, args, n_iter = 1000, lr = 0.003, test = False):\" || config.py: \"self.opt_params_dict = {'lr' : 1e-3}\", \"self.N_samples = 2 ** args.log2samples\", \"self.mode = 'continue'\", degrees [2,4,4,4] || main.py: \"parser.add_argument(\\\"--log2samples\\\", type=int, default=36)\" || programs/VQE/code/config.py L45-46: \"self.basis = ls.SpinBasis(ls.Group([]), number_spins=self.Lx * self.Ly * self.subl, hamming_weight=(self.Lx * self.Ly * self.subl) // 2 + self.spin if self.su2 else None)\" || route1b-vmc-vqe-pass.json circuit_schedule.simulator: \"exact state vector in the S^z = 0 sector without lattice symmetry: ls.SpinBasis(ls.Group([]), number_spins=16, hamming_weight=8), dimension C(16, 8) = 12870\" || QMBL calibration (calib/CALIB.md, VQE table): \"square4x4, symmetry 0 | 1 | 12870\"",
+        "source": "the row's published method string (scripts/method_names.mjs, 2026-09-17); run script and program, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/J1J2/square_16_P_0.5/vqe.sh, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/main.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/config.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/optimizers.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/circuits.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/conda_env.yaml (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/config.py#L45 ; qmbl-runs/cost-routes-2026-09-24/route1b-vmc-vqe-pass.json (circuit_schedule, dropped by merge.mjs) ; qmbl-runs/cost-routes-2026-09-24/calib/CALIB.md (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "low",
+        "note": "Parameters: 64 from the method string (high confidence); the circuit code builds 64 one-parameter gates (SU2_symmetrized._get_dimerizarion_layers: range(1) x 4 shifts x (8 + 8) pairs), which reproduces it. Iterations: 2000 = 1000 natural-gradient steps without symmetry projection, then 1000 continuing with the 128-element projector (n_iter default 1000; main.py is called twice and passes only lr). As published, Optimizer.optimize() ends with \"return res.x\" on the circuit object, which has no attribute x, so the first call exits with an AttributeError and \"&&\" would skip the symmetric run; the step counts are therefore what the code intends, not what it can be shown to have run, hence confidence low. Samples: none; the method string says exact gradients on a state vector. The code has no exact branch that main.py reaches: it draws binomial estimates with the default 2^36 shots (--log2samples default 36), which is exact to about 4e-6 relative. Provenance: the value entered VarBench in ee77630 (2022-09-07, Nikita Astrakhantsev); the program was added to methods in 6887677 (2024-08-10) (\"wip: added the VQE simulator\"; next commit \"VQE simulator: dusted-off version runs\"), so it is a later reconstruction. The VarBench SM (arXiv:2302.04919 Sec. S3 D) describes the ansatz and the natural-gradient update but no step count. No device or time is recorded. || pass 2026-09-27: circuit_schedule restored from route 1b's pass (merge.mjs copied only the BLOCK fields and dropped it), plus dimension = C(16, 8) = 12870: the S^z = 0 sector without lattice symmetry the state vector lives in (the calibration runs measured the step time at exactly this D). runs keep the intended 1000 + 1000 steps; as published the first call ends in the res.x AttributeError and && skips the symmetric run, so 1000 steps actually execute (verify/agent-A.md item 6, DOUBTFUL x2; no change)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "scripts/J1J2/square_16_P_0.5/vqe.sh + programs/VQE/code (main.py, config.py, hamiltonians.py, circuits.py, optimizers.py, observables.py); varbench/methods@ed31bb0 (shallow clone), VarBench data history (varbench-history, partial clone at 390a21e)",
+        "location": "scripts/J1J2/square_16_P_0.5/vqe.sh line 4; config.py L32-60, L112-127, L169; hamiltonians.py L26-28, L170-232; observables.py L196-200, L237-238",
+        "reported_as": "python3 code/main.py --j2=0.5 --lattice=square4x4 --symmetry=0 && python3 code/main.py --j2=0.5 --lattice=square4x4 --symmetry=1",
+        "conversion": "none: printed energy is the total in Pauli units with energy_renorm subtracted; variance = exact Var(H) (total), stored rounded",
+        "note": "Script runs main.py --j2=0.5 --lattice=square4x4 twice (--symmetry=0, then --symmetry=1 continuing from the logged parameters) with the default 2^36 shots (exact to ~4e-6 relative): HeisenbergSquare = sum (sigma.sigma + 1) over 2N NN + J2 x 2N NNN bonds, energy_renorm removed, i.e. Pauli J1-J2 without shift on the square4x4 (4x4 torus), PBC, S^z = 0 singlet; 64 gates = SU2_symmetrized (4 shifts x 16 pairs). The number the program prints is the exact state-vector energy <psi|H P|psi>/<psi|P|psi> of the circuit state (observables.py L196-200, '{:.7f}'), deterministic. Variance 0.007 within the Bhatia-Davis bound (E-E0)(Emax-E) = 1.530e-2 (ratio 0.457; E0 = the ED row, Emax = 48 the ferromagnet). Caveat for reproduction: as committed, the first main.py call ends in AttributeError (optimizers.py L644 'return res.x' on the circuit returned at L300), so '&&' skips the symmetric stage; the value (ee77630 2022-09-07) predates the program. Variance history: 7e-3 (ee77630, 2022-09-07) -> 0.0507 (5285adc, 2024-08-12, by the VQE author) -> 7e-3 (6ec16a2, 'Revert Nikita's change'). 0.0507 exceeds the Bhatia-Davis bound 1.530e-2 for this energy, so it cannot be this state's variance; the restored 7e-3 is consistent. Earlier trial uploads of 2022-09-06 (-10.34953, -2.587382 per site, -41.39812, -33.82830) were superseded by the uploader. History: entered ee77630 (2022-09-07, Nikita, 'Update square_4_PP_16_0.5.md'); value history: ee77630 2022-09-07 'Update square_4_PP_16_0.5.md': E=-33.8315064 S=- V=7e-3 -> 5285adc 2024-08-12 'Nikita: added all j1-j2 square-4x4 lattice energ': E=-33.8315064 S=- V=0.0507 -> 6ec16a2 2024-08-26 'Revert Nikita's change': E=-33.8315064 S=- V=7e-3; code link added 5285adc (2024-08-12).",
+        "source_entry": "VB1-varbench-code-j1j2#62 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -33.83169340557946,
+      "sigma": null,
+      "energy_variance": 1e-15,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 1.3978884282275787e-17,
+      "method": "DMRG",
+      "method_detail": "",
+      "method_as_published": "DMRG (bond dimension = 256)",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_0.5/dmrg.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 256,
+        "iterations": 50,
+        "sweep_schedule": {
+          "code": "ITensors.jl 0.6.16",
+          "eigensolver_applications": 3,
+          "eigensolver_source": "ITensors.jl 0.6.16 dmrg(): eigsolve_krylovdim = 3, eigsolve_maxiter = 1 (defaults, not overridden)",
+          "maxdim": [
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256,
+            256
+          ],
+          "start": "random MPS at bond dimension 256",
+          "cutoff": 1e-12,
+          "variance_after": [
+            50
+          ],
+          "lattice": {
+            "order": "snake",
+            "rows": 4,
+            "cols": 4,
+            "wrap_row": true,
+            "wrap_col": true,
+            "diagonals": [
+              "\\",
+              "/"
+            ],
+            "site_dimension": 2,
+            "operators_per_bond": 3
+          }
+        },
+        "reported_as": "method string: \"DMRG (bond dimension = 256)\" || scripts/J1J2/square_16_P_0.5/dmrg.sh: \"julia --project heisenberg_2d.jl --peri --L 4 --J2 0.5 --J22 0.5 --zero_mag --max_B 256 --seed 123\" || programs/dmrg_itensors/common.jl get_sweeps: \"sweeps = Sweeps(args[\\\"max_step\\\"]); setmaxdim!(sweeps, args[\\\"max_B\\\"]); setcutoff!(sweeps, 1e-12)\" || programs/dmrg_itensors/args.jl: \"--max_step\" default = 50 || heisenberg_2d.jl: \"H_sqr = real(inner(H, psi, H, psi))\" after dmrg",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/J1J2/square_16_P_0.5/dmrg.sh, with programs/dmrg_itensors/{common,args,heisenberg_2d}.jl (compute pass 2026-09-23)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Sweep schedule, eigensolver setting and lattice order read from the run script; 50 sweeps, maximum bond dimension 256. No time is recorded anywhere in the repository."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "scripts/J1J2/square_16_P_0.5/dmrg.sh + programs/dmrg_itensors (heisenberg_2d.jl, args.jl, common.jl; ITensors 0.6.16); varbench/methods@ed31bb0 (shallow clone), VarBench data history (varbench-history, partial clone at 390a21e)",
+        "location": "scripts/J1J2/square_16_P_0.5/dmrg.sh line 4; heisenberg_2d.jl L18, L33-79, L93-104; common.jl L17-21, L38-44",
+        "reported_as": "julia --project heisenberg_2d.jl --peri --L 4 --J2 0.5 --J22 0.5 --zero_mag --max_B 256 --seed 123",
+        "conversion": "none: dmrg() energy is the total in Pauli units (J *= 4 on spin-1/2 operators); variance = <H^2> - E^2 of the whole system",
+        "note": "Script builds the 4x4 PBC J1-J2 at J2 = J22 = 0.5 (Pauli, no Marshall rotation, no shift), S^z = 0, max bond dimension 256 = method string, 50 sweeps, cutoff 1e-12, seed 123; final dmrg() energy: variational at stated bond dimension (no extrapolation), sigma not applicable. D = 256 = 2^8 is exact for 16 sites; the energy is 1.0e-13 below the ED row (float noise, 3e-15 relative, inside the validator's 1e-8). energy_variance 1e-15 is VarBench's machine-precision placeholder (638bcda replaced 0; README: 'Even if it reaches the machine precision, please fill in the machine precision'), so the V-score 1.4e-17 (M6 flag) is not a measurement. History: entered f4aec59 (2022-09-14, Dian, 'Add ED, DMRG, RBM and Jastrow for J1J2 4x4'); value history: f4aec59 2022-09-14 'Add ED, DMRG, RBM and Jastrow for J1J2 4x4': E=-33.83169340557946 S=- V=0 -> 638bcda 2022-10-19 'Add note for machine precision': E=-33.83169340557946 S=- V=1e-15; code link added f88f9ba (2024-07-19). Holds the instance's best variational bound (is_record).",
+        "source_entry": "VB1-varbench-code-j1j2#63 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -33.0219,
+      "sigma": 0.0036,
+      "energy_variance": 12.9877,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.19056718346656612,
+      "method": "RBM",
+      "method_detail": "α = 1",
+      "method_as_published": "RBM (alpha = 1)",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_0.5/vmc_rbm.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 288,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 16,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "onthefly_dense"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/J1J2/square_16_P_0.5/vmc_rbm.sh: \"python3 vmc.py --ham j1j2 --boundary peri --sign mars --ham_dim 2 --L 4 --J2 0.5 --zero_mag --net rbm --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py: \"--batch_size\" default=1024; \"--max_step\" default=10**4; \"--features\" default=1; \"--dtype\" default=\"float32\"; \"--optimizer\" default=\"sr\" || programs/vmc_netket/vmc.py: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, ...)\"; sampler \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py: \"alpha = args.features ... return nk.models.RBM(alpha=alpha, param_dtype=args.dtype, activation=log_cosh, ..., hidden_bias_init=zeros, visible_bias_init=zeros)\" || NetKet 3.13.0 netket/models/rbm.py: \"use_hidden_bias: bool = True\"; \"use_visible_bias: bool = True\"; \"features=int(self.alpha * input.shape[-1])\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); sign in H (vmc.py:97); P=288<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 288x288 real (qgt_onthefly.py:292-301, solvers.py:258) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); sign in H (vmc.py:97); P=288<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 288x288 real (qgt_onthefly.py:292-301, solvers.py:258)",
+        "source": "run script, VarBench methods repository at ed31bb0 (route1a-nqs-pass 2026-09-24): https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/J1J2/square_16_P_0.5/vmc_rbm.sh ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L186 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L170 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L136 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L154 ; https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py#L311 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L133 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L103 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L43 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L45 (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "parameters = alpha N^2 + alpha N + N = 1*16^2 + 1*16 + 16 = 288 real (float32) parameters: nk.models.RBM is a dense RBM (Dense kernel N x alpha N, hidden bias alpha N, visible bias N; both biases on by NetKet default, alpha = --features = 1), no weight sharing across translations. samples = 1024 per optimisation step (MCState n_samples = batch_size; MetropolisExchange with n_chains = batch_size = 1024, one sample per chain per step, each separated by sweep_size = N = 16 proposals (NetKet default), n_discard_per_chain = 0); iterations = 10000 (\"--max_step\" default=10**4); optimizer SR (VMC_SRt when n_parameters >= n_samples), lr 1e-3. The final energy is then estimated once with estim_size = 1024^2 = 1048576 samples (not an optimisation step). NetKet pinned twice by the program: programs/vmc_netket/requirements.txt \"NetKet==3.13.0\" and conda_env.yaml \"netket=3.11.4\"; every NetKet line cited here reads the same at both tags. The energy is older than the script: VarBench's data file listed it with no code link (\"TODO: own code\", varbench/varbench 0ef1497c and 6e9f6b83, 2024-07-11) until the scripts were added on 2024-07-30 (5047bfd6 RBM, d54f7c01 RNN, 765c5d13 GCNN), which changed only the reference column, so the script documents the settings after the fact, with library versions that may postdate the run. || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 16 x (1 + 0)/1 = 16: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 288 < n_samples = 1024, so nk.VMC with SR(QGTOnTheFly(), solver=solve); solve() calls A.to_dense(), which applies the lazy S to the P = 288 unit vectors (P jvp + transpose mat-vecs over all 1024 samples per step): kind onthefly_dense (verify/agent-A.md item 1: 3.9-23x the network count for the 26 rows with P < 1024). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "scripts/J1J2/square_16_P_0.5/vmc_rbm.sh + programs/vmc_netket (vmc.py, args_parser.py, ham.py), NetKet 3.13.0 source; varbench/methods@ed31bb0 (shallow clone), VarBench data history (varbench-history, partial clone at 390a21e)",
+        "location": "scripts/J1J2/square_16_P_0.5/vmc_rbm.sh line 4; vmc.py L65-71, L92-98, L117-140, L160-172, L268-270; args_parser.py L109-176",
+        "reported_as": "python3 vmc.py --ham j1j2 --boundary peri --sign mars --ham_dim 2 --L 4 --J2 0.5 --zero_mag --net rbm --seed 123 --show_progress",
+        "conversion": "none: NetKet Stats mean is the total energy in Pauli units; sigma = error_of_mean; variance = Stats.variance (total)",
+        "note": "Script builds the 4x4 PBC J1-J2 at J2 = 0.5 (NetKet Heisenberg, Pauli, J = [1, 0.5], Marshall rotation on J1 bonds only: isospectral), S^z = 0, MetropolisExchange; nk.models.RBM(alpha = 1, log_cosh) with real float32 parameters; 10^4 SR steps, then a 2^20-sample estimate: stored sigma / sqrt(Var/2^20) = 1.02, i.e. the NetKet error_of_mean of that estimate; variance = Var(H) total. Variance within the Bhatia-Davis bound (ratio 0.198 of (E-E0)(Emax-E)). No constant shift in the Hamiltonian (NetKet bond op sz_sz +- exchange), so the M2 gap to the record is the ansatz's: real parameters give positive amplitudes in the Marshall basis. Upstream value changes are listed in the history below; the stored value is the latest. History: entered f4aec59 (2022-09-14, Dian, 'Add ED, DMRG, RBM and Jastrow for J1J2 4x4'); value history: f4aec59 2022-09-14 'Add ED, DMRG, RBM and Jastrow for J1J2 4x4': E=-32.4879 S=0.0030 V=9.01472 -> cc1793c 2022-10-17 'Update RBM and Jastrow for J1-J2 L=4': E=-33.0219 S=0.0036 V=12.9877; code link added 5047bfd (2024-07-30).",
+        "source_entry": "VB1-varbench-code-j1j2#64 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -32.5106,
+      "sigma": 0.0015,
+      "energy_variance": 2.20818,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.03342754524535571,
+      "method": "Jastrow",
+      "method_detail": "",
+      "method_as_published": "Jastrow baseline",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_0.5/vmc_jastrow.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 120,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 16,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "onthefly_dense"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/J1J2/square_16_P_0.5/vmc_jastrow.sh: \"python3 vmc.py --ham j1j2 --boundary peri --sign mars --ham_dim 2 --L 4 --J2 0.5 --zero_mag --net jas --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py defaults (not overridden): \"--batch_size\" default=1024, \"--max_step\" default=10**4, \"--estim_size\" default=1024**2, \"--dtype\" default=\"float32\", \"--optimizer\" default=\"sr\", \"--lr\" default=1e-3, \"--diag_shift\" default=1e-2, \"--chunk_size\" default=1024 || vmc.py: \"n_samples=args.batch_size\", \"n_chains=args.batch_size\", \"vmc.run(n_iter=args.max_step, ...)\", \"vstate.n_samples = args.estim_size\" || NetKet 3.13.0 netket/models/jastrow.py: \"kernel = self.param(\\\"kernel\\\", self.kernel_init, (nv * (nv - 1) // 2,), self.param_dtype)\" || netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || requirements.txt: \"NetKet==3.13.0\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); sign in H (vmc.py:97); P=120<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 120x120 real (qgt_onthefly.py:292-301, solvers.py:258) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); sign in H (vmc.py:97); P=120<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 120x120 real (qgt_onthefly.py:292-301, solvers.py:258)",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/J1J2/square_16_P_0.5/vmc_jastrow.sh, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/requirements.txt; NetKet v3.13.0 https://github.com/netket/netket/blob/v3.13.0/netket/models/jastrow.py, https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters evaluated: NetKet 3.13.0 Jastrow stores the strictly lower triangle of W, N(N-1)/2 = 16*15/2 = 120 real (float32) weights, which is also what vmc.py prints as n_params (tree_size_real_nonzero). Samples: 1024 per SR step, 1024 chains of length 1, each sample one sweep of 16 exchange proposals, no discard. Iterations: 10^4 steps (--max_step default). Driver: nk.VMC with nk.optimizer.SR(QGTOnTheFly) (n_parameters < n_samples). After training the energy is estimated from 2^20 samples. stored sigma 0.0015 vs sqrt(stored variance 2.20818 / 2^20) = 0.0015: consistent with the script's 2^20-sample final estimate (--estim_size default). Provenance: the value entered VarBench in bbcfdc1 (2023-01-15, Dian Wu); the linked script was added to varbench/methods in c686621 (2024-07-30) without the value changing, so the script is the authors' later reconstruction of the baseline, not a log of the run (the same holds for the TFIsing RBM rows, scripts/defects.mjs). The 2^20-sample final estimate is corroborated by the stored sigma; batch size and step count are not independently corroborated. No device or time is recorded (the conda env includes CUDA; the README says a GPU is \"usually needed for VMC on larger lattices\", which is not a statement about these runs). || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 16 x (1 + 0)/1 = 16: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 120 < n_samples = 1024, so nk.VMC with SR(QGTOnTheFly(), solver=solve); solve() calls A.to_dense(), which applies the lazy S to the P = 120 unit vectors (P jvp + transpose mat-vecs over all 1024 samples per step): kind onthefly_dense (verify/agent-A.md item 1: 3.9-23x the network count for the 26 rows with P < 1024). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "scripts/J1J2/square_16_P_0.5/vmc_jastrow.sh + programs/vmc_netket (vmc.py, args_parser.py, ham.py), NetKet 3.13.0 source; varbench/methods@ed31bb0 (shallow clone), VarBench data history (varbench-history, partial clone at 390a21e)",
+        "location": "scripts/J1J2/square_16_P_0.5/vmc_jastrow.sh line 4; vmc.py L65-71, L92-98, L117-140, L160-172, L268-270; args_parser.py L109-176",
+        "reported_as": "python3 vmc.py --ham j1j2 --boundary peri --sign mars --ham_dim 2 --L 4 --J2 0.5 --zero_mag --net jas --seed 123 --show_progress",
+        "conversion": "none: NetKet Stats mean is the total energy in Pauli units; sigma = error_of_mean; variance = Stats.variance (total)",
+        "note": "Script builds the 4x4 PBC J1-J2 at J2 = 0.5 (NetKet Heisenberg, Pauli, J = [1, 0.5], Marshall rotation on J1 bonds only: isospectral), S^z = 0, MetropolisExchange; nk.models.Jastrow with real float32 parameters; 10^4 SR steps, then a 2^20-sample estimate: stored sigma / sqrt(Var/2^20) = 1.03, i.e. the NetKet error_of_mean of that estimate; variance = Var(H) total. Variance within the Bhatia-Davis bound (ratio 0.021 of (E-E0)(Emax-E)). No constant shift in the Hamiltonian (NetKet bond op sz_sz +- exchange), so the M2 gap to the record is the ansatz's: real parameters give positive amplitudes in the Marshall basis. Upstream value changes are listed in the history below; the stored value is the latest. Note: bbcfdc1 (2023-01-15) changed this row from -32.5094(20), var 4.08984, to the stored -32.5106(15), var 2.20818, under a message that names only kagome-18 and 4x6 (silent change, not restored). History: entered f4aec59 (2022-09-14, Dian, 'Add ED, DMRG, RBM and Jastrow for J1J2 4x4'); value history: f4aec59 2022-09-14 'Add ED, DMRG, RBM and Jastrow for J1J2 4x4': E=-32.4905 S=0.0076 V=58.7716 -> cc1793c 2022-10-17 'Update RBM and Jastrow for J1-J2 L=4': E=-32.5094 S=0.0020 V=4.08984 -> bbcfdc1 2023-01-15 'Add Heisenberg kagome 18 and J1-J2 4x6 baselines': E=-32.5106 S=0.0015 V=2.20818; code link added fdb4bfb (2024-07-30).",
+        "source_entry": "VB1-varbench-code-j1j2#65 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -33.831039193,
+      "sigma": 0.00031,
+      "energy_variance": 0.01741932679,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.00024351217110255078,
+      "method": "ClebschTree",
+      "method_detail": "",
+      "method_as_published": "ClebschTree",
+      "family": "other NQS",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://doi.org/10.1126/science.adg9774) (Wu et al., Science 386, 296 (2024), arXiv:2302.04919: VarBench dataset, number uploaded by co-author Jannes Nys on 2022-10-24, commit 9e80241 (\"Include ClebschTree results on 4x4 J1-J2 model\"); method: Vieijra & Nys, Phys. Rev. B 104, 045123 (2021), arXiv:2104.14869, which shows the 4 x 4 result only as a plotted relative error (Fig. 2))",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "VSC Stevin Supercomputer Infrastructure (Flemish Supercomputer Center; acknowledgement only, processor not named)",
+        "n_devices": null,
+        "samples": 4096,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "We use our model with a homogeneous hidden dimension tau = 8 for all layers and angular momenta. We optimize our models through VMC with learning rate eta = 0.001 and N_samples = 4096. Figure 2 shows the computed ground-state energy of the J1-J2 model at different ratios J2/J1 on a 4x4 lattice with periodic boundary conditions || We use 4096 samples to estimate the expectation values in each step. Automatic differentiation [34] via the Jax library backpropagates the gradients through our network, and we use the Adam optimizer with learning rate 0.001. Furthermore, we use gradient clipping with a maximum gradient norm of 0.001. (...) we first carry out a Stochastic Reconfiguration (SR) step with a uniform diagonal shift of magnitude 0.01, followed by a step using the resulting update direction with an Adam optimizer. To save computational resources, in this optimization regime we use 256 samples and learning rate 0.005. Afterwards, we switch to the standard optimization strategy (and drop the SR step). || The software for this work was built on the NetKet library [21]. The computational resources (Stevin Supercomputer Infrastructure) and services used in this work were provided by the VSC (Flemish Supercomputer Center), and the Flemish Government - department EWI.",
+        "source": "Sec. IV A (4x4 study, Fig. 2); Appendix B Optimization details; Acknowledgments, arXiv:2104.14869 (compute pass 2026-09-16)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "The 4x4 energy is from the Fig. 2 scan (tau = 8, eta = 0.001, N_samples = 4096); the paper does not print the 4x4 numbers, VarBench holds them (row reference PRB 104, 045123). Parameter count not given as a number (determined by tau and jmax; no count printed), so parameters left null. No GPU/CPU-hours or wall-clock stated; iterations left null."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "[paper](https://doi.org/10.1126/science.adg9774) (Wu et al., Science 386, 296 (2024), arXiv:2302.04919: VarBench dataset, number uploaded by co-author Jannes Nys on 2022-10-24, commit 9e80241 (\"Include ClebschTree results on 4x4 J1-J2 model\"); method: Vieijra & Nys, Phys. Rev. B 104, 045123 (2021), arXiv:2104.14869, which shows the 4 x 4 result only as a plotted relative error (Fig. 2))",
+          "reported_as": "no printed value; Fig. 2 'Relative error on the ground state energy Delta E/E0 = (E0,exact - E)/E0,exact of the J1-J2 model on a 4 x 4 lattice' (plotted point only)",
+          "location": "PRB 104, 045123, Fig. 2 (p. 5); Table I covers 8 x 8 only; VarBench J1J2/square_16_P_0.5.md row 'ClebschTree' (v1.1.0)",
+          "version_read": "published PDF Phys. Rev. B 104, 045123 (2021), sources/journal/prb104-045123.pdf, sha256 725a3579, pypdf layout; arXiv:2104.14869v2 compared (Table I identical, 2026-09-29 extraction)",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "The journal version prints no 4 x 4 energy (text, Table I and captions searched; the paper has no supplement); the stored -33.831039193 | 0.00031 | 0.01741932679 was uploaded to VarBench 15 months after publication by a co-author. The 2026-09-29 pass located it by decoding Fig. 2's vector marker, which the 2026-09-30 ruling ('a table beats a figure: no values decoded from plotted points') no longer accepts as a printing source. Same treatment as the Sorella, t-V and shuriken author uploads (ruling 1 / R2-E5): cite the VarBench dataset with the uploader named and the paper as method reference. Energy, sigma, variance, instance (4 x 4 PBC, J2 = 0.5) and method unchanged; the earlier figure check (relative error 1.93e-5 = the stored value against ED -33.83169340557936) stays in the note.",
+          "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#56",
+          "from": "[paper](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.104.045123)"
+        }
+      ],
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "vector coordinates of Fig. 2 (v2; Fig. 1 in v1, same file) from the arXiv LaTeX source figure 4x4_E_ifo_j2_symmetries.pdf, content stream dumped with pypdf; text of arXiv:2104.14869v2; VarBench history",
+        "location": "Fig. 2 (v2), series 'all lattice symmetries' (black), marker at J2/J1 = 0.5",
+        "reported_as": "Delta E/E0 = (E0,exact - E)/E0,exact = 1.933727e-5 (plotted point, log axis; marker at y = 113.9408748 pt with 1e-6 at 54.414264 pt and 1e-2 at 239.510147 pt)",
+        "conversion": "E = E0,exact x (1 - 1.933727e-5) with the instance's ED E0 = -33.83169340557936 (Pauli total) = -33.831039193, equal to the stored value within 3e-11 (the resolution of the tick coordinates)",
+        "note": "The number is not printed as a numeral; it is the plotted 'all lattice symmetries' point of the 4 x 4 scan (tau = 8, jmax = 4, eta = 0.001, 4096 samples per step; 4 x 4 PBC, J2 = 0.5, SU(2)-exact with translation, rotation and reflection projections onto k = 0, A1), variational, above ED by 6.5e-4 (2.1 stored sigma). Sigma 0.00031 and variance 0.01741932679 are only in second author Jannes Nys's upload (9e80241, 2022-10-24); the figure has no error bars. method_detail is empty (allowed); it could read 'tau = 8, jmax = 4; SU(2) exact; projected: k = 0, A1'. Not a duplicate: the other rows on the instance are VarBench's ED, DMRG, VQE, RBM and Jastrow.",
+        "source_entry": "VA6-j1j2-heisenberg-hubbard-tfising#11 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -33.7152,
+      "sigma": 0.0256,
+      "energy_variance": null,
+      "dof": 16,
+      "einf": 0,
+      "v_score": null,
+      "method": "TPS",
+      "method_detail": "extrapolated: χ → ∞ (contraction dimension Dc, quadratic in 1/Dc²)",
+      "method_as_published": "TPS (D = 9) on the L x L torus, contraction dimension extrapolated",
+      "family": "tensor network",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "zero-variance or bond-dimension extrapolation; not an upper bound (assigned during source reading)",
+      "reference": "Wang, Gu, Verstraete & Wen, Tensor-product state approach to spin-1/2 square J1-J2 antiferromagnetic Heisenberg model: Evidence for deconfined quantum criticality, arXiv:1112.3331v4 (2016), Table I (printed in the arXiv version only: the published Phys. Rev. B 94, 075143 (2016) has no table and shows L = 8 and 16 only as plotted points)",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-10-07",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-07",
+        "method": "source text of arXiv:1112.3331 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.5268(4)",
+        "note": "Table I, row J2 = 0.50, column L=4 | Energy per site in S.S units; the table's own L = 4 and L = 6 ED columns equal QMBL's exact rows. The finite-size values are extrapolated linearly in 1/Dc^2 (text), so they are not upper bounds.",
+        "secondary_of": null
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Wang, Gu, Verstraete & Wen, Tensor-product state approach to spin-1/2 square J1-J2 antiferromagnetic Heisenberg model: Evidence for deconfined quantum criticality, arXiv:1112.3331v4 (2016), Table I (printed in the arXiv version only: the published Phys. Rev. B 94, 075143 (2016) has no table and shows L = 8 and 16 only as plotted points)",
+          "location": "Table I",
+          "version_read": "arXiv:1112.3331v4 PDF and the published Phys. Rev. B 94, 075143 (2016) PDF (sources/journal/prb94-075143.pdf, sha256 97a2d901), every page extracted and rendered",
+          "checked_on": "2026-10-15",
+          "reason": "Table I, the source of this number, is printed in arXiv:1112.3331v3 and v4 only; the published version has no table (ruling 2026-10-15, RULES.md 8: the journal version is the source of record, so the number is cited to the arXiv version that prints it).",
+          "source_entry": "JP7-j1j2-heisenberg (ambiguous, Table I arXiv-only); ruling 2026-10-15",
+          "from": "Wang, Gu, Verstraete & Wen, Tensor-product state approach to spin-1/2 square J1-J2 antiferromagnetic Heisenberg model: Evidence for deconfined quantum criticality, Phys. Rev. B 94, 075143 (2016), arXiv:1112.3331"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": false,
+          "location": "Table I",
+          "version_read": "arXiv:1112.3331v4 PDF and the published Phys. Rev. B 94, 075143 (2016) PDF (sources/journal/prb94-075143.pdf, sha256 97a2d901), every page extracted and rendered",
+          "checked_on": "2026-10-15",
+          "reason": "The number is printed only in the arXiv version; the refereed version does not carry it (RULES.md 8.1: peer_reviewed follows the venue that printed the number; ruling 2026-10-15).",
+          "source_entry": "JP7-j1j2-heisenberg (ambiguous, Table I arXiv-only); ruling 2026-10-15",
+          "from": true
+        }
+      ],
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 9,
+        "iterations": null,
+        "reported_as": "method string: \"TPS (D = 9) on the L x L torus, contraction dimension extrapolated\"",
+        "source": "the row's published method string (scripts/method_names.mjs, 2026-09-17)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Only the numbers the method string states; nothing else about this run's cost is recorded."
+      }
+    },
+    {
+      "energy": -33.827768338193884,
+      "sigma": 0.00069,
+      "energy_variance": 0.05810772865415469,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.0008124697251860771,
+      "method": "GCNN",
+      "method_detail": "4 layers, 8 features, QMBL run, H100 size ladder; symmetric: translations",
+      "method_as_published": "GCNN (translations, 4 layers, 8 features), QMBL cost-to-reproduce run, H100 size ladder",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "variational Monte Carlo energy of a normalised ansatz, evaluated by QMBL on the trained state with its error bar; a strict upper bound within that bar",
+      "reference": "QMBL, checks/cost/ (cost-to-reproduce run h100-gcnn-j1j2-16, no scheduler, commit 55af6b8)",
+      "peer_reviewed": false,
+      "source": "qmbl-cost-2026-09-25",
+      "provenance": "primary",
+      "computed_by": "qmbl",
+      "verified": {
+        "checked_on": "2026-09-25",
+        "method": "checks/cost/run_nqs.py (NetKet 3.22.4, jax 0.8.3) on 1 x NVIDIA H100 NVL, protocol checks/cost/README.md",
+        "reported_as": "energy -33.827768338193884 sigma 0.0006883891815221305 energy_variance 0.05810772865415469 tau_corr 0.034458641909632326 r_hat 1.0044314848010263 | wall_hms 00:06:44 (wall_seconds 403.6369309099391) on 1 x NVIDIA H100 NVL, no scheduler | parameters 3232, steps 2000 x n_samples 4096, eval samples 131072",
+        "note": "Final evaluation, the training chains carried on: 131072 samples, 1024 chains, 64 discarded per chain; tau_corr 0.03, R_hat 1.004. Trained 2000 steps of SR (QGTJacobianDense, conjugate gradients, 300 iterations max, diag_shift 1e-06, diag_scale 0.01), lr 0.01 after a 200-step linear warmup, 4096 samples per step, MetropolisExchange, d_max 2, seed 20260921. Per-step trace and final parameters beside the results file.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-02",
+          "scope": "value",
+          "method": "qmbl checks/cost/results/h100-gcnn-j1j2-16.json read with node (read-only), against checks/cost/run_nqs.py at commit 55af6b8 (git show), vit.py, best_run.mjs, scripts/add_cost_runs.mjs and scripts/units.mjs of the live tree (a6d87d2); trace h100-gcnn-j1j2-16.trace.jsonl; results/runs/h100-gcnn-j1j2-16--host20260925071820.json; forward-flops.json",
+          "location": "checks/cost/results/h100-gcnn-j1j2-16.json (NVIDIA H100 NVL, no scheduler, commit 55af6b8; argv --instance J1J2/square_16_P_0.5 --model gcnn; 2026-09-25T07:11:36Z to 2026-09-25T07:18:20Z)",
+          "reported_as": "energy -33.827768338193884 sigma 0.0006883891815221305 energy_variance 0.05810772865415469 tau_corr 0.034458641909632326 r_hat 1.0044314848010263 energy_per_site_SS -0.5285588802842794 (Pauli total; eval 131072 samples, 1024 chains, 64 discarded per chain, chains from training)",
+          "conversion": "energy stored as is (Pauli total, no conversion); sigma 0.0006883891815221305 -> 0.00069 (two significant figures); v_score = 16 x 0.05810772865415469 / (-33.827768338193884)^2 = 0.0008124697251860771; gpu_hours = 403.6369309099391 / 3600 x 1 = 0.112",
+          "note": "Energy, sigma, variance, V-score, dof 16, einf 0, label, method string, reference (run, no scheduler, commit), source day 2026-09-25 and the compute block (parameters, gpu_hours, wall_clock 00:06:44, device, samples 4096, iterations 2000, proposals_per_sample 80, complex false, sr cg, forward_flops) all match the results file and the loader. Parameters 3232 = 200N + 32 complex at N = 16; forward-flops.json, which builds the network separately, counts the same. Gates: R-hat 1.0044 < 1.05 on the first evaluation attempt (64 discards), finite, not diverged, no recovery. Protocol fields as README v1.5 states them (2000 steps x 4096 samples, 1024 chains, 16 discarded, SR lr 0.01 after a 200-step linear warmup, diag_shift 1e-6 with relative 0.01, MetropolisExchange d_max 2 in S_z = 0, seed 20260921, chunk 1024); solver conjugate gradients as run_nqs.py's rule gives for 6464 real parameters (Cholesky where <= 4096). Commit 55af6b8 (2026-09-25T09:06:02+02:00) exists and precedes the run; run_nqs.py at 55af6b8 has no batched evaluation and the attempts carry no 'batches' field, as expected for a run before the 2026-09-29 amendment. The scripts changed after it only in the host-name scrub (dc612f3), no numerics. Trace: steps 0-1999 complete (2000 lines); the final evaluation sits 0.0003 from the mean of steps 1900-1999 (-33.8280, sd 0.0036; 0.08 sd); evaluation variance 0.058 against the same steps' mean variance 0.091. Single run of this configuration (best_of 1; runs/ holds exactly this run). Above the instance's exact energy -33.83169340557936 (Exact diagonalization) by 0.003925 (1.16e-4 relative), as a variational energy must be. Not the record (-33.83169340557946, DMRG (bond dimension = 256)). Duplicate check: no other row on the instance carries this number.",
+          "source_entry": "RH1#11 (qmbl-verify 2026-09-29, handoff reader 2026-10-02: a cost-run row the pass never read); ruling R1, 2026-10-02"
+        }
+      },
+      "compute": {
+        "parameters": 3232,
+        "gpu_hours": 0.112,
+        "device": "NVIDIA H100 NVL",
+        "n_devices": 1,
+        "samples": 4096,
+        "wall_clock": "00:06:44",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "evaluation": {
+          "proposals_per_sample": 80,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "cg",
+            "cg_iterations": null
+          },
+          "forward_flops": {
+            "flops_per_configuration": 152073,
+            "transcendentals_per_configuration": 1026,
+            "source": "checks/cost/forward-flops.json, counted 2026-09-29 by checks/cost/forward_flops.py (sha256 3c45ebef4288) with NetKet 3.22.4, jax 0.8.3"
+          },
+          "code": "NetKet 3.22.4 (checks/cost/run_nqs.py)"
+        },
+        "reported_as": "energy -33.827768338193884 sigma 0.0006883891815221305 energy_variance 0.05810772865415469 tau_corr 0.034458641909632326 r_hat 1.0044314848010263 | wall_hms 00:06:44 (wall_seconds 403.6369309099391) on 1 x NVIDIA H100 NVL, no scheduler | parameters 3232, steps 2000 x n_samples 4096, eval samples 131072",
+        "source": "checks/cost/results/h100-gcnn-j1j2-16.json, no scheduler, commit 55af6b8 (QMBL run, 2026-09-25)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Measured, not reported: wall-clock from process start to the end of the final evaluation, JIT compilation and sampling included (setup 9 s, training 385 s, evaluation 10 s); gpu_hours = wall-clock x 1 GPU. Hardware during the run (sampled every 30 s): process CPU time 0.12 h, 0 % of wall-clock x 384 cores; cores at 1.78 GHz on average (1.72-1.89, max 3.71); node load 44.6 on average of 384 CPUs; GPU SM clock 1584 MHz on average (max 1785), utilisation 82.6 %, 248.1 W."
+      }
+    },
+    {
+      "energy": -32.954687140567756,
+      "sigma": 0.0069,
+      "energy_variance": 6.037842757146967,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.08895439192548783,
+      "method": "RBM",
+      "method_detail": "α = 1, QMBL run, H100 size ladder",
+      "method_as_published": "RBM (alpha = 1), QMBL cost-to-reproduce run, H100 size ladder",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "variational Monte Carlo energy of a normalised ansatz, evaluated by QMBL on the trained state with its error bar; a strict upper bound within that bar",
+      "reference": "QMBL, checks/cost/ (cost-to-reproduce run h100-rbm-j1j2-16, no scheduler, commit 55af6b8)",
+      "peer_reviewed": false,
+      "source": "qmbl-cost-2026-09-25",
+      "provenance": "primary",
+      "computed_by": "qmbl",
+      "verified": {
+        "checked_on": "2026-09-25",
+        "method": "checks/cost/run_nqs.py (NetKet 3.22.4, jax 0.8.3) on 1 x NVIDIA H100 NVL, protocol checks/cost/README.md",
+        "reported_as": "energy -32.954687140567756 sigma 0.006905736153522771 energy_variance 6.037842757146967 tau_corr 0.017628398247338084 r_hat 1.0040991476704915 | wall_hms 00:01:47 (wall_seconds 107.21609868202358) on 1 x NVIDIA H100 NVL, no scheduler | parameters 288, steps 2000 x n_samples 4096, eval samples 131072",
+        "note": "Final evaluation, the training chains carried on: 131072 samples, 1024 chains, 64 discarded per chain; tau_corr 0.02, R_hat 1.004. Trained 2000 steps of SR (QGTJacobianDense, Cholesky on the dense S, diag_shift 1e-06, diag_scale 0.01), lr 0.01 after a 200-step linear warmup, 4096 samples per step, MetropolisExchange, d_max 2, seed 20260921. Per-step trace and final parameters beside the results file.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-02",
+          "scope": "value",
+          "method": "qmbl checks/cost/results/h100-rbm-j1j2-16.json read with node (read-only), against checks/cost/run_nqs.py at commit 55af6b8 (git show), vit.py, best_run.mjs, scripts/add_cost_runs.mjs and scripts/units.mjs of the live tree (a6d87d2); trace h100-rbm-j1j2-16.trace.jsonl; results/runs/h100-rbm-j1j2-16--host20260925070940.json; forward-flops.json",
+          "location": "checks/cost/results/h100-rbm-j1j2-16.json (NVIDIA H100 NVL, no scheduler, commit 55af6b8; argv --instance J1J2/square_16_P_0.5 --model rbm; 2026-09-25T07:07:53Z to 2026-09-25T07:09:40Z)",
+          "reported_as": "energy -32.954687140567756 sigma 0.006905736153522771 energy_variance 6.037842757146967 tau_corr 0.017628398247338084 r_hat 1.0040991476704915 energy_per_site_SS -0.5149169865713712 (Pauli total; eval 131072 samples, 1024 chains, 64 discarded per chain, chains from training)",
+          "conversion": "energy stored as is (Pauli total, no conversion); sigma 0.006905736153522771 -> 0.0069 (two significant figures); v_score = 16 x 6.037842757146967 / (-32.954687140567756)^2 = 0.08895439192548783; gpu_hours = 107.21609868202358 / 3600 x 1 = 0.030",
+          "note": "Energy, sigma, variance, V-score, dof 16, einf 0, label, method string, reference (run, no scheduler, commit), source day 2026-09-25 and the compute block (parameters, gpu_hours, wall_clock 00:01:47, device, samples 4096, iterations 2000, proposals_per_sample 80, complex true, sr dense, forward_flops) all match the results file and the loader. Parameters 288 = N^2 + 2N complex at N = 16; forward-flops.json, which builds the network separately, counts the same. Gates: R-hat 1.0041 < 1.05 on the first evaluation attempt (64 discards), finite, not diverged, no recovery. Protocol fields as README v1.5 states them (2000 steps x 4096 samples, 1024 chains, 16 discarded, SR lr 0.01 after a 200-step linear warmup, diag_shift 1e-6 with relative 0.01, MetropolisExchange d_max 2 in S_z = 0, seed 20260921, chunk 16384); solver Cholesky as run_nqs.py's rule gives for 576 real parameters (Cholesky where <= 4096). Commit 55af6b8 (2026-09-25T09:06:02+02:00) exists and precedes the run; run_nqs.py at 55af6b8 has no batched evaluation and the attempts carry no 'batches' field, as expected for a run before the 2026-09-29 amendment. The scripts changed after it only in the host-name scrub (dc612f3), no numerics. Trace: steps 0-1999 complete (2000 lines); the final evaluation sits -0.0148 from the mean of steps 1900-1999 (-32.9399, sd 0.0338; -0.44 sd); evaluation variance 6.038 against the same steps' mean variance 6.380. Single run of this configuration (best_of 1; runs/ holds exactly this run). Above the instance's exact energy -33.83169340557936 (Exact diagonalization) by 0.8770 (2.59e-2 relative), as a variational energy must be. Not the record (-33.83169340557946, DMRG (bond dimension = 256)). Duplicate check: no other row on the instance carries this number.",
+          "source_entry": "RH1#12 (qmbl-verify 2026-09-29, handoff reader 2026-10-02: a cost-run row the pass never read); ruling R1, 2026-10-02"
+        }
+      },
+      "compute": {
+        "parameters": 288,
+        "gpu_hours": 0.03,
+        "device": "NVIDIA H100 NVL",
+        "n_devices": 1,
+        "samples": 4096,
+        "wall_clock": "00:01:47",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "evaluation": {
+          "proposals_per_sample": 80,
+          "local_energy": "all",
+          "complex": true,
+          "sr": {
+            "kind": "dense"
+          },
+          "forward_flops": {
+            "flops_per_configuration": 2560,
+            "transcendentals_per_configuration": 64,
+            "source": "checks/cost/forward-flops.json, counted 2026-09-29 by checks/cost/forward_flops.py (sha256 3c45ebef4288) with NetKet 3.22.4, jax 0.8.3"
+          },
+          "code": "NetKet 3.22.4 (checks/cost/run_nqs.py)"
+        },
+        "reported_as": "energy -32.954687140567756 sigma 0.006905736153522771 energy_variance 6.037842757146967 tau_corr 0.017628398247338084 r_hat 1.0040991476704915 | wall_hms 00:01:47 (wall_seconds 107.21609868202358) on 1 x NVIDIA H100 NVL, no scheduler | parameters 288, steps 2000 x n_samples 4096, eval samples 131072",
+        "source": "checks/cost/results/h100-rbm-j1j2-16.json, no scheduler, commit 55af6b8 (QMBL run, 2026-09-25)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Measured, not reported: wall-clock from process start to the end of the final evaluation, JIT compilation and sampling included (setup 7 s, training 93 s, evaluation 7 s); gpu_hours = wall-clock x 1 GPU. Hardware during the run (sampled every 30 s): process CPU time 0.03 h, 0 % of wall-clock x 384 cores; cores at 1.79 GHz on average (1.74-1.87, max 3.71); node load 45.6 on average of 384 CPUs; GPU SM clock 1785 MHz on average (max 1785), utilisation 71.2 %, 95.3 W."
+      }
+    },
+    {
+      "energy": -33.51504622560382,
+      "sigma": 0.0065,
+      "energy_variance": 5.582033064864003,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.07951201176874904,
+      "method": "RBM",
+      "method_detail": "α = 4, QMBL run, H100 size ladder; symmetric: translations",
+      "method_as_published": "RBM, translation-symmetric (alpha = 4), QMBL cost-to-reproduce run, H100 size ladder",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "variational Monte Carlo energy of a normalised ansatz, evaluated by QMBL on the trained state with its error bar; a strict upper bound within that bar",
+      "reference": "QMBL, checks/cost/ (cost-to-reproduce run h100-rbmsymm-j1j2-16, no scheduler, commit 55af6b8)",
+      "peer_reviewed": false,
+      "source": "qmbl-cost-2026-09-25",
+      "provenance": "primary",
+      "computed_by": "qmbl",
+      "verified": {
+        "checked_on": "2026-09-25",
+        "method": "checks/cost/run_nqs.py (NetKet 3.22.4, jax 0.8.3) on 1 x NVIDIA H100 NVL, protocol checks/cost/README.md",
+        "reported_as": "energy -33.51504622560382 sigma 0.006519248491780341 energy_variance 5.582033064864003 tau_corr 0 r_hat 1.0038107009019368 | wall_hms 00:01:53 (wall_seconds 112.97205425426364) on 1 x NVIDIA H100 NVL, no scheduler | parameters 69, steps 2000 x n_samples 4096, eval samples 131072",
+        "note": "Final evaluation, the training chains carried on: 131072 samples, 1024 chains, 64 discarded per chain; tau_corr 0.00, R_hat 1.004. Trained 2000 steps of SR (QGTJacobianDense, Cholesky on the dense S, diag_shift 1e-06, diag_scale 0.01), lr 0.01 after a 200-step linear warmup, 4096 samples per step, MetropolisExchange, d_max 2, seed 20260921. Per-step trace and final parameters beside the results file.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-02",
+          "scope": "value",
+          "method": "qmbl checks/cost/results/h100-rbmsymm-j1j2-16.json read with node (read-only), against checks/cost/run_nqs.py at commit 55af6b8 (git show), vit.py, best_run.mjs, scripts/add_cost_runs.mjs and scripts/units.mjs of the live tree (a6d87d2); trace h100-rbmsymm-j1j2-16.trace.jsonl; results/runs/h100-rbmsymm-j1j2-16--host20260925071135.json; forward-flops.json",
+          "location": "checks/cost/results/h100-rbmsymm-j1j2-16.json (NVIDIA H100 NVL, no scheduler, commit 55af6b8; argv --instance J1J2/square_16_P_0.5 --model rbmsymm; 2026-09-25T07:09:42Z to 2026-09-25T07:11:35Z)",
+          "reported_as": "energy -33.51504622560382 sigma 0.006519248491780341 energy_variance 5.582033064864003 tau_corr 0 r_hat 1.0038107009019368 energy_per_site_SS -0.5236725972750597 (Pauli total; eval 131072 samples, 1024 chains, 64 discarded per chain, chains from training)",
+          "conversion": "energy stored as is (Pauli total, no conversion); sigma 0.006519248491780341 -> 0.0065 (two significant figures); v_score = 16 x 5.582033064864003 / (-33.51504622560382)^2 = 0.07951201176874904; gpu_hours = 112.97205425426364 / 3600 x 1 = 0.031",
+          "note": "Energy, sigma, variance, V-score, dof 16, einf 0, label, method string, reference (run, no scheduler, commit), source day 2026-09-25 and the compute block (parameters, gpu_hours, wall_clock 00:01:53, device, samples 4096, iterations 2000, proposals_per_sample 80, complex true, sr dense, forward_flops) all match the results file and the loader. Parameters 69 = 4N + 5 complex (alpha = 4 kernels of N, 4 hidden biases, 1 visible bias) at N = 16; forward-flops.json, which builds the network separately, counts the same. Gates: R-hat 1.0038 < 1.05 on the first evaluation attempt (64 discards), finite, not diverged, no recovery. Protocol fields as README v1.5 states them (2000 steps x 4096 samples, 1024 chains, 16 discarded, SR lr 0.01 after a 200-step linear warmup, diag_shift 1e-6 with relative 0.01, MetropolisExchange d_max 2 in S_z = 0, seed 20260921, chunk 4096); solver Cholesky as run_nqs.py's rule gives for 138 real parameters (Cholesky where <= 4096). Commit 55af6b8 (2026-09-25T09:06:02+02:00) exists and precedes the run; run_nqs.py at 55af6b8 has no batched evaluation and the attempts carry no 'batches' field, as expected for a run before the 2026-09-29 amendment. The scripts changed after it only in the host-name scrub (dc612f3), no numerics. Trace: steps 0-1999 complete (2000 lines); the final evaluation sits 0.0014 from the mean of steps 1900-1999 (-33.5165, sd 0.0287; 0.05 sd); evaluation variance 5.582 against the same steps' mean variance 5.790. Single run of this configuration (best_of 1; runs/ holds exactly this run). Above the instance's exact energy -33.83169340557936 (Exact diagonalization) by 0.3166 (9.36e-3 relative), as a variational energy must be. Not the record (-33.83169340557946, DMRG (bond dimension = 256)). Duplicate check: no other row on the instance carries this number.",
+          "source_entry": "RH1#13 (qmbl-verify 2026-09-29, handoff reader 2026-10-02: a cost-run row the pass never read); ruling R1, 2026-10-02"
+        }
+      },
+      "compute": {
+        "parameters": 69,
+        "gpu_hours": 0.031,
+        "device": "NVIDIA H100 NVL",
+        "n_devices": 1,
+        "samples": 4096,
+        "wall_clock": "00:01:53",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "evaluation": {
+          "proposals_per_sample": 80,
+          "local_energy": "all",
+          "complex": true,
+          "sr": {
+            "kind": "dense"
+          },
+          "forward_flops": {
+            "flops_per_configuration": 9990,
+            "transcendentals_per_configuration": 256,
+            "source": "checks/cost/forward-flops.json, counted 2026-09-29 by checks/cost/forward_flops.py (sha256 3c45ebef4288) with NetKet 3.22.4, jax 0.8.3"
+          },
+          "code": "NetKet 3.22.4 (checks/cost/run_nqs.py)"
+        },
+        "reported_as": "energy -33.51504622560382 sigma 0.006519248491780341 energy_variance 5.582033064864003 tau_corr 0 r_hat 1.0038107009019368 | wall_hms 00:01:53 (wall_seconds 112.97205425426364) on 1 x NVIDIA H100 NVL, no scheduler | parameters 69, steps 2000 x n_samples 4096, eval samples 131072",
+        "source": "checks/cost/results/h100-rbmsymm-j1j2-16.json, no scheduler, commit 55af6b8 (QMBL run, 2026-09-25)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Measured, not reported: wall-clock from process start to the end of the final evaluation, JIT compilation and sampling included (setup 8 s, training 98 s, evaluation 7 s); gpu_hours = wall-clock x 1 GPU. Hardware during the run (sampled every 30 s): process CPU time 0.04 h, 0 % of wall-clock x 384 cores; cores at 1.82 GHz on average (1.78-1.89, max 3.71); node load 46.9 on average of 384 CPUs; GPU SM clock 1785 MHz on average (max 1785), utilisation 72.5 %, 107.9 W."
+      }
+    },
+    {
+      "energy": -33.67126304380109,
+      "sigma": 0.00095,
+      "energy_variance": 0.11344733798298248,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.0016010152818245326,
+      "method": "ViT",
+      "method_detail": "factored attention, b = 2, d = 60, 4 layers, 10 heads, QMBL implementation, H100 size ladder",
+      "method_as_published": "ViT (factored attention, 2x2 patches, d = 60, 4 layers, 10 heads), QMBL cost-to-reproduce run, H100 size ladder",
+      "family": "transformer / ViT",
+      "bound_type": "variational",
+      "bound_type_reason": "variational Monte Carlo energy of a normalised ansatz, evaluated by QMBL on the trained state with its error bar; a strict upper bound within that bar",
+      "reference": "QMBL, checks/cost/ (cost-to-reproduce run h100-vit-j1j2-16, no scheduler, commit 55af6b8)",
+      "peer_reviewed": false,
+      "source": "qmbl-cost-2026-09-25",
+      "provenance": "primary",
+      "computed_by": "qmbl",
+      "verified": {
+        "checked_on": "2026-09-25",
+        "method": "checks/cost/run_nqs.py (NetKet 3.22.4, jax 0.8.3) on 1 x NVIDIA H100 NVL, protocol checks/cost/README.md",
+        "reported_as": "energy -33.67126304380109 sigma 0.0009474694203614394 energy_variance 0.11344733798298248 tau_corr 0.018580312239485308 r_hat 1.003933852987088 | wall_hms 01:34:52 (wall_seconds 5691.828158623539) on 1 x NVIDIA H100 NVL, no scheduler | parameters 154300, steps 2000 x n_samples 4096, eval samples 131072",
+        "note": "Final evaluation, the training chains carried on: 131072 samples, 1024 chains, 64 discarded per chain; tau_corr 0.02, R_hat 1.004. Trained 2000 steps of SR (QGTJacobianDense, conjugate gradients, 300 iterations max, diag_shift 1e-06, diag_scale 0.01), lr 0.01 after a 200-step linear warmup, 4096 samples per step, MetropolisExchange, d_max 2, seed 20260921. Per-step trace and final parameters beside the results file.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-02",
+          "scope": "value",
+          "method": "qmbl checks/cost/results/h100-vit-j1j2-16.json read with node (read-only), against checks/cost/run_nqs.py at commit 55af6b8 (git show), vit.py, best_run.mjs, scripts/add_cost_runs.mjs and scripts/units.mjs of the live tree (a6d87d2); trace h100-vit-j1j2-16.trace.jsonl; results/runs/h100-vit-j1j2-16--host20260925085313.json; forward-flops.json",
+          "location": "checks/cost/results/h100-vit-j1j2-16.json (NVIDIA H100 NVL, no scheduler, commit 55af6b8; argv --instance J1J2/square_16_P_0.5 --model vit; 2026-09-25T07:18:22Z to 2026-09-25T08:53:13Z)",
+          "reported_as": "energy -33.67126304380109 sigma 0.0009474694203614394 energy_variance 0.11344733798298248 tau_corr 0.018580312239485308 r_hat 1.003933852987088 energy_per_site_SS -0.526113485059392 (Pauli total; eval 131072 samples, 1024 chains, 64 discarded per chain, chains from training)",
+          "conversion": "energy stored as is (Pauli total, no conversion); sigma 0.0009474694203614394 -> 0.00095 (two significant figures); v_score = 16 x 0.11344733798298248 / (-33.67126304380109)^2 = 0.0016010152818245326; gpu_hours = 5691.828158623539 / 3600 x 1 = 1.581",
+          "note": "Energy, sigma, variance, V-score, dof 16, einf 0, label, method string, reference (run, no scheduler, commit), source day 2026-09-25 and the compute block (parameters, gpu_hours, wall_clock 01:34:52, device, samples 4096, iterations 2000, proposals_per_sample 80, complex false, sr cg, forward_flops) all match the results file and the loader. Parameters 154300 = 153900 + 25N real (vit.py: embedding, positions, 4 layers with N/4-entry attention tables per head, two log-cosh heads) at N = 16; forward-flops.json, which builds the network separately, counts the same. Gates: R-hat 1.0039 < 1.05 on the first evaluation attempt (64 discards), finite, not diverged, no recovery. Protocol fields as README v1.5 states them (2000 steps x 4096 samples, 1024 chains, 16 discarded, SR lr 0.01 after a 200-step linear warmup, diag_shift 1e-6 with relative 0.01, MetropolisExchange d_max 2 in S_z = 0, seed 20260921, chunk 1024); solver conjugate gradients as run_nqs.py's rule gives for 154300 real parameters (Cholesky where <= 4096). Commit 55af6b8 (2026-09-25T09:06:02+02:00) exists and precedes the run; run_nqs.py at 55af6b8 has no batched evaluation and the attempts carry no 'batches' field, as expected for a run before the 2026-09-29 amendment. The scripts changed after it only in the host-name scrub (dc612f3), no numerics. Trace: steps 0-1999 complete (2000 lines); the final evaluation sits -0.0019 from the mean of steps 1900-1999 (-33.6693, sd 0.0077; -0.25 sd); evaluation variance 0.113 against the same steps' mean variance 0.264. Training transient inside the Hamiltonian's bound (|E| <= 2 n_conn = 128, so the divergence rule did not fire): the largest upward step in the trace is +1.02 at step 634 (-33.256 -> -32.241); the lowest step energy is -33.706 at step 1448, and the trace ends at -33.672 (step 1999). The row is the final state's evaluation, as the protocol prescribes; it lies 0.035 above the lowest step energy of the run. Single run of this configuration (best_of 1; runs/ holds exactly this run). Above the instance's exact energy -33.83169340557936 (Exact diagonalization) by 0.1604 (4.74e-3 relative), as a variational energy must be. Not the record (-33.83169340557946, DMRG (bond dimension = 256)). Duplicate check: no other row on the instance carries this number.",
+          "source_entry": "RH1#14 (qmbl-verify 2026-09-29, handoff reader 2026-10-02: a cost-run row the pass never read); ruling R1, 2026-10-02"
+        }
+      },
+      "compute": {
+        "parameters": 154300,
+        "gpu_hours": 1.581,
+        "device": "NVIDIA H100 NVL",
+        "n_devices": 1,
+        "samples": 4096,
+        "wall_clock": "01:34:52",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "evaluation": {
+          "proposals_per_sample": 80,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "cg",
+            "cg_iterations": null
+          },
+          "forward_flops": {
+            "flops_per_configuration": 1230150,
+            "transcendentals_per_configuration": 4116,
+            "source": "checks/cost/forward-flops.json, counted 2026-09-29 by checks/cost/forward_flops.py (sha256 3c45ebef4288) with NetKet 3.22.4, jax 0.8.3"
+          },
+          "code": "NetKet 3.22.4 (checks/cost/run_nqs.py)"
+        },
+        "reported_as": "energy -33.67126304380109 sigma 0.0009474694203614394 energy_variance 0.11344733798298248 tau_corr 0.018580312239485308 r_hat 1.003933852987088 | wall_hms 01:34:52 (wall_seconds 5691.828158623539) on 1 x NVIDIA H100 NVL, no scheduler | parameters 154300, steps 2000 x n_samples 4096, eval samples 131072",
+        "source": "checks/cost/results/h100-vit-j1j2-16.json, no scheduler, commit 55af6b8 (QMBL run, 2026-09-25)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Measured, not reported: wall-clock from process start to the end of the final evaluation, JIT compilation and sampling included (setup 10 s, training 5666 s, evaluation 16 s); gpu_hours = wall-clock x 1 GPU. Hardware during the run (sampled every 30 s): process CPU time 1.59 h, 0 % of wall-clock x 384 cores; cores at 2.07 GHz on average (1.72-2.66, max 3.71); node load 73.6 on average of 384 CPUs; GPU SM clock 751 MHz on average (max 1785), utilisation 98.2 %, 388.3 W."
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:1611.09467",
+        "arXiv:2603.14425"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    },
+    {
+      "checked_on": "2026-09-15",
+      "method": "citation screen of Vieijra & Nys 2021 (PRB 104, 045123): citing works from OpenAlex and Semantic Scholar (scripts/cited_by.mjs)",
+      "screened": [
+        "arXiv:2404.11490",
+        "arXiv:2510.17490",
+        "arXiv:2211.07749"
+      ],
+      "found": 0,
+      "note": "29 citing works, 22 on arXiv, 22 fetched; 3 read in full, 19 excluded by a text filter (no energy to four decimals, or no QMBL model named)."
+    }
+  ],
+  "qmbl_ed_cost": {
+    "core_hours": 0.00558,
+    "wall_clock": "00:00:20",
+    "cores": 1,
+    "cpu": "AMD EPYC 7H12 64-Core Processor",
+    "energy": -33.83169340557939,
+    "reproduces": {
+      "energy": -33.83169340557936,
+      "method": "Exact diagonalization",
+      "relative_difference": 8.4e-16
+    },
+    "sector": {
+      "conserved": "total Sz = 0",
+      "dimension": 12870,
+      "nonzeros": 449462,
+      "lattice_symmetries": "none"
+    },
+    "lanczos_steps": 101,
+    "peak_memory_gb": 0.88,
+    "code": "NetKet 3.22.4 (sparse matrix) and SciPy 1.18.1 eigsh (ARPACK Lanczos)",
+    "note": "Measured by QMBL, not reported: wall-clock from process start to the eigenvalue on 1 core (imports 13 s, Hamiltonian 0 s, sparse matrix 7 s, Lanczos 0 s); core_hours = wall-clock x cores. Process CPU time 57 % of wall-clock x cores, core clock 1.65 GHz on average, node load 36.9 of 128 CPUs.",
+    "script": "checks/cost/ed/run_ed.py",
+    "results_file": "checks/cost/ed/results/J1J2--square_16_P_0.5.json",
+    "commit": "716e043",
+    "measured_on": "2026-09-24"
+  }
+}

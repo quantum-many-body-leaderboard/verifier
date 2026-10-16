@@ -1,0 +1,190 @@
+{
+  "model": "Hubbard",
+  "lattice": "square",
+  "n_sites": 16,
+  "boundary": "P",
+  "params": {
+    "Nf": 4,
+    "U": 8
+  },
+  "instance_id": "Hubbard/square_16_P_4_8",
+  "rows": [
+    {
+      "energy": -16.46062675368178,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 8,
+      "einf": 8,
+      "v_score": null,
+      "method": "ED",
+      "method_detail": "",
+      "method_as_published": "Exact diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Hubbard/square_16_P_4_8/ed_lattice_symmetries.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "QMBL ED cost run checks/cost/ed/results/Hubbard--square_16_P_4_8.json (checks/cost/ed/run_ed.py: NetKet 3.22.4 operator, sparse CSR built in blocks, SciPy eigsh/ARPACK k=1 SA; commit 716e043); results file read locally, no rerun",
+        "location": "checks/cost/ed/results/Hubbard--square_16_P_4_8.json: fields energy, stored_exact, relative_difference, reproduces_stored",
+        "reported_as": "energy -16.460626753681726 (stored_exact -16.46062675368178, relative_difference 3.24e-15, reproduces_stored true)",
+        "conversion": "none: the cost run works in the stored convention (Pauli totals for spin models, totals for fermions and impurity)",
+        "note": "|reproduced - stored| = 5.33e-14 (relative 3.24e-15); within 1e-9 relative. Sector N_up = N_dn = 4, dimension 3312400, 171 Lanczos steps (the file states no residual). The stored value is the source's own ED (varbench@2024-10-22), so two codes agree; a third code, E1's node Lanczos (qmbl-runs/qmbl-verify/out/E1-exact-recompute/results/Hubbard__square_16_P_4_8.json), gives -16.46062675368358 (1.85e-12 from the cost run). Also read by VB2-varbench-code-hubbard#51 (scope value: VarBench Hubbard/square_16_P_4_8.md row 'Exact diagonalization'; checks/hubbard-u-labels/ed_results.jsonl job {lattice: square, L: 4, n: 4, U: 8}).",
+        "source_entry": "VB2-varbench-code-hubbard#51, VE-exact-recompute#20 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -16.460626633,
+      "sigma": null,
+      "energy_variance": 1.6764e-7,
+      "dof": 8,
+      "einf": 8,
+      "v_score": 2.2414676842909106e-9,
+      "method": "DMRG",
+      "method_detail": "bond dimension ~3200",
+      "method_as_published": "DMRG (MaxBondDim ~ 3200)",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/programs/dmrg_itensors_hubbard/square_16_P_4_8.jl)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 26,
+        "sweep_schedule": {
+          "code": "ITensors.jl 0.6.16",
+          "eigensolver_applications": 3,
+          "eigensolver_source": "ITensors.jl 0.6.16 dmrg(): eigsolve_krylovdim = 3, eigsolve_maxiter = 1 (defaults, not overridden)",
+          "maxdim": [
+            4,
+            4,
+            8,
+            8,
+            16,
+            16,
+            32,
+            32,
+            64,
+            64,
+            128,
+            128,
+            256,
+            256,
+            500,
+            500,
+            800,
+            800,
+            1200,
+            1200,
+            1700,
+            1700,
+            2400,
+            2400,
+            3200,
+            3200
+          ],
+          "start": "product state",
+          "cutoff": null,
+          "variance_after": [
+            2,
+            4,
+            6,
+            8,
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26
+          ],
+          "lattice": {
+            "order": "snake",
+            "rows": 4,
+            "cols": 4,
+            "wrap_row": true,
+            "wrap_col": true,
+            "diagonals": [],
+            "site_dimension": 4,
+            "operators_per_bond": 4
+          }
+        },
+        "reported_as": "method string: \"DMRG (MaxBondDim ~ 3200)\" || programs/dmrg_itensors_hubbard/square_16_P_4_8.jl: \"dims = [4,8,16,32,64,128,256,500,800,1200,1700,2400,3200]\" || \"for dim in dims; sweeps = Sweeps(2); setmaxdim!(sweeps,dim); E,ψ = dmrg(H,ψ,sweeps); var = inner(H,ψ,H,ψ) - E^2\" || README: \"Requires Julia 1.10.4 and ITensors 0.6.16\"",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/dmrg_itensors_hubbard/square_16_P_4_8.jl (compute pass 2026-09-23)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Sweep schedule, eigensolver setting and lattice order read from the run script; 26 sweeps, maximum bond dimension 3200 (the method string gives the reached bond dimension only approximately). No time is recorded anywhere in the repository."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "run script programs/dmrg_itensors_hubbard/square_16_P_4_8.jl (varbench/methods@ed31bb0) read in full (author copy MaxSilvester/Hubbard-and-Heisenberg-codes identical in physics); VarBench history (git clone of github.com/varbench/varbench, partial, read with git log --follow; old names normalised); energy compared with the QMBL full-space recompute",
+        "location": "let block: 'U = 8', 'nx = 4', 'ny = 4', 'yperiodic = true', 'xperiodic = true', spins alternating Up/Dn with sites 5:12 set to Emp -> 4 up + 4 down, dims [4,...,2400,3200], 2 sweeps each (26 sweeps), E and var printed after each maxdim on the optimized state",
+        "reported_as": "-16.460626633 | | 1.6764e-7 | DMRG (MaxBondDim ~ 3200) (VarBench upload, J. Maxwell Silvester)",
+        "conversion": "none (total). E - E0(U = 8, 4+4) = 1.2e-7 (E0 = -16.46062675368177)",
+        "note": "4x4 torus (32 bonds), t = 1, U n_up n_dn with no shift, N_up = N_dn = 4: the instance at U = 8. The energy is the reached DMRG energy at the final maxdim and lies above the exact energy at the script's U, as a variational energy must; variational correct. Temple check (E - E0 <= Var/(E1 - E), E1 = -16.338331380898335 the next level, eigsh lowest): E - E0 = 1.2e-7 vs bound 1.4e-6, consistent. History: uploaded 2022-09-12 (d547055, variance 1.67644e-7, then 1.6764e-7 in 22d4daf). No output log (scope config).",
+        "source_entry": "VB2-varbench-code-hubbard#37 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2404.07869",
+        "arXiv:2502.17144",
+        "arXiv:2506.08329",
+        "arXiv:2507.10705",
+        "arXiv:2511.07566",
+        "arXiv:2511.12551",
+        "arXiv:2606.00924"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ],
+  "qmbl_ed_cost": {
+    "core_hours": 0.10666,
+    "wall_clock": "00:06:24",
+    "cores": 1,
+    "cpu": "AMD EPYC 7H12 64-Core Processor",
+    "energy": -16.460626753681726,
+    "reproduces": {
+      "energy": -16.46062675368178,
+      "method": "Exact diagonalization",
+      "relative_difference": 3.24e-15
+    },
+    "sector": {
+      "conserved": "N_up = N_dn = 4",
+      "dimension": 3312400,
+      "nonzeros": 87208940,
+      "lattice_symmetries": "none"
+    },
+    "lanczos_steps": 171,
+    "peak_memory_gb": 10.83,
+    "code": "NetKet 3.22.4 (sparse matrix) and SciPy 1.18.1 eigsh (ARPACK Lanczos)",
+    "note": "Measured by QMBL, not reported: wall-clock from process start to the eigenvalue on 1 core (imports 9 s, Hamiltonian 0 s, sparse matrix 330 s, Lanczos 45 s); core_hours = wall-clock x cores. Process CPU time 99 % of wall-clock x cores, core clock 3.17 GHz on average, node load 38.8 of 128 CPUs.",
+    "script": "checks/cost/ed/run_ed.py",
+    "results_file": "checks/cost/ed/results/Hubbard--square_16_P_4_8.json",
+    "commit": "716e043",
+    "measured_on": "2026-09-24"
+  }
+}

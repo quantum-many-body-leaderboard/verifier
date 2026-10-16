@@ -1,0 +1,179 @@
+{
+  "model": "J1J2",
+  "lattice": "square",
+  "n_sites": 100,
+  "boundary": "P",
+  "params": {
+    "J2": 0.2
+  },
+  "instance_id": "J1J2/square_100_P_0.2",
+  "rows": [
+    {
+      "energy": -237.1928,
+      "sigma": null,
+      "energy_variance": 0.352,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.0006256618287724582,
+      "method": "ViT",
+      "method_detail": "",
+      "method_as_published": "ViT",
+      "family": "transformer / ViT",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Extremely slow scaling of minimal Hamming distance in quantum sampling data, arXiv:2606.04558",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-28",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-28",
+        "method": "source text of arXiv:2606.04558 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.592982",
+        "note": "Table I, row J2=0.20, column '10×10, ViT (this work)' | Table I prints energy per site in S.S units: its J2 = 0 QMC column equals Sandvik's exact values on Heisenberg/square_64_P and square_100_P.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2606.04558v2 (15 Sep 2026) PDF, pypdf layout and plain mode, and v2 arXiv HTML (LaTeXML table parsed with node); v1 (3 Jun 2026) PDF and HTML read the same way; Table I agrees cell by cell in all four extractions (only citation numbers change between v1 and v2)",
+          "location": "Table I, row J2 = 0.20, column '10x10, ViT (this work)'",
+          "reported_as": "-0.592982 (energy per site, S.S units, J1 = 1; no error bar printed)",
+          "conversion": "-0.592982 x 4 x 100 = -237.1928 (stored -237.1928, exact match)",
+          "note": "Independent second read of a QMBL-added row. Hamiltonian H = J1 sum_<i,j> S_i S_j + J2 sum_<<i,j>> S_i S_j with spin-1/2 operators (v1 Eq. 4, v2 Eq. 6), 'square lattice with periodic boundary conditions and N = 36, 64 and 100 spins 1/2'; Table I is per site in S.S units with J1 = 1 (the paper's own 6x6 ED column and its quoted Sandvik QMC cells fix it). Size, boundary and J2 agree with the instance; 'ViT' is a variational NQS, so bound_type variational is right; method_as_published 'ViT' is the column header; peer_reviewed false is right (no journal reference on the abs page, 2026-09-29); primary (column '(this work)'). Kind of number: the authors' extended data (2026-09-28) states that Table I lists the best of ten checkpoints (every 150 of 1500 epochs), each a 4096-sample estimate; no error bar is printed, so sigma stays null (RULES.md 6). energy_variance 0.352 = sigma^2 x 16 x 100 with sigma^2 = 2.200e-4 = (<H^2>-<H>^2)/N per spin (S.S units), authors' extended data row '0.20 -0.592982 2.3 0.22 -0.592982 2.3 0.22 -0.592930 0.625 0.22', column group 'the best epochs, 4096 samples; Table I'; V-score N Var/E^2 = 6.2566e-4 recomputes. Best checkpoint = final epoch (same 4096-sample energy in both column groups); the same state re-measured with 102,400 samples gives -0.592930 (error 6.25e-6), 5.20e-5 per site above the Table I value.",
+          "source_entry": "VP5-arxiv-2606-04558#4 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 4096,
+        "wall_clock": null,
+        "reported_as": "\"The corresponding number of samples is\" ... \"4096.\"",
+        "source": "arXiv:2606.04558, located by string match in the committed source text"
+      },
+      "error_metrics": {
+        "fields": [
+          "energy_variance"
+        ],
+        "measured_by": "authors",
+        "checked_on": "2026-09-28",
+        "source": "extended data for the 10x10 ViT energies of arXiv:2606.04558, sent by V. V. Mazurenko on 2026-09-28 for the QMBL entry (private correspondence); column \"the best epochs, 4096 samples\", transcribed in sources/2606.04558-authors-extended-data-vit.txt",
+        "source_file": "sources/2606.04558-authors-extended-data-vit.txt",
+        "reported_as": "0.20 -0.592982 2.3 0.22",
+        "conversion": "var_over_n_SS",
+        "note": "Best of ten checkpoints (one every 150 epochs of 1500), each measured on 4096 samples: the state and sample set behind the energy Table I prints. Var(H)/N in S.S units, stored as a Pauli total (x 16 N). The source also gives an error epsilon = 2.3e-5 per site; it equals sqrt(sigma^2/(N x 4096)), the standard error without autocorrelation, so it is used only for the agreement check and not attached as sigma (RULES.md 6; 2026-09-28)."
+      }
+    },
+    {
+      "energy": -237.1,
+      "sigma": 0.004,
+      "energy_variance": null,
+      "dof": 100,
+      "einf": 0,
+      "v_score": null,
+      "method": "CNN",
+      "method_detail": "",
+      "method_as_published": "CNN",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Choo, Neupert & Carleo, Two-dimensional frustrated J1-J2 model studied with neural network quantum states, Phys. Rev. B 100, 125124 (2019)",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-28",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-28",
+        "method": "source text of arXiv:2206.14307 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.59275(1)",
+        "note": "Table 5, row 'Energy(CNN)', 10x10 J2 = 0.2 | Energy per site E/N in S.S units (table captions); the 6x6 exact column equals the exact rows QMBL carries.",
+        "secondary_of": "arXiv:2206.14307",
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 100, 125124 (2019), doi:10.1103/PhysRevB.100.125124, sources/journal/prb100-125124.pdf, sha256 bae6515a (APS, ETH network; no Supplemental Material); arXiv:1903.06713v1 (only version) compared: CNN rows identical; pypdf layout and plain mode",
+          "location": "Table I (Appendix A), 10 x 10 block, row CNN, column J2 = 0.2",
+          "reported_as": "-0.59275(1) (per site, S.S units, J1 = 1)",
+          "conversion": "-0.59275 x 4 x 100 = -237.1; sigma 1e-5 x 4 x 100 = 0.004",
+          "note": "Eq. (1) H = J1 sum S_i.S_j + J2 sum S_i.S_j, 'square lattice with periodic boundary conditions', zero-magnetization sector, J1 = 1; Appendix A: 'the exact values (including error bars) for the variational energies obtained in this paper' (own CNN, variational, MCMC with spin-exchange moves, 5000 samples). Units fixed by the table's 6x6 Exact row, which equals QMBL's exact rows. Journal and arXiv v1 CNN cells identical. peer_reviewed true, reference correct (title as published). No duplicate on the instance.",
+          "source_entry": "JP8-j1j2-hubbard-heisenberg#43"
+        }
+      },
+      "corrections": [
+        {
+          "field": "provenance",
+          "to": "primary",
+          "reported_as": "−0.59275(1) (per site, S.S units, J1 = 1)",
+          "location": "Appendix \"VARIATIONAL ENERGIES\", TABLE I (p. 6), 10 × 10 block, row \"CNN\", column \"J2 = 0.2\"",
+          "version_read": "arXiv:1903.06713v1 (the only arXiv version, dated March 19, 2019; journal Phys. Rev. B 100, 125124 (2019) per the arXiv journal-ref, journal PDF not read)",
+          "conversion": "-0.59275 x 4 x 100 = -237.1; sigma 0.00001 x 400 = 0.004",
+          "checked_on": "2026-09-29",
+          "reason": "Read in the producing paper: Choo et al. print this CNN energy as their own result (Appendix TABLE I, \"the variational energies obtained in this work\"). The row was loaded from Chen et al. arXiv:2206.14307 (Table 5, row 'Energy(CNN)', 10x10 J2 = 0.2), which quotes it; value, error bar, cluster and J2 agree, so only the provenance label changes (RULES.md 8). In sweep-rows-2026-09-28.json also set line 2325 \"arxiv\": \"1903.06713\" and line 2327 \"evidence\": \"Appendix TABLE I, 10 x 10 block, row 'CNN', column J2 = 0.2\" so verified.method names the source actually read.",
+          "source_entry": "VP10-heisenberg-j1j2#5 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "secondary"
+        }
+      ]
+    },
+    {
+      "energy": -237.1388,
+      "sigma": 0.0036,
+      "energy_variance": null,
+      "dof": 100,
+      "einf": 0,
+      "v_score": null,
+      "method": "RBM",
+      "method_detail": "symmetric: spin parity (even); projected: momentum, C4v",
+      "method_as_published": "RBM wave function",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Chen, Hendry, Weinberg & Feiguin, Systematic improvement of neural network quantum states using Lanczos, Adv. Neural Inf. Process. Syst. 35 (NeurIPS 2022), 7490-7503, arXiv:2206.14307",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-28",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-28",
+        "method": "source text of arXiv:2206.14307 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.592847(9)",
+        "note": "Table 5, row 'Energy(RBM)', 10x10 J2 = 0.2 | Energy per site E/N in S.S units (table captions); the 6x6 exact column equals the exact rows QMBL carries.",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Adv. Neural Inf. Process. Syst. 35, 7490-7503 (NeurIPS 2022, doi:10.52202/068431-0544), sources/journal/neurips35-7490.pdf, sha256 902d3e93; supplement sources/journal/neurips35-7490-supp.pdf, sha256 c1ea9c74; compared with arXiv:2206.14307v1 (the only arXiv version; qmbl/sources/2206.14307.pdf): every RBM cell identical, the journal adds 'Energy(RBM+PP)' rows (quotes of ref. [30]) to Tables 2 and 4; pypdf plain + layout mode (with fonttools), local extraction, no LLM transcription",
+          "location": "journal Table 5, 10x10 block, row 'Energy(RBM)', column J2 = 0.2",
+          "reported_as": "-0.592847(9) (energy per site E/N, J1 = 1, S.S units)",
+          "conversion": "-0.592847 x 4 x 100 = -237.1388; sigma 0.000009 x 400 = 0.0036",
+          "note": "Pauli-stored total = E/N x 4N; H = J1 sum S.S + J2 sum S.S, S spin operators, J1 = 1, no constant (Eq. 1); L x L periodic (Sec. 4.1); S^z = 0 sector, psi_KL projected to momentum K and a C4v irrep (A1 or B1, Sec. 3.4); variational MC energy of the symmetrized RBM, 2e5 evaluation samples; no variance extrapolation reported. bound_type variational, peer_reviewed true and reference (NeurIPS 35, 7490-7503) agree. arXiv v1 and journal cells identical. Not a duplicate: no other row on the instance carries this number from this paper or a quote of it.",
+          "source_entry": "JP6-heisenberg-j1j2#3"
+        }
+      },
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "\"36th Conference on Neural Information Processing Systems (NeurIPS 2022).\" (camera-ready p. 1 footer); proceedings page: \"Advances in Neural Information Processing Systems 35 (NeurIPS 2022) Main Conference Track\", DOI 10.52202/068431-0544, pages 7490-7503",
+          "location": "papers.nips.cc/paper_files/paper/2022/hash/3173c427cb4ed2d5eaab029c17f221ae-Abstract-Conference.html and its bibtex; camera-ready PDF p. 1",
+          "version_read": "arXiv:2206.14307v1 (the only arXiv version; PDF read with pypdf in layout and plain mode, arXiv HTML parsed with node, TeX source anc/*.tex) and the NeurIPS 2022 camera-ready (proceedings PDF 3173c427...-Paper-Conference.pdf and Supplemental PDF, pypdf layout mode); every energy cell of Tables 2-5 is identical in both",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "The paper was published in the NeurIPS 2022 main conference track (retitled 'Systematic improvement of neural network quantum states using Lanczos'). An ML-venue refereed paper counts as peer reviewed (RULES 8.1). The camera-ready prints the same number in the same cell as arXiv v1 (the only arXiv version, still marked 'Preprint. Under review.'), so the value stands; OpenAlex (sources/openalex.json) knows only the preprint. The 2026-09-16 pass proposed the same change for 18 of these rows (the 10 rows added on 2026-09-28 did not exist yet); it never reached the data, and the 2026-09-28 pass entered false again.",
+          "source_entry": "VP8-arxiv-2206-14307#9 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": false
+        },
+        {
+          "field": "reference",
+          "to": "Chen, Hendry, Weinberg & Feiguin, Systematic improvement of neural network quantum states using Lanczos, Adv. Neural Inf. Process. Syst. 35 (NeurIPS 2022), 7490-7503, arXiv:2206.14307",
+          "reported_as": "bibtex: \"author = {Chen, Hongwei and Hendry, Douglas and Weinberg, Phillip and Feiguin, Adrian}, booktitle = {Advances in Neural Information Processing Systems}, pages = {7490--7503}, title = {Systematic improvement of neural network quantum states using Lanczos}, volume = {35}, year = {2022}\"",
+          "location": "papers.nips.cc/paper_files/paper/18316-/bibtex",
+          "version_read": "arXiv:2206.14307v1 (the only arXiv version; PDF read with pypdf in layout and plain mode, arXiv HTML parsed with node, TeX source anc/*.tex) and the NeurIPS 2022 camera-ready (proceedings PDF 3173c427...-Paper-Conference.pdf and Supplemental PDF, pypdf layout mode); every energy cell of Tables 2-5 is identical in both",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Record the venue of the published version (RULES 8.1), in the form other rows use for journals; the NeurIPS title drops 'a ... recursion'.",
+          "source_entry": "VP8-arxiv-2206-14307#10 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Chen, Hendry, Weinberg & Feiguin, Systematic improvement of neural network quantum states using a Lanczos recursion, arXiv:2206.14307 (2022)"
+        }
+      ]
+    }
+  ]
+}

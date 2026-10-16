@@ -1,0 +1,1473 @@
+{
+  "model": "Hubbard",
+  "lattice": "rectangular-4x16",
+  "n_sites": 64,
+  "boundary": "P",
+  "params": {
+    "Nf": 28,
+    "U": 8
+  },
+  "instance_id": "Hubbard/rectangular-4x16_64_P_28_8",
+  "rows": [
+    {
+      "energy": -48.192,
+      "sigma": 0.003,
+      "energy_variance": 0.44,
+      "dof": 56,
+      "einf": 98,
+      "v_score": 0.0011529049089181764,
+      "method": "HFDS",
+      "method_detail": "16 hidden fermions, 1-layer FFN with α = 6, stripe λ = 8 mean-field constraint",
+      "method_as_published": "VMC Hidden Fermion Determinant State Ansatz (N_hidden = 16. Single hidden layer fully connected net with alpha = 6). Soft mean-field constraint for lambda = 8 stripe order.",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://www.pnas.org/doi/full/10.1073/pnas.2122059119)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": true,
+          "reported_as": "'General expectation values and gradients of the objective function are computed using Markov chain Monte Carlo sampling' (Sec. 2 C, p. 5)",
+          "location": "PNAS 119, e2122059119 (2022), Sec. 2 C (p. 5)",
+          "version_read": "PNAS article PDF and SI Appendix (PMC9371695), pypdf layout; arXiv:2111.10420v2 (VA3)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "A variational Monte Carlo energy whose stored sigma is the uploader's Monte Carlo error; the method string's fallback reads 'mean-field' in the upload's 'Soft mean-field constraint' as a deterministic marker. Not named in the ruling's list, but the same case: ruling 2 (2026-09-30) makes sampled vs deterministic a per-row statement from the source. No eligibility change: sigma is stored.",
+          "source_entry": "VA3-10-1073-pnas-2122059119#16 (qmbl-verify 2026-09-29; reader's reading; no skeptic checked it); ruling 2, 2026-09-30",
+          "from": false
+        }
+      ],
+      "sampled": true,
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "PNAS 119(32), e2122059119 (2022), SI Appendix PDF (PMC9371695; sources/pnas.2122059119.sapp.PMC9371695.pdf, sha256 c6e62d9c...), pypdf layout mode, re-extracted 2026-09-29 (byte-identical to the earlier extraction); same cell read in arXiv:2111.10420v2 (18 Jun 2022) Appendix H (sources/2111.10420v2.pdf, pypdf layout)",
+        "location": "SI Sec. 8 C, Table 4 (p. 9), row L = 16, column 'Energy per site HFDS (PBC-PBC)'; arXiv v2 Table IV identical",
+        "reported_as": "-0.753(2) (energy per site, units of t)",
+        "conversion": "-0.753 x 64 = -48.192 (exact)",
+        "note": "Energy verified; sigma differs (ambiguous entry). PBC-PBC = P. 4 x 16, n = 7/8 = 28 up + 28 down at zero magnetization, U = 8, t = 1, Eq. 1 with no shift. N~ = 16 and alpha = 6 for L = 16 ('A good trade-off ... is achieved by the addition of N~ = 16 hidden fermions for all system sizes. We also consider a two-layer fully connected neural network of hidden-unit density α = {60, 14, 6} for the L = {4, 8, 16} sizes', main Sec. 3 B, p. 6), lambda = 8 soft mean-field constraint on phi_v ('To guide the wave-function ansatz toward the λ = 8 stripe order, we add a soft mean-field constraint', p. 6): method string and detail right. Variational VMC bound, own computation. Not the record (many lower rows, e.g. ACE + full symmetry projection -49.03872). arXiv:2308.11823 Table III quotes the same number as 'Ref.2 ... from HFSD' (-0.753, 4 x 16); no QMBL row carries that quote. Upload 8df3719 (2022-07-16): -48.192 | 0.003 | 0.44(1); energy_variance upload-only. M6/M8 settled from the source: a sampled VMC energy ('General expectation values and gradients of the objective function are computed using Markov chain Monte Carlo sampling', main text Sec. 2 C, p. 5) whose stored sigma is the uploader's Monte Carlo error; units.mjs counts the row deterministic only because 'Soft mean-field constraint' matches /mean[- ]field/ (units.mjs line 20), which changes nothing while sigma is stored (isSampled is consulted only when sigma is null). Venue PNAS, peer reviewed ('Edited by Angel Rubio ... received December 6, 2021; accepted June 28, 2022'; 'This article is a PNAS Direct Submission'); the imported row carries no peer_reviewed field (loader-level, see report). No duplicate.",
+        "source_entry": "VA3-10-1073-pnas-2122059119#16 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published SI Appendix PDF, PNAS 119(32), e2122059119 (2022) (Europe PMC PMC9371695 supplementary bundle; pnas.org PDF and Europe PMC render return Cloudflare 403), sources/journal/pnas119-e2122059119-si.pdf, sha256 c6e62d9c (byte-identical to the SI read 2026-09-29), pypdf layout + plain; main text: published full-text XML (Europe PMC), sources/journal/pnas119-e2122059119.fulltext.xml, sha256 761defc3; arXiv compared: 2111.10420v2 (Appendix H, via the 2026-09-29 extraction)",
+          "location": "SI Sec. 8 C, Table 4 (p. 9), row L = 16, column 'Energy per site HFDS (PBC-PBC)'",
+          "reported_as": "-0.753(2) (energy per site, units of t)",
+          "conversion": "-0.753 x 64 = -48.192",
+          "note": "4 x 16 PBC-PBC = P, 28 + 28, U = 8, N~ = 16, alpha = 6. Journal and arXiv v2 identical. Printed bar 0.128 total vs stored 0.003: Stored sigma is the first author's VarBench upload (Robledo Moreno, 2022-07/08), not the printed bar; kept under the 2026-10-02 handoff ruling R4/E2 ('the author's finer uploaded sigma stays where the printed bar is display rounding (HFDS x12)'), so no new correction. Venue PNAS, peer reviewed ('Edited by Angel Rubio ... received December 6, 2021; accepted June 28, 2022'). No duplicate.",
+          "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#1"
+        }
+      }
+    },
+    {
+      "energy": -49.05408,
+      "sigma": 0.00128,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Fixed-node GFMC",
+      "method_detail": "trial state: ACE, 16 conv layers",
+      "method_as_published": "ACE (16 conv layers) trial state + fixed-node GFMC",
+      "family": "AFQMC / GFMC",
+      "bound_type": "projected",
+      "bound_type_reason": "assigned from the source text during verification",
+      "reference": "Gu, Han, Li, Xiao, Xiang, Qin, Wang & Lv, Pareto Frontier of Neural Quantum States: Scalable, Affordable, and Accurate Convolutional Backflow for Strongly Correlated Lattice Fermions, PRX Intelligence 1, 023001 (2026), arXiv:2604.25775, doi:10.1103/2kq2-5g5q",
+      "peer_reviewed": true,
+      "source": "literature-2025-26",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-10",
+        "method": "source text/table parsed locally (arXiv HTML or pypdf), no LLM transcription",
+        "reported_as": "-0.76647 (+/- 0.00002) per site",
+        "note": "Sec. III.3.1: \"a GFMC calculation with the ACE trial wave-function gives an even lower energy of -0.76647(2)\". Fixed-node: upper bound but node-dependent.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2604.25775v1: arXiv HTML (fetched 2026-09-29, parsed with node, LaTeXML alttext) and PDF (pypdf plain+layout); PDF and HTML number the references differently (PDF [21] = HTML [13] = arXiv:2507.02644; PDF [24] = HTML [31] = arXiv:2511.07566), both resolved",
+          "location": "Sec. III.3.1: 'a GFMC calculation with the ACE trial wave-function gives an even lower energy of -0.76647(2)'; authors' dmc.csv in the same folder (3000 GFMC steps)",
+          "reported_as": "-0.76647(2) per site",
+          "conversion": "-0.76647 x 64 = -49.05408; sigma 0.00002 x 64 = 0.00128; dmc.csv 'loss' column mean after 500 steps -49.05423 = -0.766472 per site, blocked standard error 1.2-1.5e-5 per site (consistent with the printed (2))",
+          "note": "Fixed-node GFMC per Sec. II.6 ('under the fixed-node approximation'), bound_type projected correct; trial state is the symmetrized ACE state (the dmc.csv sits in the symmetric run's folder).",
+          "source_entry": "VP11-heisenberg-hubbard-j1j2#18 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 4096,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 50000,
+        "reported_as": "Sec. III.C.1: Our standard ACE architecture, trained without explicit symmetries, achieves a ground-state energy of −0.76464(1). This result is already more accurate than that of HFPS [23] while requiring only one-fifteenth of the cost. By directly optimizing the projected, symmetrized state reach a new state-of-the-art energy of −0.76623(1). This surpasses the previous best result −0.766073(6) from NNBF [25] with only one-sixth of the computational cost. Additionally, a GFMC calculation with the ACE trial wave-function gives an even lower energy of −0.76647(2). ... Appendix B: In the first stage, we perform 3×10^4 initial steps without enforcing any symmetry. ... First, we restore D2 and spin inversion symmetry and train for 4×10^3 steps. Next, we additionally restore the half-translation symmetries and train for another 4×10^3 steps. Finally, we restore the 1/4-translational symmetries and train for 10^3 steps. ... Table V (Hyperparameters for the MARCH optimizer): Learning rate schedule (t): ACE 10^-1 (1 + max(t−1000,0)/4000)^-1, SCALE 5×10^-1 (1 + max(t−1000,0)/8000)^-1; Optimizer momentum (µ,β) 0.95, 0.995; Damping (λ) 0.001; Batch size clip(32 Lx×Ly, 4096, 8192); Local energy clipping 5.0; MCMC steps per sample 2.5 Lx×Ly; Total optimization steps 50000. Shared parameters apply to both models. ... Table VI (Model hyperparameters): SCALE-S h_conv 256, h_MLP 512, L_conv 1, L_MLP 4; SCALE 512/512/1/4; SCALE-L 384/512/1/4; SCALE-XL 640/1280/1/4 (32×32 only); ACE h_conv 144, h_MLP 256, L_conv 16, L_MLP 2; ACE-L 192/256/16/2. ... Fig. 2 / Sec. III.A: for the largest system size tested (N = 512), SCALE completes an optimization step in approximately 11 seconds. In comparison, the ACE architecture requires about 120 seconds, while the Transformer needs over 400 seconds ... under a fixed batch size. (No hardware named.)",
+        "source": "Sec. III.C.1; Appendix B; Appendix E, Tables V and VI; Sec. III.A / Fig. 2, arXiv:2604.25775 (compute pass 2026-09-16)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "16×4 PBC, t'=0. Relative-cost claims: one-fifteenth of the HFPS [23] cost (unsymmetrized ACE) and one-sixth of the NNBF [25] cost (symmetrized ACE). No device, GPU count, wall-clock or GPU-hours stated anywhere (main text, Figs. 1-7, Tables I-VI, Appendices A-E, acknowledgments); costs are given only relative to other methods (Fig. 4 axis is relative computational cost) and as per-step seconds at N=512 in Fig. 2 without naming hardware. No parameter count stated; architecture per Table VI. samples = batch size evaluated from the stated formula clip(32·Lx·Ly, 4096, 8192) for this lattice (our arithmetic on the paper formula); iterations = Table V total optimization steps. MCMC steps per sample = 2.5·Lx·Ly. GFMC (fixed-node) cost is not stated separately. Architecture: ACE (h_conv 144, h_MLP 256, 16 conv layers, 2 MLP layers; ACE-L variant 192/256/16/2 also listed, which one was used here is not stated)."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Gu, Han, Li, Xiao, Xiang, Qin, Wang & Lv, Pareto Frontier of Neural Quantum States: Scalable, Affordable, and Accurate Convolutional Backflow for Strongly Correlated Lattice Fermions, PRX Intelligence 1, 023001 (2026), arXiv:2604.25775, doi:10.1103/2kq2-5g5q",
+          "reported_as": "PRX INTELLIGENCE 1, 023001 (2026); DOI: 10.1103/2kq2-5g5q; (Received 10 February 2026; accepted 11 August 2026; published 6 October 2026)",
+          "location": "journal PDF p. 023001-1 header and footer",
+          "version_read": "published PDF PRX Intelligence 1, 023001 (2026), published 6 October 2026, doi:10.1103/2kq2-5g5q, sources/journal/prxintelligence1-023001.pdf, sha256 b3d8ee6b (pypdf layout + plain; Table VI body is not in the text layer and was read from the rendered page 9); compared with arXiv:2604.25775v1 (only version; qmbl/sources/2604.25775.txt): Tables I, IV, VI and Sec. III.C.1 identical for these rows",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "The paper is published (listed in scope-pub.json). Journal version located by Crossref title search (DOI 10.1103/2kq2-5g5q, PRX Intelligence 1, 023001, published 2026-10-06) and OpenAlex (same DOI, lists arXiv:2604.25775 as a location); the arXiv API still shows no journal_ref and no DOI for 2604.25775v1 on 2026-10-15. Journal values for this row equal the arXiv v1 values. Value check: Sec. III C 1 (p. 023001-6), 16 x 4 PBC, U = 8, delta = 1/8, t' = 0: 'a GFMC calculation with the ACE trial wavefunction gives an even lower energy of −0.766 47(2)' prints −0.766 47(2) per site; -0.76647 x 64 = -49.05408; sigma 0.00002 x 64 = 0.00128 equals the stored energy and sigma. Fixed-node GFMC on the ACE trial state, projected (Sec. II: 'under the fixed-node approximation').",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#39",
+          "from": "Gu et al., arXiv:2604.25775 (2026-04-28)"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "published 6 October 2026 in PRX Intelligence after review (received 10 February 2026, accepted 11 August 2026)",
+          "location": "journal PDF p. 023001-1",
+          "version_read": "published PDF PRX Intelligence 1, 023001 (2026), published 6 October 2026, doi:10.1103/2kq2-5g5q, sources/journal/prxintelligence1-023001.pdf, sha256 b3d8ee6b (pypdf layout + plain; Table VI body is not in the text layer and was read from the rendered page 9); compared with arXiv:2604.25775v1 (only version; qmbl/sources/2604.25775.txt): Tables I, IV, VI and Sec. III.C.1 identical for these rows",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "Peer-reviewed journal version exists (PRX Intelligence 1, 023001). Value check: Sec. III C 1 (p. 023001-6), 16 x 4 PBC, U = 8, delta = 1/8, t' = 0: 'a GFMC calculation with the ACE trial wavefunction gives an even lower energy of −0.766 47(2)' prints −0.766 47(2) per site; -0.76647 x 64 = -49.05408; sigma 0.00002 x 64 = 0.00128 equals the stored energy and sigma. Fixed-node GFMC on the ACE trial state, projected (Sec. II: 'under the fixed-node approximation').",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#40",
+          "from": false
+        }
+      ]
+    },
+    {
+      "energy": -49.03872,
+      "sigma": 0.00064,
+      "energy_variance": 0.45273382,
+      "dof": 56,
+      "einf": 98,
+      "v_score": 0.0011726476521956711,
+      "method": "ACE",
+      "method_detail": "16 conv layers; projected: full symmetry group",
+      "method_as_published": "ACE (16 conv layers) + full symmetry projection",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned from the source text during verification",
+      "reference": "Gu, Han, Li, Xiao, Xiang, Qin, Wang & Lv, Pareto Frontier of Neural Quantum States: Scalable, Affordable, and Accurate Convolutional Backflow for Strongly Correlated Lattice Fermions, PRX Intelligence 1, 023001 (2026), arXiv:2604.25775, doi:10.1103/2kq2-5g5q",
+      "peer_reviewed": true,
+      "source": "literature-2025-26",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-10",
+        "method": "source text/table parsed locally (arXiv HTML or pypdf), no LLM transcription",
+        "reported_as": "-0.76623 (+/- 0.00001) per site",
+        "note": "Sec. III.3.1: \"reach a new state-of-the-art energy of -0.76623(1)\".",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2604.25775v1: arXiv HTML (fetched 2026-09-29, parsed with node, LaTeXML alttext) and PDF (pypdf plain+layout); PDF and HTML number the references differently (PDF [21] = HTML [13] = arXiv:2507.02644; PDF [24] = HTML [31] = arXiv:2511.07566), both resolved",
+          "location": "Sec. III.3.1 (HTML; PDF p. 7): 'By directly optimizing the projected, symmetrized state reach a new state-of-the-art energy of -0.76623(1)'; authors' data github.com/guyuntian/open_data@499d2c0d5f figure4/16x4_U8/deepCNN_2pDS/result.txt (fetched 2026-09-29)",
+          "reported_as": "-0.76623(1) per site; result.txt 'Energy: -49.03848267762562 Variance: 0.45273382079858493'",
+          "conversion": "-0.76623 x 64 = -49.03872; sigma 0.00001 x 64 = 0.00064; data file -49.0384827 / 64 = -0.7662263 (rounds to the printed -0.76623); energy_variance 0.45273382 is Var of the TOTAL local energy (laqx test.py@c6a3ee5 lines 119-144: variance = mean|E_loc|^2 - |mean E_loc|^2, E_loc total), stored unchanged",
+          "note": "RECORD ROW, second independent reading. 16x4 PBC (both directions; laqx example uses boundary1/2 pbc), 56 electrons (1/8 doping), U = 8, t' = 0, fully symmetric sector (a sector-projected variational energy is still an upper bound), plain U n_up n_dn (laqx hubbard.py). The training log (log.csv, 39,000 steps = 3e4 + 4e3 + 4e3 + 1e3 as App. B states) ends at -0.766028 before the final projection, consistent. Variational class right; own computation; peer_reviewed false correct (v1 only). No duplicate on the instance (NNBF -0.76560(1) is Loehr & Clark's own).",
+          "source_entry": "VP11-heisenberg-hubbard-j1j2#17 (qmbl-verify 2026-09-29)"
+        }
+      },
+      "error_metrics": {
+        "fields": [
+          "energy_variance"
+        ],
+        "measured_by": "authors",
+        "checked_on": "2026-09-16",
+        "source": "authors' supporting-data repository github.com/guyuntian/open_data@499d2c0d5f, figure4/16x4_U8/deepCNN_2pDS/result.txt (Fig. 4(a))",
+        "source_file": "sources/2604.25775-repo-open_data-16x4_U8.json",
+        "reported_as": "Energy: -49.03848267762562 Variance: 0.45273382079858493",
+        "conversion": "var_as_stored",
+        "note": "Written by laqx/test.py (github.com/bytedance/laqx), which computes variance = <|E_loc|^2> - |<E_loc>|^2 of the total local energy; the file's energy / 64 = -0.7662263 is the printed -0.76623(1). The file carries no error bar; the row keeps the printed one."
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 4096,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Sec. III.C.1: Our standard ACE architecture, trained without explicit symmetries, achieves a ground-state energy of −0.76464(1). This result is already more accurate than that of HFPS [23] while requiring only one-fifteenth of the cost. By directly optimizing the projected, symmetrized state reach a new state-of-the-art energy of −0.76623(1). This surpasses the previous best result −0.766073(6) from NNBF [25] with only one-sixth of the computational cost. Additionally, a GFMC calculation with the ACE trial wave-function gives an even lower energy of −0.76647(2). ... Appendix B: In the first stage, we perform 3×10^4 initial steps without enforcing any symmetry. ... First, we restore D2 and spin inversion symmetry and train for 4×10^3 steps. Next, we additionally restore the half-translation symmetries and train for another 4×10^3 steps. Finally, we restore the 1/4-translational symmetries and train for 10^3 steps. ... Table V (Hyperparameters for the MARCH optimizer): Learning rate schedule (t): ACE 10^-1 (1 + max(t−1000,0)/4000)^-1, SCALE 5×10^-1 (1 + max(t−1000,0)/8000)^-1; Optimizer momentum (µ,β) 0.95, 0.995; Damping (λ) 0.001; Batch size clip(32 Lx×Ly, 4096, 8192); Local energy clipping 5.0; MCMC steps per sample 2.5 Lx×Ly; Total optimization steps 50000. Shared parameters apply to both models. ... Table VI (Model hyperparameters): SCALE-S h_conv 256, h_MLP 512, L_conv 1, L_MLP 4; SCALE 512/512/1/4; SCALE-L 384/512/1/4; SCALE-XL 640/1280/1/4 (32×32 only); ACE h_conv 144, h_MLP 256, L_conv 16, L_MLP 2; ACE-L 192/256/16/2. ... Fig. 2 / Sec. III.A: for the largest system size tested (N = 512), SCALE completes an optimization step in approximately 11 seconds. In comparison, the ACE architecture requires about 120 seconds, while the Transformer needs over 400 seconds ... under a fixed batch size. (No hardware named.)",
+        "source": "Sec. III.C.1; Appendix B; Appendix E, Tables V and VI; Sec. III.A / Fig. 2, arXiv:2604.25775 (compute pass 2026-09-16)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "iterations left null: Appendix B gives a staged schedule for this symmetrized 16×4 run (3×10^4 steps without symmetry, then 4×10^3 + 4×10^3 + 10^3 steps with progressively restored symmetries) which differs from the Table V default of 50000. 16×4 PBC, t'=0. Relative-cost claims: one-fifteenth of the HFPS [23] cost (unsymmetrized ACE) and one-sixth of the NNBF [25] cost (symmetrized ACE). No device, GPU count, wall-clock or GPU-hours stated anywhere (main text, Figs. 1-7, Tables I-VI, Appendices A-E, acknowledgments); costs are given only relative to other methods (Fig. 4 axis is relative computational cost) and as per-step seconds at N=512 in Fig. 2 without naming hardware. No parameter count stated; architecture per Table VI. samples = batch size evaluated from the stated formula clip(32·Lx·Ly, 4096, 8192) for this lattice (our arithmetic on the paper formula); iterations = Table V total optimization steps. MCMC steps per sample = 2.5·Lx·Ly. GFMC (fixed-node) cost is not stated separately. Architecture: ACE (h_conv 144, h_MLP 256, 16 conv layers, 2 MLP layers; ACE-L variant 192/256/16/2 also listed, which one was used here is not stated)."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Gu, Han, Li, Xiao, Xiang, Qin, Wang & Lv, Pareto Frontier of Neural Quantum States: Scalable, Affordable, and Accurate Convolutional Backflow for Strongly Correlated Lattice Fermions, PRX Intelligence 1, 023001 (2026), arXiv:2604.25775, doi:10.1103/2kq2-5g5q",
+          "reported_as": "PRX INTELLIGENCE 1, 023001 (2026); DOI: 10.1103/2kq2-5g5q; (Received 10 February 2026; accepted 11 August 2026; published 6 October 2026)",
+          "location": "journal PDF p. 023001-1 header and footer",
+          "version_read": "published PDF PRX Intelligence 1, 023001 (2026), published 6 October 2026, doi:10.1103/2kq2-5g5q, sources/journal/prxintelligence1-023001.pdf, sha256 b3d8ee6b (pypdf layout + plain; Table VI body is not in the text layer and was read from the rendered page 9); compared with arXiv:2604.25775v1 (only version; qmbl/sources/2604.25775.txt): Tables I, IV, VI and Sec. III.C.1 identical for these rows",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "The paper is published (listed in scope-pub.json). Journal version located by Crossref title search (DOI 10.1103/2kq2-5g5q, PRX Intelligence 1, 023001, published 2026-10-06) and OpenAlex (same DOI, lists arXiv:2604.25775 as a location); the arXiv API still shows no journal_ref and no DOI for 2604.25775v1 on 2026-10-15. Journal values for this row equal the arXiv v1 values. Value check: Sec. III C 1 (p. 023001-6), 16 x 4 PBC, U = 8, delta = 1/8, t' = 0: 'By directly optimizing the projected, symmetrized state, we obtain a variational energy of −0.766 23(1)' prints −0.766 23(1) per site; -0.76623 x 64 = -49.03872; sigma 0.00001 x 64 = 0.00064 equals the stored energy and sigma. Variational, full symmetry projection (App. B). energy_variance 0.45273382 is from the authors' open_data result.txt (2026-09-29 reading), not printed in the paper.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#41",
+          "from": "Gu et al., arXiv:2604.25775 (2026-04-28)"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "published 6 October 2026 in PRX Intelligence after review (received 10 February 2026, accepted 11 August 2026)",
+          "location": "journal PDF p. 023001-1",
+          "version_read": "published PDF PRX Intelligence 1, 023001 (2026), published 6 October 2026, doi:10.1103/2kq2-5g5q, sources/journal/prxintelligence1-023001.pdf, sha256 b3d8ee6b (pypdf layout + plain; Table VI body is not in the text layer and was read from the rendered page 9); compared with arXiv:2604.25775v1 (only version; qmbl/sources/2604.25775.txt): Tables I, IV, VI and Sec. III.C.1 identical for these rows",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "Peer-reviewed journal version exists (PRX Intelligence 1, 023001). Value check: Sec. III C 1 (p. 023001-6), 16 x 4 PBC, U = 8, delta = 1/8, t' = 0: 'By directly optimizing the projected, symmetrized state, we obtain a variational energy of −0.766 23(1)' prints −0.766 23(1) per site; -0.76623 x 64 = -49.03872; sigma 0.00001 x 64 = 0.00064 equals the stored energy and sigma. Variational, full symmetry projection (App. B). energy_variance 0.45273382 is from the authors' open_data result.txt (2026-09-29 reading), not printed in the paper.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#42",
+          "from": false
+        }
+      ]
+    },
+    {
+      "energy": -48.9984,
+      "sigma": 0.00064,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "NNBF",
+      "method_detail": "32 determinants; projected: full symmetry group",
+      "method_as_published": "NNBF, 32 determinants + free projection to the fully symmetric state",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned from the source text during verification",
+      "reference": "Loehr & Clark, arXiv:2510.26906 (2025-10-30)",
+      "peer_reviewed": false,
+      "source": "literature-2025-26",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-10",
+        "method": "source text/table parsed locally (arXiv HTML or pypdf), no LLM transcription",
+        "reported_as": "-0.7656 (+/- 0.00001) per site",
+        "note": "Sec. III: \"further projected at essentially no cost to the fully symmetric state to reach an energy of -0.76560(1)\". This is the best 4x16 number in arXiv:2510.26906v1.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2510.26906v1 PDF (the only version; no journal reference on the arXiv abs page fetched 2026-09-29, none found on Crossref), pypdf plain + layout text extracted locally (_r4/txt/2510.26906v1.*) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "location": "Sec. III 'Optimizing multi-determinants', p. 5 (HFPS comparison paragraph)",
+          "reported_as": "\"our result can be further projected at essentially no cost to the fully symmetric state to reach an energy of −0.76560(1)\" (per site, units of t)",
+          "conversion": "-0.7656 x 64 = -48.9984; sigma 0.00001 x 64 = 0.00064",
+          "note": "4 x 16 PBC, U = 8, t = 1, delta = 1/8, own computation, preprint. The 32-symmetry-optimized n_h = 2048 state projected onto all 512 symmetries (67% of the way to the extrapolated energy, consistent with -0.76560). The best 4 x 16 energy PRINTED in the paper; the 512-symmetry-optimized state is lower but only plotted (Figs. 2-3). Preprint: peer_reviewed false is right. Not a duplicate.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#8 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": 19155968,
+        "gpu_hours": 800,
+        "device": "NVIDIA H100 (GH200 superchip)",
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 4000000,
+        "evaluation": {
+          "stages": [
+            {
+              "iterations": 3500000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 1
+            },
+            {
+              "iterations": 500000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 32
+            }
+          ],
+          "proposals_per_sample": 1,
+          "local_energy": "nonzero",
+          "sr": {
+            "kind": "none"
+          },
+          "code": "Loehr & Clark NNBF (no public code)"
+        },
+        "reported_as": "Sec. III (Optimizing multi-determinants): As shown in Fig. 3, for the n_h = 2048 model, optimization with four symmetries improves the energy by 29% (43% after full projection), optimization with the 32 symmetries improves the energy by 54% (67% after full projection), and optimization with all 512 symmetries improves the energy by 75% relative to the single MLP ansatz with same n_h. These additional optimizations all use the single-determinant NNBF as a starting point and, in total, take approximately 200, 800, and 3000 GPU hours respectively. [...] The HFPS reaches an energy of -0.76413 which is somewhat higher then the -0.76486(2) of our symmetry optimization with 32 determinants. Additionally, our result can be further projected at essentially no cost to the fully symmetric state to reach an energy of -0.76560(1) [...] The optimization of our 32 determinant MLP-NNBF is faster by approximately a factor of 2 compared with the HFPS. || Sec. II.B: All optimizations reported in this paper were performed using H100 GPUs on GH200 superchips. Most optimizations were performed using a single H100 GPU, but longer optimizations were parallelized across 4 GPUs. GPU times are reported as cumulative GPU usage (e.g. parallelized times are 4 times the wall clock time). All optimization times include the cumulative cost of optimization for a given point which includes (where specified) optimizing smaller ansatz first. || Appendix B: Unless otherwise specified, the total number of markov chains is fixed at N_s = 1024 and the learning rate is fixed at 3 x 10^-4. We first train the single particle orbitals without backflow for 10^5 VMC iterations. [...] The training for the data in Fig. A1 took 3 x 10^6 VMC iterations, followed by 5 x 10^5 VMC iterations with an exponential decay learning rate schedule tuning the learning rate to 10^-7. The training for the model with 4 symmetries took approximately 8 x 10^5 VMC iterations, while the training for the model with 32 symmetries took approximately 5 x 10^5 VMC iterations. || Sec. II.A: Our MLP is fully connected with two hidden layers each followed by a layer normalization and relu activation. || Sec. II.A: u(n) is the output, an N\\times L matrix, of an MLP with input n [...] Here both spin sectors are combined into a single matrix (e.g. N is the sum of the spin up and down electrons and L is twice the number of physical sites) [...] Our MLP is fully connected with two hidden layers each followed by a layer normalization and relu activation. The input layer is set by |n> = |n_0, n_1, ..., n_L> where n_i \\in {-1,1} denotes an empty or occupied spin orbital. The last output layer contains a bias but no non-linear function; this bias can be interpreted as a fixed mean-field solution onto which the neural network provides additive configuration-dependent backflow corrections. || Sec. III: A fixed depth multi-layer MLP-NNBF scales as O(n_o n_h + n_h^2 + \\alpha n_h n_o^2 + (\\alpha n_o)^3) per step where n_o is the number of orbitals and \\alpha is the filling fraction. For our system, n_o = L = 128 and \\alpha = 0.4375. [...] this crossover happens at n_h = 7168 || Sec. III (PNNBF): U(n) and J(n) are both L\\times L matrices output by the MLP (e.g. the last layer of the network has 2L^2 nodes) || App. B: We then multiply all single particle orbitals by a factor of 10^3, set them to the bias of the last layer of the MLP, and randomly initialize the weights to form the initial MLP-NNBF ansatz. || Fig. A2 caption: Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains. || Acknowledgements: The NQS simulations are implemented using internally developed code with JAX [43], Flax [44], and Optax [45]. || Abstract: We explore efficient ways to generate these multi-determinant expansions without increasing the number of variational parameters. || Sec. III: Here we optimize the energy of Eq. 5 using the parameters of a single MLP using different sets of symmetries including the 4 point group symmetries; 32 symmetries by adding in spin inversion and half translation symmetries; and 512 symmetries by including all translations. || Eq. 5: \\Psi_sym(n) = \\sum_g \\Pi(n,g) \\Psi(gn), where g \\in G and \\Pi(n,g) = \\pm 1 is an additional sign coming from fermion permutations. || arXiv:2510.26906 Eq. (2): \"\\theta_{i+1}=\\theta_{i}-\\textbf{s}_{i}\\delta_{L}\\times\\text{sign}[\\nabla_{\\theta}E_{\\theta}]\" || Sec. III (Lanczos step): \"Since each spin can hop to up to 4 neighbors, the resulting multi-determinant expansion can have up to 4N additional determinants. For our \\delta=1/8 model this results in 225 determinants\" || Appendix B: \"Unless otherwise specified, the total number of markov chains is fixed at N_{s}=1024\" || Fig. A2 caption: \"Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains.\" || Eq. (5): \"\\Psi_{sym}(\\mathbf{n})=\\sum_{g}\\Pi(\\mathbf{n},g)\\Psi(g\\mathbf{n})\" ... \"This requires a number of evaluations of both the network and the determinant equal to the number of symmetries\" || \"Here we optimize the energy of Eq. 5 using the parameters of a single MLP using different sets of symmetries including the 4 point group symmetries; 32 symmetries by adding in spin inversion and half translation symmetries\" || \"These additional optimizations all use the single-determinant NNBF as a starting point and, in total, take approximately 200, 800, and 3000 GPU hours respectively.\" || Sec. II: \"All optimization times include the cumulative cost of optimization for a given point which includes (where specified) optimizing smaller ansatz first.\" || Appendix B: \"The training for the data in Fig. A1 took 3\\times 10^{6} VMC iterations, followed by 5\\times 10^{5} VMC iterations with an exponential decay learning rate schedule\" ... \"The training for the model with 4 symmetries took approximately 8\\times 10^{5} VMC iterations, while the training for the model with 32 symmetries took approximately 5\\times 10^{5} VMC iterations.\"",
+        "source": "Sec. III (Optimizing multi-determinants) and Fig. 3; Sec. II.B Optimization; Appendix B Optimization Details, arXiv:2510.26906 (compute pass 2026-09-16) || arXiv:2510.26906v1 (only version; no journal version found via Crossref 2026-09-24) Sec. II.A, Sec. III 'Increasing neurons', 'Pffafian NNBF', 'Optimization-free multi-determinants', 'Optimizing multi-determinants', App. B, Fig. A2 caption, Acknowledgements; html copy qmbl/sources/2510.26906.html; Flax LayerNorm defaults https://github.com/google/flax/blob/ae1594b0bd862daecaff2a56e47b96852706e1ba/flax/linen/normalization.py#L489-L490 and Dense https://github.com/google/flax/blob/ab2efb97549d8e27b1331b0f21feec6c86a385d9/flax/linen/linear.py#L243 (last commits touching those files before the paper's 2025-10-30 submission); no public code (route2a pass 2026-09-24) (compute pass 2026-09-24) || arXiv:2510.26906 Eq. (2), Sec. II, Sec. III, Appendix B, Fig. A2 caption (route2a-work-2510.26906.txt L66-70, L96-103, L237-242) (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "gpu_hours = ~800 is the paper's cumulative GPU-hour figure for the n_h = 2048, 32-symmetry optimized NNBF (includes the base single-determinant NNBF optimisation it starts from), on H100 GPUs (GH200 superchips); whether this particular run used 1 or 4 GPUs is not specified ('most optimizations single H100, longer ones parallelized across 4'), so n_devices is left null. iterations = ~5 x 10^5 VMC iterations for the 32-symmetry stage only (the base NNBF stage took 3 x 10^6 + 5 x 10^5 before it). samples = N_s = 1024 Markov chains (default). Architecture: 2-hidden-layer MLP with n_h = 2048 neurons, layer norm + ReLU; parameter count not given. This row is the same 32-symmetry-optimized state projected onto all 512 symmetries, which the paper says is done 'at essentially no cost', so the ~800 GPU hours of the underlying optimisation is the stated cost. Energy = -0.76560(1) per site x 64. || route2a 2026-09-24: parameters = 19155968 evaluated from the stated architecture (n_h = 2048): input 128 (n_o = L = 2 x 64 spin orbitals, entries +-1), Dense 128->n_h + LayerNorm + ReLU, Dense n_h->n_h + LayerNorm + ReLU, Dense n_h->N*L = 56*128 = 7168 with bias (N = 2 x 28 electrons, alpha = 56/128 = 0.4375 as printed). Count = (128 n_h + n_h) + 2 n_h + (n_h^2 + n_h) + 2 n_h + (7168 n_h + 7168) = n_h^2 + 7302 n_h + 7168. Stated for sure: weights + output bias = n_h^2 + 7296 n_h + 7168 = 19143680; the remaining 6 n_h = 12288 (hidden-layer biases, LayerNorm scale+offset) are Flax defaults (Dense use_bias=True, LayerNorm use_bias/use_scale=True; paper says it uses Flax but does not state its version or these flags), < 0.1 % of the total. Cross-check: the three weight blocks are exactly the n_o n_h + n_h^2 + alpha n_h n_o^2 terms of the paper's printed per-step cost, and its printed crossover n_h = alpha n_o^2 = 7168 is the output width; the PNNBF remark (last layer 2L^2 nodes) confirms the output layer is the orbital matrix. The mean-field orbitals are the output bias (App. B), so no separate orbital matrix. The paper prints no parameter count anywhere (v1 only; no code released: 'internally developed code'; github.com/Kieran-Loehr has no public repos). Real vs complex not stated; counted as number of entries (complex = 1, NetKet convention), so unaffected. The count does not depend on N beyond the fixed 4x16 instance (the paper's 4x8 runs would have input 64, output 28*64). Symmetry optimization/projection adds no parameters: Eq. 5 sums the SAME single MLP over g with fixed signs Pi = +-1 (abstract: 'without increasing the number of variational parameters'), so the 32-determinant (then projected onto 512) state has the parameters of the n_h = 2048 base model (Fig. 3 / Sec. III: 'for the n_h = 2048 model'). Samples check: N_s = 1024 is 'the total number of markov chains'; Fig. A2 caption ('100 VMC steps of each of the 1024 VMC chains') supports one sample per chain per step, i.e. 1024 samples per optimisation step; not stated more directly. Iterations check (FLAG): 5e5 is the 32-symmetry continuation stage only (App. B 'approximately 5 x 10^5'). It starts from the single-determinant n_h = 2048 NNBF (1e5 mean-field + 3e6 + 5e5 at 1 determinant, inferred Fig. A1 protocol), and gpu_hours = 800 is cumulative including it. Each continuation step costs 32 MLP + 32 determinant evaluations per sample. The final projection onto 512 symmetries adds no optimisation steps ('at essentially no cost'). Existing value kept. Confidence lowered from high to medium because the parameter count is evaluated, not printed. || pass 2026-09-27: proposals_per_sample 1: one VMC iteration advances each of the 1024 chains by one Metropolis step (a \"sweep\" is 100 VMC steps per chain, Fig. A2; the per-symmetry timings are consistent), not a sweep of N (verify/VERIFY.md Part 1 #6, agent-C.md §5). local_energy nonzero: the code enumerates the hops of each electron to its 4 neighbours, 4 N_e = 224 at 56 electrons (\"225 determinants\" = 1 + 224), not 4 x bonds = 512. sr none: the update is the sign of the gradient with random scaling (Eq. 2), no linear solve. complex and precision not stated (TF32 likely from the implied rates, agent-C.md). stages: the 32-symmetry optimisation starts from the single-determinant n_h = 2048 NNBF trained for 3e6 + 5e5 = 3.5e6 iterations, and the stated 800 GPU hours are cumulative (\"in total\", \"All optimization times include the cumulative cost\"), so the row's iterations become the total 3.5e6 + 500000 = 4000000 (was 500000, the symmetric stage alone; verify/VERIFY.md Part 1 #5, agent-C.md §5: x3.3 / x15.4 on the stored estimate). The symmetric stage evaluates the MLP and the determinant once per group element: evaluations_per_amplitude 32 (Fig. 3/A1 timings: GPU-h per iteration per symmetry 4.1e-5 base, 2.6e-5 (4-sym), 4.0e-5 (32-sym), so the stage cost scales with n_sym). This row is the 32-symmetry optimisation projected onto all 512 symmetries 'at essentially no cost' (an evaluation, not optimisation; not counted). The 1e5-iteration mean-field pre-stage (determinant only) is not counted."
+      }
+    },
+    {
+      "energy": -48.95104,
+      "sigma": 0.00128,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "NNBF",
+      "method_detail": "32 determinants; symmetric: unspecified (symmetry optimization)",
+      "method_as_published": "NNBF, symmetry optimization with 32 determinants",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned from the source text during verification",
+      "reference": "Loehr & Clark, arXiv:2510.26906 (2025-10-30)",
+      "peer_reviewed": false,
+      "source": "literature-2025-26",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-10",
+        "method": "source text/table parsed locally (arXiv HTML or pypdf), no LLM transcription",
+        "reported_as": "-0.76486 (+/- 0.00002) per site",
+        "note": "Same section, before the free projection.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2510.26906v1 PDF (the only version; no journal reference on the arXiv abs page fetched 2026-09-29, none found on Crossref), pypdf plain + layout text extracted locally (_r4/txt/2510.26906v1.*) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "location": "Sec. III 'Optimizing multi-determinants', p. 5",
+          "reported_as": "\"The HFPS reaches an energy of −0.76413 which is somewhat higher then then −0.76486(2) of our symmetry optimization with 32 determinants.\" (per site, units of t)",
+          "conversion": "-0.76486 x 64 = -48.95104; sigma 0.00002 x 64 = 0.00128",
+          "note": "4 x 16 PBC, U = 8, t = 1, delta = 1/8, own computation, preprint. n_h = 2048, optimized with 32 symmetries (54% towards the extrapolated energy, consistent). Not a duplicate.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#9 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": 19155968,
+        "gpu_hours": 800,
+        "device": "NVIDIA H100 (GH200 superchip)",
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 4000000,
+        "evaluation": {
+          "stages": [
+            {
+              "iterations": 3500000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 1
+            },
+            {
+              "iterations": 500000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 32
+            }
+          ],
+          "proposals_per_sample": 1,
+          "local_energy": "nonzero",
+          "sr": {
+            "kind": "none"
+          },
+          "code": "Loehr & Clark NNBF (no public code)"
+        },
+        "reported_as": "Sec. III (Optimizing multi-determinants): As shown in Fig. 3, for the n_h = 2048 model, optimization with four symmetries improves the energy by 29% (43% after full projection), optimization with the 32 symmetries improves the energy by 54% (67% after full projection), and optimization with all 512 symmetries improves the energy by 75% relative to the single MLP ansatz with same n_h. These additional optimizations all use the single-determinant NNBF as a starting point and, in total, take approximately 200, 800, and 3000 GPU hours respectively. [...] The HFPS reaches an energy of -0.76413 which is somewhat higher then the -0.76486(2) of our symmetry optimization with 32 determinants. Additionally, our result can be further projected at essentially no cost to the fully symmetric state to reach an energy of -0.76560(1) [...] The optimization of our 32 determinant MLP-NNBF is faster by approximately a factor of 2 compared with the HFPS. || Sec. II.B: All optimizations reported in this paper were performed using H100 GPUs on GH200 superchips. Most optimizations were performed using a single H100 GPU, but longer optimizations were parallelized across 4 GPUs. GPU times are reported as cumulative GPU usage (e.g. parallelized times are 4 times the wall clock time). All optimization times include the cumulative cost of optimization for a given point which includes (where specified) optimizing smaller ansatz first. || Appendix B: Unless otherwise specified, the total number of markov chains is fixed at N_s = 1024 and the learning rate is fixed at 3 x 10^-4. We first train the single particle orbitals without backflow for 10^5 VMC iterations. [...] The training for the data in Fig. A1 took 3 x 10^6 VMC iterations, followed by 5 x 10^5 VMC iterations with an exponential decay learning rate schedule tuning the learning rate to 10^-7. The training for the model with 4 symmetries took approximately 8 x 10^5 VMC iterations, while the training for the model with 32 symmetries took approximately 5 x 10^5 VMC iterations. || Sec. II.A: Our MLP is fully connected with two hidden layers each followed by a layer normalization and relu activation. || Sec. II.A: u(n) is the output, an N\\times L matrix, of an MLP with input n [...] Here both spin sectors are combined into a single matrix (e.g. N is the sum of the spin up and down electrons and L is twice the number of physical sites) [...] Our MLP is fully connected with two hidden layers each followed by a layer normalization and relu activation. The input layer is set by |n> = |n_0, n_1, ..., n_L> where n_i \\in {-1,1} denotes an empty or occupied spin orbital. The last output layer contains a bias but no non-linear function; this bias can be interpreted as a fixed mean-field solution onto which the neural network provides additive configuration-dependent backflow corrections. || Sec. III: A fixed depth multi-layer MLP-NNBF scales as O(n_o n_h + n_h^2 + \\alpha n_h n_o^2 + (\\alpha n_o)^3) per step where n_o is the number of orbitals and \\alpha is the filling fraction. For our system, n_o = L = 128 and \\alpha = 0.4375. [...] this crossover happens at n_h = 7168 || Sec. III (PNNBF): U(n) and J(n) are both L\\times L matrices output by the MLP (e.g. the last layer of the network has 2L^2 nodes) || App. B: We then multiply all single particle orbitals by a factor of 10^3, set them to the bias of the last layer of the MLP, and randomly initialize the weights to form the initial MLP-NNBF ansatz. || Fig. A2 caption: Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains. || Acknowledgements: The NQS simulations are implemented using internally developed code with JAX [43], Flax [44], and Optax [45]. || Abstract: We explore efficient ways to generate these multi-determinant expansions without increasing the number of variational parameters. || Sec. III: Here we optimize the energy of Eq. 5 using the parameters of a single MLP using different sets of symmetries including the 4 point group symmetries; 32 symmetries by adding in spin inversion and half translation symmetries; and 512 symmetries by including all translations. || Eq. 5: \\Psi_sym(n) = \\sum_g \\Pi(n,g) \\Psi(gn), where g \\in G and \\Pi(n,g) = \\pm 1 is an additional sign coming from fermion permutations. || arXiv:2510.26906 Eq. (2): \"\\theta_{i+1}=\\theta_{i}-\\textbf{s}_{i}\\delta_{L}\\times\\text{sign}[\\nabla_{\\theta}E_{\\theta}]\" || Sec. III (Lanczos step): \"Since each spin can hop to up to 4 neighbors, the resulting multi-determinant expansion can have up to 4N additional determinants. For our \\delta=1/8 model this results in 225 determinants\" || Appendix B: \"Unless otherwise specified, the total number of markov chains is fixed at N_{s}=1024\" || Fig. A2 caption: \"Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains.\" || Eq. (5): \"\\Psi_{sym}(\\mathbf{n})=\\sum_{g}\\Pi(\\mathbf{n},g)\\Psi(g\\mathbf{n})\" ... \"This requires a number of evaluations of both the network and the determinant equal to the number of symmetries\" || \"Here we optimize the energy of Eq. 5 using the parameters of a single MLP using different sets of symmetries including the 4 point group symmetries; 32 symmetries by adding in spin inversion and half translation symmetries\" || \"These additional optimizations all use the single-determinant NNBF as a starting point and, in total, take approximately 200, 800, and 3000 GPU hours respectively.\" || Sec. II: \"All optimization times include the cumulative cost of optimization for a given point which includes (where specified) optimizing smaller ansatz first.\" || Appendix B: \"The training for the data in Fig. A1 took 3\\times 10^{6} VMC iterations, followed by 5\\times 10^{5} VMC iterations with an exponential decay learning rate schedule\" ... \"The training for the model with 4 symmetries took approximately 8\\times 10^{5} VMC iterations, while the training for the model with 32 symmetries took approximately 5\\times 10^{5} VMC iterations.\"",
+        "source": "Sec. III (Optimizing multi-determinants) and Fig. 3; Sec. II.B Optimization; Appendix B Optimization Details, arXiv:2510.26906 (compute pass 2026-09-16) || arXiv:2510.26906v1 (only version; no journal version found via Crossref 2026-09-24) Sec. II.A, Sec. III 'Increasing neurons', 'Pffafian NNBF', 'Optimization-free multi-determinants', 'Optimizing multi-determinants', App. B, Fig. A2 caption, Acknowledgements; html copy qmbl/sources/2510.26906.html; Flax LayerNorm defaults https://github.com/google/flax/blob/ae1594b0bd862daecaff2a56e47b96852706e1ba/flax/linen/normalization.py#L489-L490 and Dense https://github.com/google/flax/blob/ab2efb97549d8e27b1331b0f21feec6c86a385d9/flax/linen/linear.py#L243 (last commits touching those files before the paper's 2025-10-30 submission); no public code (route2a pass 2026-09-24) (compute pass 2026-09-24) || arXiv:2510.26906 Eq. (2), Sec. II, Sec. III, Appendix B, Fig. A2 caption (route2a-work-2510.26906.txt L66-70, L96-103, L237-242) (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "gpu_hours = ~800 is the paper's cumulative GPU-hour figure for the n_h = 2048, 32-symmetry optimized NNBF (includes the base single-determinant NNBF optimisation it starts from), on H100 GPUs (GH200 superchips); whether this particular run used 1 or 4 GPUs is not specified ('most optimizations single H100, longer ones parallelized across 4'), so n_devices is left null. iterations = ~5 x 10^5 VMC iterations for the 32-symmetry stage only (the base NNBF stage took 3 x 10^6 + 5 x 10^5 before it). samples = N_s = 1024 Markov chains (default). Architecture: 2-hidden-layer MLP with n_h = 2048 neurons, layer norm + ReLU; parameter count not given. Energy = -0.76486(2) per site x 64. || route2a 2026-09-24: parameters = 19155968 evaluated from the stated architecture (n_h = 2048): input 128 (n_o = L = 2 x 64 spin orbitals, entries +-1), Dense 128->n_h + LayerNorm + ReLU, Dense n_h->n_h + LayerNorm + ReLU, Dense n_h->N*L = 56*128 = 7168 with bias (N = 2 x 28 electrons, alpha = 56/128 = 0.4375 as printed). Count = (128 n_h + n_h) + 2 n_h + (n_h^2 + n_h) + 2 n_h + (7168 n_h + 7168) = n_h^2 + 7302 n_h + 7168. Stated for sure: weights + output bias = n_h^2 + 7296 n_h + 7168 = 19143680; the remaining 6 n_h = 12288 (hidden-layer biases, LayerNorm scale+offset) are Flax defaults (Dense use_bias=True, LayerNorm use_bias/use_scale=True; paper says it uses Flax but does not state its version or these flags), < 0.1 % of the total. Cross-check: the three weight blocks are exactly the n_o n_h + n_h^2 + alpha n_h n_o^2 terms of the paper's printed per-step cost, and its printed crossover n_h = alpha n_o^2 = 7168 is the output width; the PNNBF remark (last layer 2L^2 nodes) confirms the output layer is the orbital matrix. The mean-field orbitals are the output bias (App. B), so no separate orbital matrix. The paper prints no parameter count anywhere (v1 only; no code released: 'internally developed code'; github.com/Kieran-Loehr has no public repos). Real vs complex not stated; counted as number of entries (complex = 1, NetKet convention), so unaffected. The count does not depend on N beyond the fixed 4x16 instance (the paper's 4x8 runs would have input 64, output 28*64). Symmetry optimization/projection adds no parameters: Eq. 5 sums the SAME single MLP over g with fixed signs Pi = +-1 (abstract: 'without increasing the number of variational parameters'), so the 32-determinant  state has the parameters of the n_h = 2048 base model (Fig. 3 / Sec. III: 'for the n_h = 2048 model'). Samples check: N_s = 1024 is 'the total number of markov chains'; Fig. A2 caption ('100 VMC steps of each of the 1024 VMC chains') supports one sample per chain per step, i.e. 1024 samples per optimisation step; not stated more directly. Iterations check (FLAG): 5e5 is the 32-symmetry continuation stage only (App. B 'approximately 5 x 10^5'). It starts from the single-determinant n_h = 2048 NNBF (1e5 mean-field + 3e6 + 5e5 at 1 determinant, inferred Fig. A1 protocol), and gpu_hours = 800 is cumulative including it. Each continuation step costs 32 MLP + 32 determinant evaluations per sample. Existing value kept. Confidence lowered from high to medium because the parameter count is evaluated, not printed. || pass 2026-09-27: proposals_per_sample 1: one VMC iteration advances each of the 1024 chains by one Metropolis step (a \"sweep\" is 100 VMC steps per chain, Fig. A2; the per-symmetry timings are consistent), not a sweep of N (verify/VERIFY.md Part 1 #6, agent-C.md §5). local_energy nonzero: the code enumerates the hops of each electron to its 4 neighbours, 4 N_e = 224 at 56 electrons (\"225 determinants\" = 1 + 224), not 4 x bonds = 512. sr none: the update is the sign of the gradient with random scaling (Eq. 2), no linear solve. complex and precision not stated (TF32 likely from the implied rates, agent-C.md). stages: the 32-symmetry optimisation starts from the single-determinant n_h = 2048 NNBF trained for 3e6 + 5e5 = 3.5e6 iterations, and the stated 800 GPU hours are cumulative (\"in total\", \"All optimization times include the cumulative cost\"), so the row's iterations become the total 3.5e6 + 500000 = 4000000 (was 500000, the symmetric stage alone; verify/VERIFY.md Part 1 #5, agent-C.md §5: x3.3 / x15.4 on the stored estimate). The symmetric stage evaluates the MLP and the determinant once per group element: evaluations_per_amplitude 32 (Fig. 3/A1 timings: GPU-h per iteration per symmetry 4.1e-5 base, 2.6e-5 (4-sym), 4.0e-5 (32-sym), so the stage cost scales with n_sym). The 1e5-iteration mean-field pre-stage (determinant only) is not counted."
+      }
+    },
+    {
+      "energy": -48.93696,
+      "sigma": 0.00064,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "ACE",
+      "method_detail": "16 conv layers",
+      "method_as_published": "ACE (16 conv layers), no explicit symmetry",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned from the source text during verification",
+      "reference": "Gu, Han, Li, Xiao, Xiang, Qin, Wang & Lv, Pareto Frontier of Neural Quantum States: Scalable, Affordable, and Accurate Convolutional Backflow for Strongly Correlated Lattice Fermions, PRX Intelligence 1, 023001 (2026), arXiv:2604.25775, doi:10.1103/2kq2-5g5q",
+      "peer_reviewed": true,
+      "source": "literature-2025-26",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-10",
+        "method": "source text/table parsed locally (arXiv HTML or pypdf), no LLM transcription",
+        "reported_as": "-0.76464 (+/- 0.00001) per site",
+        "note": "Sec. III.3.1: \"achieves a ground-state energy of -0.76464(1)\".",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2604.25775v1: arXiv HTML (fetched 2026-09-29, parsed with node, LaTeXML alttext) and PDF (pypdf plain+layout); PDF and HTML number the references differently (PDF [21] = HTML [13] = arXiv:2507.02644; PDF [24] = HTML [31] = arXiv:2511.07566), both resolved",
+          "location": "Sec. III.3.1: 'Our standard ACE architecture, trained without explicit symmetries, achieves a ground-state energy of -0.76464(1)'",
+          "reported_as": "-0.76464(1) per site",
+          "conversion": "-0.76464 x 64 = -48.93696; sigma 0.00064",
+          "note": "All fields agree. Not reproducible from the released log (its unsymmetrized first stage ends near -0.76341, so -0.76464 is a different, longer unsymmetrized run); read from the text.",
+          "source_entry": "VP11-heisenberg-hubbard-j1j2#19 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": 3161456,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 4096,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 50000,
+        "evaluation": {
+          "proposals_per_sample": 160,
+          "local_energy": "nonzero",
+          "sr": {
+            "kind": "minsr"
+          },
+          "code": "laqx (github.com/bytedance/laqx, the authors' code; first commit 4342575 postdates the paper, network files unchanged to c6a3ee5)"
+        },
+        "reported_as": "Sec. III.C.1: Our standard ACE architecture, trained without explicit symmetries, achieves a ground-state energy of −0.76464(1). This result is already more accurate than that of HFPS [23] while requiring only one-fifteenth of the cost. By directly optimizing the projected, symmetrized state reach a new state-of-the-art energy of −0.76623(1). This surpasses the previous best result −0.766073(6) from NNBF [25] with only one-sixth of the computational cost. Additionally, a GFMC calculation with the ACE trial wave-function gives an even lower energy of −0.76647(2). ... Appendix B: In the first stage, we perform 3×10^4 initial steps without enforcing any symmetry. ... First, we restore D2 and spin inversion symmetry and train for 4×10^3 steps. Next, we additionally restore the half-translation symmetries and train for another 4×10^3 steps. Finally, we restore the 1/4-translational symmetries and train for 10^3 steps. ... Table V (Hyperparameters for the MARCH optimizer): Learning rate schedule (t): ACE 10^-1 (1 + max(t−1000,0)/4000)^-1, SCALE 5×10^-1 (1 + max(t−1000,0)/8000)^-1; Optimizer momentum (µ,β) 0.95, 0.995; Damping (λ) 0.001; Batch size clip(32 Lx×Ly, 4096, 8192); Local energy clipping 5.0; MCMC steps per sample 2.5 Lx×Ly; Total optimization steps 50000. Shared parameters apply to both models. ... Table VI (Model hyperparameters): SCALE-S h_conv 256, h_MLP 512, L_conv 1, L_MLP 4; SCALE 512/512/1/4; SCALE-L 384/512/1/4; SCALE-XL 640/1280/1/4 (32×32 only); ACE h_conv 144, h_MLP 256, L_conv 16, L_MLP 2; ACE-L 192/256/16/2. ... Fig. 2 / Sec. III.A: for the largest system size tested (N = 512), SCALE completes an optimization step in approximately 11 seconds. In comparison, the ACE architecture requires about 120 seconds, while the Transformer needs over 400 seconds ... under a fixed batch size. (No hardware named.) || Sec. II.2: 'We first map these physical states to high-dimensional vectors using a learnable embedding matrix E_i ∈ R^{4×h} where h is the hidden dimension' ; 'Conv_θc denotes a convolutional layer parameterized by θc={K,b} (convolution kernel K ∈ R^{k×k×h×h} with kernel size k, bias b ∈ R^h)' ; 'H^(l+1) = σ(H^(l) W^(l) + b^(l)), where W^(l) ∈ R^{h×h} and b^(l) ∈ R^h represent the weight matrix and the bias vector for the l-th layer' ; 'The final output H^(L_MLP+1) is transformed by a linear layer to produce backflow orbitals M ∈ R^{2N×N_e} where N = L_x×L_y, 2 denotes spin up and spin down and N_e is the number of electrons' ; 'The wave-function ansatz takes the form of ψ_θ(n) = det[Φ(n)]' ; 'For Slater matrix Φ(n) ∈ R^{N_e×N_e}'. Table VI caption: 'Note that SCALE-L uses a convolutional filter with a neighborhood range of Euclidean distance L2 ≤ 2, as opposed to the L2 ≤ √2 range used in other models' (Kernel Shape column in the PDF, p. 14: 3×3 squares for SCALE-S/SCALE/SCALE-XL/ACE/ACE-L) ; Sec. II.4: 'H^(l+1) = LN(H^(l) + σ(Conv^(l)_θc(H^(l)))) ... We employ Layer Normalization (LN) to stabilize the training across this deeper network. The final output H^(L_CNN) is subsequently passed to the site-wise MLPs and orbital projection defined in Sec. II.2' || laqx ace.py L6-L31 (init_nnb): params['embedding'] = jax.random.normal(subkey, shape=(physical * args.L1 * args.L2, args.hidden)) ; for _ in range(args.layers): dic['norm'] = network_block.init_layernorm(args.hidden); dic['cnn'] = network_block.init_convolution(subkey, args.hidden, args.hidden, args.cutoff) ; params['MLP'] = network_block.init_MLP(subkey, args.hidden, args.MLP_hidden, args.MLP_layers) ; orbitals = args.particles * args.ndet * spin_channels ; params['output'] = network_block.init_linear_layer(subkey, args.MLP_hidden, orbitals) ; if args.dtype == 'complex': params['output_i'] = ... ; laqx network_block.py L15-L24 init_linear_layer(..., include_bias: bool = True ...) returns {'w': weight (in_dim, out_dim), 'b': bias (out_dim,)} ; L35-L38 init_layernorm: gamma (feature_dim,), beta (feature_dim,) ; L49-L56 init_MLP: first layer in_dim→hidden_dim, then layers-1 layers hidden_dim→hidden_dim ; L71-L78 init_convolution(key, dim_in, dim_out, cutoff=3, use_bias=True): kernel (cutoff, cutoff, dim_in, dim_out), bias (dim_out,) ; L439-L440 get_spin_channels: return 1 if args.polarized else 2 ; main.py L57 '--cutoff' default=3, L115 '--dtype' default='float' ; train.py L53-L54: param_count = sum(x.size for x in jax.tree_leaves(params)); print(\"Parameter Size:\", param_count) ; docs/examples/alter/12x12_pbc_U8_ace.sh: --network_name ace --ndet 1 --hidden 144 --layers 16 || arXiv:2604.25775 Table V (\"Hyperparameters for the MARCH optimizer\"): \"Batch size clip(32Lx×Ly,4096,8192)\", \"MCMC steps per sample 2.5Lx×Ly\", \"Total optimization steps 50000\" || laqx laqx/operators/mcmc.py L101-117: \"def make_mcmc_step(network, operator, args): ... data, key, cache, num_accepts = jax.lax.fori_loop(0, args.mcmc_step, step_fn, (data, key, cache, 0.))\" || laqx/operators/ham_utils.py L63-65: \"apply_log = jnp.sum(jnp.where(apply_sign != 0, 1, 0)) / B\", \"reduce = jnp.nonzero(apply_sign.reshape(-1), size=reduce_number_batch, fill_value=-1)[0]\" || laqx/utils/march.py: \"T = jax.lax.psum(Ohat_scale @ Ohat_all.T, axis_name='batch')\" ... \"dtheta_residual = Ohat_scale.T @ jax.scipy.linalg.solve(T_reg, epsilon_tilde, assume_a=\\\"pos\\\")\"",
+        "source": "Sec. III.C.1; Appendix B; Appendix E, Tables V and VI; Sec. III.A / Fig. 2, arXiv:2604.25775 (compute pass 2026-09-16) || arXiv:2604.25775v1 Sec. II.2 (Embedding Layer, Convolutional Layer, Site-wise MLPs, Orbital Projection), Sec. II.4 (ACE), Sec. II.3 (Slater matrix), Appendix E Table VI incl. Kernel Shape column (PDF p. 14), https://arxiv.org/abs/2604.25775 (only version v1) || https://github.com/bytedance/laqx/blob/434257590d24c3f76289f19bc76d49b20e927d77/laqx/networks/ace.py#L6-L31 ; https://github.com/bytedance/laqx/blob/434257590d24c3f76289f19bc76d49b20e927d77/laqx/networks/scale.py#L6-L21 ; https://github.com/bytedance/laqx/blob/434257590d24c3f76289f19bc76d49b20e927d77/laqx/networks/network_block.py#L15-L78 ; https://github.com/bytedance/laqx/blob/434257590d24c3f76289f19bc76d49b20e927d77/main.py#L50-L58 ; https://github.com/bytedance/laqx/blob/434257590d24c3f76289f19bc76d49b20e927d77/laqx/train.py#L53-L54 ; https://github.com/bytedance/laqx/blob/434257590d24c3f76289f19bc76d49b20e927d77/docs/examples/alter/12x12_pbc_U8_ace.sh ; https://github.com/bytedance/laqx/blob/434257590d24c3f76289f19bc76d49b20e927d77/docs/examples/hubbard.md (compute pass 2026-09-24) || arXiv:2604.25775 Table V; https://github.com/bytedance/laqx/blob/c6a3ee5/laqx/operators/mcmc.py#L101 ; https://github.com/bytedance/laqx/blob/c6a3ee5/laqx/operators/ham_utils.py#L63 ; https://github.com/bytedance/laqx/blob/c6a3ee5/laqx/utils/march.py (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "16×4 PBC, t'=0. Relative-cost claims: one-fifteenth of the HFPS [23] cost (unsymmetrized ACE) and one-sixth of the NNBF [25] cost (symmetrized ACE). No device, GPU count, wall-clock or GPU-hours stated anywhere (main text, Figs. 1-7, Tables I-VI, Appendices A-E, acknowledgments); costs are given only relative to other methods (Fig. 4 axis is relative computational cost) and as per-step seconds at N=512 in Fig. 2 without naming hardware. No parameter count stated; architecture per Table VI. samples = batch size evaluated from the stated formula clip(32·Lx·Ly, 4096, 8192) for this lattice (our arithmetic on the paper formula); iterations = Table V total optimization steps. MCMC steps per sample = 2.5·Lx·Ly. GFMC (fixed-node) cost is not stated separately. Architecture: ACE (h_conv 144, h_MLP 256, 16 conv layers, 2 MLP layers; ACE-L variant 192/256/16/2 also listed, which one was used here is not stated). || route2a (gu-ace, 2026-09-24): Parameter count (evaluated, not printed anywhere in the paper or repo): ACE = embedding 4·N·h + L_conv·(9·h² + h [conv kernel 3×3 + bias] + 2h [LayerNorm scale+offset]) + MLP (h·h_MLP + h_MLP) + (L_MLP−1)(h_MLP² + h_MLP) + output head h_MLP·(2·N_e) + 2·N_e, with Table VI ACE h = h_conv = 144, h_MLP = 256, L_conv = 16, L_MLP = 2, kernel 3×3 (L2 ≤ √2; code default cutoff 3), one real determinant (paper ψ = det Φ, Φ ∈ R^{N_e×N_e}; code dtype default 'float'; all laqx Hubbard examples pass --ndet 1), spin_channels 2, N = 64, N_e = 56 (16×4 PBC, 1/8 doping: Nf = 28 per spin, 56 electrons; laqx example for this lattice passes --particles 56). = 36864 + 16·(186624+144+288) [= 2992896] + 102912 + 28784 = 3161456. Real parameters (no complex params); the count is the element count laqx prints ('Parameter Size', train.py L53-54). The count depends on the lattice: the site-dependent embedding (4·N·h, E_i has a site index) scales with N and the orbital head (2·N_e·(h_MLP+1)) with N_e; the 16 conv layers + MLP (3,095,808) are size-independent. Identification of the variant: the row is labelled 'ACE', which is the name of the Table VI row 144/256/16/2 (ACE-L = 192/256/16/2 is used by name in Fig. 4(b)); the paper does not say explicitly which variant produced this entry — if it were ACE-L the count would be 5510768. The laqx example docs/examples/alter/12x12_pbc_U8_ace.sh (a different Hamiltonian) runs --network_name ace --hidden 144 --layers 16 --ndet 1 with MLP defaults 256/2, i.e. exactly Table VI 'ACE'. laqx pinned to 4342575 (first commit, 2026-07-02; no commit exists before arXiv:2604.25775v1 of 2026-04-28, the only arXiv version; ace.py/scale.py/transformer.py/network_block init functions/train.py are unchanged at HEAD c6a3ee5 of 2026-09-14). Check of existing inputs: samples 4096 = clip(32·64, 4096, 8192) agrees with Table V; iterations 50000 is the Table V blanket value, but Appendix B says the unsymmetrized first stage of the 16×4 run was '3×10^4 initial steps without enforcing any symmetry', and the published log of that run (open_data figure4/16x4_U8/deepCNN_2pDS/log.csv, 39000 step rows = 30000 + 4000 + 4000 + 1000, matching Appendix B) shows the no-symmetry stage ending at step 30000. If this row's −0.76464(1) is the end state of that first stage, iterations would be 30000, not 50000; the paper does not say, so 50000 is kept (the log's mean training energy over steps 29000–30000 is −0.76341 per site, not −0.76464, so the row may come from a separate longer run). Log source: https://github.com/guyuntian/open_data/tree/499d2c0d5f6747717c88dcc3ba15329043cc6ea5/figure4/16x4_U8/deepCNN_2pDS. || pass 2026-09-27: proposals_per_sample = 2.5 Lx x Ly = 2.5 x 64 = 160, each a full ACE evaluation in laqx's fori_loop (plus one initial evaluation per sampling call), not N (verify/agent-C.md G2). local_energy nonzero: laqx compacts the connected configurations to the nonzero hops before evaluating (at most 4 N_e; buffers sized to the mean count + ~15). sr minsr: MARCH solves in the samples x samples space (T = O O^T, then solve). complex not stated per run: absent. With these two corrections ACE's total is x0.64-0.66 of the stored value (agent-C.md)."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Gu, Han, Li, Xiao, Xiang, Qin, Wang & Lv, Pareto Frontier of Neural Quantum States: Scalable, Affordable, and Accurate Convolutional Backflow for Strongly Correlated Lattice Fermions, PRX Intelligence 1, 023001 (2026), arXiv:2604.25775, doi:10.1103/2kq2-5g5q",
+          "reported_as": "PRX INTELLIGENCE 1, 023001 (2026); DOI: 10.1103/2kq2-5g5q; (Received 10 February 2026; accepted 11 August 2026; published 6 October 2026)",
+          "location": "journal PDF p. 023001-1 header and footer",
+          "version_read": "published PDF PRX Intelligence 1, 023001 (2026), published 6 October 2026, doi:10.1103/2kq2-5g5q, sources/journal/prxintelligence1-023001.pdf, sha256 b3d8ee6b (pypdf layout + plain; Table VI body is not in the text layer and was read from the rendered page 9); compared with arXiv:2604.25775v1 (only version; qmbl/sources/2604.25775.txt): Tables I, IV, VI and Sec. III.C.1 identical for these rows",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "The paper is published (listed in scope-pub.json). Journal version located by Crossref title search (DOI 10.1103/2kq2-5g5q, PRX Intelligence 1, 023001, published 2026-10-06) and OpenAlex (same DOI, lists arXiv:2604.25775 as a location); the arXiv API still shows no journal_ref and no DOI for 2604.25775v1 on 2026-10-15. Journal values for this row equal the arXiv v1 values. Value check: Sec. III C 1 (p. 023001-6), 16 x 4 PBC, U = 8, delta = 1/8, t' = 0: 'Our standard ACE architecture, trained without explicit symmetries, achieves a ground-state energy of −0.764 64(1)' prints −0.764 64(1) per site; -0.76464 x 64 = -48.93696; sigma 0.00001 x 64 = 0.00064 equals the stored energy and sigma. Variational, no symmetry.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#43",
+          "from": "Gu et al., arXiv:2604.25775 (2026-04-28)"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "published 6 October 2026 in PRX Intelligence after review (received 10 February 2026, accepted 11 August 2026)",
+          "location": "journal PDF p. 023001-1",
+          "version_read": "published PDF PRX Intelligence 1, 023001 (2026), published 6 October 2026, doi:10.1103/2kq2-5g5q, sources/journal/prxintelligence1-023001.pdf, sha256 b3d8ee6b (pypdf layout + plain; Table VI body is not in the text layer and was read from the rendered page 9); compared with arXiv:2604.25775v1 (only version; qmbl/sources/2604.25775.txt): Tables I, IV, VI and Sec. III.C.1 identical for these rows",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "Peer-reviewed journal version exists (PRX Intelligence 1, 023001). Value check: Sec. III C 1 (p. 023001-6), 16 x 4 PBC, U = 8, delta = 1/8, t' = 0: 'Our standard ACE architecture, trained without explicit symmetries, achieves a ground-state energy of −0.764 64(1)' prints −0.764 64(1) per site; -0.76464 x 64 = -48.93696; sigma 0.00001 x 64 = 0.00064 equals the stored energy and sigma. Variational, no symmetry.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#44",
+          "from": false
+        }
+      ]
+    },
+    {
+      "energy": -48.83072,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Transformer backflow",
+      "method_detail": "MARCH",
+      "method_as_published": "Transformer backflow + MARCH optimizer",
+      "family": "transformer / ViT",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned from the source text during verification",
+      "reference": "Gu et al., Solving the Hubbard model with neural quantum states, Nat. Commun. 17, 7838 (2026), arXiv:2507.02644, doi:10.1038/s41467-026-74028-6",
+      "peer_reviewed": true,
+      "source": "literature-2025-26",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-10",
+        "method": "source text/table parsed locally (arXiv HTML or pypdf), no LLM transcription",
+        "reported_as": "-0.76298 per site",
+        "note": "Supp. Sec. 4.1: \"our NQS yields a ground state energy of -0.76298\" on 16x4 PBC. Instance identity confirmed: same passage quotes HFDS -0.753(2), matching the VarBench row -0.753000(47). No error bar given.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2507.02644v2 PDF (byte-identical to qmbl/sources/2507.02644.pdf) and v1 PDF, pypdf layout + plain (sources/2507.02644v{1,2}.vp14.*.txt); Nat. Commun. 17, 7838 (2026) main text from Europe PMC full-text XML (sources/PMC13439271.vp14.xml, PMC13439271) for the journal-version cross-check; no LLM transcription",
+          "location": "SM Sec. 4.1 'Comparison with Hidden Fermion Determinantal State' (v2 p. S7-S8; v1 same sentence)",
+          "reported_as": "our NQS yields a ground state energy of -0.76298 (per site, units of t; 16 x 4 lattice with PBC)",
+          "conversion": "-0.76298 x 64 = -48.83072",
+          "note": "Pure Hubbard (t' = 0), U = 8, t = 1, PBC; no shift; bound_type variational (trained NQS, no extrapolation); no sigma printed anywhere (sampled); peer_reviewed true (Nat. Commun. 17, 7838 (2026), confirmed in the Europe PMC record). Same value in arXiv v1 and v2. Instance 4x16 PBC at delta = 1/8 (Nf = 28 per spin) fixed by the paper's stated focus and by its comparison value HFDS -0.753(2) (= VarBench's HFDS row on this instance), and corroborated by the HFPS paper (arXiv:2507.10705), which compares its 16x4, 1/8-doped, U = 8 energy -0.76413 with 'a recent result E/N = -0.76298 produced by Transformer-NNBF'; see C4. No duplicate on the instance: the 21 rows of data/Hubbard/rectangular-4x16_64_P_28_8.json (read 2026-09-29) hold -0.76298 only here (HFPS quotes it but QMBL carries it once).",
+          "source_entry": "VP14-hubbard-j1j2-heisenberg-tfising#72 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Nat. Commun. 17, 7838 (2026), sources/journal/natcommun17-7838.pdf, sha256 4398bf71 (downloaded from nature.com in the automation browser; node fetch gets a JS challenge), Supplementary Information natcommun17-7838-supp.pdf sha256 210722bd; compared with arXiv:2507.02644v2 (work/arxiv, same numbers in Table S1 and Note 3.1); pypdf layout",
+          "location": "SI Note 3.1 (16x4 PBC, pure Hubbard, delta = 1/8); SI Table 5 row 16x4 t' = 0 −0.7630",
+          "reported_as": "our NQS yields a ground state energy of−0.76298",
+          "conversion": "-0.76298 x 64 = -48.83072; 56 electrons = 28 per spin",
+          "note": "Journal and arXiv:2507.02644v2 print the same value. Instance, PBC, U = 8, t' = 0, filling and bound_type variational agree; no sigma printed anywhere in journal main text or SI (prior pass: also not in Code Ocean capsule). No duplicate on the instance.",
+          "source_entry": "JP11-j1j2-heisenberg-hubbard#5"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 4096,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 100000,
+        "reported_as": "We present general settings of NNB training, pretraining, and MARCH training in Table S5, Table S6, and Table S7, respectively. We note that for different systems, the hyperparameters might be slightly different. [...] Table S7: List of configs for the main training phase. Optimizer MARCH; Optimizer momentum mu, beta = 0.95, 0.995; Damping lambda = 0.001; Batch size 4096; Norm constraint at time t 1e-1 (1 + max(t - 8000, 0)/8000)^-1; Local energy clipping 5.0; MCMC step 2.5 L_x x L_y; Hidden dimension 256; Layers 4; Number of determinants 4; Steps 100000. [...] Table S5 (NNB training): Adam, Batch size 4096, Hidden dimension 256, Layers 2, Steps 20000. Table S6 (pretraining phase): Adam, Batch size 4096, Learning rate 3e-4, MCMC step 30, Steps 5000. [...] Table S3: Computation complexity relative to NQS under the same hardware condition in 8 x 8 lattice: Wall Time NQS 1x, NQS large 2x, PEPS D=8 7x, PEPS D=10 24x.",
+        "source": "Supplementary Material Sec. 5 'Hyperparameter', Tables S5-S7; Sec. 4.3 and Table S3; Fig. S33 caption, arXiv:2507.02644 (compute pass 2026-09-16) (compute pass 2026-09-24)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "16x4 PBC, U = 8, 1/8 doping: Supplementary Sec. 4.1 'For the pure Hubbard model on a 16 x 4 lattice with PBC [...] our NQS yields a ground state energy of -0.76298'. Blanket hyperparameters (Tables S5-S7): samples = 4096 batch size; iterations = 100000 main MARCH steps (plus 20000 NNB + 5000 pretraining steps); transformer hidden dimension 256, 4 layers, 4 determinants; no parameter count. No device, GPU count, wall-clock or GPU-hours stated anywhere. Loehr & Clark (arXiv:2510.26906) remark about this result: 'No explicit time is reported in Ref. [18]'. || route2b-pass 2026-09-24: Published Supplementary Information (Springer ESM 41467_2026_74028_MOESM1_ESM.pdf, read 2026-09-24) splits the main-training configs by size: Supplementary Table 8 for L_x x L_y < 150 (all four rows: 64, 64, 100, 144 sites): MARCH, batch size 4096, Hidden dimension 256, Layers 4, Number of determinants 4, Steps 100000 (Table 9: 150-250 sites, 320/4/5, 100000; Table 10: 256 sites, batch 8192, 384/4/6, 50000). Stored samples and iterations agree. Parameters not countable: the Methods define both d (embedding, W_Q..W_O in R^{d x d_H}, W_F in R^{d x d}, E in R^{4 x d}, P in R^{N x d}) and d_H (called 'the hidden dimension of the attention block' in the main text, d_H = d/H), so 'Hidden dimension 256' can be d or d_H; the head count of the Table 8 runs and the bias of the output linear layer are not stated. If d = 256 and the output layer is a bias-free token-wise d -> 2 N_e K map, the count would be 4d + N d + L (4 d^2 + d^2) + 2 N_e K d (e.g. 1,459,200 for the 8x8 N_e = 64 row) - not stored. Code: 'available on CodeOcean: https://codeocean.com/capsule/9301616/tree' (Code availability) - login required, not readable from here (tried with the automation browser). Searched: arXiv v1/v2 SI, published main text (PMC13439271) and SI, peer-review file."
+      }
+    },
+    {
+      "energy": -48.90432,
+      "sigma": 0.00192,
+      "energy_variance": 2.002112,
+      "dof": 56,
+      "einf": 98,
+      "v_score": 0.0051952596917330335,
+      "method": "HFPS",
+      "method_detail": "",
+      "method_as_published": "HFPS (hidden-fermion Pfaffian state)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz; energy is a strict upper bound (assigned during source verification)",
+      "reference": "Chen, Wan, Sengupta, Georges & Roth, Neural network-augmented Pfaffian wave-functions for scalable simulations of interacting fermions, Proc. Natl. Acad. Sci. U.S.A. 123, e2535288123 (2026), arXiv:2507.10705, doi:10.1073/pnas.2535288123",
+      "peer_reviewed": true,
+      "source": "sweep-2026-09-13",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-13",
+        "method": "arXiv HTML parsed locally, no LLM transcription",
+        "reported_as": "-0.76413 (+/- 0.00003) per site",
+        "note": "Sec. III: \"The energy we obtain in the 16x4 lattice is E/N = -0.76413, outperforming a recent result E/N = -0.76298 produced by Transformer-NNBF\". Instance identity confirmed by that comparison value; the number is independently quoted as the HFPS result by both arXiv:2604.25775 and arXiv:2510.26906. No error bar in Sec. III; Table IV of the same paper (raw data of Fig. 7, L x 4 PBC lattices, 1/8 doping, U = 8) gives -0.76413(3) and sigma^2/N_site = 0.031283, added 2026-09-15. Published as PNAS 123, e2535288123 (2026); read from the arXiv version, the journal version not compared.",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF PNAS 123(35), e2535288123 (2026), sources/journal/pnas123-e2535288123.pdf, sha256 5cb7382c, and SI Appendix sources/journal/pnas123-e2535288123-si.pdf, sha256 9e72e89b (both via in-page fetch in the automation browser after the article page loaded; ETH Bibliothek access stamp), pypdf layout + plain; compared with arXiv:2507.10705v1 (sha256 97b1cddb)",
+          "location": "SI Appendix Table S4 (raw data of Fig. 7, L x 4, 1/8 doping, U = 8), row 16 x 4 (arXiv: Table IV)",
+          "reported_as": "-0.76413(3) per site, σ2/Nsite 0.031283, training time 1500 h",
+          "conversion": "-0.76413 x 64 = -48.90432; sigma 3e-5 x 64 = 0.00192; variance 0.031283 x 64 = 2.002112 (Var(H)/N read as in the first pass)",
+          "note": "Journal value identical to arXiv v1 (only the table numbering changed: arXiv Tables II-IV moved to SI Appendix Tables S1, S3, S4). Main text p. 8 also prints 'The energy we obtain in the 16 × 4 lattice is E/N = −0.76413'; 'L × 4 PBC lattices' (p. 7); d-wave pairing-field initialisation Δ = 0.2 at U = 3 (Eq. 20), GCNN with roughly 600 K parameters. Reference (Chen, Wan, Sengupta, Georges & Roth, title as printed, PNAS 123, e2535288123 (2026)) and peer_reviewed true are right; bound_type variational. No field changes.",
+          "source_entry": "R5-browser#10"
+        }
+      },
+      "compute": {
+        "parameters": 600000,
+        "gpu_hours": null,
+        "device": "NVIDIA H100 80GB",
+        "n_devices": null,
+        "samples": 16384,
+        "wall_clock": "1500 h training time (Table IV)",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "local_energy": "nonzero",
+          "reuse": 512,
+          "sr": {
+            "kind": "minsr"
+          },
+          "code": "Quantax (lrux for the Pfaffian updates); version not stated"
+        },
+        "reported_as": "TABLE IV. Raw data of Fig. 7 in the L x 4 lattice with 1/8 doping and U = 8. Training time is listed in hours on NVIDIA H100 80GB GPUs. [System size | E/N_site | sigma^2/N_site | Training Time / h] 4x4 | -0.74177(5) | | ; 8x4 | -0.76690(1) | 0.016320 | 100 ; 12x4 | -0.76608(1) | 0.028784 | 200 ; 16x4 | -0.76413(3) | 0.031283 | 1500 || For the 16 x 4 stripe, we train our mean-field state with Delta = 0.2. In the following, we utilize a GCNN in our HFPS with roughly 600K parameters. || For simulations in III D, we utilize a GCNN [41] as also described in Appendix F. Unless otherwise specified, the total number of samples in each VMC iteration is fixed at N_s = 16384, and the training takes around 10^4 VMC iterations. || arXiv:2507.10705 Sec. II C: \"To solve the SR equation, we utilize minimum-norm SR (MinSR) [42] and subsampled projected-increment natural gradient descent (SPRING) [74] with momentum µ = 0.5.\" || Acknowledgements: \"The NQS simulations are performed by Quantax [90], in which the scalable ANNs are implemented by JAX [91] and Equinox [92], and the LRU is implemented by lrux [93].\" || quantax (v0.3.1, 81616bf) quantax/operator/operator.py L241-242: \"is_valid = ~(jnp.isnan(H_conn) | jnp.isclose(H_conn, 0))\" / \"segment, conn_idx = jnp.nonzero(is_valid, size=conn_size, fill_value=-1)\" || Sec. III D: \"In the following, we utilize a GCNN in our HFPS with roughly 600K parameters.\" || Appendix F.4: \"The feature maps of a GCNN encode a representation over the full space group instead of the translation group ... For lattices, G includes translations, reflections, rotations, and spin-parity symmetry.\" || Loehr & Clark, arXiv:2510.26906 Sec. III (same 4x16 instance): \"The 4\\times 16 lattice has 4 point group symmetries, 64 translations, and an additional 2 symmetries from spin resulting in a multi-determinant expansion of 512 determinants.\"",
+        "source": "Appendix G, Table IV (training time, H100); Sec. III D (GCNN ~600K parameters); Sec. II C (samples per iteration, ~10^4 iterations), arXiv:2507.10705 (compute pass 2026-09-16) || arXiv:2507.10705 Sec. II C, Sec. III D, App. F.4, Acknowledgements; https://github.com/ChenAo-Phys/quantax/blob/81616bf/quantax/operator/operator.py#L241 ; arXiv:2510.26906 Sec. III (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Training time is per system size from Table IV (16x4: 1500 h) \"in hours on NVIDIA H100 80GB GPUs\"; the paper does not say how many GPUs a run used, so it is recorded as wall_clock rather than gpu_hours (they coincide only if a single GPU was used, which is not stated). parameters = \"roughly 600K\" (GCNN used for the L x 4 stripe results of Sec. III D), an approximate figure. samples (16384 per VMC iteration) and iterations (around 10^4) are the paper-wide defaults \"unless otherwise specified\"; not restated for this size. Optimizer: MinSR / SPRING (momentum 0.5). Code: Quantax (JAX + Equinox). || pass 2026-09-27: sr minsr (MinSR / SPRING: the samples x samples kernel). local_energy nonzero: Quantax keeps only non-vanishing connected elements (Pauli-blocked hops dropped), at most 4 N_e hops (verify/agent-C.md G1). reuse = |G| = translations x point group x spin parity = 64 x 4 x 2 = 512: the Sec. III D network is a GCNN over the full space group with spin parity (App. F.4), whose group convolutions apply every kernel at each of the |G| group elements, as the model's GCNN entry does; the rectangular 4x16 torus has 4 point-group elements (Loehr & Clark count the same 4 for 4x16). The 'HFPS' ARCH entry's reuse = N is the CNN rows' value and undercounts this row 8x (verify/VERIFY.md Part 2, agent-C.md §4: implied 9.1 / 34 TFLOP/s instead of 1.35 / 5.1). The exact GCNN is not described (parameters 'roughly 600K'), so the reuse assumes a standard group convolution. proposals_per_sample absent: the sampler is not stated (Quantax's default sweep would be 4N if defaults were used, agent-C.md G2). The Pfaffian projection sums (32 on 16x4) run by low-rank updates and are <= 5 % of the forward (agent-C.md)."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Chen, Wan, Sengupta, Georges & Roth, Neural network-augmented Pfaffian wave-functions for scalable simulations of interacting fermions, Proc. Natl. Acad. Sci. U.S.A. 123, e2535288123 (2026), arXiv:2507.10705, doi:10.1073/pnas.2535288123",
+          "reported_as": "arXiv abs page (fetched 2026-09-29): 'Authors: Ao Chen, Zhou-Quan Wan, Anirvan Sengupta, Antoine Georges, Christopher Roth', 'Journal reference: Proc. Natl. Acad. Sci. U.S.A. 123 (35) e2535288123 (2026)'; Crossref record of doi:10.1073/pnas.2535288123: PNAS vol 123 issue 35 article e2535288123, issued 2026-08-28, authors Ao Chen, Zhou-Quan Wan, Anirvan Sengupta, Antoine Georges, Christopher Roth",
+          "location": "arXiv:2507.10705 abs page and PDF title page ('Ao Chen, Zhou-Quan Wan, Anirvan Sengupta, Antoine Georges, and Christopher Roth'); Crossref doi:10.1073/pnas.2535288123",
+          "version_read": "arXiv:2507.10705v1 PDF (the only arXiv version), pypdf plain + layout text extracted locally (_r4/txt/2507.10705v1.*); PNAS version not compared (pnas.org HTTP 403; Europe PMC has metadata only, PMID 42664040, no full text) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "conversion": "none (citation)",
+          "checked_on": "2026-09-29",
+          "reason": "The stored author list drops the fifth author, Christopher Roth, who is on the arXiv and PNAS author lists; the DOI is added. The same constant feeds only this row.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#16 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Chen, Wan, Sengupta & Georges, Neural network-augmented Pfaffian wave-functions for scalable simulations of interacting fermions, Proc. Natl. Acad. Sci. U.S.A. 123, e2535288123 (2026), arXiv:2507.10705"
+        }
+      ]
+    },
+    {
+      "energy": -38.624,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Hartree-Fock",
+      "method_detail": "",
+      "method_as_published": "HB K = 0",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Locality-Induced Hierarchical Backflow Wavefunctions for Correlated Fermions, arXiv:2606.00924",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2606.00924 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.6035",
+        "note": "Table IV, row '4 x 16', column 'K = 0' | Table IV 'under periodic boundary conditions' (full P), nh=0.125, U=8; row '4x16' (64 sites, Nf=28) matches this instance exactly.",
+        "secondary_of": null
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 16000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "where N_MC is the number of Monte Carlo samples, which is about 16000 in our calculations. Note O_p(s) can be stored trivially on different CPU processors, while still being convenient to iteratively solve the equation. In practice, we add a small diagonal regularization (e.g., eps = 1e-3) to S to ensure numerical stability. [...] where d tau is the step size, which can be tuned from d tau = 0.1 to 0.01.",
+        "source": "Supplemental Material Sec. 3 'Optimization with variational Monte Carlo', arXiv:2606.00924 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "K=0 is the Hartree-Fock state ('K = 0 corresponds to the Hartree-Fock state'); the paper's only cost statement ('about 16000' Monte Carlo samples) is given for the VMC/SR optimization in general and is not specific to the K=0 evaluation. No device, wall-clock, GPU-hours, iteration count or parameter count anywhere in the paper."
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": true,
+          "reported_as": "'All calculations are performed using variational Monte Carlo with gradient-based optimization'; Supplemental Material Tables II and IV captions: 'The energy sampling errors are around 0.0003'",
+          "location": "Methods; Supplemental Material Tables II and IV captions",
+          "version_read": "arXiv:2606.00924v1 (only version) PDF, pypdf layout; arXiv HTML v1 tables and TeX source (VP6)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "The K = 0 (Hartree-Fock) state is sampled like every other depth. The caption's table-wide 'around 0.0003' is not a per-row sigma (2026-09-17). The method string's fallback read 'Hartree' as deterministic; the string itself is corrected to the paper's label 'HB K = 0 (HF)' in this block too. Ruling 2 (2026-09-30): HB K = 0 rows are marked sampled. Not the best bound on the instance, so no record moves.",
+          "source_entry": "VP6-arxiv-2606-00924#0 (qmbl-verify 2026-09-29; skeptic upheld); ruling 2, 2026-09-30",
+          "from": false
+        },
+        {
+          "field": "method",
+          "to": "HB K = 0",
+          "reported_as": "column 'K = 0', cell −0.6035",
+          "location": "Supplemental Material Table IV ('Energies persite for the Hubbard model at nh = 0.125, U = 8 for different systems under periodic boundary conditions'), row '4 × 16', column 'K = 0'",
+          "version_read": "arXiv:2606.00924v1 (only version) PDF, pypdf layout mode (sources/2606.00924v1.layout.txt, identical to qmbl sources/2606.00924.txt); every cell re-read in the arXiv HTML v1 tables (parsed with node) and the TeX source main.tex",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "M8 flag settled from the source: the K = 0 (Hartree-Fock) energy is a VMC estimate like every other depth ('All calculations are performed using variational Monte Carlo ...'; the caption's 'sampling errors are around 0.0003' covers the K = 0 column). The stored published string contains 'Hartree', which units.mjs DETERMINISTIC treats as a deterministic energy (check M8). The paper's own label is 'K = 0 (HF)' (Table II; Table IV prints 'K = 0'). units.mjs already reads that label as sampled (comment at units.mjs lines 14-17), and the paper's other three K = 0 rows (4 × 4, 6 × 6, 10 × 10, all Table II) carry it. The display name is unchanged: method_names.mjs line 274 maps 'HB K = 0 (HF)' to ['Hartree-Fock', ''] as it maps the old string. Value, instance, bound_type and reference are otherwise verified: −0.6035 (energy per site; caption: 'The energy sampling errors are around 0.0003') → -0.6035 × 64 = -38.624 (Hubbard stored as total = per site × N). M2 flag (far above the reference) is the HF error at U = 8, with no shift. sigma stays null: the caption's table-wide 'The energy sampling errors are around 0.0003' is not a per-row sigma (2026-09-17, Journal 2026-09-17 and hub). Ruling B4 (2026-10-02): a corrected published string quotes a label the source prints, verbatim, and what explains it is the row's method_detail (method_names.mjs). The paper's label for the depth-0 state is 'HB K = 0' (main text, e.g. '-0.5889 (HB K = 0)' on 16 x 16; the table columns read 'K = 0' in Table IV and 'K = 0 (HF)' in Table II); that it is the Hartree-Fock state is the row's method name.",
+          "source_entry": "VP6-arxiv-2606-00924#0 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Hierarchical Backflow (HB) VMC, path depth K=0 (Hartree-Fock)"
+        }
+      ],
+      "sampled": true
+    },
+    {
+      "energy": -48.544,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Hierarchical backflow",
+      "method_detail": "K = 1",
+      "method_as_published": "Hierarchical Backflow (HB) VMC, path depth K=1",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Locality-Induced Hierarchical Backflow Wavefunctions for Correlated Fermions, arXiv:2606.00924",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2606.00924 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.7585",
+        "note": "Table IV, row '4 x 16', column 'K = 1' | Same row as above.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2606.00924v1 (only version) PDF, pypdf layout mode (sources/2606.00924v1.layout.txt, identical to qmbl sources/2606.00924.txt); every cell re-read in the arXiv HTML v1 tables (parsed with node) and the TeX source main.tex",
+          "location": "Supplemental Material Table IV ('Energies persite for the Hubbard model at nh = 0.125, U = 8 for different systems under periodic boundary conditions'), row '4 × 16', column 'K = 1'",
+          "reported_as": "−0.7585 (energy per site; caption: 'The energy sampling errors are around 0.0003')",
+          "conversion": "-0.7585 × 64 = -48.544 (Hubbard stored as total = per site × N)",
+          "note": "4 × 16 under PBC, nh = 0.125 (M = 7N/8 = 56 electrons), U = 8: instance rectangular-4x16_64_P_28_8, not the _PO_ (PBC-OBC) instance. The same row's HFDS cell −0.7530 (= VarBench HFDS row −48.192/64 = −0.7530, = HFDS SI Table IV PBC-PBC −0.753(2)) fixes the cluster and convention. bound_type variational. sigma stays null: the caption's table-wide 'The energy sampling errors are around 0.0003' is not a per-row sigma (2026-09-17, Journal 2026-09-17 and hub). Sz is not stated in the paper; at even electron number any-Sz variational energy bounds the N_up = N_dn instance energy from above.",
+          "source_entry": "VP6-arxiv-2606-00924#1 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 16000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "where N_MC is the number of Monte Carlo samples, which is about 16000 in our calculations. Note O_p(s) can be stored trivially on different CPU processors, while still being convenient to iteratively solve the equation. In practice, we add a small diagonal regularization (e.g., eps = 1e-3) to S to ensure numerical stability. [...] where d tau is the step size, which can be tuned from d tau = 0.1 to 0.01.",
+        "source": "Supplemental Material Sec. 3 'Optimization with variational Monte Carlo', arXiv:2606.00924 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "One blanket statement for all VMC calculations in the paper; no device, wall-clock, GPU-hours or iteration count anywhere (Acknowledgment only says 'The computational resources utilized in this work were supported by SCNet Supercomputing Network'; the SR solver text mentions 'different CPU processors'). Parameter count never given as a number: End Matter states the HB parameter count 'scales as z d^2 M N K' with z=5, d=4, M electrons, N sites; not derived here. Sample count is stated as approximate ('about 16000')."
+      }
+    },
+    {
+      "energy": -48.6208,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Hierarchical backflow",
+      "method_detail": "K = 2",
+      "method_as_published": "Hierarchical Backflow (HB) VMC, path depth K=2",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Locality-Induced Hierarchical Backflow Wavefunctions for Correlated Fermions, arXiv:2606.00924",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2606.00924 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.7597",
+        "note": "Table IV, row '4 x 16', column 'K = 2' | Same row as above.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2606.00924v1 (only version) PDF, pypdf layout mode (sources/2606.00924v1.layout.txt, identical to qmbl sources/2606.00924.txt); every cell re-read in the arXiv HTML v1 tables (parsed with node) and the TeX source main.tex",
+          "location": "Supplemental Material Table IV ('Energies persite for the Hubbard model at nh = 0.125, U = 8 for different systems under periodic boundary conditions'), row '4 × 16', column 'K = 2'",
+          "reported_as": "−0.7597 (energy per site; caption: 'The energy sampling errors are around 0.0003')",
+          "conversion": "-0.7597 × 64 = -48.6208 (Hubbard stored as total = per site × N)",
+          "note": "4 × 16 under PBC, nh = 0.125 (M = 7N/8 = 56 electrons), U = 8: instance rectangular-4x16_64_P_28_8, not the _PO_ (PBC-OBC) instance. The same row's HFDS cell −0.7530 (= VarBench HFDS row −48.192/64 = −0.7530, = HFDS SI Table IV PBC-PBC −0.753(2)) fixes the cluster and convention. bound_type variational. sigma stays null: the caption's table-wide 'The energy sampling errors are around 0.0003' is not a per-row sigma (2026-09-17, Journal 2026-09-17 and hub). Sz is not stated in the paper; at even electron number any-Sz variational energy bounds the N_up = N_dn instance energy from above. M13 flag settled: arXiv:2308.11823v6 Table III prints BW1 (p=1) −0.7597 on 4 × 16 PBC, n = 0.875. That paper has the same first author but a different ansatz (tensor-represented backflow plus one Lanczos step, 'evaluated by p=1 wave-functions'). This paper does not quote it: Table IV compares only with HFDS and NNB. Its own sequences are consistent: 4 × 16 by K (−0.7585, −0.7597, −0.7611 RHB) and K = 2 by size (−0.7617, −0.7613, −0.7597). A four-digit coincidence of two methods, not a duplicate row.",
+          "source_entry": "VP6-arxiv-2606-00924#2 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 16000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "where N_MC is the number of Monte Carlo samples, which is about 16000 in our calculations. Note O_p(s) can be stored trivially on different CPU processors, while still being convenient to iteratively solve the equation. In practice, we add a small diagonal regularization (e.g., eps = 1e-3) to S to ensure numerical stability. [...] where d tau is the step size, which can be tuned from d tau = 0.1 to 0.01.",
+        "source": "Supplemental Material Sec. 3 'Optimization with variational Monte Carlo', arXiv:2606.00924 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "One blanket statement for all VMC calculations in the paper; no device, wall-clock, GPU-hours or iteration count anywhere (Acknowledgment only says 'The computational resources utilized in this work were supported by SCNet Supercomputing Network'; the SR solver text mentions 'different CPU processors'). Parameter count never given as a number: End Matter states the HB parameter count 'scales as z d^2 M N K' with z=5, d=4, M electrons, N sites; not derived here. Sample count is stated as approximate ('about 16000')."
+      }
+    },
+    {
+      "energy": -48.7104,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Residual hierarchical backflow",
+      "method_detail": "K = 2 + FNN, 5 determinants, 100 neurons",
+      "method_as_published": "Residual Hierarchical Backflow (RHB) VMC (HB K=2 backbone + FNN, Ndet=5, Nneuron=100)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Locality-Induced Hierarchical Backflow Wavefunctions for Correlated Fermions, arXiv:2606.00924",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2606.00924 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.7611",
+        "note": "Table IV, row '4 x 16', column 'RHB' | Same row; paper's own best ansatz for this instance.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2606.00924v1 (only version) PDF, pypdf layout mode (sources/2606.00924v1.layout.txt, identical to qmbl sources/2606.00924.txt); every cell re-read in the arXiv HTML v1 tables (parsed with node) and the TeX source main.tex",
+          "location": "Supplemental Material Table IV ('Energies persite for the Hubbard model at nh = 0.125, U = 8 for different systems under periodic boundary conditions'), row '4 × 16', column 'RHB'",
+          "reported_as": "−0.7611 (energy per site; caption: 'The energy sampling errors are around 0.0003')",
+          "conversion": "-0.7611 × 64 = -48.7104 (Hubbard stored as total = per site × N)",
+          "note": "4 × 16 under PBC, nh = 0.125 (M = 7N/8 = 56 electrons), U = 8: instance rectangular-4x16_64_P_28_8, not the _PO_ (PBC-OBC) instance. The same row's HFDS cell −0.7530 (= VarBench HFDS row −48.192/64 = −0.7530, = HFDS SI Table IV PBC-PBC −0.753(2)) fixes the cluster and convention. bound_type variational. sigma stays null: the caption's table-wide 'The energy sampling errors are around 0.0003' is not a per-row sigma (2026-09-17, Journal 2026-09-17 and hub). Sz is not stated in the paper; at even electron number any-Sz variational energy bounds the N_up = N_dn instance energy from above. Setting: N_det = 5, N_neuron = 100 rests on the general sentence 'we adopt Ndet = 5 and Nneuron = 100 for all subsequent large-scale simulations'. Table IV's RHB column is not one setting throughout: its 4 × 4 cell, −0.7410, is Table III's N_det = 16, N_neuron = 80 value (N_det = 5, N_neuron = 100 gives −0.7403). But 4 × 4 is not a large-scale run.",
+          "source_entry": "VP6-arxiv-2606-00924#3 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 16000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "where N_MC is the number of Monte Carlo samples, which is about 16000 in our calculations. Note O_p(s) can be stored trivially on different CPU processors, while still being convenient to iteratively solve the equation. In practice, we add a small diagonal regularization (e.g., eps = 1e-3) to S to ensure numerical stability. [...] where d tau is the step size, which can be tuned from d tau = 0.1 to 0.01.",
+        "source": "Supplemental Material Sec. 3 'Optimization with variational Monte Carlo', arXiv:2606.00924 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "RHB architecture stated but no parameter count: 'we adopt a three-layer fully connected feed-forward neural network (FNN)' with 2N input neurons, N_neuron hidden SiLU neurons, N_det x M linear outputs; 'The neural network introduces variational parameters from the two fully connected layers, totaling approximately 4 N_neuron N + 2 N_det N_neuron M (including both weights and biases). The HB part contributes z d^2 K M N parameters.' 'In this work, we typically set N_neuron = 100 and N_det = 5'; Table III: 'Increasing N_det to 16 (with N_neuron = 80) further reduces the error to 1.1e-3, but at a higher computational cost.' Two-stage optimization (HB K=2 backbone first, then joint). Sample count 'about 16000' is the paper-wide statement. No device, wall-clock, GPU-hours or iteration count anywhere."
+      }
+    },
+    {
+      "energy": -47.745,
+      "sigma": 0.00384,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "NNBF",
+      "method_detail": "backflow on a Slater determinant (Ψ_SN)",
+      "method_as_published": "NNB",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Di Luo and Bryan K. Clark, Backflow transformations via neural networks for quantum many-body wave functions, Phys. Rev. Lett. 122, 226401 (2019), arXiv:1807.10770",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2606.00924 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.746",
+        "note": "Table IV, row '4 x 16', column 'NNB' | Same row/instance as above; quoted comparison column.",
+        "secondary_of": "arXiv:2606.00924",
+        "second_read": {
+          "checked_on": "2026-10-03",
+          "scope": "value",
+          "method": "Phys. Rev. Lett. 122, 226401 (2019), published PDF (6 pp.) and Supplemental Material (5 pp.), fetched 2026-10-03 through ETH Zurich's subscription (qmbl-runs/qmbl-verify-2026-09-29/sources/journal/), text extracted locally with pypdf and searched for periodic, boundary, PBC, OBC, open, twist and cylinder; the accepted manuscript (CHORUS) and arXiv:1807.10770v2 read the same way",
+          "location": "SM Sec. IV (16 x 4, nh = 64) and SM Table II, row '16 x 4, U/t=8, n=0.875', column 'NNB'",
+          "reported_as": "'the energy decreases from -46.211 (for the optimized Slater determinant) to -47.745 (nh = 64)' (Sec. IV); -0.746 ± 6 × 10^-5 per site (Table II)",
+          "conversion": "-47.745 (total, as printed); sigma 6e-5 x 64 = 0.00384",
+          "note": "Second reading, from the published paper and its Supplemental Material: value and bar agree. Neither states the boundary conditions of the L x 4 runs; the only boundary words belong to reference values: DMRG '(PBC, open)' for the 4 x infinity system (main text, ref. [65]) and, for 16 x 4, 'the twist-averaged boundary condition AFQMC result of -49.088' (SM Sec. IV; LeBlanc et al., PRX 5, 041041), a periodic reference. Periodic in both directions is inferred: the 8 x 4 energy (-0.755 per site) fits the fully periodic cluster and not the cylinder (HFDS: -0.7633(7) periodic, -0.7309(6) cylinder), and three papers that quote these runs place them on fully periodic lattices (arXiv:2111.10420v2 Fig. 4(b), arXiv:2606.00924v1 Table IV, arXiv:2308.11823v6 Table III). Accepted as periodic (ruling D1, 2026-10-03).",
+          "source_entry": "VP6-arxiv-2606-00924#10 (qmbl-verify 2026-09-29, ambiguous); triage D1; ruling D1, 2026-10-03 (accept PBC-PBC as inferred)"
+        }
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -47.745,
+          "reported_as": "−0.746 ± 6 × 10^−5 (Table III, per site); '-47.745 (nh = 64)' (SM text, total)",
+          "location": "arXiv:1807.10770v2 SM Table III 'Finite size effect study of Neural Network Backflow' (TeX label tb:energy_fs), row '16 × 4, U/t=8, n=0.875', column 'NNB'; SM text 'Neural Network Backflow on various systems': 'we find the energy decreases from -46.211 (for the optimized Slater determinant) to -47.745 (nh = 64)'",
+          "version_read": "arXiv:1807.10770v2 (latest; = Phys. Rev. Lett. 122, 226401 (2019) per the arXiv DOI link; PRL page and supplement refused, HTTP 403): PDF pypdf layout + plain text and TeX source main.tex line 442; quoting source arXiv:2606.00924v1 SM Table IV",
+          "conversion": "eps -47.745/64 = -0.746015625, so the loader's energy = +(eps × 64).toPrecision(12) = -47.745",
+          "checked_on": "2026-09-29",
+          "reason": "Luo & Clark print the 16 × 4 NNB (n_h = 64) energy as the total -47.745. Table III rounds it to -0.746 per site, and the stored -47.744 is -0.746 × 64, a rounding artifact 0.001 (0.26 sigma) off the finer printed number. Keep the finer print. Consistency: Table II's 16 × 4 NNB relative error (2.734 ± 8 × 10^-3)% against the -49.088 AFQMC the text compares to gives -47.746 ± 0.004.",
+          "source_entry": "VP6-arxiv-2606-00924#4 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": -47.744
+        },
+        {
+          "field": "sigma",
+          "to": 0.00384,
+          "reported_as": "−0.746 ± 6 × 10^−5 (Table III, per site); '-47.745 (nh = 64)' (SM text, total)",
+          "location": "arXiv:1807.10770v2 SM Table III 'Finite size effect study of Neural Network Backflow' (TeX label tb:energy_fs), row '16 × 4, U/t=8, n=0.875', column 'NNB'; SM text 'Neural Network Backflow on various systems': 'we find the energy decreases from -46.211 (for the optimized Slater determinant) to -47.745 (nh = 64)'",
+          "version_read": "arXiv:1807.10770v2 (latest; = Phys. Rev. Lett. 122, 226401 (2019) per the arXiv DOI link; PRL page and supplement refused, HTTP 403): PDF pypdf layout + plain text and TeX source main.tex line 442; quoting source arXiv:2606.00924v1 SM Table IV",
+          "conversion": "-47.745 total as printed (= -0.746016/site, Table III rounds to -0.746); sigma 6e-5 × 64 = 0.00384",
+          "checked_on": "2026-09-29",
+          "reason": "The primary prints a per-value statistical error bar: ± 6 × 10^-5 per site in Table III. It is not a table-wide statement, so it may be attached (unlike arXiv:2606.00924's 'around 0.0003'). Caveat for the ruling: the energy itself is printed to three decimals (±5e-4 per site display rounding), so the stated sigma is the error of the finer -47.745. The row stays far from any record either way.",
+          "source_entry": "VP6-arxiv-2606-00924#5 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": null
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "−0.746 ± 6 × 10^−5 (Table III, per site); '-47.745 (nh = 64)' (SM text, total)",
+          "location": "arXiv:1807.10770v2 SM Table III 'Finite size effect study of Neural Network Backflow' (TeX label tb:energy_fs), row '16 × 4, U/t=8, n=0.875', column 'NNB'; SM text 'Neural Network Backflow on various systems': 'we find the energy decreases from -46.211 (for the optimized Slater determinant) to -47.745 (nh = 64)'",
+          "version_read": "arXiv:1807.10770v2 (latest; = Phys. Rev. Lett. 122, 226401 (2019) per the arXiv DOI link; PRL page and supplement refused, HTTP 403): PDF pypdf layout + plain text and TeX source main.tex line 442; quoting source arXiv:2606.00924v1 SM Table IV",
+          "conversion": "-47.745 total as printed (= -0.746016/site, Table III rounds to -0.746); sigma 6e-5 × 64 = 0.00384",
+          "checked_on": "2026-09-29",
+          "reason": "The row cites Luo & Clark, Phys. Rev. Lett. 122, 226401 (2019) (DOI 10.1103/PhysRevLett.122.226401 on the arXiv abs page); a PRL is peer reviewed. This settles the M10 flag 'peer_reviewed missing'.",
+          "source_entry": "VP6-arxiv-2606-00924#6 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": null
+        },
+        {
+          "field": "provenance",
+          "to": "primary",
+          "reported_as": "−0.746 ± 6 × 10^−5 (Table III, per site); '-47.745 (nh = 64)' (SM text, total)",
+          "location": "arXiv:1807.10770v2 SM Table III 'Finite size effect study of Neural Network Backflow' (TeX label tb:energy_fs), row '16 × 4, U/t=8, n=0.875', column 'NNB'; SM text 'Neural Network Backflow on various systems': 'we find the energy decreases from -46.211 (for the optimized Slater determinant) to -47.745 (nh = 64)'",
+          "version_read": "arXiv:1807.10770v2 (latest; = Phys. Rev. Lett. 122, 226401 (2019) per the arXiv DOI link; PRL page and supplement refused, HTTP 403): PDF pypdf layout + plain text and TeX source main.tex line 442; quoting source arXiv:2606.00924v1 SM Table IV",
+          "conversion": "-47.745 total as printed (= -0.746016/site, Table III rounds to -0.746); sigma 6e-5 × 64 = 0.00384",
+          "checked_on": "2026-09-29",
+          "reason": "The number was located in the primary: arXiv:1807.10770v2 SM Table III, 16 × 4 NNB -0.746 ± 6 × 10^-5, and the SM text -47.745 (nh = 64). The row is no longer a quote read only in arXiv:2606.00924 (secondary_of becomes null) and cites the paper that produced it. reported_as and evidence change to the primary's cell. The reference string is a separate correction. If this is applied by editing the sweep entry, verified.checked_on will read 2026-09-15 (the pass date in the file name): record this 2026-09-29 reading as verified.second_read or through corrections.mjs instead.",
+          "source_entry": "VP6-arxiv-2606-00924#7 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "secondary"
+        },
+        {
+          "field": "reference",
+          "to": "Di Luo and Bryan K. Clark, Backflow transformations via neural networks for quantum many-body wave functions, Phys. Rev. Lett. 122, 226401 (2019), arXiv:1807.10770",
+          "reported_as": "−0.746 ± 6 × 10^−5 (Table III, per site); '-47.745 (nh = 64)' (SM text, total)",
+          "location": "arXiv:1807.10770v2 SM Table III 'Finite size effect study of Neural Network Backflow' (TeX label tb:energy_fs), row '16 × 4, U/t=8, n=0.875', column 'NNB'; SM text 'Neural Network Backflow on various systems': 'we find the energy decreases from -46.211 (for the optimized Slater determinant) to -47.745 (nh = 64)'",
+          "version_read": "arXiv:1807.10770v2 (latest; = Phys. Rev. Lett. 122, 226401 (2019) per the arXiv DOI link; PRL page and supplement refused, HTTP 403): PDF pypdf layout + plain text and TeX source main.tex line 442; quoting source arXiv:2606.00924v1 SM Table IV",
+          "conversion": "-47.745 total as printed (= -0.746016/site, Table III rounds to -0.746); sigma 6e-5 × 64 = 0.00384",
+          "checked_on": "2026-09-29",
+          "reason": "The paper named is already the producing one (Phys. Rev. Lett. 122, 226401 (2019), DOI on the arXiv abs page of 1807.10770). Once the row is primary, the tail '(cited as ref [31] in arXiv:2606.00924)' describes how the row was found, not what it cites, and the arXiv id is missing.",
+          "source_entry": "VP6-arxiv-2606-00924#8 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Di Luo and Bryan K. Clark, Backflow transformations via neural networks for quantum many-body wave functions, Phys. Rev. Lett. 122, 226401 (2019) (cited as ref [31] in arXiv:2606.00924)"
+        },
+        {
+          "field": "method",
+          "to": "NNB",
+          "reported_as": "−0.746 ± 6 × 10^−5 (Table III, per site); '-47.745 (nh = 64)' (SM text, total)",
+          "location": "arXiv:1807.10770v2 SM Table III 'Finite size effect study of Neural Network Backflow' (TeX label tb:energy_fs), row '16 × 4, U/t=8, n=0.875', column 'NNB'; SM text 'Neural Network Backflow on various systems': 'we find the energy decreases from -46.211 (for the optimized Slater determinant) to -47.745 (nh = 64)'",
+          "version_read": "arXiv:1807.10770v2 (latest; = Phys. Rev. Lett. 122, 226401 (2019) per the arXiv DOI link; PRL page and supplement refused, HTTP 403): PDF pypdf layout + plain text and TeX source main.tex line 442; quoting source arXiv:2606.00924v1 SM Table IV",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "'quoted from ref [31]' is provenance, not a method, and goes stale once the row cites the primary. Both papers print the column as 'NNB'. What was run is Psi_SN, neural-network backflow on a Slater determinant ('To further test the ability of NNB, we have optimized Psi_SN in various systems: ... (ii) 8 × 4, 12 × 4, 16 × 4 Hubbard model'), with n_h = 64 hidden neurons for this 16 × 4 value. Proposed method_detail: 'Psi_SN (on a Slater determinant), n_h = 64'. scripts/method_names.mjs needs an entry \"NNB\": [\"NNBF\", ...] (currently line 327 maps the old string to [\"NNBF\", \"\"]).",
+          "source_entry": "VP6-arxiv-2606-00924#9 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Neural Network Backflow (NNB) VMC, quoted from ref [31]"
+        }
+      ]
+    },
+    {
+      "energy": -48.6208,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Tensor backflow",
+      "method_detail": "BW1, 1 Lanczos step",
+      "method_as_published": "BW1 (p=1)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Solving Fermi-Hubbard-type Models by Tensor Representations of Backflow Corrections, Phys. Rev. B 109, 245107 (2024), arXiv:2308.11823",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2308.11823 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.7597",
+        "note": "Table III, n=0.875 block, 4x16 row, BW1 column | 64 sites, Nf=28 (n=2*28/64=0.875), P boundary (fully periodic, per Table III caption); U=8 confirmed by section context (only U studied for this filling in the paper)",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2308.11823v6 (20 Mar 2024; Phys. Rev. B 109, 245107 (2024) per the abs page): PDF pypdf layout (sources/vp12_2308.11823v6.layout.txt; byte-identical to a fresh arXiv download) and arXiv HTML v6 (sources/vp12_2308.11823v6.html) parsed with node, agreeing cell for cell; v1, v3, v4, v5 PDFs also extracted to trace the table's history",
+          "location": "Table III, row n = 0.875, 4 x 16, column BW1",
+          "reported_as": "-0.7597 (energy per site, units of t, p = 1)",
+          "conversion": "-0.7597 x 64 = -48.6208 (stored -48.6208)",
+          "note": "PBC, U = 8, N_up = N_dn, own computation, one Lanczos step on the VMC state: variational. No error bar or variance printed (sigma null stays). peer_reviewed true correct (Phys. Rev. B 109, 245107 (2024)); the reference string lacks the authors (Zhou, Zhou & Liang). M13 flag (same number as 'Hierarchical Backflow (HB) VMC, path depth K=2', arXiv:2606.00924) settled as a four-digit coincidence, not a duplicate: arXiv:2606.00924v1 Table IV prints HB K = 2 -0.7597 as its own ansatz next to HFDS and NNB only (it cites this paper in its bibliography but does not list BW), and its K = 2 cells at 4 x 8, 6 x 6, 8 x 8, 10 x 10 (-0.7617, -0.5266, -0.5245, -0.5240) differ from BW1's (-0.7591, -0.5186, -0.5188, -0.5181). v4 printed -0.7595.",
+          "source_entry": "VP12-heisenberg-j1j2-hubbard#43 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 109, 245107 (2024), sources/journal/prb109-245107.pdf, sha256 52a11b5f (pypdf layout + plain); no Supplemental Material on the APS abstract page; compared with arXiv:2308.11823v6 (qmbl/sources/2308.11823.txt): Table III identical (journal caption adds 'and U = 8' and AFQMC error bars on the n = 1 reference column)",
+          "location": "Table III (p. 245107-6), 'energies (per site) of the Fermi-Hubbard model on rectangular lattices with the PBC and U = 8 ... All energy results for BW1 and BW2 are evaluated using p = 1 wave functions', row n = 0.875, 4 x 16, column BW1",
+          "reported_as": "−0.7597 per site",
+          "conversion": "-0.7597 x 64 = -48.6208",
+          "note": "PBC, U = 8, t = 1, H with U n_up n_dn (Eq. 18, no shift); filling n = 0.875 -> Nf per spin as in the instance; one Lanczos step (p = 1) on the tensor-backflow state, variational; evaluated with 48 000 MC samples, no error bar printed. Same per-site value as the HB K = 2 row (-48.6208, arXiv:2606.00924, same first author, different ansatz); the 2026-09-29 reading settled it as a four-digit coincidence, not a quote; not a duplicate. Energy, sigma, size, boundary, couplings and bound_type agree with the source; no other row on the instance carries the same number from this or a quoted paper.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#61"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 44800,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "In each optimization step, there are roughly 44800 MC samples for calculating gradients, and the interval between two samples is the lattice size. ... For results obtained by BW1 and BW2 in the table, we first optimize a HF state under U=0, and then adding backflow corrections and continuing optimizations, each energy value is evaluated by the p = 1 wave-function using 48000 MC samples, and the interval between two MC samples is the lattice size. [Sec. III.4 Fermi-Hubbard model] ... With the interval between two MC samples the lattice size, it takes roughly 2 minutes for one optimization step with a total of 44800 MC samples on 128 AMD EPYC 7742 CPU cores. [Sec. III.4, stated for the 8×16 PBC lattice with pinning field, which is not one of these rows] ... This work used the Bridges-2 system, which is supported by NSF award number OAC-1928147 at the Pittsburgh Supercomputing Center (PSC). This research was also supported by Texas Advanced Computing Center (TACC) at The University of Texas at Austin and the advanced computing resources provided by the Supercomputing Center of the USTC. [Sec. V Acknowledgement]",
+        "source": "Sec. III.4 Fermi-Hubbard model (text around Table III and Fig. 6); Sec. V Acknowledgement, arXiv:2308.11823 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "high",
+        "note": "Blanket statement for all Table III (PBC) Fermi-Hubbard runs: samples = roughly 44800 MC samples per optimization step for gradients; the p=1 energies (all Table III values) are evaluated with 48000 MC samples. No parameter count is stated (tensor dimension [M,N,2,d/2,Q,d] with Q=5, d=4 is given but never multiplied out); no iteration count for the Hubbard runs. The only hardware/timing statement (2 minutes per step on 128 AMD EPYC 7742 CPU cores) is made for the 8×16 lattice run, not for these rows, so device/n_devices/wall_clock are left null. No GPU used or mentioned."
+      }
+    },
+    {
+      "energy": -48.7552,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Tensor backflow",
+      "method_detail": "BW2, 1 Lanczos step",
+      "method_as_published": "BW2 (p=1)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Solving Fermi-Hubbard-type Models by Tensor Representations of Backflow Corrections, Phys. Rev. B 109, 245107 (2024), arXiv:2308.11823",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2308.11823 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.7618",
+        "note": "Table III, n=0.875 block, 4x16 row, BW2 column | same as BW1 row above",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2308.11823v6 (20 Mar 2024; Phys. Rev. B 109, 245107 (2024) per the abs page): PDF pypdf layout (sources/vp12_2308.11823v6.layout.txt; byte-identical to a fresh arXiv download) and arXiv HTML v6 (sources/vp12_2308.11823v6.html) parsed with node, agreeing cell for cell; v1, v3, v4, v5 PDFs also extracted to trace the table's history",
+          "location": "Table III, row n = 0.875, 4 x 16, column BW2",
+          "reported_as": "-0.7618 (energy per site, units of t, p = 1)",
+          "conversion": "-0.7618 x 64 = -48.7552 (stored -48.7552)",
+          "note": "PBC, U = 8, N_up = N_dn, own computation, one Lanczos step on the VMC state: variational. No error bar or variance printed (sigma null stays). peer_reviewed true correct (Phys. Rev. B 109, 245107 (2024)); the reference string lacks the authors (Zhou, Zhou & Liang). v4 printed -0.7619.",
+          "source_entry": "VP12-heisenberg-j1j2-hubbard#44 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 109, 245107 (2024), sources/journal/prb109-245107.pdf, sha256 52a11b5f (pypdf layout + plain); no Supplemental Material on the APS abstract page; compared with arXiv:2308.11823v6 (qmbl/sources/2308.11823.txt): Table III identical (journal caption adds 'and U = 8' and AFQMC error bars on the n = 1 reference column)",
+          "location": "Table III (p. 245107-6), 'energies (per site) of the Fermi-Hubbard model on rectangular lattices with the PBC and U = 8 ... All energy results for BW1 and BW2 are evaluated using p = 1 wave functions', row n = 0.875, 4 x 16, column BW2",
+          "reported_as": "−0.7618 per site",
+          "conversion": "-0.7618 x 64 = -48.7552",
+          "note": "PBC, U = 8, t = 1, H with U n_up n_dn (Eq. 18, no shift); filling n = 0.875 -> Nf per spin as in the instance; one Lanczos step (p = 1) on the tensor-backflow state, variational; evaluated with 48 000 MC samples, no error bar printed. Energy, sigma, size, boundary, couplings and bound_type agree with the source; no other row on the instance carries the same number from this or a quoted paper.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#62"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 44800,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "In each optimization step, there are roughly 44800 MC samples for calculating gradients, and the interval between two samples is the lattice size. ... For results obtained by BW1 and BW2 in the table, we first optimize a HF state under U=0, and then adding backflow corrections and continuing optimizations, each energy value is evaluated by the p = 1 wave-function using 48000 MC samples, and the interval between two MC samples is the lattice size. [Sec. III.4 Fermi-Hubbard model] ... With the interval between two MC samples the lattice size, it takes roughly 2 minutes for one optimization step with a total of 44800 MC samples on 128 AMD EPYC 7742 CPU cores. [Sec. III.4, stated for the 8×16 PBC lattice with pinning field, which is not one of these rows] ... This work used the Bridges-2 system, which is supported by NSF award number OAC-1928147 at the Pittsburgh Supercomputing Center (PSC). This research was also supported by Texas Advanced Computing Center (TACC) at The University of Texas at Austin and the advanced computing resources provided by the Supercomputing Center of the USTC. [Sec. V Acknowledgement]",
+        "source": "Sec. III.4 Fermi-Hubbard model (text around Table III and Fig. 6); Sec. V Acknowledgement, arXiv:2308.11823 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "high",
+        "note": "Blanket statement for all Table III (PBC) Fermi-Hubbard runs: samples = roughly 44800 MC samples per optimization step for gradients; the p=1 energies (all Table III values) are evaluated with 48000 MC samples. No parameter count is stated (tensor dimension [M,N,2,d/2,Q,d] with Q=5, d=4 is given but never multiplied out); no iteration count for the Hubbard runs. The only hardware/timing statement (2 minutes per step on 128 AMD EPYC 7742 CPU cores) is made for the 8×16 lattice run, not for these rows, so device/n_devices/wall_clock are left null. No GPU used or mentioned."
+      }
+    },
+    {
+      "energy": -48.80512,
+      "sigma": 0.00064,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "NNBF",
+      "method_detail": "MLP, 2 layers, n_h = 8192",
+      "method_as_published": "MLP-NNBF, n_h=8192 (2-layer)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Enhancing Neural Network Backflow, arXiv:2510.26906",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2510.26906 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.76258(1)",
+        "note": "Sec III, 'Increasing neurons' paragraph | 4x16=64 sites (P=PBC); U=8, t=1; hole doping 1/8 => Nf=28 per spin",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2510.26906v1 PDF (the only version; no journal reference on the arXiv abs page fetched 2026-09-29, none found on Crossref), pypdf plain + layout text extracted locally (_r4/txt/2510.26906v1.*) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "location": "Sec. III 'Increasing neurons', p. 3",
+          "reported_as": "\"In our implementation, a two-layer MLP with 8192 neurons reaches an energy of −0.76258(1) within 400 GPU hours.\" (per site, units of t)",
+          "conversion": "-0.76258 x 64 = -48.80512; sigma 0.00001 x 64 = 0.00064",
+          "note": "4 x 16 PBC, U = 8, t = 1, delta = 1/8, own computation, preprint. Unsymmetrized single-determinant MLP-NNBF. Not a duplicate (the HFPS metastable row -0.76256 on this instance is a different paper and number).",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#10 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": 126934016,
+        "gpu_hours": 400,
+        "device": "NVIDIA H100 (on GH200 superchips)",
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 3500000,
+        "evaluation": {
+          "proposals_per_sample": 1,
+          "local_energy": "nonzero",
+          "sr": {
+            "kind": "none"
+          },
+          "code": "Loehr & Clark NNBF (no public code)"
+        },
+        "reported_as": "In our implementation, a two-layer MLP with 8192 neurons reaches an energy of -0.76258(1) within 400 GPU hours. This energy is lower than recent results using a tensor backflow ansatz with a Lanczos step [24]. [...] All optimizations reported in this paper were performed using H100 GPUs on GH200 superchips. Most optimizations were performed using a single H100 GPU, but longer optimizations were parallelized across 4 GPUs. GPU times are reported as cumulative GPU usage [...] Unless otherwise specified, the total number of markov chains is fixed at N_s = 1024 and the learning rate is fixed at 3e-4. We first train the single particle orbitals without backflow for 10^5 VMC iterations. [...] The training for the data in Fig. A1 took 3 x 10^6 VMC iterations, followed by 5 x 10^5 VMC iterations with an exponential decay learning rate schedule tuning the learning rate to 1e-7. || Sec. II.A: u(n) is the output, an N\\times L matrix, of an MLP with input n [...] Here both spin sectors are combined into a single matrix (e.g. N is the sum of the spin up and down electrons and L is twice the number of physical sites) [...] Our MLP is fully connected with two hidden layers each followed by a layer normalization and relu activation. The input layer is set by |n> = |n_0, n_1, ..., n_L> where n_i \\in {-1,1} denotes an empty or occupied spin orbital. The last output layer contains a bias but no non-linear function; this bias can be interpreted as a fixed mean-field solution onto which the neural network provides additive configuration-dependent backflow corrections. || Sec. III: A fixed depth multi-layer MLP-NNBF scales as O(n_o n_h + n_h^2 + \\alpha n_h n_o^2 + (\\alpha n_o)^3) per step where n_o is the number of orbitals and \\alpha is the filling fraction. For our system, n_o = L = 128 and \\alpha = 0.4375. [...] this crossover happens at n_h = 7168 || Sec. III (PNNBF): U(n) and J(n) are both L\\times L matrices output by the MLP (e.g. the last layer of the network has 2L^2 nodes) || App. B: We then multiply all single particle orbitals by a factor of 10^3, set them to the bias of the last layer of the MLP, and randomly initialize the weights to form the initial MLP-NNBF ansatz. || Fig. A2 caption: Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains. || Acknowledgements: The NQS simulations are implemented using internally developed code with JAX [43], Flax [44], and Optax [45]. || arXiv:2510.26906 Eq. (2): \"\\theta_{i+1}=\\theta_{i}-\\textbf{s}_{i}\\delta_{L}\\times\\text{sign}[\\nabla_{\\theta}E_{\\theta}]\" || Sec. III (Lanczos step): \"Since each spin can hop to up to 4 neighbors, the resulting multi-determinant expansion can have up to 4N additional determinants. For our \\delta=1/8 model this results in 225 determinants\" || Appendix B: \"Unless otherwise specified, the total number of markov chains is fixed at N_{s}=1024\" || Fig. A2 caption: \"Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains.\"",
+        "source": "Sec. III 'Increasing neurons'; Sec. II.B; Appendix B, arXiv:2510.26906 (compute pass 2026-09-16) || arXiv:2510.26906v1 (only version; no journal version found via Crossref 2026-09-24) Sec. II.A, Sec. III 'Increasing neurons', 'Pffafian NNBF', 'Optimization-free multi-determinants', 'Optimizing multi-determinants', App. B, Fig. A2 caption, Acknowledgements; html copy qmbl/sources/2510.26906.html; Flax LayerNorm defaults https://github.com/google/flax/blob/ae1594b0bd862daecaff2a56e47b96852706e1ba/flax/linen/normalization.py#L489-L490 and Dense https://github.com/google/flax/blob/ab2efb97549d8e27b1331b0f21feec6c86a385d9/flax/linen/linear.py#L243 (last commits touching those files before the paper's 2025-10-30 submission); no public code (route2a pass 2026-09-24) (compute pass 2026-09-24) || arXiv:2510.26906 Eq. (2), Sec. II, Sec. III, Appendix B, Fig. A2 caption (route2a-work-2510.26906.txt L66-70, L96-103, L237-242) (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "gpu_hours = 400 is stated for this exact run (4x16, n_h = 8192, two-layer MLP) as cumulative GPU usage on H100. iterations = 3.5e6 is the sum of the two stated phases for the base-NNBF runs of Fig. A1 (3e6 iterations + 5e5 decay-phase iterations; App. B), preceded by 1e5 iterations of mean-field-only training not included. samples = 1024 Markov chains per iteration. No parameter count stated (MLP, 2 hidden layers x 8192 neurons, input 128, output N x L). Number of GPUs for this run not stated. || route2a 2026-09-24: parameters = 126934016 evaluated from the stated architecture (n_h = 8192): input 128 (n_o = L = 2 x 64 spin orbitals, entries +-1), Dense 128->n_h + LayerNorm + ReLU, Dense n_h->n_h + LayerNorm + ReLU, Dense n_h->N*L = 56*128 = 7168 with bias (N = 2 x 28 electrons, alpha = 56/128 = 0.4375 as printed). Count = (128 n_h + n_h) + 2 n_h + (n_h^2 + n_h) + 2 n_h + (7168 n_h + 7168) = n_h^2 + 7302 n_h + 7168. Stated for sure: weights + output bias = n_h^2 + 7296 n_h + 7168 = 126884864; the remaining 6 n_h = 49152 (hidden-layer biases, LayerNorm scale+offset) are Flax defaults (Dense use_bias=True, LayerNorm use_bias/use_scale=True; paper says it uses Flax but does not state its version or these flags), < 0.1 % of the total. Cross-check: the three weight blocks are exactly the n_o n_h + n_h^2 + alpha n_h n_o^2 terms of the paper's printed per-step cost, and its printed crossover n_h = alpha n_o^2 = 7168 is the output width; the PNNBF remark (last layer 2L^2 nodes) confirms the output layer is the orbital matrix. The mean-field orbitals are the output bias (App. B), so no separate orbital matrix. The paper prints no parameter count anywhere (v1 only; no code released: 'internally developed code'; github.com/Kieran-Loehr has no public repos). Real vs complex not stated; counted as number of entries (complex = 1, NetKet convention), so unaffected. The count does not depend on N beyond the fixed 4x16 instance (the paper's 4x8 runs would have input 64, output 28*64). Samples check: N_s = 1024 is 'the total number of markov chains'; Fig. A2 caption ('100 VMC steps of each of the 1024 VMC chains') supports one sample per chain per step, i.e. 1024 samples per optimisation step; not stated more directly. Iterations check: 3.5e6 = 3e6 + 5e5 (decay) is the stated protocol for all base-NNBF runs of Fig. A1, which spans the n_h scan including this n_h; plus 1e5 mean-field-only iterations before (App. B), same system size but a different, much cheaper ansatz (no MLP). Kept. Confidence lowered from high to medium because the parameter count is evaluated, not printed. || pass 2026-09-27: proposals_per_sample 1: one VMC iteration advances each of the 1024 chains by one Metropolis step (a \"sweep\" is 100 VMC steps per chain, Fig. A2; the per-symmetry timings are consistent), not a sweep of N (verify/VERIFY.md Part 1 #6, agent-C.md §5). local_energy nonzero: the code enumerates the hops of each electron to its 4 neighbours, 4 N_e = 224 at 56 electrons (\"225 determinants\" = 1 + 224), not 4 x bonds = 512. sr none: the update is the sign of the gradient with random scaling (Eq. 2), no linear solve. complex and precision not stated (TF32 likely from the implied rates, agent-C.md)."
+      }
+    },
+    {
+      "energy": -49.11872,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "NNBF",
+      "method_detail": "symmetric: unspecified (symmetrized variants); extrapolated: variance → 0",
+      "method_as_published": "zero-variance extrapolation (NNBF + symmetrized variants)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "zero-variance or bond-dimension extrapolation; not an upper bound (assigned during source reading)",
+      "reference": "Enhancing Neural Network Backflow, arXiv:2510.26906",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2510.26906 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; adversarial re-read: confirmed",
+        "reported_as": "−0.76748",
+        "note": "Sec III, 'Variance Extrapolation' paragraph, Fig.1 | same instance as above; paper explicitly notes this extrapolated value is 'not necessarily variational' and uses it as a ground-truth reference",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2510.26906v1 PDF (the only version; no journal reference on the arXiv abs page fetched 2026-09-29, none found on Crossref), pypdf plain + layout text extracted locally (_r4/txt/2510.26906v1.*) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "location": "Sec. III 'Variance Extrapolation', p. 2-3; Fig. 1 caption",
+          "reported_as": "\"We expect the extrapolated energy, −0.76748, which is not necessarily variational, to be a good proxy for the true ground state energy\" (per site, units of t)",
+          "conversion": "-0.76748 x 64 = -49.11872; no sigma printed",
+          "note": "4 x 16 PBC, U = 8, t = 1, delta = 1/8, own computation, preprint. Linear zero-variance fit through the base NNBF and all symmetrized versions with E < -0.7615 (Fig. 1 caption); no error bar printed; extrapolated, not a bound, as stored. Not a duplicate.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#11 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "NVIDIA H100 (on GH200 superchips)",
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Here we do a linear extrapolation through all sufficiently low energy points of our standard NNBF models and all forms of symmetry projections [...]. We expect the extrapolated energy, -0.76748, which is not necessarily variational, to be a good proxy for the true ground state energy [...] All optimizations reported in this paper were performed using H100 GPUs on GH200 superchips.",
+        "source": "Sec. III 'Variance Extrapolation'; Sec. III.B (4x8: 'variance extrapolated \"ground truth\" energy of -0.768416'); Sec. II.B, arXiv:2510.26906 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "Variance extrapolation has no separately stated cost; it is a linear fit through the energies/variances of the base NNBF and symmetrized runs (Fig. 1 for 4x16, Fig. 5(a) for 4x8), whose cumulative GPU hours are given per run in Figs. 2, 3, 5 (graphically) and in the text for a few 4x16 runs (400 GPU h for n_h = 8192; ~200/800/3000 GPU h for 4/32/512 optimized symmetries at n_h = 2048). Device statement is the paper-wide one."
+      }
+    },
+    {
+      "energy": -48.8576,
+      "sigma": 0.00128,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "NNBF",
+      "method_detail": "MLP, 4 determinants; symmetric: unspecified (symmetry optimization)",
+      "method_as_published": "MLP-NNBF, 4 determinants (symmetry-optimized)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Enhancing Neural Network Backflow, arXiv:2510.26906",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2510.26906 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.76340(2)",
+        "note": "Sec III, 'Optimizing multi-determinants' paragraph | same instance as above",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2510.26906v1 PDF (the only version; no journal reference on the arXiv abs page fetched 2026-09-29, none found on Crossref), pypdf plain + layout text extracted locally (_r4/txt/2510.26906v1.*) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "location": "Sec. III, p. 5 (equal-number-of-determinants comparison)",
+          "reported_as": "\"our ansatz with four determinants generated by op- timizing four symmetries has an energy of -0.76340(2)\" (per site, units of t)",
+          "conversion": "-0.7634 x 64 = -48.8576; sigma 0.00002 x 64 = 0.00128",
+          "note": "4 x 16 PBC, U = 8, t = 1, delta = 1/8, own computation, preprint. n_h = 2048 optimized with the 4 point-group symmetries (29% towards the extrapolated energy, consistent). Not a duplicate.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#12 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": 19155968,
+        "gpu_hours": 200,
+        "device": "NVIDIA H100 (on GH200 superchips)",
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 4300000,
+        "evaluation": {
+          "stages": [
+            {
+              "iterations": 3500000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 1
+            },
+            {
+              "iterations": 800000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 4
+            }
+          ],
+          "proposals_per_sample": 1,
+          "local_energy": "nonzero",
+          "sr": {
+            "kind": "none"
+          },
+          "code": "Loehr & Clark NNBF (no public code)"
+        },
+        "reported_as": "These additional optimizations all use the single-determinant NNBF as a starting point and, in total, take approximately 200, 800, and 3000 GPU hours respectively [for 4, 32 and 512 symmetries]. [...] We find that our ansatz with four determinants generated by optimizing four symmetries has an energy of -0.76340(2) which is slightly lower than Transformer-BF [18] energy of -0.76298 which also uses four determinants. [...] The training for the model with 4 symmetries took approximately 8 x 10^5 VMC iterations, while the training for the model with 32 symmetries took approximately 5 x 10^5 VMC iterations. The training for the model with all symmetries took 1.5 x 10^5 VMC iterations. [...] All optimizations reported in this paper were performed using H100 GPUs on GH200 superchips. Most optimizations were performed using a single H100 GPU, but longer optimizations were parallelized across 4 GPUs. GPU times are reported as cumulative GPU usage || Sec. II.A: u(n) is the output, an N\\times L matrix, of an MLP with input n [...] Here both spin sectors are combined into a single matrix (e.g. N is the sum of the spin up and down electrons and L is twice the number of physical sites) [...] Our MLP is fully connected with two hidden layers each followed by a layer normalization and relu activation. The input layer is set by |n> = |n_0, n_1, ..., n_L> where n_i \\in {-1,1} denotes an empty or occupied spin orbital. The last output layer contains a bias but no non-linear function; this bias can be interpreted as a fixed mean-field solution onto which the neural network provides additive configuration-dependent backflow corrections. || Sec. III: A fixed depth multi-layer MLP-NNBF scales as O(n_o n_h + n_h^2 + \\alpha n_h n_o^2 + (\\alpha n_o)^3) per step where n_o is the number of orbitals and \\alpha is the filling fraction. For our system, n_o = L = 128 and \\alpha = 0.4375. [...] this crossover happens at n_h = 7168 || Sec. III (PNNBF): U(n) and J(n) are both L\\times L matrices output by the MLP (e.g. the last layer of the network has 2L^2 nodes) || App. B: We then multiply all single particle orbitals by a factor of 10^3, set them to the bias of the last layer of the MLP, and randomly initialize the weights to form the initial MLP-NNBF ansatz. || Fig. A2 caption: Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains. || Acknowledgements: The NQS simulations are implemented using internally developed code with JAX [43], Flax [44], and Optax [45]. || Abstract: We explore efficient ways to generate these multi-determinant expansions without increasing the number of variational parameters. || Sec. III: Here we optimize the energy of Eq. 5 using the parameters of a single MLP using different sets of symmetries including the 4 point group symmetries; 32 symmetries by adding in spin inversion and half translation symmetries; and 512 symmetries by including all translations. || Eq. 5: \\Psi_sym(n) = \\sum_g \\Pi(n,g) \\Psi(gn), where g \\in G and \\Pi(n,g) = \\pm 1 is an additional sign coming from fermion permutations. || arXiv:2510.26906 Eq. (2): \"\\theta_{i+1}=\\theta_{i}-\\textbf{s}_{i}\\delta_{L}\\times\\text{sign}[\\nabla_{\\theta}E_{\\theta}]\" || Sec. III (Lanczos step): \"Since each spin can hop to up to 4 neighbors, the resulting multi-determinant expansion can have up to 4N additional determinants. For our \\delta=1/8 model this results in 225 determinants\" || Appendix B: \"Unless otherwise specified, the total number of markov chains is fixed at N_{s}=1024\" || Fig. A2 caption: \"Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains.\" || Eq. (5): \"\\Psi_{sym}(\\mathbf{n})=\\sum_{g}\\Pi(\\mathbf{n},g)\\Psi(g\\mathbf{n})\" ... \"This requires a number of evaluations of both the network and the determinant equal to the number of symmetries\" || \"Here we optimize the energy of Eq. 5 using the parameters of a single MLP using different sets of symmetries including the 4 point group symmetries; 32 symmetries by adding in spin inversion and half translation symmetries\" || \"These additional optimizations all use the single-determinant NNBF as a starting point and, in total, take approximately 200, 800, and 3000 GPU hours respectively.\" || Sec. II: \"All optimization times include the cumulative cost of optimization for a given point which includes (where specified) optimizing smaller ansatz first.\" || Appendix B: \"The training for the data in Fig. A1 took 3\\times 10^{6} VMC iterations, followed by 5\\times 10^{5} VMC iterations with an exponential decay learning rate schedule\" ... \"The training for the model with 4 symmetries took approximately 8\\times 10^{5} VMC iterations, while the training for the model with 32 symmetries took approximately 5\\times 10^{5} VMC iterations.\"",
+        "source": "Sec. III 'Optimizing multi-determinants'; Appendix B; Sec. II.B, arXiv:2510.26906 (compute pass 2026-09-16) || arXiv:2510.26906v1 (only version; no journal version found via Crossref 2026-09-24) Sec. II.A, Sec. III 'Increasing neurons', 'Pffafian NNBF', 'Optimization-free multi-determinants', 'Optimizing multi-determinants', App. B, Fig. A2 caption, Acknowledgements; html copy qmbl/sources/2510.26906.html; Flax LayerNorm defaults https://github.com/google/flax/blob/ae1594b0bd862daecaff2a56e47b96852706e1ba/flax/linen/normalization.py#L489-L490 and Dense https://github.com/google/flax/blob/ab2efb97549d8e27b1331b0f21feec6c86a385d9/flax/linen/linear.py#L243 (last commits touching those files before the paper's 2025-10-30 submission); no public code (route2a pass 2026-09-24) (compute pass 2026-09-24) || arXiv:2510.26906 Eq. (2), Sec. II, Sec. III, Appendix B, Fig. A2 caption (route2a-work-2510.26906.txt L66-70, L96-103, L237-242) (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "n_h = 2048 model optimized with 4 point-group symmetries (4 determinants). gpu_hours = 200 is 'approximately' and cumulative including the single-determinant NNBF starting point; iterations = 8e5 'approximately' for the 4-symmetry optimization stage. samples = 1024 Markov chains per iteration. No parameter count stated (MLP, 2 hidden layers x 2048 neurons). || route2a 2026-09-24: parameters = 19155968 evaluated from the stated architecture (n_h = 2048): input 128 (n_o = L = 2 x 64 spin orbitals, entries +-1), Dense 128->n_h + LayerNorm + ReLU, Dense n_h->n_h + LayerNorm + ReLU, Dense n_h->N*L = 56*128 = 7168 with bias (N = 2 x 28 electrons, alpha = 56/128 = 0.4375 as printed). Count = (128 n_h + n_h) + 2 n_h + (n_h^2 + n_h) + 2 n_h + (7168 n_h + 7168) = n_h^2 + 7302 n_h + 7168. Stated for sure: weights + output bias = n_h^2 + 7296 n_h + 7168 = 19143680; the remaining 6 n_h = 12288 (hidden-layer biases, LayerNorm scale+offset) are Flax defaults (Dense use_bias=True, LayerNorm use_bias/use_scale=True; paper says it uses Flax but does not state its version or these flags), < 0.1 % of the total. Cross-check: the three weight blocks are exactly the n_o n_h + n_h^2 + alpha n_h n_o^2 terms of the paper's printed per-step cost, and its printed crossover n_h = alpha n_o^2 = 7168 is the output width; the PNNBF remark (last layer 2L^2 nodes) confirms the output layer is the orbital matrix. The mean-field orbitals are the output bias (App. B), so no separate orbital matrix. The paper prints no parameter count anywhere (v1 only; no code released: 'internally developed code'; github.com/Kieran-Loehr has no public repos). Real vs complex not stated; counted as number of entries (complex = 1, NetKet convention), so unaffected. The count does not depend on N beyond the fixed 4x16 instance (the paper's 4x8 runs would have input 64, output 28*64). Symmetry optimization/projection adds no parameters: Eq. 5 sums the SAME single MLP over g with fixed signs Pi = +-1 (abstract: 'without increasing the number of variational parameters'), so the 4-determinant  state has the parameters of the n_h = 2048 base model (Fig. 3 / Sec. III: 'for the n_h = 2048 model'). Samples check: N_s = 1024 is 'the total number of markov chains'; Fig. A2 caption ('100 VMC steps of each of the 1024 VMC chains') supports one sample per chain per step, i.e. 1024 samples per optimisation step; not stated more directly. Iterations check (FLAG): 8e5 is the 4-symmetry continuation stage only. Sec. III: 'These additional optimizations all use the single-determinant NNBF as a starting point', and gpu_hours = 200 is cumulative including that base run (Sec. II.B). Steps at this system size are therefore 1e5 (mean-field only) + 3e6 + 5e5 (single determinant, n_h = 2048, Fig. A1 protocol - that the starting point had the full Fig. A1 protocol is inferred from the n_h = 2048 point appearing in both Fig. 2/A1 and Fig. 3, not stated) + 8e5 (4 determinants, 4 MLP evaluations per sample). Existing value kept; iterations and gpu_hours have different scopes. Confidence lowered from high to medium because the parameter count is evaluated, not printed. || pass 2026-09-27: proposals_per_sample 1: one VMC iteration advances each of the 1024 chains by one Metropolis step (a \"sweep\" is 100 VMC steps per chain, Fig. A2; the per-symmetry timings are consistent), not a sweep of N (verify/VERIFY.md Part 1 #6, agent-C.md §5). local_energy nonzero: the code enumerates the hops of each electron to its 4 neighbours, 4 N_e = 224 at 56 electrons (\"225 determinants\" = 1 + 224), not 4 x bonds = 512. sr none: the update is the sign of the gradient with random scaling (Eq. 2), no linear solve. complex and precision not stated (TF32 likely from the implied rates, agent-C.md). stages: the 4-symmetry optimisation starts from the single-determinant n_h = 2048 NNBF trained for 3e6 + 5e5 = 3.5e6 iterations, and the stated 200 GPU hours are cumulative (\"in total\", \"All optimization times include the cumulative cost\"), so the row's iterations become the total 3.5e6 + 800000 = 4300000 (was 800000, the symmetric stage alone; verify/VERIFY.md Part 1 #5, agent-C.md §5: x3.3 / x15.4 on the stored estimate). The symmetric stage evaluates the MLP and the determinant once per group element: evaluations_per_amplitude 4 (Fig. 3/A1 timings: GPU-h per iteration per symmetry 4.1e-5 base, 2.6e-5 (4-sym), 4.0e-5 (32-sym), so the stage cost scales with n_sym). The 1e5-iteration mean-field pre-stage (determinant only) is not counted."
+      }
+    },
+    {
+      "energy": -48.80384,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "HFPS",
+      "method_detail": "no pairing field at initialization, metastable",
+      "method_as_published": "HFPS (initialized without a pairing field, metastable state)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Chen, Wan, Sengupta, Georges & Roth, Neural network-augmented Pfaffian wave-functions for scalable simulations of interacting fermions, Proc. Natl. Acad. Sci. U.S.A. 123, e2535288123 (2026), arXiv:2507.10705, doi:10.1073/pnas.2535288123",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2507.10705 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−0.76256",
+        "note": "Sec III.3, 'we find a fairly similar energy...when we initialize without a pairing field' | same instance as above",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF PNAS 123(35), e2535288123 (2026), sources/journal/pnas123-e2535288123.pdf, sha256 5cb7382c, and SI Appendix sources/journal/pnas123-e2535288123-si.pdf, sha256 9e72e89b (both via in-page fetch in the automation browser after the article page loaded; ETH Bibliothek access stamp), pypdf layout + plain; compared with arXiv:2507.10705v1 (sha256 97b1cddb)",
+          "location": "Main text p. 8: 'we find a fairly similar energy, E/N = −0.76256, to Transformer-NNBF when we initialize without a pairing field, which drives us to a meta-stable state without pairing'",
+          "reported_as": "-0.76256 per site",
+          "conversion": "-0.76256 x 64 = -48.80384",
+          "note": "Journal value identical to arXiv v1 (only the table numbering changed: arXiv Tables II-IV moved to SI Appendix Tables S1, S3, S4). No error bar printed; sigma null stays. Reference (Chen, Wan, Sengupta, Georges & Roth, title as printed, PNAS 123, e2535288123 (2026)) and peer_reviewed true are right; bound_type variational. No field changes.",
+          "source_entry": "R5-browser#11"
+        }
+      },
+      "compute": {
+        "parameters": 600000,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 16384,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "local_energy": "nonzero",
+          "reuse": 512,
+          "sr": {
+            "kind": "minsr"
+          },
+          "code": "Quantax (lrux for the Pfaffian updates); version not stated"
+        },
+        "reported_as": "For the 16 x 4 stripe, we train our mean-field state with Delta = 0.2. In the following, we utilize a GCNN in our HFPS with roughly 600K parameters. [...] we find a fairly similar energy, E/N = -0.76256, to Transformer-NNBF when we initialize without a pairing field, which drives us to a meta-stable state without pairing. [...] TABLE IV. Raw data of Fig. 7 in the L x 4 lattice with 1/8 doping and U = 8. Training time is listed in hours on NVIDIA H100 80GB GPUs. [16 x 4: E/N_site = -0.76413(3), Training Time / h = 1500; 12 x 4: 200; 8 x 4: 100; 4 x 4: not listed] [...] Unless otherwise specified, the total number of samples in each VMC iteration is fixed at N_s = 16384, and the training takes around 10^4 VMC iterations. || arXiv:2507.10705 Sec. II C: \"To solve the SR equation, we utilize minimum-norm SR (MinSR) [42] and subsampled projected-increment natural gradient descent (SPRING) [74] with momentum µ = 0.5.\" || Acknowledgements: \"The NQS simulations are performed by Quantax [90], in which the scalable ANNs are implemented by JAX [91] and Equinox [92], and the LRU is implemented by lrux [93].\" || quantax (v0.3.1, 81616bf) quantax/operator/operator.py L241-242: \"is_valid = ~(jnp.isnan(H_conn) | jnp.isclose(H_conn, 0))\" / \"segment, conn_idx = jnp.nonzero(is_valid, size=conn_size, fill_value=-1)\" || Sec. III D: \"In the following, we utilize a GCNN in our HFPS with roughly 600K parameters.\" || Appendix F.4: \"The feature maps of a GCNN encode a representation over the full space group instead of the translation group ... For lattices, G includes translations, reflections, rotations, and spin-parity symmetry.\" || Loehr & Clark, arXiv:2510.26906 Sec. III (same 4x16 instance): \"The 4\\times 16 lattice has 4 point group symmetries, 64 translations, and an additional 2 symmetries from spin resulting in a multi-determinant expansion of 512 determinants.\"",
+        "source": "Sec. III.D 'Stripe phase'; Table IV (Appendix G); Sec. II.C, arXiv:2507.10705 (compute pass 2026-09-16) || arXiv:2507.10705 Sec. II C, Sec. III D, App. F.4, Acknowledgements; https://github.com/ChenAo-Phys/quantax/blob/81616bf/quantax/operator/operator.py#L241 ; arXiv:2510.26906 Sec. III (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "This row is the metastable 16x4 HFPS energy E/N = -0.76256 obtained 'when we initialize without a pairing field' (Sec. III.D text), not the Table IV entry (-0.76413(3), 1500 h on NVIDIA H100 80GB GPUs). The GCNN parameter count ('roughly 600K') is stated for the Sec. III.D stripe simulations as a whole, hence scope 'ansatz'. The 1500 h figure is quoted for context only and is not attributed to this metastable run; the number of H100 GPUs is not stated and it is unclear whether the table's hours are wall-clock or GPU-hours. Samples (16384/iteration) and iterations ('around 10^4') are the paper-wide statement. || pass 2026-09-27: sr minsr (MinSR / SPRING: the samples x samples kernel). local_energy nonzero: Quantax keeps only non-vanishing connected elements (Pauli-blocked hops dropped), at most 4 N_e hops (verify/agent-C.md G1). reuse = |G| = translations x point group x spin parity = 64 x 4 x 2 = 512: the Sec. III D network is a GCNN over the full space group with spin parity (App. F.4), whose group convolutions apply every kernel at each of the |G| group elements, as the model's GCNN entry does; the rectangular 4x16 torus has 4 point-group elements (Loehr & Clark count the same 4 for 4x16). The 'HFPS' ARCH entry's reuse = N is the CNN rows' value and undercounts this row 8x (verify/VERIFY.md Part 2, agent-C.md §4: implied 9.1 / 34 TFLOP/s instead of 1.35 / 5.1). The exact GCNN is not described (parameters 'roughly 600K'), so the reuse assumes a standard group convolution. proposals_per_sample absent: the sampler is not stated (Quantax's default sweep would be 4N if defaults were used, agent-C.md G2). The Pfaffian projection sums (32 on 16x4) run by low-rank updates and are <= 5 % of the forward (agent-C.md)."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Chen, Wan, Sengupta, Georges & Roth, Neural network-augmented Pfaffian wave-functions for scalable simulations of interacting fermions, Proc. Natl. Acad. Sci. U.S.A. 123, e2535288123 (2026), arXiv:2507.10705, doi:10.1073/pnas.2535288123",
+          "reported_as": "arXiv abs page (fetched 2026-09-29): 'Authors: Ao Chen, Zhou-Quan Wan, Anirvan Sengupta, Antoine Georges, Christopher Roth', 'Journal reference: Proc. Natl. Acad. Sci. U.S.A. 123 (35) e2535288123 (2026)'; Crossref record of doi:10.1073/pnas.2535288123: PNAS vol 123 issue 35 article e2535288123, issued 2026-08-28, authors Ao Chen, Zhou-Quan Wan, Anirvan Sengupta, Antoine Georges, Christopher Roth",
+          "location": "arXiv:2507.10705 abs page and PDF title page ('Ao Chen, Zhou-Quan Wan, Anirvan Sengupta, Antoine Georges, and Christopher Roth'); Crossref doi:10.1073/pnas.2535288123",
+          "version_read": "arXiv:2507.10705v1 PDF (the only arXiv version), pypdf plain + layout text extracted locally (_r4/txt/2507.10705v1.*); PNAS version not compared (pnas.org HTTP 403; Europe PMC has metadata only, PMID 42664040, no full text) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "conversion": "none (citation)",
+          "checked_on": "2026-09-29",
+          "reason": "The reference gives the arXiv title only; the paper is published in PNAS 123, e2535288123 (2026) with five authors. Same form as the two HFPS rows of the sweep and worklist batches after their author fix.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#18 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Neural Network-Augmented Pfaffian Wave-functions for Scalable Simulations of Interacting Fermions, arXiv:2507.10705"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "Journal reference: Proc. Natl. Acad. Sci. U.S.A. 123 (35) e2535288123 (2026)",
+          "location": "arXiv:2507.10705 abs page; Crossref (issued 2026-08-28)",
+          "version_read": "arXiv:2507.10705v1 PDF (the only arXiv version), pypdf plain + layout text extracted locally (_r4/txt/2507.10705v1.*); PNAS version not compared (pnas.org HTTP 403; Europe PMC has metadata only, PMID 42664040, no full text) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Answers the M10 flag ('preprint older than 12 months, peer_reviewed false: published since?'): yes, PNAS 123, e2535288123 (2026). The HFPS rows of the sweep and worklist batches already carry true.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#19 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": false
+        }
+      ]
+    },
+    {
+      "energy": -48.04224,
+      "sigma": 0.00128,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "NNBF",
+      "method_detail": "MLP, n_h = 128",
+      "method_as_published": "base MLP-NNBF, n_h=128",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Enhancing Neural Network Backflow, arXiv:2510.26906",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2510.26906 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.75066(2)",
+        "note": "Appendix E: 'the highest energy wavefunction we study, n_h=128 with energy per site of -0.75066(2)' | Same 64-site instance; deliberately under-converged baseline.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2510.26906v1 PDF (the only version; no journal reference on the arXiv abs page fetched 2026-09-29, none found on Crossref), pypdf plain + layout text extracted locally (_r4/txt/2510.26906v1.*) Second reading (retry agent, 2026-09-29): re-extracted from the same PDFs (sha256 checked) with pypdf plain + layout into _r5/txt; every cell used here was located again and is identical.",
+          "location": "Appendix E, p. 10, and Fig. A3 caption, p. 11",
+          "reported_as": "\"the highest energy wavefunction we study, nh = 128 with energy per site of −0.75066(2)\" (per site, units of t)",
+          "conversion": "-0.75066 x 64 = -48.04224; sigma 0.00002 x 64 = 0.00128",
+          "note": "4 x 16 PBC, U = 8, t = 1, delta = 1/8, own computation, preprint. Base (unsymmetrized) NNBF, 4 x 16: App. E continues the Sec. III A observables on 4 x 16 (Fig. A3 peaks at k = (7pi/16, pi) vs the correct (7pi/8, pi), period-16 direction). Not a duplicate.",
+          "source_entry": "VP13-hubbard-j1j2-heisenberg#13 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": 958208,
+        "gpu_hours": null,
+        "device": "NVIDIA H100 (on GH200 superchips)",
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 3500000,
+        "evaluation": {
+          "proposals_per_sample": 1,
+          "local_energy": "nonzero",
+          "sr": {
+            "kind": "none"
+          },
+          "code": "Loehr & Clark NNBF (no public code)"
+        },
+        "reported_as": "Unless otherwise specified, the total number of markov chains is fixed at N_s = 1024 and the learning rate is fixed at 3e-4. We first train the single particle orbitals without backflow for 10^5 VMC iterations. We then multiply all single particle orbitals by a factor of 10^3, set them to the bias of the last layer of the MLP, and randomly initialize the weights to form the initial MLP-NNBF ansatz. The training for the data in Fig. A1 took 3 x 10^6 VMC iterations, followed by 5 x 10^5 VMC iterations with an exponential decay learning rate schedule tuning the learning rate to 1e-7. [...] All optimizations reported in this paper were performed using H100 GPUs on GH200 superchips. [...] the highest energy wavefunction we study, n_h = 128 with energy per site of -0.75066(2) || Sec. II.A: u(n) is the output, an N\\times L matrix, of an MLP with input n [...] Here both spin sectors are combined into a single matrix (e.g. N is the sum of the spin up and down electrons and L is twice the number of physical sites) [...] Our MLP is fully connected with two hidden layers each followed by a layer normalization and relu activation. The input layer is set by |n> = |n_0, n_1, ..., n_L> where n_i \\in {-1,1} denotes an empty or occupied spin orbital. The last output layer contains a bias but no non-linear function; this bias can be interpreted as a fixed mean-field solution onto which the neural network provides additive configuration-dependent backflow corrections. || Sec. III: A fixed depth multi-layer MLP-NNBF scales as O(n_o n_h + n_h^2 + \\alpha n_h n_o^2 + (\\alpha n_o)^3) per step where n_o is the number of orbitals and \\alpha is the filling fraction. For our system, n_o = L = 128 and \\alpha = 0.4375. [...] this crossover happens at n_h = 7168 || Sec. III (PNNBF): U(n) and J(n) are both L\\times L matrices output by the MLP (e.g. the last layer of the network has 2L^2 nodes) || App. B: We then multiply all single particle orbitals by a factor of 10^3, set them to the bias of the last layer of the MLP, and randomly initialize the weights to form the initial MLP-NNBF ansatz. || Fig. A2 caption: Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains. || Acknowledgements: The NQS simulations are implemented using internally developed code with JAX [43], Flax [44], and Optax [45]. || arXiv:2510.26906 Eq. (2): \"\\theta_{i+1}=\\theta_{i}-\\textbf{s}_{i}\\delta_{L}\\times\\text{sign}[\\nabla_{\\theta}E_{\\theta}]\" || Sec. III (Lanczos step): \"Since each spin can hop to up to 4 neighbors, the resulting multi-determinant expansion can have up to 4N additional determinants. For our \\delta=1/8 model this results in 225 determinants\" || Appendix B: \"Unless otherwise specified, the total number of markov chains is fixed at N_{s}=1024\" || Fig. A2 caption: \"Each VMC sweep reports the average energy from 100 VMC steps of each of the 1024 VMC chains.\"",
+        "source": "Appendix B 'Optimization Details'; Appendix E; Sec. II.B, arXiv:2510.26906 (compute pass 2026-09-16) || arXiv:2510.26906v1 (only version; no journal version found via Crossref 2026-09-24) Sec. II.A, Sec. III 'Increasing neurons', 'Pffafian NNBF', 'Optimization-free multi-determinants', 'Optimizing multi-determinants', App. B, Fig. A2 caption, Acknowledgements; html copy qmbl/sources/2510.26906.html; Flax LayerNorm defaults https://github.com/google/flax/blob/ae1594b0bd862daecaff2a56e47b96852706e1ba/flax/linen/normalization.py#L489-L490 and Dense https://github.com/google/flax/blob/ab2efb97549d8e27b1331b0f21feec6c86a385d9/flax/linen/linear.py#L243 (last commits touching those files before the paper's 2025-10-30 submission); no public code (route2a pass 2026-09-24) (compute pass 2026-09-24) || arXiv:2510.26906 Eq. (2), Sec. II, Sec. III, Appendix B, Fig. A2 caption (route2a-work-2510.26906.txt L66-70, L96-103, L237-242) (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "Base MLP-NNBF training protocol stated for all Fig. A1 runs (scope 'ansatz'). iterations = 3.5e6 is the sum of the two stated phases (3e6 + 5e5 decay phase), preceded by 1e5 mean-field-only iterations not included. GPU hours for n_h = 128 are shown only graphically (Fig. 2 / Fig. A1, energy vs GPU training hours), no number in the text. samples = 1024 Markov chains per iteration. No parameter count stated (MLP, 2 hidden layers x 128 neurons). || route2a 2026-09-24: parameters = 958208 evaluated from the stated architecture (n_h = 128): input 128 (n_o = L = 2 x 64 spin orbitals, entries +-1), Dense 128->n_h + LayerNorm + ReLU, Dense n_h->n_h + LayerNorm + ReLU, Dense n_h->N*L = 56*128 = 7168 with bias (N = 2 x 28 electrons, alpha = 56/128 = 0.4375 as printed). Count = (128 n_h + n_h) + 2 n_h + (n_h^2 + n_h) + 2 n_h + (7168 n_h + 7168) = n_h^2 + 7302 n_h + 7168. Stated for sure: weights + output bias = n_h^2 + 7296 n_h + 7168 = 957440; the remaining 6 n_h = 768 (hidden-layer biases, LayerNorm scale+offset) are Flax defaults (Dense use_bias=True, LayerNorm use_bias/use_scale=True; paper says it uses Flax but does not state its version or these flags), < 0.1 % of the total. Cross-check: the three weight blocks are exactly the n_o n_h + n_h^2 + alpha n_h n_o^2 terms of the paper's printed per-step cost, and its printed crossover n_h = alpha n_o^2 = 7168 is the output width; the PNNBF remark (last layer 2L^2 nodes) confirms the output layer is the orbital matrix. The mean-field orbitals are the output bias (App. B), so no separate orbital matrix. The paper prints no parameter count anywhere (v1 only; no code released: 'internally developed code'; github.com/Kieran-Loehr has no public repos). Real vs complex not stated; counted as number of entries (complex = 1, NetKet convention), so unaffected. The count does not depend on N beyond the fixed 4x16 instance (the paper's 4x8 runs would have input 64, output 28*64). Samples check: N_s = 1024 is 'the total number of markov chains'; Fig. A2 caption ('100 VMC steps of each of the 1024 VMC chains') supports one sample per chain per step, i.e. 1024 samples per optimisation step; not stated more directly. Iterations check: 3.5e6 = 3e6 + 5e5 (decay) is the stated protocol for all base-NNBF runs of Fig. A1, which spans the n_h scan including this n_h; plus 1e5 mean-field-only iterations before (App. B), same system size but a different, much cheaper ansatz (no MLP). Kept. || pass 2026-09-27: proposals_per_sample 1: one VMC iteration advances each of the 1024 chains by one Metropolis step (a \"sweep\" is 100 VMC steps per chain, Fig. A2; the per-symmetry timings are consistent), not a sweep of N (verify/VERIFY.md Part 1 #6, agent-C.md §5). local_energy nonzero: the code enumerates the hops of each electron to its 4 neighbours, 4 N_e = 224 at 56 electrons (\"225 determinants\" = 1 + 224), not 4 x bonds = 512. sr none: the update is the sign of the gradient with random scaling (Eq. 2), no linear solve. complex and precision not stated (TF32 likely from the implied rates, agent-C.md)."
+      }
+    },
+    {
+      "energy": -48.9088,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": 98,
+      "v_score": null,
+      "method": "Tensor backflow",
+      "method_detail": "extrapolated: variance → 0",
+      "method_as_published": "Tensor-Backflow family, zero-variance extrapolation, PBC",
+      "family": "backflow / Pfaffian",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "zero-variance or bond-dimension extrapolation; not an upper bound (assigned during source reading)",
+      "reference": "Liang, Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2507.01856 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.7642",
+        "note": "S III.2 p3: 'The extrapolated energy for PBC shown in Fig.(2)(c) is -0.7642, which matches the state-of-the-art neural Pfaffian result [11]', where Fig.2(c) is explicitly the 4x16-PBC lattice | 4x16=64-site lattice, n=0.875 (Nf=28 per spin), U=8, t'=0, PBC; matches Hubbard/rectangular-4x16_64_P_28_8.",
+        "secondary_of": null
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 45000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "According to Eq.(4), for a filling of n=0.875 on 64-site lattices, the parameter numbers for NN and all-site backflow are 286,720 and 3,670,016, respectively. For the 16×16 lattice with NN backflow, the parameter number is 4,587,520. [Sec. III.B; Table III: NN 8×8 286720, NN 4×16 286720, all-site 8×8 3670016, all-site 4×16 3670016, NN 16×16 4587520, with n=0.875 and U=8 under OBC] ... Energy results achieved by wave-functions before and after a Lanczos step are evaluated with the MC sample number in the magnitude of O(4.5×10^4). [Sec. III] ... (1) With a sample size of O(4.5×10^4), the step size is initially set to 2×10^−3 and then reduced to 2×10^−4. (2) With a sample size of O(4.5×10^4), the step size is initially set to 2×10^−3, the sample size is then increased to O(4.5×10^5) while maintaining the step size, and finally, the step size is reduced to 2×10^−4. ... For lattices larger than 64 sites, both strategies require no more than 2×10^4 optimization steps to achieve full convergence. [Sec. III.A] ... X. Liang thanks Eric J. Walter for resource allocations on the William & Mary Sciclone cluster. The author acknowledges William & Mary Research Computing and the Texas Advanced Computing Center (TACC) at The University of Texas at Austin for providing computational resources that have contributed to the results reported within this paper. Part of numerical results were obtained on the Bridges-2 at Pittsburgh Supercomputing Center through allocation (phy240244). [Sec. V Acknowledgement]",
+        "source": "Sec. III.B and Table III; Sec. III (opening), Sec. III.A Optimization details, Sec. V Acknowledgement, arXiv:2507.01856 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Row is the zero-variance extrapolation over four points (NN and all-site backflow, each with p=0 and p=1; Fig. 2(c)), so no single parameter count applies: the paper states 286,720 (NN) and 3,670,016 (all-site) parameters for n=0.875 on 64-site lattices. No device, GPU/CPU count, wall-clock or core-hours stated anywhere (main text, Tables I-VII, Figs. 1-14 captions, Appendices A-D); the acknowledgement names the Sciclone, TACC and Bridges-2 clusters without quantities. samples = order-of-magnitude statement O(4.5×10^4) for energy evaluation (optimization used O(4.5e4) rising to O(4.5e5) in strategy 2; 46,080 samples are quoted for structure factors in App. B / Fig. 8). The \"no more than 2×10^4 steps\" statement is for lattices larger than 64 sites, so iterations is left null here."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+          "reported_as": "-0.7642 (per site, units of t)",
+          "location": "Sec. III.B text, p. 5 of v4: 'The extrapolated energy for PBC shown in Fig.(2)(c) is -0.7642, which matches the state-of-the-art neural Pfaffian result [11]' (Fig. 2 caption: n=0.875, U=8, t'=0, 4x16 under PBC); same sentence in v1-v3",
+          "version_read": "arXiv:2507.01856v4 (2026-03-26), pypdf layout + plain and a 170-dpi render of pp. 5 and 7; the same cell in v1 (2025-07-02), v2 (2025-07-06), v3 (2025-10-02); journal Phys. Rev. B 113, 155121 (2026) not read (paywalled)",
+          "conversion": "-0.7642 x 64 = -48.9088 (per site x N; stored -48.9088)",
+          "checked_on": "2026-09-29",
+          "reason": "Published as Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc: Crossref record (api.crossref.org/works/10.1103/dqc7-zsvc: container 'Physical Review B', volume 113, issue 15, article 155121, received 2025-07-07, published 2026-04-10); the arXiv abs page lists the same DOI. This answers metric flag M10 ('preprint older than 12 months ... published since?'): yes. sources/openalex.json still lists the paper as an arXiv preprint (checked 2026-09-16) and should be refreshed. Value, instance and class confirmed from the source: 4x16 PBC, n = 0.875 -> 56 electrons, Nf = 28, U = 8, t' = 0; linear zero-variance fit through four points (NN and all-site backflow, each E_p=0 and E_p=1): bound_type extrapolated correct; own extrapolation, not the quoted neural-Pfaffian number (HFPS row -0.76413 on the instance is a different number). No error bar is printed anywhere for Tensor-Backflow energies (O(4.5e4) MC samples; C7), so sigma stays null. No duplicate on the instance (checked data/Hubbard/rectangular-4x16_64_P_28_8.json).",
+          "source_entry": "VP9-tv-hubbard-heisenberg#20 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Investigating the Fermi-Hubbard model by the tensor-backflow method, arXiv:2507.01856"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "-0.7642 (per site, units of t)",
+          "location": "Sec. III.B text, p. 5 of v4: 'The extrapolated energy for PBC shown in Fig.(2)(c) is -0.7642, which matches the state-of-the-art neural Pfaffian result [11]' (Fig. 2 caption: n=0.875, U=8, t'=0, 4x16 under PBC); same sentence in v1-v3",
+          "version_read": "arXiv:2507.01856v4 (2026-03-26), pypdf layout + plain and a 170-dpi render of pp. 5 and 7; the same cell in v1 (2025-07-02), v2 (2025-07-06), v3 (2025-10-02); journal Phys. Rev. B 113, 155121 (2026) not read (paywalled)",
+          "conversion": "-0.7642 x 64 = -48.9088 (per site x N; stored -48.9088)",
+          "checked_on": "2026-09-29",
+          "reason": "Published as Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc: Crossref record (api.crossref.org/works/10.1103/dqc7-zsvc: container 'Physical Review B', volume 113, issue 15, article 155121, received 2025-07-07, published 2026-04-10); the arXiv abs page lists the same DOI. This answers metric flag M10 ('preprint older than 12 months ... published since?'): yes. sources/openalex.json still lists the paper as an arXiv preprint (checked 2026-09-16) and should be refreshed. Phys. Rev. B is a physics-numerics venue (RULES 8.1).",
+          "source_entry": "VP9-tv-hubbard-heisenberg#21 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": false
+        },
+        {
+          "field": "reference",
+          "to": "Liang, Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+          "reported_as": "Author line of the published article: 'Xiao Liang' (sole author; APS citation_author meta tag 'Xiao Liang'; Crossref author 'Liang')",
+          "location": "Title page of Phys. Rev. B 113, 155121 (2026)",
+          "version_read": "published PDF Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc, sources/journal/prb113-155121.pdf, sha256 310788ff (APS, ETH network; no Supplemental Material linked on the abstract page); arXiv:2507.01856v4 compared (sources/2507.01856v4.pdf): every table cell identical",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "Every other QMBL reference string starts with the author list; this one has none. The value itself is verified against the journal: Sec. III B text and Fig. 2(c) caption: \"The extrapolated energy for PBC shown in Fig. 2(c) is -0.7642\" (n = 0.875, U = 8, t' = 0, 4 x 16, PBC; per site) x 64 = -48.9088 equals the stored energy; sigma null (no error bar printed; energies 'evaluated with the MC sample number in the magnitude of O(4.5 x 10^4)', Sec. III). Boundary, filling and U agree (N_up = N_dn not stated; the energy is an upper bound on the instance ground state in any S^z sector).",
+          "source_entry": "JP8-j1j2-hubbard-heisenberg#22",
+          "from": "Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856"
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2606.00924"
+      ],
+      "found": 1,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen. Energies from: arXiv:2606.00924."
+    },
+    {
+      "checked_on": "2026-09-15",
+      "method": "citation screen of Robledo Moreno et al. 2022 (PNAS, HFDS): citing works from OpenAlex and Semantic Scholar (scripts/cited_by.mjs)",
+      "screened_count": 29,
+      "found": 6,
+      "note": "142 citing works, 118 on arXiv, 118 fetched; 29 read in full, 89 excluded by a text filter (no energy to four decimals, or no QMBL model named). Energies from: arXiv:2606.00924, arXiv:2604.25775, arXiv:2510.26906, arXiv:2507.10705, arXiv:2507.01856, arXiv:2308.11823."
+    }
+  ]
+}
