@@ -1,0 +1,7 @@
+# Optional: the Julia adapter (--state julia:...). Install on top of requirements.txt.
+# Tested with Julia 1.13.2 (installed with juliaup). Point juliacall at it and add the Julia
+# packages the state uses (the examples use JLD2):
+#   export PYTHON_JULIAPKG_EXE=$(julia -e 'print(joinpath(Sys.BINDIR, "julia"))')
+#   export PYTHON_JULIAPKG_PROJECT=<a directory for the Julia environment>
+#   python -c 'import juliapkg; juliapkg.add("JLD2", "033835bb-8acc-5ee8-8aae-3f567f8a3819"); juliapkg.resolve()'
+juliacall==0.9.36

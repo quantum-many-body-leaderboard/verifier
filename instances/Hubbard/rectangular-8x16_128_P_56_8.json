@@ -1,0 +1,183 @@
+{
+  "model": "Hubbard",
+  "lattice": "rectangular-8x16",
+  "n_sites": 128,
+  "boundary": "P",
+  "params": {
+    "Nf": 56,
+    "U": 8
+  },
+  "instance_id": "Hubbard/rectangular-8x16_128_P_56_8",
+  "rows": [
+    {
+      "energy": -96.3712,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 112,
+      "einf": 196,
+      "v_score": null,
+      "method": "Tensor backflow",
+      "method_detail": "NN backflow, direct optimization",
+      "method_as_published": "Tensor-Backflow (NN backflow, direct optimization, Ep = 0)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Liang, Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2507.01856 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; parsed by column from the primary table",
+        "reported_as": "-0.7529",
+        "note": "Table V of arXiv:2507.01856 (pypdf layout text, line 399), 8x16, t' = 0, NN backflow, column Ep = 0 | n = 0.875, U = 8 (Table V caption); PBC: the 8x16 Ep = 1 value equals Table II's 8x16 PBC row, and Figs. 4 and 8 state the 8x32 lattice is under PBC",
+        "secondary_of": null
+      },
+      "compute": {
+        "parameters": 1146880,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 45000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 20000,
+        "evaluation": {
+          "reuse": 0.0546875,
+          "sr": {
+            "kind": "none"
+          }
+        },
+        "reported_as": "Energy results achieved by wave-functions before and after a Lanczos step are evaluated with the MC sample number in the magnitude of O(4.5×10^4). [Sec. III] ... (1) With a sample size of O(4.5×10^4), the step size is initially set to 2×10^−3 and then reduced to 2×10^−4. (2) With a sample size of O(4.5×10^4), the step size is initially set to 2×10^−3, the sample size is then increased to O(4.5×10^5) while maintaining the step size, and finally, the step size is reduced to 2×10^−4. ... For lattices larger than 64 sites, both strategies require no more than 2×10^4 optimization steps to achieve full convergence. [Sec. III.A] ... X. Liang thanks Eric J. Walter for resource allocations on the William & Mary Sciclone cluster. The author acknowledges William & Mary Research Computing and the Texas Advanced Computing Center (TACC) at The University of Texas at Austin for providing computational resources that have contributed to the results reported within this paper. Part of numerical results were obtained on the Bridges-2 at Pittsburgh Supercomputing Center through allocation (phy240244). [Sec. V Acknowledgement] || Sec. II.A (v4): \"the final dimension of g is [12]: [M,N,Q,d,d], (4) where M denotes the number of sites, N is the total number of particles, and d represents the number of degrees of freedom at each site. ... Q =5 when backflow terms from nearest-neighbor sites are included, and Q = M when backflow terms from all sites are considered.\" || \"The total number of variational parameters equals the product of the dimensions of all indices of g.\" || Sec. III.2: \"According to Eq.( 4 ), for a filling of n =0.875 on 64-site lattices, the parameter numbers for NN and all-site backflow are 286,720 and 3,670,016, respectively. For the 16×16 lattice with NN backflow, the parameter number is 4,587,520.\" || Table 5 caption: \"Energy results obtained by direct optimizations for n =0.875 and U =8.\" (rows 8×16, 8×24, 8×32, t′ = 0, Backflow Type NN) || arXiv:2507.01856v4 Eqs. (5)-(6): \"w(\\mathbf{S})=\\mathrm{det}M^{B}\" ... \"M_{ik}^{B}=\\sum_{j}g_{\\mathbf{r}_{i},k\\sigma_{k},j,\\mathbf{s}(\\mathbf{r}_{i}),\\mathbf{s}(\\mathbf{r}_{j})}\" || Sec. II.2: \"The total number of variational parameters equals the product of the dimensions of all indices of g . However, only a subset of these parameters is involved in generating a w(\\mathbf{S}).\" || Sec. II.3: \"the complexity of generating a coefficient w(\\mathbf{S}) is \\mathcal{O}(N^{3}Q) ... where \\mathcal{O}(N^{3}) comes from the Slater determinant and \\mathcal{O}(Q) from the summation in Eq.( 6 )\" || Sec. III.2: \"all results ... were obtained using first-order gradient optimization, with fewer than 2\\times 10^{4} optimization steps\"",
+        "source": "Sec. III (opening), Sec. III.A Optimization details, Sec. V Acknowledgement, arXiv:2507.01856 (compute pass 2026-09-16); Eq. (4), Sec. II.A; Sec. III.2 and Table 3 (parameter numbers); Table 5 (backflow type of these rows), arXiv:2507.01856v4 (https://arxiv.org/html/2507.01856v4) (route2b-pass 2026-09-24) (compute pass 2026-09-24) || arXiv:2507.01856v4 Eqs. (4)-(6), Secs. II.2, II.3, III.2 (route2b-fetched/2507.01856v4.txt L100-111, L131-134, L307) (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "No device, GPU/CPU count, wall-clock or core-hours stated anywhere (main text, Tables I-VII, Figs. 1-14 captions, Appendices A-D); the acknowledgement names the Sciclone, TACC and Bridges-2 clusters without quantities. samples = order-of-magnitude statement O(4.5×10^4) for energy evaluation (optimization used O(4.5e4) rising to O(4.5e5) in strategy 2; 46,080 samples are quoted for structure factors in App. B / Fig. 8). iterations = stated upper bound only: \"no more than 2×10^4 optimization steps\" for lattices larger than 64 sites (Sec. III.A); also \"fewer than 2×10^4 optimization steps\" for the Table II results. || route2b-pass 2026-09-24: parameters = M x N x Q x d x d = 128 x 112 x 5 x 4 x 4 = 1146880 (M = 128 sites, N = 112 electrons at n = 0.875, Q = 5 for NN backflow per Table 5, d = 4 local states). The formula reproduces the three counts the paper prints (286,720 and 3,670,016 on 64 sites, 4,587,520 on 16x16 NN), which also fixes d = 4. The count is lattice-size dependent (grows as M x N). The UHF-extended layout g[r_i, k sigma_k, sigma_i, 2, j, s(r_j)] used for direct optimization has the same product (16 M N Q). The p = 1 row has the same tensor; its Lanczos step (O(N^4 Q) per amplitude, O(N^5 Q) for the variance) is not counted by nqs-v1. Only the N x N x Q entries selected by a configuration are read per amplitude (62720 here), so the ARCH 'Tensor backflow' reuse = 1 overcounts the forward pass by M d^2 / N = 18.3x. || pass 2026-09-27: reuse = entries a configuration reads / parameters = (N_e x N_e x Q) / (M x N_e x Q x d^2) = N_e / (M d^2) = 112 / (128 x 16) = 0.0546875 (so 2 x P x reuse = 2 N_e^2 Q = 125440, one read-and-add per entry; P = M N_e Q d^2 = 1146880, Q = 5 NN backflow, d = 4). Each of the N_e occupied rows sums Q entries for each of the N_e orbitals (Eq. 6), the determinant dominates: the forward was 3.0x (8x16) to 2.1x (256 sites) over with reuse 1 (verify/VERIFY.md Part 2 #16, agent-C.md §3). sr none: first-order gradient optimisation. Not set, and why: proposals_per_sample (the only interval stated, \"twice as the lattice size\" = 2M, is for the Fig. 8 correlation measurements, not the optimisation sampler; agent-C.md used it for k, 2x the default) and local_energy (how zero hops are treated is not stated). Samples O(4.5e4) and iterations (< 2e4) are an order of magnitude and a bound (DOUBTFUL, unchanged)."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+          "reported_as": "-0.7529 (per site, units of t)",
+          "location": "Table V, row 8x16, t' = 0, backflow NN, column E_p=0, p. 7 of v4 (text p. 8: 'Tab.(V) presents additional energy results for n=0.875 and U=8 under PBC')",
+          "version_read": "arXiv:2507.01856v4 (2026-03-26), pypdf layout + plain and a 170-dpi render of pp. 5 and 7; the same cell in v1 (2025-07-02), v2 (2025-07-06), v3 (2025-10-02); journal Phys. Rev. B 113, 155121 (2026) not read (paywalled)",
+          "conversion": "-0.7529 x 128 = -96.3712 (per site x N; stored -96.3712)",
+          "checked_on": "2026-09-29",
+          "reason": "Published as Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc: Crossref record (api.crossref.org/works/10.1103/dqc7-zsvc: container 'Physical Review B', volume 113, issue 15, article 155121, received 2025-07-07, published 2026-04-10); the arXiv abs page lists the same DOI. This answers metric flag M10 ('preprint older than 12 months ... published since?'): yes. sources/openalex.json still lists the paper as an arXiv preprint (checked 2026-09-16) and should be refreshed. Value, instance and class confirmed from the source: 8x16 PBC, n = 0.875 -> 112 electrons, Nf = 56, U = 8, t' = 0, NN backflow, direct optimisation (Table V caption); variational. No error bar is printed anywhere for Tensor-Backflow energies (O(4.5e4) MC samples; C7), so sigma stays null. No duplicate on the instance (checked data/Hubbard/rectangular-8x16_128_P_56_8.json).",
+          "source_entry": "VP9-tv-hubbard-heisenberg#22 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Investigating the Fermi-Hubbard model by the tensor-backflow method, arXiv:2507.01856"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "-0.7529 (per site, units of t)",
+          "location": "Table V, row 8x16, t' = 0, backflow NN, column E_p=0, p. 7 of v4 (text p. 8: 'Tab.(V) presents additional energy results for n=0.875 and U=8 under PBC')",
+          "version_read": "arXiv:2507.01856v4 (2026-03-26), pypdf layout + plain and a 170-dpi render of pp. 5 and 7; the same cell in v1 (2025-07-02), v2 (2025-07-06), v3 (2025-10-02); journal Phys. Rev. B 113, 155121 (2026) not read (paywalled)",
+          "conversion": "-0.7529 x 128 = -96.3712 (per site x N; stored -96.3712)",
+          "checked_on": "2026-09-29",
+          "reason": "Published as Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc: Crossref record (api.crossref.org/works/10.1103/dqc7-zsvc: container 'Physical Review B', volume 113, issue 15, article 155121, received 2025-07-07, published 2026-04-10); the arXiv abs page lists the same DOI. This answers metric flag M10 ('preprint older than 12 months ... published since?'): yes. sources/openalex.json still lists the paper as an arXiv preprint (checked 2026-09-16) and should be refreshed. Phys. Rev. B is a physics-numerics venue (RULES 8.1).",
+          "source_entry": "VP9-tv-hubbard-heisenberg#23 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": false
+        },
+        {
+          "field": "reference",
+          "to": "Liang, Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+          "reported_as": "Author line of the published article: 'Xiao Liang' (sole author; APS citation_author meta tag 'Xiao Liang'; Crossref author 'Liang')",
+          "location": "Title page of Phys. Rev. B 113, 155121 (2026)",
+          "version_read": "published PDF Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc, sources/journal/prb113-155121.pdf, sha256 310788ff (APS, ETH network; no Supplemental Material linked on the abstract page); arXiv:2507.01856v4 compared (sources/2507.01856v4.pdf): every table cell identical",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "Every other QMBL reference string starts with the author list; this one has none. The value itself is verified against the journal: Table V, row 8 x 16, t' = 0, NN, column Ep=0: -0.7529 (per site) x 128 = -96.3712 equals the stored energy; sigma null (no error bar printed; energies 'evaluated with the MC sample number in the magnitude of O(4.5 x 10^4)', Sec. III). Boundary, filling and U agree (N_up = N_dn not stated; the energy is an upper bound on the instance ground state in any S^z sector).",
+          "source_entry": "JP8-j1j2-hubbard-heisenberg#23",
+          "from": "Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856"
+        }
+      ]
+    },
+    {
+      "energy": -96.8704,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 112,
+      "einf": 196,
+      "v_score": null,
+      "method": "Tensor backflow",
+      "method_detail": "NN backflow, direct optimization, 1 Lanczos step",
+      "method_as_published": "Tensor-Backflow + 1 Lanczos step (NN backflow, direct optimization, Ep = 1)",
+      "family": "backflow / Pfaffian",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Liang, Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2507.01856 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; parsed by column from the primary table",
+        "reported_as": "-0.7568",
+        "note": "Table V of arXiv:2507.01856 (pypdf layout text, line 399), 8x16, t' = 0, NN backflow, column Ep = 1 | n = 0.875, U = 8 (Table V caption); PBC: the 8x16 Ep = 1 value equals Table II's 8x16 PBC row, and Figs. 4 and 8 state the 8x32 lattice is under PBC",
+        "secondary_of": null
+      },
+      "compute": {
+        "parameters": 1146880,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 45000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 20000,
+        "evaluation": {
+          "reuse": 0.0546875,
+          "sr": {
+            "kind": "none"
+          }
+        },
+        "reported_as": "Energy results achieved by wave-functions before and after a Lanczos step are evaluated with the MC sample number in the magnitude of O(4.5×10^4). [Sec. III] ... (1) With a sample size of O(4.5×10^4), the step size is initially set to 2×10^−3 and then reduced to 2×10^−4. (2) With a sample size of O(4.5×10^4), the step size is initially set to 2×10^−3, the sample size is then increased to O(4.5×10^5) while maintaining the step size, and finally, the step size is reduced to 2×10^−4. ... For lattices larger than 64 sites, both strategies require no more than 2×10^4 optimization steps to achieve full convergence. [Sec. III.A] ... X. Liang thanks Eric J. Walter for resource allocations on the William & Mary Sciclone cluster. The author acknowledges William & Mary Research Computing and the Texas Advanced Computing Center (TACC) at The University of Texas at Austin for providing computational resources that have contributed to the results reported within this paper. Part of numerical results were obtained on the Bridges-2 at Pittsburgh Supercomputing Center through allocation (phy240244). [Sec. V Acknowledgement] || Sec. II.A (v4): \"the final dimension of g is [12]: [M,N,Q,d,d], (4) where M denotes the number of sites, N is the total number of particles, and d represents the number of degrees of freedom at each site. ... Q =5 when backflow terms from nearest-neighbor sites are included, and Q = M when backflow terms from all sites are considered.\" || \"The total number of variational parameters equals the product of the dimensions of all indices of g.\" || Sec. III.2: \"According to Eq.( 4 ), for a filling of n =0.875 on 64-site lattices, the parameter numbers for NN and all-site backflow are 286,720 and 3,670,016, respectively. For the 16×16 lattice with NN backflow, the parameter number is 4,587,520.\" || Table 5 caption: \"Energy results obtained by direct optimizations for n =0.875 and U =8.\" (rows 8×16, 8×24, 8×32, t′ = 0, Backflow Type NN) || arXiv:2507.01856v4 Eqs. (5)-(6): \"w(\\mathbf{S})=\\mathrm{det}M^{B}\" ... \"M_{ik}^{B}=\\sum_{j}g_{\\mathbf{r}_{i},k\\sigma_{k},j,\\mathbf{s}(\\mathbf{r}_{i}),\\mathbf{s}(\\mathbf{r}_{j})}\" || Sec. II.2: \"The total number of variational parameters equals the product of the dimensions of all indices of g . However, only a subset of these parameters is involved in generating a w(\\mathbf{S}).\" || Sec. II.3: \"the complexity of generating a coefficient w(\\mathbf{S}) is \\mathcal{O}(N^{3}Q) ... where \\mathcal{O}(N^{3}) comes from the Slater determinant and \\mathcal{O}(Q) from the summation in Eq.( 6 )\" || Sec. III.2: \"all results ... were obtained using first-order gradient optimization, with fewer than 2\\times 10^{4} optimization steps\"",
+        "source": "Sec. III (opening), Sec. III.A Optimization details, Sec. V Acknowledgement, arXiv:2507.01856 (compute pass 2026-09-16); Eq. (4), Sec. II.A; Sec. III.2 and Table 3 (parameter numbers); Table 5 (backflow type of these rows), arXiv:2507.01856v4 (https://arxiv.org/html/2507.01856v4) (route2b-pass 2026-09-24) (compute pass 2026-09-24) || arXiv:2507.01856v4 Eqs. (4)-(6), Secs. II.2, II.3, III.2 (route2b-fetched/2507.01856v4.txt L100-111, L131-134, L307) (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "No device, GPU/CPU count, wall-clock or core-hours stated anywhere (main text, Tables I-VII, Figs. 1-14 captions, Appendices A-D); the acknowledgement names the Sciclone, TACC and Bridges-2 clusters without quantities. samples = order-of-magnitude statement O(4.5×10^4) for energy evaluation (optimization used O(4.5e4) rising to O(4.5e5) in strategy 2; 46,080 samples are quoted for structure factors in App. B / Fig. 8). iterations = stated upper bound only: \"no more than 2×10^4 optimization steps\" for lattices larger than 64 sites (Sec. III.A); also \"fewer than 2×10^4 optimization steps\" for the Table II results. || route2b-pass 2026-09-24: parameters = M x N x Q x d x d = 128 x 112 x 5 x 4 x 4 = 1146880 (M = 128 sites, N = 112 electrons at n = 0.875, Q = 5 for NN backflow per Table 5, d = 4 local states). The formula reproduces the three counts the paper prints (286,720 and 3,670,016 on 64 sites, 4,587,520 on 16x16 NN), which also fixes d = 4. The count is lattice-size dependent (grows as M x N). The UHF-extended layout g[r_i, k sigma_k, sigma_i, 2, j, s(r_j)] used for direct optimization has the same product (16 M N Q). The p = 1 row has the same tensor; its Lanczos step (O(N^4 Q) per amplitude, O(N^5 Q) for the variance) is not counted by nqs-v1. Only the N x N x Q entries selected by a configuration are read per amplitude (62720 here), so the ARCH 'Tensor backflow' reuse = 1 overcounts the forward pass by M d^2 / N = 18.3x. || pass 2026-09-27: reuse = entries a configuration reads / parameters = (N_e x N_e x Q) / (M x N_e x Q x d^2) = N_e / (M d^2) = 112 / (128 x 16) = 0.0546875 (so 2 x P x reuse = 2 N_e^2 Q = 125440, one read-and-add per entry; P = M N_e Q d^2 = 1146880, Q = 5 NN backflow, d = 4). Each of the N_e occupied rows sums Q entries for each of the N_e orbitals (Eq. 6), the determinant dominates: the forward was 3.0x (8x16) to 2.1x (256 sites) over with reuse 1 (verify/VERIFY.md Part 2 #16, agent-C.md §3). sr none: first-order gradient optimisation. Not set, and why: proposals_per_sample (the only interval stated, \"twice as the lattice size\" = 2M, is for the Fig. 8 correlation measurements, not the optimisation sampler; agent-C.md used it for k, 2x the default) and local_energy (how zero hops are treated is not stated). The Lanczos-step evaluation (p = 1, 46080 samples) adds 2-5 % and is not modelled. Samples O(4.5e4) and iterations (< 2e4) are an order of magnitude and a bound (DOUBTFUL, unchanged)."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+          "reported_as": "-0.7568 (per site, units of t)",
+          "location": "Table V, row 8x16, t' = 0, NN, column E_p=1, p. 7 of v4; same value in Table II (0.875/8, PBC, t' = 0, 8x16, E_p=1), p. 5",
+          "version_read": "arXiv:2507.01856v4 (2026-03-26), pypdf layout + plain and a 170-dpi render of pp. 5 and 7; the same cell in v1 (2025-07-02), v2 (2025-07-06), v3 (2025-10-02); journal Phys. Rev. B 113, 155121 (2026) not read (paywalled)",
+          "conversion": "-0.7568 x 128 = -96.8704 (per site x N; stored -96.8704)",
+          "checked_on": "2026-09-29",
+          "reason": "Published as Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc: Crossref record (api.crossref.org/works/10.1103/dqc7-zsvc: container 'Physical Review B', volume 113, issue 15, article 155121, received 2025-07-07, published 2026-04-10); the arXiv abs page lists the same DOI. This answers metric flag M10 ('preprint older than 12 months ... published since?'): yes. sources/openalex.json still lists the paper as an arXiv preprint (checked 2026-09-16) and should be refreshed. Value, instance and class confirmed from the source: as the E_p=0 row, plus one Lanczos step (variational, RULES 4). No error bar is printed anywhere for Tensor-Backflow energies (O(4.5e4) MC samples; C7), so sigma stays null. No duplicate on the instance (checked data/Hubbard/rectangular-8x16_128_P_56_8.json).",
+          "source_entry": "VP9-tv-hubbard-heisenberg#24 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Investigating the Fermi-Hubbard model by the tensor-backflow method, arXiv:2507.01856"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "-0.7568 (per site, units of t)",
+          "location": "Table V, row 8x16, t' = 0, NN, column E_p=1, p. 7 of v4; same value in Table II (0.875/8, PBC, t' = 0, 8x16, E_p=1), p. 5",
+          "version_read": "arXiv:2507.01856v4 (2026-03-26), pypdf layout + plain and a 170-dpi render of pp. 5 and 7; the same cell in v1 (2025-07-02), v2 (2025-07-06), v3 (2025-10-02); journal Phys. Rev. B 113, 155121 (2026) not read (paywalled)",
+          "conversion": "-0.7568 x 128 = -96.8704 (per site x N; stored -96.8704)",
+          "checked_on": "2026-09-29",
+          "reason": "Published as Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc: Crossref record (api.crossref.org/works/10.1103/dqc7-zsvc: container 'Physical Review B', volume 113, issue 15, article 155121, received 2025-07-07, published 2026-04-10); the arXiv abs page lists the same DOI. This answers metric flag M10 ('preprint older than 12 months ... published since?'): yes. sources/openalex.json still lists the paper as an arXiv preprint (checked 2026-09-16) and should be refreshed. Phys. Rev. B is a physics-numerics venue (RULES 8.1).",
+          "source_entry": "VP9-tv-hubbard-heisenberg#25 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": false
+        },
+        {
+          "field": "reference",
+          "to": "Liang, Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856",
+          "reported_as": "Author line of the published article: 'Xiao Liang' (sole author; APS citation_author meta tag 'Xiao Liang'; Crossref author 'Liang')",
+          "location": "Title page of Phys. Rev. B 113, 155121 (2026)",
+          "version_read": "published PDF Phys. Rev. B 113, 155121 (2026), doi:10.1103/dqc7-zsvc, sources/journal/prb113-155121.pdf, sha256 310788ff (APS, ETH network; no Supplemental Material linked on the abstract page); arXiv:2507.01856v4 compared (sources/2507.01856v4.pdf): every table cell identical",
+          "conversion": "none",
+          "checked_on": "2026-10-15",
+          "reason": "Every other QMBL reference string starts with the author list; this one has none. The value itself is verified against the journal: Table V, row 8 x 16, t' = 0, NN, column Ep=1 (also Table II row PBC 0 8 x 16: Ep=1 -0.7568, Ref. [10] -0.7568): -0.7568 (per site) x 128 = -96.8704 equals the stored energy; sigma null (no error bar printed; energies 'evaluated with the MC sample number in the magnitude of O(4.5 x 10^4)', Sec. III). Boundary, filling and U agree (N_up = N_dn not stated; the energy is an upper bound on the instance ground state in any S^z sector).",
+          "source_entry": "JP8-j1j2-hubbard-heisenberg#24",
+          "from": "Investigating the Fermi-Hubbard model by the tensor-backflow method, Phys. Rev. B 113, 155121 (2026), arXiv:2507.01856"
+        }
+      ]
+    }
+  ]
+}

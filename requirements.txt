@@ -1,0 +1,10 @@
+# The environment the verifier's tests pass with (Python 3.13.11, 2026-10-08).
+# GPU hosts add the matching jax CUDA plugin (jax[cuda12]==0.8.3).
+netket==3.22.4
+jax==0.8.3
+jaxlib==0.8.3
+flax==0.12.6
+optax==0.2.8
+numba==0.67.0
+numpy==2.5.3
+scipy==1.18.1

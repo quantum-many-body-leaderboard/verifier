@@ -1,0 +1,218 @@
+{
+  "model": "J1J2",
+  "lattice": "square",
+  "n_sites": 16,
+  "boundary": "P",
+  "params": {
+    "J2": 1
+  },
+  "instance_id": "J1J2/square_16_P_1.0",
+  "rows": [
+    {
+      "energy": -49.1819609,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 16,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "method_detail": "",
+      "method_as_published": "Exact diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_1.0/ed_netket.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "QMBL ED cost run checks/cost/ed/results/J1J2--square_16_P_1.0.json (checks/cost/ed/run_ed.py: NetKet 3.22.4 operator, sparse CSR built in blocks, SciPy eigsh/ARPACK k=1 SA; commit 716e043); results file read locally, no rerun",
+        "location": "checks/cost/ed/results/J1J2--square_16_P_1.0.json: fields energy, stored_exact, relative_difference, reproduces_stored",
+        "reported_as": "energy -49.18196086440992 (stored_exact -49.1819609, relative_difference 7.24e-10, reproduces_stored true)",
+        "conversion": "none: the cost run works in the stored convention (Pauli totals for spin models, totals for fermions and impurity)",
+        "note": "|reproduced - stored| = 3.56e-8 (relative 7.24e-10); within 1e-9 relative. Sector total Sz = 0, dimension 12870, 81 Lanczos steps (the file states no residual). The stored value is the source's own ED (varbench@2024-10-22), so two codes agree; a third code, E1's node Lanczos (qmbl-runs/qmbl-verify/out/E1-exact-recompute/results/J1J2__square_16_P_1.0.json), gives -49.18196086440945 (4.76e-13 from the cost run). Also read by VB1-varbench-code-j1j2#90 (scope config: scripts/J1J2/square_16_P_1.0/ed_netket.sh line 4; ed.py L7-10; vmc.py L65-66, L70, L92-98; ham.py L5-25).",
+        "source_entry": "VB1-varbench-code-j1j2#90, VE-exact-recompute#55 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -49.1808042,
+      "sigma": null,
+      "energy_variance": 0.0488,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.0003228111690813463,
+      "method": "VQE",
+      "method_detail": "exact gradients, statevector; symmetric: unspecified",
+      "method_as_published": "VQE + symm. circuit (64 pars., exact grad, statevector)",
+      "family": "VQE / circuit",
+      "bound_type": "variational",
+      "bound_type_reason": "\\bvqe\\b|\\bcircuit\\b|\\bpq",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_1.0/vqe.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 64,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "circuit_schedule": {
+          "code": "programs/VQE/code, lattice-symmetries 0.8.4, Python 3.7.12 (programs/VQE/conda_env.yaml)",
+          "simulator": "exact state vector in the S^z = 0 sector without lattice symmetry: ls.SpinBasis(ls.Group([]), number_spins=16, hamming_weight=8), dimension C(16, 8) = 12870",
+          "gates": 64,
+          "gate": "exp(i theta P_ij), P_ij = (S_i.S_j + 1)/2 (SWAP), one parameter per gate",
+          "runs": [
+            {
+              "symmetry": 0,
+              "projector_terms": 1,
+              "iterations": 1000
+            },
+            {
+              "symmetry": 1,
+              "projector_terms": 128,
+              "iterations": 1000
+            }
+          ],
+          "optimizer": "natural gradient (optimizers.natural_gradiend_descend): metric tensor and energy gradient from Hadamard-test estimates, SR_eig_cut 3e-3, lr 1e-3; the second run continues from the first (config.mode = 'continue', shared log directory)",
+          "shots_per_estimate": 68719476736,
+          "shots_emulated": "binomial draws on exact probabilities (utils.compute_*_sample); the state-vector work does not depend on the shot count",
+          "lattice_arg": "square4x4",
+          "dimension": 12870
+        },
+        "reported_as": "method string: \"VQE + symm. circuit (64 pars., exact grad, statevector)\" || scripts/J1J2/square_16_P_1.0/vqe.sh: \"python3 code/main.py --j2=1.0 --lattice=square4x4 --symmetry=0 && python3 code/main.py --j2=1.0 --lattice=square4x4 --symmetry=1\" || programs/VQE/code/optimizers.py: \"def natural_gradiend_descend(obs, init_values, args, n_iter = 1000, lr = 0.003, test = False):\" || config.py: \"self.opt_params_dict = {'lr' : 1e-3}\", \"self.N_samples = 2 ** args.log2samples\", \"self.mode = 'continue'\", degrees [2,4,4,4] || main.py: \"parser.add_argument(\\\"--log2samples\\\", type=int, default=36)\" || programs/VQE/code/config.py L45-46: \"self.basis = ls.SpinBasis(ls.Group([]), number_spins=self.Lx * self.Ly * self.subl, hamming_weight=(self.Lx * self.Ly * self.subl) // 2 + self.spin if self.su2 else None)\" || route1b-vmc-vqe-pass.json circuit_schedule.simulator: \"exact state vector in the S^z = 0 sector without lattice symmetry: ls.SpinBasis(ls.Group([]), number_spins=16, hamming_weight=8), dimension C(16, 8) = 12870\" || QMBL calibration (calib/CALIB.md, VQE table): \"square4x4, symmetry 0 | 1 | 12870\"",
+        "source": "the row's published method string (scripts/method_names.mjs, 2026-09-17); run script and program, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/J1J2/square_16_P_1.0/vqe.sh, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/main.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/config.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/optimizers.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/circuits.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/conda_env.yaml (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/config.py#L45 ; qmbl-runs/cost-routes-2026-09-24/route1b-vmc-vqe-pass.json (circuit_schedule, dropped by merge.mjs) ; qmbl-runs/cost-routes-2026-09-24/calib/CALIB.md (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "low",
+        "note": "Parameters: 64 from the method string (high confidence); the circuit code builds 64 one-parameter gates (SU2_symmetrized._get_dimerizarion_layers: range(1) x 4 shifts x (8 + 8) pairs), which reproduces it. Iterations: 2000 = 1000 natural-gradient steps without symmetry projection, then 1000 continuing with the 128-element projector (n_iter default 1000; main.py is called twice and passes only lr). As published, Optimizer.optimize() ends with \"return res.x\" on the circuit object, which has no attribute x, so the first call exits with an AttributeError and \"&&\" would skip the symmetric run; the step counts are therefore what the code intends, not what it can be shown to have run, hence confidence low. Samples: none; the method string says exact gradients on a state vector. The code has no exact branch that main.py reaches: it draws binomial estimates with the default 2^36 shots (--log2samples default 36), which is exact to about 4e-6 relative. Provenance: the value entered VarBench in 5d1ebf9 (2022-11-11, Nikita Astrakhantsev); the program was added to methods in 6887677 (2024-08-10) (\"wip: added the VQE simulator\"; next commit \"VQE simulator: dusted-off version runs\"), so it is a later reconstruction. The VarBench SM (arXiv:2302.04919 Sec. S3 D) describes the ansatz and the natural-gradient update but no step count. No device or time is recorded. || pass 2026-09-27: circuit_schedule restored from route 1b's pass (merge.mjs copied only the BLOCK fields and dropped it), plus dimension = C(16, 8) = 12870: the S^z = 0 sector without lattice symmetry the state vector lives in (the calibration runs measured the step time at exactly this D). runs keep the intended 1000 + 1000 steps; as published the first call ends in the res.x AttributeError and && skips the symmetric run, so 1000 steps actually execute (verify/agent-A.md item 6, DOUBTFUL x2; no change)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "scripts/J1J2/square_16_P_1.0/vqe.sh + programs/VQE/code (main.py, config.py, hamiltonians.py, circuits.py, optimizers.py, observables.py); varbench/methods@ed31bb0 (shallow clone), VarBench data history (varbench-history, partial clone at 390a21e)",
+        "location": "scripts/J1J2/square_16_P_1.0/vqe.sh line 4; config.py L32-60, L112-127, L169; hamiltonians.py L26-28, L170-232; observables.py L196-200, L237-238",
+        "reported_as": "python3 code/main.py --j2=1.0 --lattice=square4x4 --symmetry=0 && python3 code/main.py --j2=1.0 --lattice=square4x4 --symmetry=1",
+        "conversion": "none: printed energy is the total in Pauli units with energy_renorm subtracted; variance = exact Var(H) (total), stored rounded",
+        "note": "Script runs main.py --j2=1 --lattice=square4x4 twice (--symmetry=0, then --symmetry=1 continuing from the logged parameters) with the default 2^36 shots (exact to ~4e-6 relative): HeisenbergSquare = sum (sigma.sigma + 1) over 2N NN + J2 x 2N NNN bonds, energy_renorm removed, i.e. Pauli J1-J2 without shift on the square4x4 (4x4 torus), PBC, S^z = 0 singlet; 64 gates = SU2_symmetrized (4 shifts x 16 pairs). The number the program prints is the exact state-vector energy <psi|H P|psi>/<psi|P|psi> of the circuit state (observables.py L196-200, '{:.7f}'), deterministic. Variance 0.0488 within the Bhatia-Davis bound (E-E0)(Emax-E) = 1.309e-1 (ratio 0.373; E0 = the ED row, Emax = 64 the ferromagnet). Caveat for reproduction: as committed, the first main.py call ends in AttributeError (optimizers.py L644 'return res.x' on the circuit returned at L300), so '&&' skips the symmetric stage; the value (5d1ebf9 2022-11-11) predates the program. History: entered 5d1ebf9 (2022-11-11, Nikita, 'Add files via upload'); unchanged since; code link added 5285adc (2024-08-12). Holds the instance's best variational bound (is_record).",
+        "source_entry": "VB1-varbench-code-j1j2#91 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -49.1750881,
+      "sigma": null,
+      "energy_variance": 0.2689,
+      "dof": 16,
+      "einf": 0,
+      "v_score": 0.0017791824727813558,
+      "method": "VQE",
+      "method_detail": "2^14 samples per gradient; symmetric: unspecified",
+      "method_as_published": "VQE + symm. circuit (64 pars., 2^14 samples/grad)",
+      "family": "VQE / circuit",
+      "bound_type": "variational",
+      "bound_type_reason": "\\bvqe\\b|\\bcircuit\\b|\\bpq",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/J1J2/square_16_P_1.0/vqe_noisy.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 64,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "circuit_schedule": {
+          "code": "programs/VQE/code, lattice-symmetries 0.8.4, Python 3.7.12 (programs/VQE/conda_env.yaml)",
+          "simulator": "exact state vector in the S^z = 0 sector without lattice symmetry: ls.SpinBasis(ls.Group([]), number_spins=16, hamming_weight=8), dimension C(16, 8) = 12870",
+          "gates": 64,
+          "gate": "exp(i theta P_ij), P_ij = (S_i.S_j + 1)/2 (SWAP), one parameter per gate",
+          "runs": [
+            {
+              "symmetry": 0,
+              "projector_terms": 1,
+              "iterations": 1000
+            },
+            {
+              "symmetry": 1,
+              "projector_terms": 128,
+              "iterations": 1000
+            }
+          ],
+          "optimizer": "natural gradient (optimizers.natural_gradiend_descend): metric tensor and energy gradient from Hadamard-test estimates, SR_eig_cut 3e-3, lr 1e-3; the second run continues from the first (config.mode = 'continue', shared log directory)",
+          "shots_per_estimate": 16384,
+          "shots_emulated": "binomial draws on exact probabilities (utils.compute_*_sample); the state-vector work does not depend on the shot count",
+          "lattice_arg": "square4x4",
+          "dimension": 12870
+        },
+        "reported_as": "method string: \"VQE + symm. circuit (64 pars., 2^14 samples/grad)\" || scripts/J1J2/square_16_P_1.0/vqe_noisy.sh: \"python3 code/main.py --log2samples=14 --j2=1.0 --lattice=square4x4 --symmetry=0 && python3 code/main.py --j2=1.0 --lattice=square4x4 --symmetry=1 --log2samples=14\" || programs/VQE/code/optimizers.py: \"def natural_gradiend_descend(obs, init_values, args, n_iter = 1000, lr = 0.003, test = False):\" || config.py: \"self.opt_params_dict = {'lr' : 1e-3}\", \"self.N_samples = 2 ** args.log2samples\", \"self.mode = 'continue'\", degrees [2,4,4,4] || main.py: \"parser.add_argument(\\\"--log2samples\\\", type=int, default=36)\" || programs/VQE/code/config.py L45-46: \"self.basis = ls.SpinBasis(ls.Group([]), number_spins=self.Lx * self.Ly * self.subl, hamming_weight=(self.Lx * self.Ly * self.subl) // 2 + self.spin if self.su2 else None)\" || route1b-vmc-vqe-pass.json circuit_schedule.simulator: \"exact state vector in the S^z = 0 sector without lattice symmetry: ls.SpinBasis(ls.Group([]), number_spins=16, hamming_weight=8), dimension C(16, 8) = 12870\" || QMBL calibration (calib/CALIB.md, VQE table): \"square4x4, symmetry 0 | 1 | 12870\"",
+        "source": "the row's published method string (scripts/method_names.mjs, 2026-09-17); run script and program, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/J1J2/square_16_P_1.0/vqe_noisy.sh, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/main.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/config.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/optimizers.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/circuits.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/conda_env.yaml (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/VQE/code/config.py#L45 ; qmbl-runs/cost-routes-2026-09-24/route1b-vmc-vqe-pass.json (circuit_schedule, dropped by merge.mjs) ; qmbl-runs/cost-routes-2026-09-24/calib/CALIB.md (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "low",
+        "note": "Parameters: 64 from the method string (high confidence); the circuit code builds 64 one-parameter gates (SU2_symmetrized._get_dimerizarion_layers: range(1) x 4 shifts x (8 + 8) pairs), which reproduces it. Iterations: 2000 = 1000 natural-gradient steps without symmetry projection, then 1000 continuing with the 128-element projector (n_iter default 1000; main.py is called twice and passes only lr). As published, Optimizer.optimize() ends with \"return res.x\" on the circuit object, which has no attribute x, so the first call exits with an AttributeError and \"&&\" would skip the symmetric run; the step counts are therefore what the code intends, not what it can be shown to have run, hence confidence low. Samples: 16384 = 2^14 shots per estimated quantity (--log2samples=14); every metric-tensor entry, connection, norm and energy-derivative term for every projector term is one binomial draw of that size, so shots per step are 16384 x (that count), not 16384. Provenance: the value entered VarBench in 5d1ebf9 (2022-11-11, Nikita Astrakhantsev); the program was added to methods in 6887677 (2024-08-10) (\"wip: added the VQE simulator\"; next commit \"VQE simulator: dusted-off version runs\"), so it is a later reconstruction. The VarBench SM (arXiv:2302.04919 Sec. S3 D) describes the ansatz and the natural-gradient update but no step count. No device or time is recorded. || Ruling 2026-09-24: samples null: 16384 is shots per estimated quantity, not configurations per optimisation step (DATA.md). || pass 2026-09-27: circuit_schedule restored from route 1b's pass (merge.mjs copied only the BLOCK fields and dropped it), plus dimension = C(16, 8) = 12870: the S^z = 0 sector without lattice symmetry the state vector lives in (the calibration runs measured the step time at exactly this D). runs keep the intended 1000 + 1000 steps; as published the first call ends in the res.x AttributeError and && skips the symmetric run, so 1000 steps actually execute (verify/agent-A.md item 6, DOUBTFUL x2; no change)."
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "observables.py L196-199: 'state = self.circuit(noisy=False)' 'state_proj = self.projector(state)' 'norm = np.vdot(state, state_proj)' 'energy = (np.vdot(state, self.hamiltonian(state_proj)) / norm).real - self.hamiltonian.energy_renorm'; printed by L237-238 '{:.7f}'; the shot-sampled circuit.energy (circuits.py L398) only enters the gradient and a local list in optimizers.py L281 that is never printed or returned. Script: 'python3 code/main.py --log2samples=14 --j2=1.0 --lattice=square4x4 --symmetry=0 && python3 code/main.py --j2=1.0 --lattice=square4x4 --symmetry=1 --log2samples=14'",
+          "location": "programs/VQE/code/observables.py L196-200, L237-238; circuits.py L339-400; optimizers.py L270-300",
+          "version_read": "varbench/methods@ed31bb0",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Whether an energy was sampled is read from the source, per row (ruling 2, 2026-09-30). The number the program prints is the exact statevector expectation of the circuit state, <psi|H P|psi>/<psi|P|psi> (observables.py L196-200, '{:.7f}'); the 2^14 shots per parameter estimate only the gradient and the metric (the shot-sampled circuit.energy of circuits.py L398 enters only the gradient and a local list in optimizers.py L281). The VarBench SM agrees (arXiv:2302.04919v2 Sec. S3 D: the shots measure the gradient and metric matrix elements), and so does the uploader's label on the 4 x 6 twin, 'Ns = 2^14 per par, statevector'. A deterministic energy needs no sigma (RULES.md 6); the method string's fallback read '2^14 samples' as a sampled energy. Caveat: the committed program is a 2024 reconstruction of the 2022 runs' code. This row is above the exact-gradient row (-49.1808042), so no record changes here.",
+          "source_entry": "VB1-varbench-code-j1j2#92 (qmbl-verify 2026-09-29; skeptic upheld); ruling 2, 2026-09-30",
+          "from": true
+        }
+      ],
+      "sampled": false
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:1611.09467"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ],
+  "qmbl_ed_cost": {
+    "core_hours": 0.00522,
+    "wall_clock": "00:00:19",
+    "cores": 1,
+    "cpu": "AMD EPYC 7H12 64-Core Processor",
+    "energy": -49.18196086440992,
+    "reproduces": {
+      "energy": -49.1819609,
+      "method": "Exact diagonalization",
+      "relative_difference": 7.24e-10
+    },
+    "sector": {
+      "conserved": "total Sz = 0",
+      "dimension": 12870,
+      "nonzeros": 448884,
+      "lattice_symmetries": "none"
+    },
+    "lanczos_steps": 81,
+    "peak_memory_gb": 0.89,
+    "code": "NetKet 3.22.4 (sparse matrix) and SciPy 1.18.1 eigsh (ARPACK Lanczos)",
+    "note": "Measured by QMBL, not reported: wall-clock from process start to the eigenvalue on 1 core (imports 12 s, Hamiltonian 0 s, sparse matrix 6 s, Lanczos 0 s); core_hours = wall-clock x cores. Process CPU time 59 % of wall-clock x cores, core clock 1.80 GHz on average, node load 36.9 of 128 CPUs.",
+    "script": "checks/cost/ed/run_ed.py",
+    "results_file": "checks/cost/ed/results/J1J2--square_16_P_1.0.json",
+    "commit": "716e043",
+    "measured_on": "2026-09-24"
+  }
+}

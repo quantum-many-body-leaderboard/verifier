@@ -1,0 +1,7 @@
+# Optional, for MPS files (MPS_FORMAT.md). A sampled (flax) state needs none of these.
+# Reading and scoring an MPS file: h5py (plus requirements.txt for the sampling cross-check).
+h5py==3.16.0
+# Writing from TeNPy (adapters/mps_tenpy.py) and the TeNPy tests:
+physics-tenpy==1.1.1
+# Writing from ITensors.jl (adapters/mps_itensor.jl), tested with Julia 1.13.2,
+# ITensors 0.9.32, ITensorMPS 0.4.2, HDF5.jl 0.17.4 (Julia packages, not pip).
