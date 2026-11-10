@@ -58,6 +58,26 @@ Before an open instance, run your state's family on a solved one: `op_verify.py 
 state built for a small lattice against exact diagonalisation, and QMBL lists 243 instances with an
 exact energy (qmbl.org/instances/).
 
+## An electron-gas state
+
+QMBL's electron-gas instances (`HEG2D`, `HEG3D`) are scored in continuous space
+(`qrec_verify/continuum.py`, `DESIGN.md`). The state is a flax module (`file.py:build_model`) or a JAX
+function (`jax:file.py:NAME`) of the electron positions: `x` is float64 of shape `(n_conf, N * dim)`,
+Cartesian coordinates in bohr inside the simulation cell, the N_up spin-up electrons first. It returns
+log psi (complex128 where psi is complex) or a pair `(sign, log|psi|)`, the form fvmc's wave functions
+use. Host states (PyTorch, C, Julia, numpy) are not accepted here, because the kinetic energy needs
+derivatives of log psi.
+
+The cell is the instance's lattice (`sc`, `bcc`, `fcc`, `square`, `triangular`, `rect-AxBxC`) scaled to
+N electrons at rs, as QMBL's `checks/heg-hf/hf.mjs` builds it; `op_verify.py info` prints its vectors.
+psi must be antisymmetric under the exchange of two electrons of the same spin and pick up the
+phase exp(i k_s . A) when an electron moves by a cell vector A (k_s = 0 at Gamma, the twist of every
+instance so far); both are gates. Energies are hartree per electron, the Coulomb energy an Ewald sum
+with the uniform background and the Madelung term.
+
+    python op_verify.py hf-check --instance-file F      (the Hartree-Fock determinant, scored by the verifier)
+    python op_verify.py score    --instance-file F --state jax:state.py:build --params p.npz --seed 1 --out score_1.json
+
 ## Submitting an MPS
 
 A matrix product state (from DMRG or any other tensor-network code) can be submitted as a file instead
@@ -116,7 +136,8 @@ model must put it in itself (e.g. `"Cdu JW"` on the first site).
 
 Square and rectangular lattices: J1-J2 and Heisenberg (periodic or open), Hubbard with t, t',
 U, V1, V2 (periodic, antiperiodic or open axes). That is 118 of the 152 open problems on
-2026-10-12. Triangular,
+2026-10-12. Since v1.8 (2026-11-10) also the electron gas in 2D and 3D cells: 503 of the 750 open
+problems on 2026-11-10. Triangular,
 kagome, pyrochlore, shuriken and chain lattices, the transverse-field Ising model and the impurity
 models are not covered yet.
 
