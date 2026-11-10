@@ -58,6 +58,7 @@ sys.path.insert(0, str(HERE))
 from qrec_verify import instance as I          # noqa: E402
 from qrec_verify import score as SC            # noqa: E402
 from qrec_verify import external as EX         # noqa: E402
+from qrec_verify import continuum as CT       # noqa: E402
 
 VERSION = "op-verify 1 (qrec_verify v1.7)"
 AGREE_SIGMAS = 2.5
@@ -71,6 +72,33 @@ def load_instance(path: str) -> dict:
         if k not in inst:
             raise SystemExit(f"{path}: not a QMBL instance file (no {k!r})")
     return inst
+
+
+def hf_check(inst: dict, *, seed: int, min_samples: int = 4096) -> dict:
+    """The electron gas's known state: the plane-wave Slater determinant, scored by the verifier,
+    must give QMBL's Hartree-Fock energy (hf.mjs) within 4 sigma, and its kinetic local energy is
+    the constant sum k^2 / 2 to 1e-9."""
+    import numpy as np
+    import jax
+    jax.config.update("jax_enable_x64", True)
+    cell = CT.cell_from_instance(inst)
+    ref = CT.hf_energy(cell)
+    model = CT.slater_model(cell)
+    variables = model.init(jax.random.PRNGKey(0), np.zeros((1, cell.n * cell.dim)))
+    card = CT.evaluate(inst, model, variables, seed=seed, min_samples=min_samples, log=lambda *_: None,
+                       n_chains=64, n_burn=500, block=16)
+    z = (card["energy_per_site"] - ref["E_HF_per_electron"]) / card["sigma_per_site"]
+    lp = CT.logpsi_fn(model, variables)
+    ke = jax.vmap(CT.kinetic_fn(lambda x: lp(x[None])[0], cell.n * cell.dim))
+    x = np.random.default_rng(seed).uniform(size=(8, cell.n, cell.dim)) @ cell.A
+    kin = np.asarray(ke(x.reshape(8, -1)))
+    dk = float(np.max(np.abs(kin - ref["kinetic_per_electron"] * cell.n)))
+    ok = abs(z) <= 4 and dk <= 1e-9 * max(1.0, abs(ref["kinetic_per_electron"] * cell.n)) and \
+        all(g["pass"] for g in card["physics_gates"])
+    return {"instance_id": inst["instance_id"], "hf_per_electron": ref["E_HF_per_electron"],
+            "open_shell": ref["open_shell"], "vmc_per_electron": card["energy_per_site"],
+            "sigma_per_electron": card["sigma_per_site"], "z": z, "kinetic_max_dev_total": dk,
+            "physics_gates": card["physics_gates"], "pass": bool(ok)}
 
 
 def combine(inst: dict, a: dict, b: dict) -> dict:
@@ -141,7 +169,7 @@ def combine(inst: dict, a: dict, b: dict) -> dict:
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    for name in ("info", "neel-check", "fermi-sea"):
+    for name in ("info", "neel-check", "fermi-sea", "hf-check"):
         sub.add_parser(name).add_argument("--instance-file", required=True)
     for name in ("score", "ed-gate", "logpsi-check"):
         p = sub.add_parser(name)
@@ -216,6 +244,25 @@ def main(argv=None):
     import jax
     jax.config.update("jax_enable_x64", True)
 
+    if a.cmd == "hf-check":
+        r = hf_check(inst, seed=0)
+        print(SC.to_json(r))
+        return 0 if r["pass"] else 1
+    if a.cmd == "info" and inst["model"] in I.HEG_MODELS:
+        cell = CT.cell_from_instance(inst)
+        div = I.per_site_divisor(inst)
+        t, q = I.target(inst), I.record(inst)
+        info = {"instance_id": inst["instance_id"], "model": inst["model"], "params": inst["params"],
+                "lattice": inst["lattice"], "n_electrons": cell.n, "cell_vectors_bohr": cell.A.tolist(),
+                "per_site_divisor": div, "units": "hartree per electron",
+                "target": None if t is None else {"energy_per_site": t["energy"] / div, "method": t.get("method"),
+                                                  "bound_type": t.get("bound_type")},
+                "qmbl_record": None if q is None else {"energy_per_site": q["energy"] / div,
+                                                       "method": q.get("method"), "bound_type": q.get("bound_type")},
+                "budget_samples": CT.HEG["min_samples"], "sampler": CT.HEG,
+                "known_state": CT.hf_energy(cell)}
+        print(SC.to_json(info))
+        return 0
     if a.cmd == "info":
         t, q = I.target(inst), I.record(inst)
         info = {"instance_id": inst["instance_id"], "model": inst["model"], "params": inst["params"],
@@ -291,6 +338,19 @@ def main(argv=None):
     # score
     st = load(inst)
     model, variables = st.model, st.variables
+    if inst["model"] in I.HEG_MODELS:
+        card = CT.evaluate(inst, model, variables, seed=a.seed, max_hours=a.max_hours,
+                           min_samples=a.min_samples, state_id=str(pathlib.Path(a.params or a.state)))
+        card["seed"] = a.seed
+        card["verifier"] = VERSION
+        card["state_spec"] = a.state
+        st.close()
+        out = SC.to_json(card)
+        if a.out:
+            pathlib.Path(a.out).write_text(out)
+        print(f"[score] E/electron {card['energy_per_site']:.8f} +- {card['sigma_per_site']:.2g} Ha, "
+              f"status {card['status']}, qualified {card['qualified']}")
+        return 0
     kernel = SC.make_kernel(a.kernel, model, inst)
     card = SC.evaluate(inst, model, variables, seed=a.seed, max_hours=a.max_hours, kernel=kernel,
                        chunk_size=a.chunk_size, state_id=str(pathlib.Path(a.params or a.state)),

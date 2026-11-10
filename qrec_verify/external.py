@@ -65,6 +65,8 @@ def n_dof(inst: dict) -> int:
     """Length of one configuration: sites for spin models, 2 x sites (orbitals) for Hubbard."""
     from . import instance as I
     n = int(inst["n_sites"])
+    if inst["model"] in I.HEG_MODELS:
+        return n * (2 if inst["model"] == "HEG2D" else 3)   # electron coordinates
     return n if inst["model"] in I.SPIN_MODELS else 2 * n
 
 
@@ -156,7 +158,7 @@ def _host_module():
     return HostState
 
 
-def _jax_module():
+def _jax_module(continuous: bool = False):
     import flax.linen as nn
     import jax.numpy as jnp
 
@@ -168,6 +170,10 @@ def _jax_module():
         def __call__(self, x):
             p = self.get_variable("params", "tree")
             lead = x.shape[:-1]
+            if continuous:   # electron positions (float64); output log psi or (sign, log|psi|)
+                from .continuum import as_logpsi
+                y = as_logpsi(self.apply_fn(p, jnp.asarray(x).reshape(-1, x.shape[-1])))
+                return y.reshape(lead)
             y = self.apply_fn(p, jnp.asarray(x).reshape(-1, x.shape[-1]).astype(jnp.int8))
             return jnp.asarray(y).reshape(lead).astype(jnp.complex128)
 
@@ -195,6 +201,10 @@ def load_state(spec: str, params: str | None, inst: dict, *, chunk: int | None =
     kind, rest = parse_spec(spec)
     chunk = chunk or int(os.environ.get("QMBL_HOST_CHUNK", DEFAULT_CHUNK))
     d = n_dof(inst)
+    from . import instance as I
+    if inst["model"] in I.HEG_MODELS and kind not in ("flax", "jax"):
+        raise ValueError("an electron-gas state must be a flax module or a JAX function: the kinetic energy "
+                         "needs derivatives of log psi, which a host state does not provide")
     if kind == "flax":
         if not params:
             raise ValueError("a flax state needs --params (msgpack)")
@@ -258,7 +268,8 @@ def _load_jax(rest: str, params: str | None, inst: dict) -> LoadedState:
         import flax
         tree = flax.serialization.msgpack_restore(pathlib.Path(params).read_bytes())
     tree = jax.tree_util.tree_map(jnp.asarray, tree)
-    model = _jax_module()(apply_fn=apply_fn)
+    from . import instance as I
+    model = _jax_module(continuous=inst["model"] in I.HEG_MODELS)(apply_fn=apply_fn)
     return LoadedState("jax", model, {"params": {"tree": tree}}, files=[path] + ([params] if params else []))
 
 

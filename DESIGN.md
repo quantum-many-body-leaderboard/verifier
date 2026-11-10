@@ -26,6 +26,34 @@ samplers, the estimator, the gates and the budgets are the same for every entry:
 Code: `qrec_verify/` (package), `tests/`. Statistics (`stats.py`) are numpy/scipy only and know nothing
 about physics; everything physical is in `instance.py`, `hamiltonians.py` and `measure.py`.
 
+## Continuous space: the electron gas (2026-11-10)
+
+QMBL's electron-gas instances (`HEG2D`, `HEG3D`, RULES.md §12) are scored by `qrec_verify/continuum.py`.
+A state is a flax module or a JAX function (`--state jax:...`) of the electron positions: `x` of shape
+`(batch, N * dim)`, Cartesian coordinates in bohr, the N_up spin-up electrons first. It returns log psi
+(complex where needed) or a pair `(sign, log|psi|)`, the output of fvmc's wave functions. Host states
+(PyTorch, C, Julia, numpy) are refused: the kinetic energy needs derivatives of log psi.
+- Cell: the instance's lattice (`sc`, `bcc`, `fcc`, `square`, `triangular`, `rect-AxBxC`) scaled to
+  N electrons at rs, exactly as QMBL's `checks/heg-hf/hf.mjs`.
+- Coulomb energy: an Ewald sum with the uniform background, E = 1/2 sum_{i != j} phi(r_i - r_j) + N xi / 2,
+  in 2D and 3D, real-space images after reduction to fractional coordinates and the reciprocal sum as a
+  structure factor; the splitting is set by the cell so that both sums are converged to 1e-16.
+- Kinetic energy: -1/2 (lap log psi + (grad log psi)^2) by the forward Laplacian (`_vendor/fwdlap.py`,
+  Y. Chen, Apache-2.0, unchanged at 84c2dc7); `jax.hessian` is the cross-check in the tests.
+- Sampler: all-electron Gaussian Metropolis moves from uniform random positions, the step tuned to 50 %
+  acceptance during burn-in only (then fixed); at least N moves between recorded samples and 20 N moves
+  of burn-in. Mobility is the fraction of recorded samples that moved.
+- Gates beyond the statistics: `madelung` (the verifier's xi against the hf.mjs formula at another
+  splitting, 1e-10), `antisymmetry` (log psi + i pi after swapping two same-spin electrons) and `twist`
+  (log psi + i k_s . A_k after moving one electron by a cell vector), 1e-6 on samples of the chains.
+- Known state (`op_verify.py hf-check`): the plane-wave Slater determinant, scored by the verifier, gives
+  QMBL's Hartree-Fock energy within 4 sigma, and its kinetic local energy is the constant sum k^2 / 2.
+- Checked against independent codes on six cells (sc, bcc, fcc, rect 3x3x2, square, triangular):
+  hf.mjs (xi and Hartree-Fock energies, `tests/test_continuum.py`), FermiNet's `pbc/ewald.py`
+  (5e-15 absolute, `tests/xcheck_ferminet.json`), fvmc's Ewald sum (derived from PyQMC; 3e-9, the
+  limit of its reciprocal cut, `tests/xcheck_fvmc.json`) and the verifier's own sum at a second
+  splitting (1e-11).
+
 ## Input to the statistics
 
 Arrays shaped `(n_chains, n_steps)` in sampling order, after the declared burn-in:

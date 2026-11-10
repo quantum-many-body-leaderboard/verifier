@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 INSTANCES = ROOT / "instances"
 SPIN_MODELS = {"Heisenberg", "J1J2", "TFIsing"}
+HEG_MODELS = {"HEG2D", "HEG3D"}
 
 # units.mjs: deterministic markers decide whether a row without a `sampled` field was sampled.
 _DETERMINISTIC = re.compile(
@@ -40,8 +41,8 @@ def per_site_divisor(inst: dict) -> float | None:
         return float(inst["n_sites"])
     if inst["model"] in SPIN_MODELS:
         return 4.0 * inst["n_sites"]
-    if inst["model"] in ("Hubbard", "tV"):
-        return float(inst["n_sites"])
+    if inst["model"] in ("Hubbard", "tV") or inst["model"] in HEG_MODELS:
+        return float(inst["n_sites"])   # the electron gas: hartree per electron
     return None
 
 
@@ -80,7 +81,7 @@ def hubbard_params(inst: dict) -> dict:
 
 
 def expected_dof(inst: dict) -> int | None:
-    if inst["model"] in SPIN_MODELS:
+    if inst["model"] in SPIN_MODELS or inst["model"] in HEG_MODELS:
         return int(inst["n_sites"])
     if inst["model"] == "tV":
         return int(inst["params"]["Nf"])
