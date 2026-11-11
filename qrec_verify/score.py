@@ -38,7 +38,8 @@ from . import stats as S
 
 # ------------------------------------------------------------------ frozen settings
 SPIN = dict(n_chains=256, n_replicas=16, n_burn=4096, min_samples=65536, block=16)
-FERMION = dict(n_chains=64, n_burn=256, min_samples=131072, block=32, p_exchange=0.25)
+FERMION = dict(n_chains=64, n_burn=256, min_samples=131072, block=32, p_exchange=0.25,
+               p_move=0.25)                       # p_move: total-N spaces only (v1.10, particle_move_rule)
 SIGMA_FLOOR = {"spin": 1e-5, "fermion": 3e-5}      # per site, QMBL's per-site units
 KERNEL_CHECK = dict(n=32, rtol=1e-7)               # bounded kernel vs generic estimator
 MAX_HOURS_DEFAULT = 8.0
@@ -135,11 +136,47 @@ def site_exchange_rule(system):
     return SiteExchangeRule()
 
 
+def particle_move_rule(system):
+    """(v1.10) Move one electron from a uniformly chosen occupied spin-orbital to a uniformly chosen empty one, over
+    all 2n spin-orbitals: conserves only the total N (symmetric proposal, 1 / (N (2n - N)) both ways). For Hilbert
+    spaces with a total-N constraint and no per-spin one (the spin-orbit impurity models), where the hop and
+    exchange rules alone never change the block occupations."""
+    import jax
+    import jax.numpy as jnp
+    from netket.sampler.rules import MetropolisRule
+
+    class ParticleMoveRule(MetropolisRule):
+        def transition(rule, sampler, machine, parameters, state, key, sigma):
+            k1, k2 = jax.random.split(key)
+            nc = sigma.shape[0]
+            occ = sigma > 0.5
+            # a uniform random element of a mask: argmax of uniform noise restricted to the mask
+            g1 = jnp.where(occ, jax.random.uniform(k1, sigma.shape), -1.0)
+            g2 = jnp.where(occ, -1.0, jax.random.uniform(k2, sigma.shape))
+            i, j = jnp.argmax(g1, axis=1), jnp.argmax(g2, axis=1)
+            r = jnp.arange(nc)
+            return sigma.at[r, i].set(sigma[r, j]).at[r, j].set(sigma[r, i]), None
+
+    return ParticleMoveRule()
+
+
+def total_n_only(hilbert) -> bool:
+    """(v1.10) A spin-1/2 fermion space constrained by the total N and not per spin."""
+    return (getattr(hilbert, "n_fermions_per_spin", None) is None or
+            all(x is None for x in hilbert.n_fermions_per_spin)) and getattr(hilbert, "n_fermions", None) is not None
+
+
 def fermion_sampler(system, n_chains: int | None = None, p_exchange: float | None = None):
+    """Hops along the graph and exchanges of two sites' occupations (FERMION["p_exchange"]); on a total-N space
+    (v1.10, `total_n_only`) also moves of one electron between any two spin-orbitals (FERMION["p_move"])."""
     import netket as nk
     p = FERMION["p_exchange"] if p_exchange is None else p_exchange
     hop = nk.sampler.rules.FermionHopRule(system.hilbert, graph=system.graph, d_max=1)
-    rule = nk.sampler.rules.MultipleRules([hop, site_exchange_rule(system)], [1.0 - p, p])
+    rules, probs = [hop, site_exchange_rule(system)], [1.0 - p, p]
+    if total_n_only(system.hilbert):
+        q = FERMION["p_move"]
+        rules, probs = rules + [particle_move_rule(system)], [x * (1.0 - q) for x in probs] + [q]
+    rule = nk.sampler.rules.MultipleRules(rules, probs)
     return nk.sampler.MetropolisSampler(system.hilbert, rule, n_chains=n_chains or FERMION["n_chains"],
                                         sweep_size=system.n_sites)
 
@@ -214,6 +251,9 @@ def generic_local_energy(system, model, variables, x, chunk: int = 64):
 
 def kernel_check(system, model, variables, kernel, x, rtol: float | None = None) -> dict:
     rtol = KERNEL_CHECK["rtol"] if rtol is None else rtol
+    if getattr(system.hamiltonian, "factorised", False):     # (v1.10) large-basis hydrogen: no NetKet operator
+        from . import chem_large
+        return chem_large.kernel_check(system, model, variables, kernel, x, rtol)
     eg = generic_local_energy(system, model, variables, x)
     ek = np.asarray(kernel(variables, x))
     d = np.abs(ek - eg)
@@ -365,7 +405,7 @@ def evaluate(inst: dict, model, variables, *, seed: int, max_hours: float = MAX_
     card["qualified"] = bool(card["status"] != "fail" and card["stop"] in ("budget", "target", "max_samples")
                              and all(c["pass"] for c in ser["kernel_checks"]))
     card["__METRIC__"] = card["energy_per_site"]
-    card["scorer"] = "qrec_verify.score v1.9"
+    card["scorer"] = "qrec_verify.score v1.10"
     return card
 
 
@@ -674,6 +714,22 @@ def determinant_check(inst: dict) -> dict:
     labels = ints["ao_labels"]
     first = [k for k, lab in enumerate(labels) if k == 0 or labels[k].split()[0] != labels[k - 1].split()[0]]
     occ_up, occ_dn = first[:nu], first[:nd]
+    if getattr(system.hamiltonian, "factorised", False):
+        # (v1.10) above chem.MAX_ORBITALS: the Slater-Condon energy from the density matrices (chem_large.det_energy)
+        # against the verifier's determinant kernel on the same configuration (two code paths, same integrals)
+        from . import chem_large
+        import jax.numpy as jnp
+        eye = np.eye(n)
+        e = chem_large.det_energy(ints, eye[:, occ_dn], eye[:, occ_up])
+        x = np.zeros((1, 2 * n), dtype=np.int8)
+        x[0, occ_dn] = 1
+        x[0, [n + p for p in occ_up]] = 1
+        diag = float(np.asarray(chem_large.det_local_energy_fn(ints, eye[:, occ_dn], eye[:, occ_up], nd, nu)(
+            jnp.asarray(x)))[0])
+        r = _known(inst, "one Slater determinant of Loewdin orbitals (determinant_check, factorised integrals)",
+                   [diag], float(e))
+        r["pass"] = bool(abs(diag - e) < 1e-9 * max(1.0, abs(e)))
+        return r
     h, g = ints["h"], ints["eri"]
     so = [(p, "u") for p in occ_up] + [(p, "d") for p in occ_dn]
     e = ints["e_nuc"] + sum(h[p, p] for p, _ in so)
@@ -693,21 +749,24 @@ def determinant_check(inst: dict) -> dict:
 
 def impurity_check(inst: dict) -> dict:
     """Known state at full size for an impurity model (v1.9): one configuration (the N_dn and N_up electrons in the
-    lowest orbitals of each block's one-particle diagonal). Its energy is H's diagonal: the one-particle diagonal
-    elements plus the density-density part of the interaction, computed here from the parameters; the operator must
-    return exactly that."""
+    lowest orbitals of each block's one-particle diagonal; with spin-orbit coupling, v1.10, the split
+    (N // 2, N - N // 2) of the total N). Its energy is H's diagonal: the one-particle diagonal elements plus the
+    density-density part of the interaction in the Kanamori roles (impurity.roles), computed here from the
+    parameters; the operator must return exactly that."""
     from . import impurity as IMP
     system = Hm.build(inst)
     par = IMP.read(IMP.file_for(inst))
     T = IMP.one_body(par)
     n, M = system.n_sites, par["M"]
+    nd, nu = IMP.sector(inst)
     occ = []
     for s, b in enumerate(par["blocks"]):
-        k = system.meta["n_dn"] if s == 0 else system.meta["n_up"]
+        k = nd if s == 0 else nu
         occ.append(sorted(np.argsort(np.real(np.diag(T[b])), kind="stable")[:k].tolist()))
     e = sum(float(np.real(T[b][i, i])) for s, b in enumerate(par["blocks"]) for i in occ[s])
-    dn = {i for i in occ[0] if i < M}
-    up = {i for i in occ[1] if i < M}
+    rup, rdn = IMP.roles(par)
+    up = {m for m in range(M) if m in occ[rup[m]]}
+    dn = {m for m in range(M) if m in occ[rdn[m]]}
     for m in range(M):
         e += par["U"] * (m in up and m in dn)
         for mp in range(M):
@@ -734,6 +793,9 @@ def known_state(inst: dict) -> dict:
     if inst["model"] == "tJ":
         return tj_check(inst)
     if inst["model"] in ("Hchain", "Hsheet"):
+        from . import molecule
+        if molecule.is_continuum_hydrogen(inst):          # (v1.10) Monte Carlo of the RHF determinant
+            return molecule.rhf_check(inst)
         return determinant_check(inst)
     if inst["model"] == "Impurity":
         return impurity_check(inst)

@@ -60,7 +60,7 @@ from qrec_verify import score as SC            # noqa: E402
 from qrec_verify import external as EX         # noqa: E402
 from qrec_verify import continuum as CT       # noqa: E402
 
-VERSION = "op-verify 1 (qrec_verify v1.9)"
+VERSION = "op-verify 1 (qrec_verify v1.10)"
 AGREE_SIGMAS = 2.5
 RECORD_SIGMAS = 2.0
 DETERMINISTIC_RTOL = 1e-11      # two exact evaluations of one state (sigma 0) must agree to this
@@ -248,6 +248,27 @@ def main(argv=None):
         r = hf_check(inst, seed=0)
         print(SC.to_json(r))
         return 0 if r["pass"] else 1
+    from qrec_verify import molecule as MOL
+    if a.cmd == "info" and MOL.is_continuum_hydrogen(inst):     # (v1.10) hydrogen in continuous space
+        mol = MOL.molecule_of(inst)
+        t, q = I.target(inst), I.record(inst)
+        info = {"instance_id": inst["instance_id"], "model": inst["model"], "params": inst["params"],
+                "lattice": inst["lattice"], "boundary": inst.get("boundary"), "n_electrons": mol.n,
+                "n_up": mol.n_up, "n_dn": mol.n_dn, "protons_bohr": mol.atoms.tolist(),
+                "nuclear_repulsion": MOL.nuclear_repulsion(mol), "per_site_divisor": div,
+                "units": "hartree, total energy with the nuclear repulsion; per atom E / N",
+                "target": None if t is None else {"energy_per_site": t["energy"] / div, "method": t.get("method"),
+                                                  "bound_type": t.get("bound_type")},
+                "qmbl_record": None if q is None else {"energy_per_site": q["energy"] / div,
+                                                       "method": q.get("method"), "bound_type": q.get("bound_type")},
+                "budget_samples": MOL.MOLECULE["min_samples"], "sampler": MOL.MOLECULE,
+                "known_state": "neel-check scores the RHF determinant (cc-pVDZ) against pyscf's RHF energy"}
+        print(SC.to_json(info))
+        return 0
+    if a.cmd == "neel-check" and MOL.is_continuum_hydrogen(inst):
+        r = MOL.rhf_check(inst)
+        print(SC.to_json(r))
+        return 0 if r["pass"] else 1
     if a.cmd == "info" and inst["model"] in I.HEG_MODELS:
         cell = CT.cell_from_instance(inst)
         div = I.per_site_divisor(inst)
@@ -338,9 +359,10 @@ def main(argv=None):
     # score
     st = load(inst)
     model, variables = st.model, st.variables
-    if inst["model"] in I.HEG_MODELS:
-        card = CT.evaluate(inst, model, variables, seed=a.seed, max_hours=a.max_hours,
-                           min_samples=a.min_samples, state_id=str(pathlib.Path(a.params or a.state)))
+    if inst["model"] in I.HEG_MODELS or MOL.is_continuum_hydrogen(inst):
+        ev = CT.evaluate if inst["model"] in I.HEG_MODELS else MOL.evaluate    # (v1.10) hydrogen, basis none
+        card = ev(inst, model, variables, seed=a.seed, max_hours=a.max_hours,
+                  min_samples=a.min_samples, state_id=str(pathlib.Path(a.params or a.state)))
         card["seed"] = a.seed
         card["verifier"] = VERSION
         card["state_spec"] = a.state
@@ -348,10 +370,11 @@ def main(argv=None):
         out = SC.to_json(card)
         if a.out:
             pathlib.Path(a.out).write_text(out)
-        print(f"[score] E/electron {card['energy_per_site']:.8f} +- {card['sigma_per_site']:.2g} Ha, "
+        print(f"[score] E/{'electron' if inst['model'] in I.HEG_MODELS else 'atom'} {card['energy_per_site']:.8f} "
+              f"+- {card['sigma_per_site']:.2g} Ha, "
               f"status {card['status']}, qualified {card['qualified']}")
         return 0
-    kernel = SC.make_kernel(a.kernel, model, inst)
+    kernel = SC.make_kernel(a.kernel, model, inst) or st.kernel    # (v1.10) det: states carry the verifier's kernel
     card = SC.evaluate(inst, model, variables, seed=a.seed, max_hours=a.max_hours, kernel=kernel,
                        chunk_size=a.chunk_size, state_id=str(pathlib.Path(a.params or a.state)),
                        min_samples=a.min_samples, sigma_target=a.sigma_target)

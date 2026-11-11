@@ -6,8 +6,10 @@ Wigner strings as in tests/test_mps.py), one TeNPy site per spatial orbital in t
 (impurity orbitals, then the bath orbitals of orbital a = 0 .. M-1); the first block ('down'/'ud_0') is TeNPy's
 down spin. The particle number is conserved (N from the rows' dof) and S_z is free (cons_Sz=None) unless --sz is given.
 `--hyb conj` uses V* d+ c + h.c. instead of V d+ c + h.c. (the convention question of the spin-orbit case).
+With spin-orbit coupling the Kanamori terms take forkTPS's roles (orbital 0's up/down swapped relative to the blocks,
+v1.10); `--roles blocks` builds v1.9's refused version (ud_1 = up for every orbital), for comparison.
 
-    python tests/xcheck_impurity_tenpy.py INSTANCE_FILE [--chi 400] [--sweeps 20] [--hyb plain|conj]
+    python tests/xcheck_impurity_tenpy.py INSTANCE_FILE [--chi 400] [--sweeps 20] [--hyb plain|conj] [--roles forktps|blocks]
 """
 
 from __future__ import annotations
@@ -25,9 +27,10 @@ sys.path.insert(0, str(ROOT))
 
 
 def run(inst: dict, chi: int = 400, sweeps: int = 20, hyb: str = "plain", log=print, par: dict | None = None,
-        n_el: int | None = None) -> dict:
+        n_el: int | None = None, roles: str = "forktps") -> dict:
     """DMRG of the instance's impurity Hamiltonian built in TeNPy (or of `par`, e.g. a truncated bath, with the
-    instance's electron number, or n_el)."""
+    instance's electron number, or n_el). roles: 'forktps' (forkTPS's Kanamori roles with spin-orbit coupling, the
+    default) or 'blocks' (ud_1 = up, ud_0 = down for every orbital: v1.9's refused construction)."""
     from tenpy.algorithms import dmrg
     from tenpy.models.lattice import Chain
     from tenpy.models.model import CouplingModel, MPOModel
@@ -61,6 +64,23 @@ def run(inst: dict, chi: int = 400, sweeps: int = 20, hyb: str = "plain", log=pr
                                 self.add_coupling_term(T[b][i, j], i, j, cd + " JW", c, op_string="JW")
                             else:                   # c+_i c_j = - c_j c+_i with j < i
                                 self.add_coupling_term(-T[b][i, j], j, i, c + " JW", cd, op_string="JW")
+            # Kanamori roles: TeNPy letter of the "up" and "down" role of impurity orbital m. Without spin-orbit
+            # coupling up = block 'up' (TeNPy u), down = TeNPy d. With it, forkTPS's AIM_SpinOrbit.cpp places
+            # ud_0[0], ud_1[0], ud_1[1], ud_0[1], ud_1[2], ud_0[2] on its impurity sites 1..6 and writes the
+            # interaction by site position (odd = up, even = down), so orbital 0's roles are swapped:
+            # up = ud_0 (TeNPy d) for m = 0, ud_1 (TeNPy u) for m = 1, 2.
+            if par["soc"] and roles == "forktps":
+                rup = ["d" if m == 0 else "u" for m in range(M)]
+            else:
+                rup = ["u"] * M
+            rdn = ["d" if r == "u" else "u" for r in rup]
+
+            def cd(s):
+                return "Cdu" if s == "u" else "Cdd"
+
+            def c(s):
+                return "Cu" if s == "u" else "Cd"
+
             for m in range(M):
                 self.add_onsite_term(U, m, "NuNd")
             for m in range(M):
@@ -68,14 +88,18 @@ def run(inst: dict, chi: int = 400, sweeps: int = 20, hyb: str = "plain", log=pr
                     if m == mp:
                         continue
                     lo, hi = min(m, mp), max(m, mp)
-                    self.add_coupling_term(Up, m if m < mp else mp, hi, "Nu" if m < mp else "Nd", "Nd" if m < mp else "Nu")
+
+                    def pair(J_, op_m, op_mp):
+                        # op_m on m, op_mp on mp: both bosonic (even), so they commute and need no string
+                        self.add_coupling_term(J_, lo, hi, op_m if lo == m else op_mp, op_mp if lo == m else op_m)
+                    pair(Up, "N" + rup[m], "N" + rdn[mp])
                     if mp > m:
-                        for s in ("u", "d"):
-                            self.add_coupling_term(Up - J, m, mp, "N" + s, "N" + s)
+                        pair(Up - J, "N" + rup[m], "N" + rup[mp])
+                        pair(Up - J, "N" + rdn[m], "N" + rdn[mp])
                     if J:
-                        # -J S+_m S-_mp (bosonic composites, no string); +J P+_m P_mp with P+ = Cdu Cdd
-                        self.add_coupling_term(-J, lo, hi, "Sp" if lo == m else "Sm", "Sm" if lo == m else "Sp")
-                        self.add_coupling_term(J, lo, hi, "Cdu Cdd" if lo == m else "Cd Cu", "Cd Cu" if lo == m else "Cdu Cdd")
+                        # -J d+_m,up d_m,dn d+_m',dn d_m',up ; +J d+_m,up d+_m,dn d_m',dn d_m',up
+                        pair(-J, f"{cd(rup[m])} {c(rdn[m])}", f"{cd(rdn[mp])} {c(rup[mp])}")
+                        pair(J, f"{cd(rup[m])} {cd(rdn[m])}", f"{c(rdn[mp])} {c(rup[mp])}")
             MPOModel.__init__(self, lat, self.calc_H_MPO())
 
     t0 = time.perf_counter()
@@ -103,7 +127,7 @@ def run(inst: dict, chi: int = 400, sweeps: int = 20, hyb: str = "plain", log=pr
     H2 = model.H_MPO.variance(psi) if hasattr(model.H_MPO, "variance") else None
     out = {"instance": inst["instance_id"], "energy": E, "chi": chi, "variance": None if H2 is None else float(np.real(H2)),
            "N": float(np.sum(psi.expectation_value("Ntot"))), "Sz": float(np.real(np.sum(psi.expectation_value("Sz")))),
-           "hyb": hyb, "wall_s": time.perf_counter() - t0,
+           "hyb": hyb, "roles": roles if par["soc"] else "spin", "wall_s": time.perf_counter() - t0,
            "varbench": sorted(r["energy"] for r in inst["rows"] if r.get("bound_type") == "variational")[:1]}
     log(json.dumps(out))
     return out
@@ -115,5 +139,6 @@ if __name__ == "__main__":
     ap.add_argument("--chi", type=int, default=400)
     ap.add_argument("--sweeps", type=int, default=20)
     ap.add_argument("--hyb", default="plain", choices=("plain", "conj"))
+    ap.add_argument("--roles", default="forktps", choices=("forktps", "blocks"))
     a = ap.parse_args()
-    run(json.load(open(a.instance_file)), a.chi, a.sweeps, a.hyb)
+    run(json.load(open(a.instance_file)), a.chi, a.sweeps, a.hyb, roles=a.roles)

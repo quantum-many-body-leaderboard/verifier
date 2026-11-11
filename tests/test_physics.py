@@ -851,11 +851,6 @@ def nk_tj_mc_vs_fullsum():
 
 CHEM_FAST = ["Hchain/chain_4_O_R1.8_sto6g", "Hchain/chain_6_O_R1.8_sto6g", "Hchain/chain_8_O_R1.8_sto6g",
              "Hchain/chain_10_O_R1.8_sto6g"]
-# QMBL's ids carry R rounded to six figures; these exact rows were computed at the Angstrom spacing the source states
-CHEM_ANGSTROM = {1.41729: 0.75, 1.51178: 0.8, 1.88973: 1.0, 2.83459: 1.5, 3.77945: 2.0}
-
-
-BOHR_ANGSTROM = 0.52917721092
 
 
 def check_hydrogen_row(inst, e):
@@ -899,7 +894,9 @@ def nk_chem():
         r = SC.known_state(I.load(iid))
         assert r["pass"], (iid, r)
     print("  one-determinant known state passes on chains of 10 (cc-pVDZ), 22 and 102 (STO-6G) atoms")
-    for iid in ("Hchain/chain_30_O_R1.8_ccpvdz", "Hchain/chain_10_O_R1.8_none"):
+    # (v1.10) above 128 orbitals chem_large builds (its refusals are checked in nk_chem_large); basis none is
+    # molecule.py's, not a lattice Hamiltonian
+    for iid in ("Hchain/chain_10_O_R1.8_none",):
         try:
             Hm.build(I.load(iid))
         except ValueError as exc:
@@ -908,9 +905,110 @@ def nk_chem():
         raise AssertionError(f"{iid} was built")
 
 
+def nk_chem_large():
+    """(v1.10) Hydrogen above 128 orbitals (qrec_verify/chem_large.py; needs pyscf). Up to 128 orbitals, against the
+    dense path: the Cholesky integrals equal pyscf's (1e-8), the determinant kernel equals NetKet's generic estimator
+    with the dense operator, and chem_large.connected (the verifier's own Slater-Condon rules) equals NetKet's
+    get_conn, on random determinants and configurations of H6 cc-pVDZ. Above 128, on QMBL's H10 cc-pVTZ (140
+    orbitals): det_energy of pyscf's RHF determinant equals pyscf's RHF energy (sigma 0); <H> of a random CI vector
+    in an active space by connected equals pyscf's fci.direct_spin1 contraction with pyscf's own integrals; the
+    known state passes; Monte Carlo of the RHF determinant (`det:` state, the verifier's kernel) scores the RHF energy
+    within 4 sigma. Refusals: the Cholesky memory bound and nearly singular overlaps."""
+    if not _have("pyscf"):
+        print("  SKIP: pyscf is not installed (requirements-chem.txt)")
+        return
+    import jax
+    import jax.numpy as jnp
+    import tempfile
+    from pyscf import ao2mo, fci, scf
+    from pyscf.fci import cistring
+    from qrec_verify import chem, chem_large as CL, external as EX, hamiltonians as Hm, score as SC
+    # --- up to 128 orbitals: the dense path as reference
+    inst = dict(I.load("Hchain/chain_6_O_R1.8_sto6g"), instance_id="H6 cc-pVDZ (test)")
+    inst["params"] = dict(inst["params"], basis="cc-pVDZ")
+    F = CL.factorised(inst)
+    D = chem.integrals(inst)
+    n = F["n_orb"]
+    err = float(np.abs(CL.dense_eri(F["Lp"], n) - D["eri"]).max())
+    assert err < 1e-8 and np.abs(F["h"] - D["h"]).max() < 1e-12, err
+    sysm = Hm.build(inst)
+    rng = np.random.default_rng(0)
+    pd, pu = rng.normal(size=(n, 3)), rng.normal(size=(n, 3))
+    model = CL.det_model(pd, pu)
+    xs = np.asarray(sysm.hilbert.random_state(jax.random.PRNGKey(1), 8))
+    ek = np.asarray(CL.det_local_energy_fn(F, pd, pu, 3, 3)(jnp.asarray(xs)))
+    eg = np.real(SC.generic_local_energy(sysm, model, {}, xs))
+    rel = float(np.max(np.abs(ek - eg) / np.maximum(1.0, np.abs(eg))))
+    assert rel < 1e-7, rel
+    worst = 0.0
+    for x in xs[:2]:
+        ys, ms = CL.connected(x, F["h"], F["Lp"], F["e_nuc"])
+        lp = np.asarray(model.apply({}, jnp.asarray(np.concatenate([x[None], ys]))))
+        e_c = float(np.real(np.sum(ms * np.exp(lp[1:] - lp[0]))))
+        worst = max(worst, abs(e_c - float(np.real(SC.generic_local_energy(sysm, model, {}, x[None])[0]))))
+    assert worst < 1e-7, worst
+    print(f"  H6 cc-pVDZ ({n} orbitals, {F['n_chol']} Cholesky vectors): integrals vs pyscf {err:.1e}; determinant "
+          f"kernel vs NetKet generic estimator {rel:.1e} (relative); connected vs NetKet {worst:.1e}")
+    # --- above 128 orbitals: QMBL's H10 cc-pVTZ
+    inst = I.load("Hchain/chain_10_O_R1.8_ccpvtz")
+    sysm = Hm.build(inst)
+    assert getattr(sysm.hamiltonian, "factorised", False) and sysm.n_sites == 140, sysm.hamiltonian
+    F = sysm.meta["integrals"]
+    n = F["n_orb"]
+    mf = scf.RHF(F["mol"]).run(conv_tol=1e-11)
+    C = np.linalg.solve(F["X"], mf.mo_coeff)[:, :5]
+    e_det = CL.det_energy(F, C, C)
+    assert abs(e_det - mf.e_tot) < 1e-9 * abs(mf.e_tot), (e_det, mf.e_tot)
+    k, ne = 8, (5, 5)
+    na = cistring.num_strings(k, 5)
+    ci = rng.normal(size=(na, na))
+    ci /= np.linalg.norm(ci)
+    h_a = F["h"][:k, :k]
+    eri_a = ao2mo.restore(1, ao2mo.kernel(F["mol"], F["X"][:, :k]), k)          # pyscf's own transform
+    h2 = fci.direct_spin1.absorb_h1e(h_a, eri_a, k, ne, 0.5)
+    e_pyscf = float(np.dot(ci.ravel(), fci.direct_spin1.contract_2e(h2, ci, k, ne).ravel())) + F["e_nuc"]
+    sub = CL.pair_index(n)[np.tril_indices(k)]
+    Lk = F["Lp"][:, sub]
+    strs = cistring.make_strings(range(k), 5)
+    occs = [[o for o in range(k) if (s >> o) & 1] for s in strs]
+    amp = {}
+    for ia, oa in enumerate(occs):
+        for ib, ob in enumerate(occs):
+            x = np.zeros(2 * k, dtype=np.int8)
+            x[list(ob)] = 1                       # down (beta) orbitals first, NetKet's layout
+            x[[k + o for o in oa]] = 1            # up (alpha)
+            amp[x.tobytes()] = ci[ia, ib]
+    e_v = 0.0
+    for key, a in amp.items():
+        ys, ms = CL.connected(np.frombuffer(key, dtype=np.int8), h_a, Lk, F["e_nuc"])
+        e_v += a * sum(m * amp.get(y.astype(np.int8).tobytes(), 0.0) for y, m in zip(ys, ms))
+    assert abs(e_v - e_pyscf) < 1e-7 * abs(e_pyscf), (e_v, e_pyscf)
+    r = SC.known_state(inst)
+    assert r["pass"], r
+    with tempfile.TemporaryDirectory() as td:
+        path = f"{td}/rhf.npz"
+        np.savez(path, phi_dn=C, phi_up=C)
+        st = EX.load_state(f"det:{path}", None, inst)
+        card = SC.evaluate(inst, st.model, st.variables, seed=1, kernel=st.kernel, min_samples=16384, system=sysm,
+                           log=lambda *a: None)
+    z = (card["energy_total"] - mf.e_tot) / card["sigma_total"]
+    assert abs(z) < 4 and card["qualified"], (card["energy_total"], card["sigma_total"], mf.e_tot, card["status"])
+    print(f"  H10 cc-pVTZ ({n} orbitals, {F['n_chol']} Cholesky vectors): det_energy(RHF) {e_det:.10f} = pyscf RHF "
+          f"{mf.e_tot:.10f}; random CI in ({k} orbitals, 5+5): <H> {e_v:.10f} = pyscf {e_pyscf:.10f}; known state "
+          f"passes; RHF determinant by Monte Carlo {card['energy_total']:.5f} +- {card['sigma_total']:.5f} (z {z:+.2f})")
+    for iid, why in (("Hchain/chain_50_O_R1.6_ccpv5z", "GB"), ("Hchain/chain_10_O_R1_augccpvqz", "linearly dependent")):
+        try:
+            Hm.build(I.load(iid))
+        except ValueError as exc:
+            assert why in str(exc), exc
+            print(f"  {iid} refused: {str(exc)[:110]}")
+            continue
+        raise AssertionError(f"{iid} was built")
+
+
 def big_chem_rows():
-    """Every exact (FCI) row of QMBL's hydrogen instances: pyscf's FCI with the verifier's Loewdin integrals. Rows
-    whose id rounds R (CHEM_ANGSTROM) are compared at the stated Angstrom spacing and reported."""
+    """Every exact (FCI) row of QMBL's hydrogen instances: pyscf's FCI with the verifier's Loewdin integrals, at
+    params.R (since qmbl 8b0a7ae8 the unrounded bond length; the ids keep R to six figures)."""
     if not _have("pyscf"):
         print("  SKIP: pyscf is not installed")
         return
@@ -921,52 +1019,50 @@ def big_chem_rows():
             continue
         f = chem.fci_energy(inst)
         assert abs(f["fci_loewdin"] - f["fci_canonical"]) < 1e-9, (iid, f)
-        R = float(inst["params"]["R"])
-        e, note = f["fci_loewdin"], ""
-        if R in CHEM_ANGSTROM:
-            e = chem.fci_energy(dict(inst, params=dict(inst["params"], R=CHEM_ANGSTROM[R] / BOHR_ANGSTROM)))["fci_loewdin"]
-            note = f"; at {CHEM_ANGSTROM[R]} A exactly: {e:.12f}"
-        ref, rel, tol = check_hydrogen_row(inst, e)
-        print(f"  {iid}: FCI {f['fci_loewdin']:.12f} (canonical {f['fci_canonical']:.12f}) vs QMBL {ref} "
-              f"(rel {rel:.1e}, tolerance {tol:.0e}){note}", flush=True)
+        ref, rel, tol = check_hydrogen_row(inst, f["fci_loewdin"])
+        print(f"  {iid} (R {inst['params']['R']}): FCI {f['fci_loewdin']:.12f} (canonical {f['fci_canonical']:.12f}) "
+              f"vs QMBL {ref} (rel {rel:.1e}, tolerance {tol:.0e})", flush=True)
 
 
 def nk_impurity():
     """QMBL's exact rows of the four single-band impurity models (ED of the verifier's operator; VarBench's parameter
-    files), the one-configuration known state of the eight models without spin-orbit coupling (the four spin-orbit models are
-    refused: qrec_verify/impurity.py SOC_UNCONFIRMED), and the DMRG cross-check of the three-band
-    models recorded in tests/xcheck_impurity.json (tests/xcheck_impurity_tenpy.py) against VarBench's forkTPS rows."""
+    files), the one-configuration known state of all twelve models (the spin-orbit models with forkTPS's Kanamori
+    roles, v1.10), and the DMRG cross-check of the three-band models recorded in tests/xcheck_impurity.json
+    (tests/xcheck_impurity_tenpy.py) against VarBench's forkTPS rows: every v1.10 run at or above VarBench's lowest
+    row within the run's own error (sqrt of its variance)."""
     import json
     from qrec_verify import hamiltonians as Hm, score as SC
     for iid in sorted(i for i in ALL if i.startswith("Impurity/SB")):
         e0 = ground_energy(Hm.build(I.load(iid)).hamiltonian)
         ref, rel = check_exact_row(iid, e0)
         print(f"  {iid}: ED {e0:.12f} vs QMBL {ref} (rel {rel:.1e})")
-    iids = sorted(i for i in ALL if i.startswith("Impurity/") and "-SOC_" not in i)
+    iids = sorted(i for i in ALL if i.startswith("Impurity/"))
     for iid in iids:
         r = SC.known_state(I.load(iid))
         assert r["pass"], (iid, r)
     print(f"  one-configuration known state passes on {len(iids)} impurity instances")
     for iid in sorted(i for i in ALL if i.startswith("Impurity/TB-DMFT-SOC_")):
-        try:
-            Hm.build(I.load(iid))
-        except ValueError as exc:
-            assert "TB-DMFT-SOC" in str(exc), exc
-            continue
-        raise AssertionError(f"{iid} was built (the spin-orbit models are refused until confirmed)")
-    print("  the spin-orbit models (TB-DMFT-SOC) are refused with the reason")
+        sysm = Hm.build(I.load(iid))
+        assert sysm.hilbert.n_fermions_per_spin == (None, None) and sysm.hilbert.n_fermions == I.expected_dof(I.load(iid)), iid
+    print("  the spin-orbit models (TB-DMFT-SOC) are built on the total-N space")
     p = ROOT / "tests" / "xcheck_impurity.json"
     if p.exists():
         for r in json.loads(p.read_text())["runs"]:
-            print(f"  recorded DMRG cross-check {r['instance']} ({r['hyb']}): {r['energy']:.10f} vs VarBench "
-                  f"{r['varbench'][0]:.10f} (diff {r['energy'] - r['varbench'][0]:+.1e})")
+            ok = r.get("accepted")
+            print(f"  recorded DMRG cross-check {r['instance']} ({r['hyb']}, roles {r.get('roles', 'spin')}): "
+                  f"{r['energy']:.10f} vs VarBench {r['varbench'][0]:.10f} (diff {r['energy'] - r['varbench'][0]:+.1e})"
+                  + ("" if ok is None else f" {'accepted' if ok else 'rejected'}"))
+            if ok:
+                assert r["energy"] >= r["varbench"][0] - np.sqrt(r["variance"]), r
 
 
 def nk_impurity_small_tenpy():
     """The three-band impurity models (TB-DMFT, TB-DMFT-SOC; no exact row in QMBL) on a truncated bath of one site per
-    orbital (6 orbitals, 4096 Fock states): the lowest ED energy of the verifier's operator over the S_z (block)
-    sectors equals DMRG (exact at this size) of the same parameters built independently in TeNPy
-    (tests/xcheck_impurity_tenpy.py: its own fermion operators and Kanamori terms), for N = 5, 6, 7, to 1e-10."""
+    orbital (6 orbitals, 4096 Fock states): the lowest ED energy of the verifier's operator equals DMRG (exact at this
+    size) of the same parameters built independently in TeNPy (tests/xcheck_impurity_tenpy.py: its own fermion
+    operators and Kanamori terms, forkTPS's roles with spin-orbit coupling), for N = 5, 6, 7, to 1e-10. Without
+    spin-orbit coupling the ED is the lowest over the S_z (block) sectors; with it (v1.10) over the total-N space, and
+    the test also shows that the blocks are not conserved there (H has elements between block occupations)."""
     if not _have("tenpy"):
         print("  SKIP: TeNPy is not installed (requirements-mps.txt)")
         return
@@ -980,13 +1076,60 @@ def nk_impurity_small_tenpy():
         par = dict(par, Nb=1, bath={b: [sites[:1] for sites in per] for b, per in par["bath"].items()})
         n, tm, w = IMP.terms(par)
         w = np.array(w, dtype=complex)
+
+        def ed(hi):
+            return np.linalg.eigvalsh(nk.operator.FermionOperator2nd(hi, terms=tm, weights=w, dtype=complex).to_dense())[0]
         for N in (5, 6, 7):
-            e_ed = min(np.linalg.eigvalsh(nk.operator.FermionOperator2nd(
-                nk.hilbert.SpinOrbitalFermions(n_orbitals=n, s=0.5, n_fermions_per_spin=(nd, N - nd)),
-                terms=tm, weights=w, dtype=complex).to_dense())[0] for nd in range(max(0, N - n), min(n, N) + 1))
+            extra = ""
+            if par["soc"]:
+                hi = nk.hilbert.SpinOrbitalFermions(n_orbitals=n, s=0.5, n_fermions=N)
+                e_ed = ed(hi)
+                hi, H, _, _ = IMP.build_from_params(par, N // 2, N - N // 2)
+                Hd = np.asarray(H.to_dense())                             # the verifier's own (JAX, total-N) operator
+                e_v = float(np.linalg.eigvalsh(Hd)[0])
+                assert abs(e_v - e_ed) < 1e-10, (iid, N, e_v, e_ed)
+                nb0 = np.asarray(hi.all_states())[:, :n].sum(axis=1)
+                off = float(np.abs(Hd[nb0[:, None] != nb0[None, :]]).max())   # elements that change the blocks
+                assert off > 1e-2, off
+                extra = f" (largest element between block occupations {off:.2f}: only N is conserved)"
+            else:
+                e_ed = min(ed(nk.hilbert.SpinOrbitalFermions(n_orbitals=n, s=0.5, n_fermions_per_spin=(nd, N - nd)))
+                           for nd in range(max(0, N - n), min(n, N) + 1))
             e_t = XT.run(inst, chi=128, sweeps=30, par=par, n_el=N, log=lambda *a: None)["energy"]
             assert abs(e_t - e_ed) < 1e-10, (iid, N, e_ed, e_t)
-            print(f"  {iid} truncated to Nb = 1, N = {N}: ED {e_ed:.12f}, TeNPy DMRG {e_t:.12f} ({e_t - e_ed:+.1e})")
+            print(f"  {iid} truncated to Nb = 1, N = {N}: ED {e_ed:.12f}, TeNPy DMRG {e_t:.12f} ({e_t - e_ed:+.1e}){extra}")
+
+
+def nk_impurity_soc_mc_vs_fullsum():
+    """(v1.10) A random generalized Slater determinant (NetKet's Slater2nd) on the spin-orbit impurity model truncated
+    to one bath site per orbital (12 spin-orbitals, N = 6, total-N space): the verifier's fermion sampler (hops,
+    exchanges and the particle moves between the blocks) against the full sum; the samples visit several block
+    occupations."""
+    import jax
+    import netket as nk
+    from qrec_verify import impurity as IMP, score as SC, stats as S
+    from qrec_verify.hamiltonians import System
+    inst = I.load("Impurity/TB-DMFT-SOC_9")
+    par = IMP.read(IMP.file_for(inst))
+    par = dict(par, Nb=1, bath={b: [sites[:1] for sites in per] for b, per in par["bath"].items()})
+    hi, H, g, p = IMP.build_from_params(par, 3, 3)
+    sysm = System("TB-DMFT-SOC_9 (Nb = 1)", hi, H, g, p["n_orbitals"], p["n_orbitals"], 1, {"model": "Impurity"})
+    model = nk.models.Slater2nd(hi, generalized=True, param_dtype=complex)
+    variables = model.init(jax.random.key(5), np.asarray(hi.all_states()[:1]))
+    xs = np.asarray(hi.all_states())
+    psi = np.exp(np.asarray(model.apply(variables, xs)))
+    exact = float(np.real(np.vdot(psi, H.to_dense() @ psi) / np.vdot(psi, psi)))     # the full sum, dense
+    sampler = SC.default_sampler(sysm, inst)
+    ser = SC.collect_adaptive(sysm, model, variables, sampler, seed=12, n_burn=256, block=32,
+                              min_samples=64 * 32 * 16, sigma_target_total=None, max_seconds=900, log=lambda *_: None)
+    d = S.diagnose(ser["e_loc"], ser["logabs"], ser["acc"])
+    z = (d.mean - exact) / d.sigma
+    vs = nk.vqs.MCState(sampler, model, variables=variables, n_samples=4096, seed=3, sampler_seed=4)
+    blocks = set(np.asarray(vs.samples).reshape(-1, 2 * p["n_orbitals"])[:, :p["n_orbitals"]].sum(axis=1).astype(int).tolist())
+    print(f"  spin-orbit impurity, Nb = 1: sampler {d.mean:.6f} +- {d.sigma:.6f} vs full sum {exact:.6f} (z {z:+.2f}); "
+          f"block-0 occupations visited {sorted(blocks)}")
+    assert abs(z) < 4, z
+    assert len(blocks) >= 3, blocks
 
 
 def nk_triangular_mc_vs_fullsum():
@@ -1149,7 +1292,7 @@ def nk_conserving_operator_matches():
     assert d < 1e-10, d
 
 
-NETKET_TESTS = [nk_impurity, nk_impurity_small_tenpy,
+NETKET_TESTS = [nk_chem_large, nk_impurity, nk_impurity_small_tenpy, nk_impurity_soc_mc_vs_fullsum,
                 nk_chem,
                 nk_tj_operator, nk_tj_exact_rows, nk_tj_known_state, nk_tj_mc_vs_fullsum,
                 nk_honeycomb,

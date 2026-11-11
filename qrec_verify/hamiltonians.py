@@ -461,8 +461,9 @@ def build(inst: dict, **overrides) -> System:
     if model in ("Hchain", "Hsheet"):               # (v1.9) qrec_verify/chem.py, Gaussian basis only
         from . import chem
         if not chem.is_chem(inst):
-            raise ValueError(f"{inst['instance_id']}: basis 'none' (continuous space) is not built by this verifier; "
-                             "only Gaussian-basis instances are (qrec_verify/chem.py)")
+            raise ValueError(f"{inst['instance_id']}: basis 'none' (continuous space) has no lattice Hamiltonian; "
+                             "it is scored in continuous space by qrec_verify/molecule.py (v1.10; op_verify.py score "
+                             "with a state of the electron positions)")
         hi, H, g, ints, p = chem.build(inst)
         n = ints["n_orb"]
         meta = dict(p, model=model, units="hartree, total, nuclear repulsion included", n_orbitals=n,

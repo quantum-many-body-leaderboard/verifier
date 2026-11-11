@@ -1,5 +1,5 @@
 {
- "about": "DMRG (tests/xcheck_impurity_tenpy.py, TeNPy 1.1.1, chi 400) of the three-band impurity models built in TeNPy from the VarBench parameters, against VarBench forkTPS rows (lowest variational row). Recorded runs, not rerun by the suite. TB-DMFT_9 agrees (7.7e-9 relative, DMRG above). TB-DMFT-SOC_9 does not: both hybridisation conventions (plain: V d+ c, conj: V* d+ c) give energies below VarBench, so the spin-orbit models are refused.",
+ "about": "DMRG (tests/xcheck_impurity_tenpy.py, TeNPy 1.1.1, chi 400) of the three-band impurity models built in TeNPy from the VarBench parameters, against VarBench forkTPS rows (lowest variational row). Recorded runs, not rerun by the suite. TB-DMFT_9 agrees (7.7e-9 relative, DMRG above). TB-DMFT-SOC_9 with v1.9's construction (roles 'blocks': ud_1 as up for every orbital) went below VarBench with both hybridisation conventions (plain: V d+ c, conj: V* d+ c) and was refused; with forkTPS's Kanamori roles (v1.10, roles 'forktps', AIM_SpinOrbit.cpp's site order) it lands 4.2e-7 above VarBench (3.7e-9 relative), as TB-DMFT_9 does, and is accepted. The conjugate convention with forkTPS's roles goes 1.0e-3 below VarBench (rejected): the check discriminates the hybridisation convention, and the plain one is forkTPS's (AIM_SpinOrbit.cpp: V c+_I c_B + V* c+_B c_I).",
  "runs": [
   {
    "instance": "Impurity/TB-DMFT_9",
@@ -12,7 +12,8 @@
    "wall_s": 675.2514312160201,
    "varbench": [
     -112.90428524370733
-   ]
+   ],
+   "accepted": true
   },
   {
    "instance": "Impurity/TB-DMFT-SOC_9",
@@ -25,7 +26,9 @@
    "wall_s": 668.4944593610708,
    "varbench": [
     -112.87177033736539
-   ]
+   ],
+   "roles": "blocks",
+   "accepted": false
   },
   {
    "instance": "Impurity/TB-DMFT-SOC_9",
@@ -38,7 +41,39 @@
    "wall_s": 660.3560054999543,
    "varbench": [
     -112.87177033736539
-   ]
+   ],
+   "roles": "blocks",
+   "accepted": false
+  },
+  {
+   "instance": "Impurity/TB-DMFT-SOC_9",
+   "energy": -112.8717699159254,
+   "chi": 400,
+   "variance": 3.292756446171552e-06,
+   "N": 35.99999999999999,
+   "Sz": 4.7334035527510876e-11,
+   "hyb": "plain",
+   "roles": "forktps",
+   "wall_s": 603.7514531189809,
+   "varbench": [
+    -112.87177033736539
+   ],
+   "accepted": true
+  },
+  {
+   "instance": "Impurity/TB-DMFT-SOC_9",
+   "energy": -112.87277556408304,
+   "chi": 400,
+   "variance": 4.0966879168991e-06,
+   "N": 35.999999999999986,
+   "Sz": -5.404817131910034e-10,
+   "hyb": "conj",
+   "roles": "forktps",
+   "wall_s": 723.884095299989,
+   "varbench": [
+    -112.87177033736539
+   ],
+   "accepted": false
   }
  ]
 }

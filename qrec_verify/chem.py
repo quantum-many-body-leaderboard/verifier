@@ -20,8 +20,9 @@ occupation numbers, the n_orb down orbitals first, then the n_orb up orbitals, a
 Hamiltonian is NetKet's ParticleNumberAndSpinConservingFermioperator2nd of pyscf's integrals in these orbitals
 (NetKet's `from_pyscf_molecule` with the Loewdin coefficients), in NetKet's fermion sign convention.
 
-Size: the operator stores the two-electron integrals, n_orb^4 numbers before the cutoff; `MAX_ORBITALS` bounds what
-the verifier builds (above it, it refuses with the estimate). Checks (tests/test_physics.py, nk_chem and big_chem_rows in --big): pyscf's FCI in the
+Size: the operator stores the two-electron integrals, n_orb^4 numbers before the cutoff; up to `MAX_ORBITALS` the
+verifier builds NetKet's operator, above it (v1.10) the Cholesky-factorised Hamiltonian of chem_large.py, which scores
+determinant states with the verifier's own kernel. Checks (tests/test_physics.py, nk_chem and big_chem_rows in --big): pyscf's FCI in the
 canonical RHF basis equals FCI with these integrals (basis invariance) and the ED of the NetKet operator; QMBL's
 exact (FCI) rows.
 """
@@ -121,19 +122,29 @@ def operator(mol, X: np.ndarray, cutoff: float = CUTOFF):
 
 
 def build(inst: dict):
-    """(hilbert, H, graph over the orbitals, integrals dict, params) of a Gaussian-basis instance."""
+    """(hilbert, H, graph over the orbitals, integrals dict, params) of a Gaussian-basis instance. Above
+    MAX_ORBITALS (v1.10) H is chem_large.FactorisedHamiltonian (Cholesky-factorised integrals, no NetKet operator)
+    and the integrals dict is chem_large.factorised's."""
     import netket as nk
     p = params(inst)
-    ints = integrals(inst)
-    n = ints["n_orb"]
     if p["n_up"] != p["n_dn"]:
         raise ValueError("hydrogen in a Gaussian basis: only N_up = N_dn (every open instance has an even N)")
-    hi = hilbert(n, p["n_up"], p["n_dn"])
-    H = operator(ints["mol"], ints["X"])
-    if H.hilbert != hi:
-        raise RuntimeError("NetKet's molecular Hilbert space differs from the verifier's")
-    # hops for the sampler: every pair of orbitals whose one-electron element is not negligible
-    edges = [[a, b] for a in range(n) for b in range(a + 1, n) if abs(ints["h"][a, b]) > 1e-6]
+    n = n_orbitals(inst)
+    if n > MAX_ORBITALS:
+        from . import chem_large
+        ints = chem_large.factorised(inst)
+        hi = hilbert(n, p["n_up"], p["n_dn"])
+        H = chem_large.FactorisedHamiltonian(hi, ints)
+    else:
+        ints = integrals(inst)
+        hi = hilbert(n, p["n_up"], p["n_dn"])
+        H = operator(ints["mol"], ints["X"])
+        if H.hilbert != hi:
+            raise RuntimeError("NetKet's molecular Hilbert space differs from the verifier's")
+    # hops for the sampler: every pair of orbitals (v1.10; v1.9 took the pairs with |h_ab| > 1e-6, which leaves the
+    # sigma and pi orbitals of a chain unconnected by symmetry, so a chain that starts with an electron in an orbital
+    # where the state vanishes, e.g. a pi orbital under a sigma determinant, could not leave it)
+    edges = [[a, b] for a in range(n) for b in range(a + 1, n)]
     g = nk.graph.Graph(edges=edges, n_nodes=n)
     return hi, H, g, ints, p
 

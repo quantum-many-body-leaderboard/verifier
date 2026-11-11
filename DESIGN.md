@@ -107,10 +107,63 @@ Gates of the new models (the statistics are unchanged):
 - Sector: t-J configurations never hold a doubly occupied site (constrained Hilbert space; the sampler only exchanges
   site occupations; the MPS sector gate counts doubly occupied sites). Hydrogen and impurity states are sampled at
   fixed (N_dn, N_up).
-- Size: hydrogen is built up to 128 orbitals (n_orb^4 two-electron integrals); above, the verifier refuses with the
-  count. Continuous-space hydrogen (`basis: none`) is refused.
+- Size: hydrogen is built with NetKet's operator up to 128 orbitals (n_orb^4 two-electron integrals); above, v1.10
+  factorises the integrals (below). Continuous-space hydrogen (`basis: none`) is scored by v1.10's molecule.py.
 - Units and per-site divisors (DATA.md): Pauli totals for spin models (TFIsing per site E / N), units of t for t-J
   (E / N), hartree per atom with the nuclear repulsion for hydrogen, totals for impurity models (divisor 1).
+
+## v1.10 (2026-11-11): spin-orbit impurity models, hydrogen in continuous space and in large Gaussian bases
+
+What came from where:
+
+| part | from | where |
+|---|---|---|
+| hydrogen in continuous space (`basis: none`): geometry, Coulomb sums, the RHF known state, sampler settings | qrec-verifier v2.1 (`molecule.py`, `molecular_score.py`), rewritten on the public line's continuous-space interface | `molecule.py` |
+| kinetic energy for hydrogen (forward Laplacian) | public line v1.8 (`continuum.py`'s vendored fwdlap) | `molecule.kinetic_parts_fn` |
+| spin-orbit impurity models: forkTPS's Kanamori roles, total-N space | new (forkTPS's `AIM_SpinOrbit.cpp`) | `impurity.roles`, `impurity.build_from_params` |
+| particle moves between the spin blocks | new | `score.particle_move_rule` (total-N spaces only) |
+| hydrogen above 128 orbitals: Cholesky integrals, determinant kernel, `det:` states | new | `chem_large.py`, `external._load_det` |
+| symmetry-resolved Lanczos for the big exact rows | new | `tests/ed_sym.py` |
+
+Spin-orbit impurity models (TB-DMFT-SOC). forkTPS orders the six impurity sites ud_0[0], ud_1[0], ud_1[1], ud_0[1],
+ud_1[2], ud_0[2] and writes the Kanamori interaction by site position (odd "up", even "down"), so orbital 0 has its
+blocks' roles swapped relative to orbitals 1 and 2. v1.9 wrote ud_1 as "up" for every orbital; that Hamiltonian's DMRG
+went below VarBench's converged forkTPS rows and the models were refused. With forkTPS's roles the spin-flip and pair-
+hopping terms between orbital 0 and orbitals 1, 2 move electrons between the blocks: only the total N is conserved,
+the Hilbert space is the total-N space, and the sampler adds moves of one electron between any two spin-orbitals.
+Gate: full-size DMRG (TeNPy, independently built) of TB-DMFT-SOC_9 lands 4.2e-7 above VarBench's lowest row (3.7e-9
+relative; TB-DMFT_9: 8.7e-7 above); the conjugate hybridisation convention falls 1.0e-3 below, so the check
+discriminates. Truncated bath: ED of the verifier's operator = TeNPy DMRG to 6e-14.
+
+Hydrogen in continuous space. Same contract as the electron gas (a state of electron positions, the verifier's own
+local energy, Metropolis sampler, statistics, scorecard). Gates on every score: Coulomb sums against pyscf's
+point-charge sum (independent code), forward Laplacian against jax.hessian, the Laplacian and gradient kinetic
+estimators against each other (integration by parts), antisymmetry, decay far out. References in the tests: the
+hydrogen atom's exact state (E_loc = -1/2 at every point, sigma 0), the two-electron FCI wave function of H2 in
+cc-pVDZ (scores pyscf's FCI energy, above the exact H2 energy of Pachucki 2010), RHF determinants (score pyscf's
+RHF energies, above the sources' near-exact rows). Periodic cells are refused (no QMBL instance has one).
+
+Hydrogen above 128 orbitals. The Hamiltonian is unchanged (chem.py's Loewdin orbitals); the two-electron integrals are
+stored as a pivoted Cholesky decomposition of pyscf's AO integrals (residual diagonal below 1e-10) transformed to the
+Loewdin orbitals. Determinant states are scored with the verifier's kernel (mixed Green's function and Wick's theorem,
+exact for a determinant); general states are not (about 10^6 connected configurations per sample). Gates: up to 128
+orbitals the Cholesky integrals equal pyscf's (5e-9), the kernel equals NetKet's generic estimator with the dense
+operator and the verifier's own Slater-Condon engine (`chem_large.connected`) equals NetKet's get_conn; above,
+pyscf's RHF energy is reproduced exactly by the determinant's density-matrix energy and by Monte Carlo of the kernel,
+<H> of a random CI vector in an active space equals pyscf's direct_spin1 contraction with pyscf's own integrals, and
+every score checks the kernel against `connected` on one sample (up to 1e6 connected configurations). The hop graph
+of the hydrogen sampler is now complete (v1.9 linked orbitals with |h_ab| > 1e-6, which leaves sigma and pi orbitals
+of a chain unconnected: a chain starting with an electron where a sigma determinant vanishes could not leave).
+Refused: Cholesky vectors above 64 GB (above 850 orbitals) and nearly singular overlaps.
+
+Big exact rows. `tests/ed_sym.py` diagonalises the trivial sector of the full automorphism group of the verifier's
+bond list times the spin flip, or the sector of any real 1D character of that group (`--character K FLIP`; the
+dimer-singlet character of the Shastry-Sutherland torus is one of them, `--dimer-sector`); TFIsing (no U(1)) over
+all 2^n configurations, where the trivial sector holds the ground state (stoquastic). The lowest energy of a sector is
+an upper bound; equality with a row to 1e-8 reproduces it. Checked on 16-site rows and on a 12-site ring (every real
+sector against brute-force projection, 3e-14). Reproduced: Heisenberg triangular 36 P, TFIsing square 36 P (h = 3)
+and the Shastry-Sutherland square 36 P rows listed in COVERAGE.md (1e-14 to 3e-11). Not attempted: the 48-site rows
+(triangular, kagome-4x4), whose sectors hold about 3e10 states (triangular, |G| = 1152) and 6e10 (kagome); the 36-site matrix alone takes about 7 GB per 6e7 states.
 
 ## Input to the statistics
 

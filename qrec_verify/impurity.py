@@ -14,15 +14,24 @@ every row) builds it, Up = U - 2J:
     - J sum_{m != m'} d+_m,up d_m,dn d+_m',dn d_m',up + J sum_{m != m'} d+_m,up d+_m,dn d_m',dn d_m',up
 
 (the signs of the spin-flip and pair-hopping terms are fixed by forkTPS's own atomic-limit test, test/c++/FTPO_impl.cpp
-AIM.atomicLimit_SFPH, which tests/test_impurity.py reproduces). The blocks are the spins ('up'/'dn' or 'up'/'down');
-with spin-orbit coupling ('ud_0'/'ud_1') they are forkTPS's pseudo-spin blocks, and the interaction is written in them
-as for spins. That last step is not confirmed: DMRG of the spin-orbit Hamiltonian built this way goes below VarBench's
-converged forkTPS energies, so `build` refuses the spin-orbit models (SOC_UNCONFIRMED; COVERAGE.md has the plan).
+AIM.atomicLimit_SFPH, which tests/test_impurity.py reproduces). Without spin-orbit coupling the blocks are the spins
+('up'/'dn' or 'up'/'down') and "up"/"down" above are the blocks. With spin-orbit coupling ('ud_0'/'ud_1', forkTPS's
+pseudo-spin blocks; v1.10) the roles are forkTPS's: its AIM_SpinOrbit.cpp puts ud_0[0], ud_1[0], ud_1[1], ud_0[1],
+ud_1[2], ud_0[2] on the impurity sites 1 .. 6 and writes the Kanamori terms by site position (odd site "up", even
+"down"), so
+
+    "up"(m) = ud_0[0], ud_1[1], ud_1[2]        "down"(m) = ud_1[0], ud_0[1], ud_0[2]        (m = 0, 1, 2)
+
+(`roles`). Then the spin-flip and pair-hopping terms between orbital 0 and orbitals 1, 2 move electrons between the
+blocks: only the total N is conserved (VarBench: "U(1) symmetry for charge sector"), and the Hilbert space is the
+total-N space. v1.9 wrote ud_1 as "up" for every orbital and refused the spin-orbit models, because DMRG of that
+Hamiltonian went below VarBench's converged forkTPS energies; with forkTPS's roles DMRG lands above them
+(tests/xcheck_impurity.json).
 
 Orbitals: per block, the M impurity orbitals first, then the bath orbitals (a, l) for a = 0 .. M-1, l = 0 .. Nb-1;
 NetKet's SpinOrbitalFermions(M (1 + Nb), s=1/2) with the first block ('dn', 'down', 'ud_0') as S_z = -1/2 and the
-second ('up', 'ud_1') as +1/2. The particle sector: N = the rows' dof (forkTPS's ground-state particle number), (N_dn, N_up) =
-(N // 2, N - N // 2) (`sector`). The rows' einf are VarBench's and are not the trace of this Hamiltonian in any
+second ('up', 'ud_1') as +1/2. The particle sector: N = the rows' dof (forkTPS's ground-state particle number);
+without spin-orbit coupling (N_dn, N_up) = (N // 2, N - N // 2) (`sector`), with it the total N only. The rows' einf are VarBench's and are not the trace of this Hamiltonian in any
 sector (nor over the Fock space); the verifier does not use them. QMBL gives impurity energies as totals: the
 verifier's per-site divisor is 1.
 """
@@ -110,15 +119,29 @@ def one_body(par: dict) -> dict:
     return out
 
 
+def roles(par: dict) -> tuple[list[int], list[int]]:
+    """(up, down): the block index (0 = first, 1 = second) that plays the Kanamori "up" and "down" role for impurity
+    orbital m. Spins: up = 1, down = 0 for every m. Spin-orbit coupling: forkTPS's roles (module docstring)."""
+    M = par["M"]
+    if par["soc"]:
+        if M != 3:
+            raise ValueError(f"spin-orbit impurity with {M} orbitals: forkTPS's AIM_SpinOrbit has three")
+        up = [0, 1, 1]
+    else:
+        up = [1] * M
+    return up, [1 - s for s in up]
+
+
 def terms(par: dict):
     """FermionOperator2nd terms and weights (orbital of block index s (0 = first, S_z -1/2) and spatial k: s n + k)."""
     M, nb = par["M"], par["Nb"]
     n = M * (1 + nb)
     T = one_body(par)
-    dn, up = (lambda k: k), (lambda k: n + k)
+    rup, rdn = roles(par)
+    up, dn = (lambda m: rup[m] * n + m), (lambda m: rdn[m] * n + m)
     tm, w = [], []
     for s, b in enumerate(par["blocks"]):
-        o = dn if s == 0 else up
+        o = (lambda k, s=s: s * n + k)
         for i in range(n):
             for j in range(n):
                 if abs(T[b][i, j]) > 1e-14:
@@ -135,7 +158,7 @@ def terms(par: dict):
             tm.append(((up(m), 1), (up(m), 0), (dn(mp), 1), (dn(mp), 0)))
             w.append(Up)
             if mp > m:
-                for o in (up, dn):
+                for o in (up, dn):                                                  # same role
                     tm.append(((o(m), 1), (o(m), 0), (o(mp), 1), (o(mp), 0)))
                     w.append(Up - J)
             if J:
@@ -156,29 +179,35 @@ def n_electrons(inst: dict) -> int:
 
 
 def sector(inst: dict) -> tuple[int, int]:
-    """(N_dn, N_up) = (N // 2, N - N // 2): the two blocks' electron numbers. The Hamiltonian conserves each
-    (spin, or forkTPS's pseudo-spin block with spin-orbit coupling); the DMRG cross-check (tests/xcheck_impurity.json,
-    S_z free) finds every ground state at block imbalance 0 (even N), which is this sector."""
+    """(N_dn, N_up) = (N // 2, N - N // 2): the two blocks' electron numbers. Without spin-orbit coupling the
+    Hamiltonian conserves each; the DMRG cross-check (tests/xcheck_impurity.json, S_z free) finds every ground state
+    at block imbalance 0 (even N), which is this sector. With spin-orbit coupling only N is conserved (`build` uses
+    the total-N space); this split is then only the known state's starting configuration."""
     N = n_electrons(inst)
     return N // 2, N - N // 2
 
 
-SOC_UNCONFIRMED = ("the spin-orbit impurity models (TB-DMFT-SOC) are refused: DMRG of this verifier's Hamiltonian "
-                   "at VarBench's particle number reaches energies below VarBench's converged forkTPS rows "
-                   "(TB-DMFT-SOC_9: -112.87198 vs -112.87177, both hybridisation conventions), so it is not yet "
-                   "forkTPS's Hamiltonian (COVERAGE.md)")
+SOC_UNCONFIRMED = None      # v1.9 refused the spin-orbit models; v1.10 builds them with forkTPS's roles (`roles`)
 
 
-def build(inst: dict, jax_operator: bool = True, allow_soc: bool = False):
-    """(hilbert, H, graph over the orbitals, params) of an Impurity instance. The spin-orbit models are refused
-    (SOC_UNCONFIRMED) unless allow_soc (tests only)."""
-    import netket as nk
+def build(inst: dict, jax_operator: bool = True, allow_soc: bool = True):
+    """(hilbert, H, graph over the orbitals, params) of an Impurity instance. Spin-orbit models (v1.10): total-N
+    Hilbert space and NetKet's particle-number-conserving operator (the blocks are not conserved). allow_soc is kept
+    for v1.9's callers and has no effect."""
     par = read(file_for(inst))
-    if par["soc"] and not allow_soc:
-        raise ValueError(f"{inst['instance_id']}: {SOC_UNCONFIRMED}")
-    n, tm, w = terms(par)
     nd, nu = sector(inst)
-    hi = nk.hilbert.SpinOrbitalFermions(n_orbitals=n, s=0.5, n_fermions_per_spin=(nd, nu))
+    return build_from_params(par, nd, nu, jax_operator)
+
+
+def build_from_params(par: dict, nd: int, nu: int, jax_operator: bool = True):
+    """`build` for given parameters (e.g. a truncated bath in the tests) and block split (nd, nu) (total nd + nu
+    only, with spin-orbit coupling)."""
+    import netket as nk
+    n, tm, w = terms(par)
+    if par["soc"]:
+        hi = nk.hilbert.SpinOrbitalFermions(n_orbitals=n, s=0.5, n_fermions=nd + nu)
+    else:
+        hi = nk.hilbert.SpinOrbitalFermions(n_orbitals=n, s=0.5, n_fermions_per_spin=(nd, nu))
     w = np.array(w, dtype=complex)
     dtype = complex if np.any(np.abs(w.imag) > 0) else float
     if dtype is float:
@@ -186,9 +215,13 @@ def build(inst: dict, jax_operator: bool = True, allow_soc: bool = False):
     H = nk.operator.FermionOperator2nd(hi, terms=tm, weights=w, dtype=dtype)
     if jax_operator:
         from netket.experimental.operator import ParticleNumberAndSpinConservingFermioperator2nd as PNS
-        H = PNS.from_fermionoperator2nd(H)
+        from netket.experimental.operator import ParticleNumberConservingFermioperator2nd as PN
+        H = (PN if par["soc"] else PNS).from_fermionoperator2nd(H)
     M, nb = par["M"], par["Nb"]
     edges = [[a, M + a2 * nb + l] for a in range(M) for a2 in range(M) for l in range(nb)
              if a == a2 or par["soc"]] + [[a, b] for a in range(M) for b in range(a + 1, M)]
     g = nk.graph.Graph(edges=edges, n_nodes=n)
-    return hi, H, g, dict(par, n_orbitals=n, n_electrons=nd + nu, n_dn=nd, n_up=nu)
+    out = dict(par, n_orbitals=n, n_electrons=nd + nu, n_dn=nd, n_up=nu)
+    if par["soc"]:
+        out.update(n_dn=None, n_up=None)          # only the total N is conserved
+    return hi, H, g, out

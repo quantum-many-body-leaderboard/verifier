@@ -6,7 +6,7 @@
   "params": {
     "N_up": 4,
     "N_dn": 4,
-    "R": 1.51178,
+    "R": 1.5117808996520496,
     "basis": "STO-3G"
   },
   "instance_id": "Hchain/chain_8_O_R1.51178_sto3g",
@@ -38,8 +38,8 @@
       },
       "computed_by": "qmbl",
       "artifacts": {
-        "code": "https://github.com/quantum-many-body-leaderboard/quantum-many-body-leaderboard/tree/d1019579/checks/hchain-fci",
-        "commit": "d1019579",
+        "code": "https://github.com/quantum-many-body-leaderboard/quantum-many-body-leaderboard/tree/e0917e54/checks/hchain-fci",
+        "commit": "e0917e54",
         "script": "checks/hchain-fci/",
         "read_from": {
           "quote": "QMBL, checks/hchain-fci/ (full CI of the open H8 chain in STO-3G at R = 0.8 Å, PySCF)",

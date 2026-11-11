@@ -1,7 +1,8 @@
 # Verifier
 
 The re-measurement of [QMBL](https://qmbl.org) and QMBL: Open Problems. `qrec_verify/` is the
-scorer (v1.7, 2026-10-09; v1.9, 2026-11-11, adds the lattices and models below); `DESIGN.md` lists its gates
+scorer (v1.7, 2026-10-09; v1.9, 2026-11-11, adds the lattices and models below; v1.10 the spin-orbit impurity
+models, hydrogen in continuous space and in large Gaussian bases); `DESIGN.md` lists its gates
 and what came from where. `op_verify.py` is the command line: it
 reads the instance from a QMBL instance file and turns two measurements into one entry.
 The tests in `tests/` need NetKet: `python tests/test_stats.py`, `python tests/test_physics.py`,
@@ -37,6 +38,7 @@ else (sampling, local energies, statistics) itself, the same way for every entry
 | Julia | `julia:file.jl` (defines `logpsi(x::Matrix{Int8})::Vector{ComplexF64}`) | optional, passed to `init(path)` |
 | C / C++ | `c:libstate.so` (exports `logpsi`, `adapters/qmbl_state.h`) | optional, passed to `qmbl_init(path)` |
 | any other (numpy host function) | `python:file.py:NAME` (returns `logpsi(x)`) | optional, passed to `NAME` |
+| a Slater determinant, hydrogen in a Gaussian basis (v1.10) | `det:state.npz` (arrays `phi_dn`, `phi_up`) | none |
 
 `NAME` gets the QMBL instance as a dict when it takes a positional argument. Every framework sees
 the same input: `x` is `int8` of shape `(n_conf, n_dof)`, one configuration per row in the
@@ -79,6 +81,24 @@ with the uniform background and the Madelung term.
     python op_verify.py hf-check --instance-file F      (the Hartree-Fock determinant, scored by the verifier)
     python op_verify.py score    --instance-file F --state jax:state.py:build --params p.npz --seed 1 --out score_1.json
 
+## A hydrogen state in continuous space (v1.10)
+
+`Hchain` / `Hsheet` instances with `params.basis: none` are scored in continuous space (`qrec_verify/molecule.py`),
+with the electron gas's state interface: a flax module or a JAX function of `x`, float64 of shape `(n_conf, N * 3)`,
+Cartesian electron coordinates in bohr, the N_up spin-up electrons first, returning log psi or `(sign, log|psi|)`.
+The protons sit where the Gaussian-basis instances put them (chain: (0, 0, I R); sheet: (i R, j R, 0), atom
+I = i L + j; R = `params.R` in bohr). Energies are hartree with the nuclear repulsion, per atom E / N.
+
+The verifier's local energy is its own: Coulomb pair sums (electrons, protons, nuclear repulsion) and the kinetic
+energy by the forward Laplacian. Gates on every score: the potential against pyscf's point-charge Coulomb sum, the
+forward Laplacian against `jax.hessian`, the two kinetic estimators (Laplacian and gradient forms) against each
+other, antisymmetry under the exchange of two same-spin electrons, and the decay of log|psi| when one electron
+moves far out. The sampler is all-electron Gaussian Metropolis from the verifier's own starts (each electron near a
+proton). Only open chains and sheets exist in QMBL; a periodic cell is refused with the reason.
+
+    python op_verify.py neel-check --instance-file F    (the RHF determinant in cc-pVDZ against pyscf's RHF energy)
+    python op_verify.py score      --instance-file F --state jax:state.py:build --params p.npz --seed 1 --out score_1.json
+
 ## Lattices and models (v1.9)
 
 Every lattice state sees `x` as above: `int8` of shape `(n_conf, n_dof)`. What a row means per model
@@ -97,8 +117,8 @@ Every lattice state sees `x` as above: `int8` of shape `(n_conf, n_dof)`. What a
 | TFIsing | square, rectangular, chain | `x * ly + y` | N | +-1, no S^z constraint |
 | Hubbard | square, rectangular | `x * ly + y` | 2N | occupations, NetKet's orbital order |
 | tJ | square (L x L, or the tilted square torus), `rectangular-WxL`, `ladder-WxL`, `honeycomb-flake24` | `qrec_verify/tj.py` | 2N | occupations as Hubbard, never two on a site |
-| Hchain (Gaussian basis) | open chain | Loewdin orbitals in pyscf's AO order (below) | 2 n_orb | occupations as Hubbard |
-| Impurity | VarBench's models | per block: the impurity orbitals, then the bath orbitals (`qrec_verify/impurity.py`) | 2 n_orb | occupations as Hubbard |
+| Hchain, Hsheet (Gaussian basis) | open chain, square sheet | Loewdin orbitals in pyscf's AO order (below) | 2 n_orb | occupations as Hubbard |
+| Impurity | VarBench's models | per block: the impurity orbitals, then the bath orbitals (`qrec_verify/impurity.py`) | 2 n_orb | occupations as Hubbard; with spin-orbit coupling only the total N is fixed (v1.10) |
 
 Units (QMBL's, DATA.md): spin models in Pauli totals (S.S per site = E / 4N; TFIsing E / N), t-J in units of t
 (per site E / N), hydrogen in hartree with the nuclear repulsion (per atom E / N), impurity models as totals.
@@ -119,8 +139,14 @@ spin-up ones (NetKet's `SpinOrbitalFermions(n_orb, s=1/2, n_fermions_per_spin=(N
 convention, as for Hubbard). A state written in another orbital basis (canonical RHF orbitals, natural orbitals) must
 be rotated to these first; `op_verify.py neel-check` scores one Slater determinant of Loewdin orbitals, and
 `op_verify.py ed-gate --small hchain:N:R:BASIS` scores your state's family on a small chain against exact
-diagonalisation. Continuous-space instances (`basis: none`) and MPS files of these models are refused with the
-reason; at most 128 orbitals are built.
+diagonalisation. MPS files of these models are refused with the reason.
+
+Above 128 orbitals (v1.10; `qrec_verify/chem_large.py`) the verifier stores the two-electron integrals as Cholesky
+vectors and scores Slater determinants: `--state det:state.npz` with `phi_dn` (n_orb x N_dn) and `phi_up`
+(n_orb x N_up), real, in the Loewdin orbitals above; the local energy is the verifier's own determinant kernel. Other
+states are not scored there (each sample would need psi on about 10^6 connected configurations). Refused with the
+reason: bases whose Cholesky vectors would exceed 64 GB (above 850 orbitals) and bases whose overlap matrix is
+nearly singular (smallest eigenvalue below 1e-10: no well-defined Loewdin orbitals).
 
 ## Submitting an MPS
 
@@ -178,7 +204,7 @@ model must put it in itself (e.g. `"Cdu JW"` on the first site).
 
 ## Coverage
 
-By model and lattice (v1.9; `DESIGN.md` has the checks behind each):
+By model and lattice (v1.10; `DESIGN.md` has the checks behind each):
 - Heisenberg and J1-J2: square and rectangular (periodic or open), triangular (L x L rhombus, periodic or open, and the
   3 m^2 C6v clusters), honeycomb L x M tori; Heisenberg also on kagome L x M, pyrochlore (primitive and 16-site cubic
   cells) and shuriken.
@@ -187,12 +213,14 @@ By model and lattice (v1.9; `DESIGN.md` has the checks behind each):
 - Hubbard with t, t', U, V1, V2: square and rectangular (periodic, antiperiodic or open axes).
 - t-J (with the n n / 4 term): square (L x L and the tilted tori), rectangular, ladders (periodic or antiperiodic),
   the 24-site honeycomb flake.
-- Hydrogen chains in a Gaussian basis (STO-nG, cc-pVXZ, aug-cc-pVXZ) up to 128 orbitals (`requirements-chem.txt`).
-- Anderson impurity models: VarBench's single-band and three-band models without spin-orbit coupling.
+- Hydrogen chains and sheets in a Gaussian basis (STO-nG, cc-pVXZ, aug-cc-pVXZ): any state up to 128 orbitals;
+  Slater determinants up to 850 orbitals (v1.10) (`requirements-chem.txt`).
+- Hydrogen chains and sheets in continuous space (`basis: none`, v1.10), open boundary.
+- Anderson impurity models: VarBench's single-band and three-band models, with spin-orbit coupling since v1.10.
 - The electron gas (since v1.8): 2D and 3D cells.
 
-Not covered: hydrogen in continuous space (`basis: none`) and Gaussian bases above 128 orbitals; the spin-orbit
-impurity models (TB-DMFT-SOC, refused until the Hamiltonian matches VarBench's); MPS files for hydrogen and impurity
+Not covered: periodic hydrogen cells in continuous space; states other than Slater determinants above 128 orbitals,
+Gaussian bases above 850 orbitals or with a nearly singular overlap; MPS files for hydrogen and impurity
 models.
 
 ## Environment

@@ -6,7 +6,7 @@
   "params": {
     "N_up": 6,
     "N_dn": 6,
-    "R": 1.88973,
+    "R": 1.8897261246257702,
     "basis": "STO-3G"
   },
   "instance_id": "Hchain/chain_12_O_R1.88973_sto3g",

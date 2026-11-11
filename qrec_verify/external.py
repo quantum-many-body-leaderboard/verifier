@@ -45,7 +45,7 @@ from typing import Any, Callable
 
 import numpy as np
 
-KINDS = ("flax", "torch", "jax", "julia", "c", "python")
+KINDS = ("flax", "torch", "jax", "julia", "c", "python", "det")     # det: v1.10, hydrogen in a Gaussian basis
 HOST_KINDS = ("torch", "julia", "c", "python")
 DEFAULT_CHUNK = 8192
 STATE_COLLECTION = "qmbl_state"        # holds the sha256 of the state's files, so state_hash differs per state
@@ -72,7 +72,9 @@ def n_dof(inst: dict) -> int:
         p = impurity.read(impurity.file_for(inst))
         return 2 * p["M"] * (1 + p["Nb"])
     if inst["model"] in ("Hchain", "Hsheet"):               # (v1.9) 2 x the Gaussian basis' orbitals
-        from . import chem
+        from . import chem, molecule
+        if molecule.is_continuum_hydrogen(inst):            # (v1.10) basis none: electron coordinates
+            return 3 * n
         return 2 * chem.n_orbitals(inst)
     return n if inst["model"] in I.SPIN_MODELS else 2 * n
 
@@ -196,10 +198,17 @@ class LoadedState:
     variables: dict
     host: HostLogPsi | None = None
     files: list = field(default_factory=list)
+    kernel: Any = None               # (v1.10) the verifier's own local-energy kernel for this state, if any
 
     def close(self):
         if self.host is not None:
             self.host.close()
+
+
+def continuous(inst: dict) -> bool:
+    """A state of electron positions: the electron gas, or (v1.10) hydrogen with basis none."""
+    from . import instance as I, molecule
+    return inst["model"] in I.HEG_MODELS or molecule.is_continuum_hydrogen(inst)
 
 
 def load_state(spec: str, params: str | None, inst: dict, *, chunk: int | None = None) -> LoadedState:
@@ -209,9 +218,12 @@ def load_state(spec: str, params: str | None, inst: dict, *, chunk: int | None =
     chunk = chunk or int(os.environ.get("QMBL_HOST_CHUNK", DEFAULT_CHUNK))
     d = n_dof(inst)
     from . import instance as I
-    if inst["model"] in I.HEG_MODELS and kind not in ("flax", "jax"):
-        raise ValueError("an electron-gas state must be a flax module or a JAX function: the kinetic energy "
-                         "needs derivatives of log psi, which a host state does not provide")
+    if continuous(inst) and kind not in ("flax", "jax"):
+        raise ValueError("a state in continuous space (electron gas, hydrogen with basis none) must be a flax module "
+                         "or a JAX function: the kinetic energy needs derivatives of log psi, which a host state does "
+                         "not provide")
+    if kind == "det":                                        # (v1.10) det:FILE.npz, hydrogen in a Gaussian basis
+        return _load_det(rest, inst)
     if kind == "flax":
         if not params:
             raise ValueError("a flax state needs --params (msgpack)")
@@ -232,6 +244,29 @@ def load_state(spec: str, params: str | None, inst: dict, *, chunk: int | None =
     model = _host_module()(host=host)
     variables = {"params": {}, STATE_COLLECTION: {"sha256": files_sha256(files)}}
     return LoadedState(kind, model, variables, host=host, files=files)
+
+
+def _load_det(path: str, inst: dict) -> LoadedState:
+    """A determinant state (chem_large.load_det_state) on a Gaussian-basis hydrogen instance: the module, and the
+    verifier's determinant kernel on the instance's factorised integrals."""
+    from . import chem, chem_large, score as SC
+    from . import hamiltonians as Hm
+    if not chem.is_chem(inst):
+        raise ValueError("a det: state (orbital matrices in the Loewdin orbitals) needs a hydrogen instance in a "
+                         "Gaussian basis")
+    st = chem_large.load_det_state(path, inst)
+    system = Hm.build(inst)
+    n, nu, nd = system.n_sites, system.meta["n_up"], system.meta["n_dn"]
+    if st["phi_dn"].shape != (n, nd) or st["phi_up"].shape != (n, nu):
+        raise ValueError(f"det state: phi_dn {st['phi_dn'].shape}, phi_up {st['phi_up'].shape}; the instance needs "
+                         f"({n}, {nd}) and ({n}, {nu})")
+    ints = system.meta["integrals"]
+    if "Lp" not in ints:                                     # dense integrals (<= chem.MAX_ORBITALS): factorise
+        ints = chem_large.factorised(inst)
+    kern = chem_large.det_local_energy_fn(ints, st["phi_dn"], st["phi_up"], nd, nu)
+    model = chem_large.det_model(st["phi_dn"], st["phi_up"])
+    variables = {"params": {}, STATE_COLLECTION: {"sha256": files_sha256([path])}}
+    return LoadedState("det", model, variables, files=[path], kernel=lambda variables, x: kern(x))
 
 
 def _file_and_name(rest: str) -> tuple[str, str]:
@@ -276,7 +311,7 @@ def _load_jax(rest: str, params: str | None, inst: dict) -> LoadedState:
         tree = flax.serialization.msgpack_restore(pathlib.Path(params).read_bytes())
     tree = jax.tree_util.tree_map(jnp.asarray, tree)
     from . import instance as I
-    model = _jax_module(continuous=inst["model"] in I.HEG_MODELS)(apply_fn=apply_fn)
+    model = _jax_module(continuous=continuous(inst))(apply_fn=apply_fn)
     return LoadedState("jax", model, {"params": {"tree": tree}}, files=[path] + ([params] if params else []))
 
 

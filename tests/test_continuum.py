@@ -205,3 +205,160 @@ def test_jax_adapter_sign_logabs_state(tmp_path):
     np.testing.assert_allclose(np.angle(np.exp(1j * (np.imag(a) - np.imag(b)))), 0, atol=1e-10)
     with pytest.raises(ValueError, match="flax module or a JAX function"):
         EX.load_state(f"python:{tmp_path / 'state.py'}:build", None, inst)
+
+
+# ------------------------------------------------------------------ hydrogen in continuous space (v1.10)
+# qrec_verify/molecule.py: QMBL's Hchain / Hsheet instances with basis none, the electron gas's state interface.
+
+from qrec_verify import molecule as MOL  # noqa: E402
+
+
+def _quiet(*a, **k):
+    pass
+
+
+def _pyscf():
+    return pytest.importorskip("pyscf")
+
+
+def _load(iid):
+    from qrec_verify import instance as I
+    return I.load(iid)
+
+
+def test_molecule_geometry_matches_chem_and_data_md():
+    """The protons of the continuous-space instances are DATA.md's (chain along z, sheet atom I = i L + j), the same
+    as the Gaussian-basis path (chem.atoms); N_up, N_dn from params."""
+    from qrec_verify import chem
+    for iid in ("Hchain/chain_10_O_R1.8_none", "Hsheet/square_4_O_R2.4_none"):
+        inst = _load(iid)
+        mol = MOL.molecule_of(inst)
+        np.testing.assert_array_equal(mol.atoms, chem.atoms(inst))
+        assert (mol.n_up, mol.n_dn) == (inst["params"]["N_up"], inst["params"]["N_dn"])
+    sheet = MOL.molecule_of(_load("Hsheet/square_4_O_R2.4_none"))
+    np.testing.assert_allclose(sheet.atoms, [[0, 0, 0], [0, 2.4, 0], [2.4, 0, 0], [2.4, 2.4, 0]])
+
+
+def test_molecule_refusals():
+    """Gaussian-basis instances are not continuous-space states; periodic cells are refused with the reason."""
+    with pytest.raises(ValueError, match="basis none"):
+        MOL.molecule_of(_load("Hchain/chain_10_O_R1.8_sto6g"))
+    inst = dict(_load("Hchain/chain_10_O_R1.8_none"), boundary="P")
+    with pytest.raises(ValueError, match="periodic"):
+        MOL.molecule_of(inst)
+
+
+def test_molecule_coulomb_against_pyscf():
+    """The verifier's potential (JAX pair sums) against pyscf's point-charge Coulomb sum and Mole.energy_nuc
+    (independent code), on random configurations of H10 and the H4 sheet, and the numpy term-by-term sum."""
+    _pyscf()
+    rng = np.random.default_rng(3)
+    for iid in ("Hchain/chain_10_O_R1.8_none", "Hsheet/square_4_O_R2.4_none"):
+        mol = MOL.molecule_of(_load(iid))
+        x = MOL.start_positions(rng, mol, 12, 0.8)
+        g = MOL.coulomb_gate(mol, x)
+        assert g["pass"] and "pyscf" in g["detail"], g
+        v = np.asarray(jax.vmap(MOL.potential_fn(mol))(jnp.asarray(x)))
+        ref = [MOL.potential_np(xx.reshape(mol.n, 3), mol) for xx in x]
+        np.testing.assert_allclose(v, ref, rtol=1e-12)
+    # H2 at 1.4 bohr: the nuclear repulsion is 1 / 1.4
+    assert abs(MOL.nuclear_repulsion(MOL.molecule_of(MOL.small_instance("h2:1.4"))) - 1 / 1.4) < 1e-15
+
+
+def test_molecule_hydrogen_atom_exact():
+    """The hydrogen atom's 1s state exp(-r): E_loc = -1/2 at every sample, sigma 0, every gate passes."""
+    model, var = MOL.hydrogen_1s_model()
+    card = MOL.evaluate(MOL.small_instance("h1"), model, var, seed=1, min_samples=512 * 32, log=_quiet)
+    assert abs(card["energy_total"] - MOL.H_ATOM_EXACT) < 1e-12 and card["sigma_total"] < 1e-12, card
+    assert all(g["pass"] for g in card["physics_gates"]), card["physics_gates"]
+
+
+def test_molecule_kinetic_paths_on_rhf_h4():
+    """Forward Laplacian = jax.hessian, and the Laplacian estimator = the gradient estimator per sample in the mean
+    (checked in evaluate), for the RHF determinant of H4 (cc-pVDZ, s and p orbitals)."""
+    _pyscf()
+    model, var, _, _ = MOL.rhf_model(MOL.small_instance("h4:1.8"))
+    mol = MOL.molecule_of(MOL.small_instance("h4:1.8"))
+    x = MOL.start_positions(np.random.default_rng(5), mol, 8, 0.8)
+    g = MOL.kinetic_paths_gate(model, var, mol, x)
+    assert g["pass"] and g["value"] < 1e-10, g
+
+
+def test_molecule_state_gates_catch_broken_states():
+    """A symmetric (bosonic) product of 1s orbitals fails the antisymmetry gate; a state that grows far out fails
+    the decay gate; the RHF determinant passes both."""
+    import flax.linen as nn
+    _pyscf()
+    inst = MOL.small_instance("h4:1.8")
+    mol = MOL.molecule_of(inst)
+    atoms = jnp.asarray(mol.atoms)
+
+    class Bosonic(nn.Module):
+        @nn.compact
+        def __call__(self, x):
+            r = x.reshape(x.shape[0], -1, 3)
+            return (-jnp.sum(jnp.linalg.norm(r - atoms[None], axis=-1), axis=-1)).astype(jnp.complex128)
+
+    class Growing(nn.Module):
+        @nn.compact
+        def __call__(self, x):
+            r = x.reshape(x.shape[0], -1, 3)
+            m, v, _, _ = MOL.rhf_model(inst)
+            return m.apply({}, x) + 0.1 * jnp.sum(r ** 2, axis=(1, 2))
+
+    x = MOL.start_positions(np.random.default_rng(2), mol, 8, 0.8)
+    lp = lambda m: CT.logpsi_fn(m, {})                     # noqa: E731
+    gb = {g["name"]: g for g in MOL.state_gates(lp(Bosonic()), mol, x)}
+    assert not gb["antisymmetry"]["pass"] and gb["decay"]["pass"], gb
+    gg = {g["name"]: g for g in MOL.state_gates(lp(Growing()), mol, x)}
+    assert gg["antisymmetry"]["pass"] and not gg["decay"]["pass"], gg
+    m, v, _, _ = MOL.rhf_model(inst)
+    gr = {g["name"]: g for g in MOL.state_gates(lp(m), mol, x)}
+    assert gr["antisymmetry"]["pass"] and gr["decay"]["pass"], gr
+
+
+def test_molecule_h2_fci_scores_pyscf_fci():
+    """The two-electron FCI wave function of H2 at R = 1.4 bohr in cc-pVDZ (pyscf), evaluated by the verifier's own
+    Gaussian-orbital code, scores pyscf's FCI energy within 4 sigma; both lie above the exact H2 energy
+    (Pachucki 2010: -1.1744757142204434), and the score is not flagged below it."""
+    _pyscf()
+    model, var, e_fci = MOL.h2_fci_model(1.4)
+    assert e_fci > MOL.H2_EXACT[1.4]
+    card = MOL.evaluate(MOL.small_instance("h2:1.4"), model, var, seed=2, min_samples=512 * 1024, log=_quiet)
+    z = (card["energy_total"] - e_fci) / card["sigma_total"]
+    assert abs(z) < 4 and card["status"] != "fail", (card["energy_total"], card["sigma_total"], e_fci)
+    assert card["energy_total"] > MOL.H2_EXACT[1.4] and "plausibility" not in card
+    assert all(g["pass"] for g in card["physics_gates"]), card["physics_gates"]
+
+
+def test_molecule_rhf_known_state_h10():
+    """The known state on QMBL's H10 (R = 1.8 bohr, basis none): the RHF determinant (cc-pVDZ) scores pyscf's RHF
+    energy within 3 sigma, and lies above the sources' near-exact rows of that instance (MRCI+Q, LR-DMC)."""
+    _pyscf()
+    inst = _load("Hchain/chain_10_O_R1.8_none")
+    r = MOL.rhf_check(inst, min_samples=512 * 128, log=_quiet)
+    assert r["pass"], r
+    lowest = min(row["energy"] for row in inst["rows"])
+    assert r["energy_total"] > lowest + 0.1, (r["energy_total"], lowest)
+
+
+def test_molecule_jax_adapter_and_cli(tmp_path):
+    """A JAX function of the electron positions through --state jax: (the electron gas's interface): the hydrogen
+    atom's exact state as a (sign, log|psi|) pair; host states are refused for basis none."""
+    from qrec_verify import external as EX
+    inst = _load("Hchain/chain_10_O_R1.8_none")
+    assert EX.n_dof(inst) == 30
+    np.savez(tmp_path / "p.npz", a=np.array(1.0))
+    (tmp_path / "state.py").write_text(
+        "import jax.numpy as jnp\n"
+        "def build():\n"
+        "    def apply_fn(p, x):\n"
+        "        r = x.reshape(x.shape[0], -1, 3)\n"
+        "        return jnp.ones(x.shape[0]), -p['a'] * jnp.sum(jnp.linalg.norm(r, axis=-1), axis=-1)\n"
+        "    return apply_fn\n")
+    h1 = MOL.small_instance("h1")
+    st = EX.load_state(f"jax:{tmp_path / 'state.py'}:build", str(tmp_path / "p.npz"), h1)
+    card = MOL.evaluate(h1, st.model, st.variables, seed=4, min_samples=512 * 16, log=_quiet)
+    assert abs(card["energy_total"] + 0.5) < 1e-12, card["energy_total"]
+    with pytest.raises(ValueError, match="flax module or a JAX function"):
+        EX.load_state(f"python:{tmp_path / 'state.py'}:build", None, inst)
