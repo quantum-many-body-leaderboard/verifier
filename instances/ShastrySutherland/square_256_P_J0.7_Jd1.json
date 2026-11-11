@@ -1,0 +1,50 @@
+{
+  "model": "ShastrySutherland",
+  "lattice": "square",
+  "n_sites": 256,
+  "boundary": "P",
+  "params": {
+    "J": 0.7,
+    "Jd": 1
+  },
+  "cluster": "16 x 16 square lattice with orthogonal dimers, periodic boundaries (torus)",
+  "instance_id": "ShastrySutherland/square_256_P_J0.7_Jd1",
+  "rows": [
+    {
+      "energy": -385.45408,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 256,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "Gutzwiller-projected partons, Table VI case (vi): EP phase in 16x16 sites",
+      "method_as_published": "Gutzwiller-projected parton state, case (vi) EP phase in 16x16 sites",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Chen & Liu, Deconfined gapless phases and criticalities in the Shastry-Sutherland antiferromagnet, Phys. Rev. B 113, 224440 (2026), doi:10.1103/hvlq-d179, arXiv:2503.20122",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2503.20122 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.37642",
+        "note": "Table VI, case (vi); version read: arXiv text (sources/2503.20122.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8); Some Table VI cases reuse the parameters of case (i) with one parameter changed and are not optimised; the fermion boundary sector of each case is not stated. | Eq. (1) H = J1 sum S.S (square bonds) + J2 sum S.S (diagonal dimer bonds) - Jr sum Q_r, Table VI caption 'J1/J2 = 0.7, Jr = 0', 12 x 12 sites by default; per site in units of J2, read from Table I's 'Energy per site' for the same method and the dimer energy -3/8 beside them (Table VI does not print the unit).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2503.20122v2 (submitted 2026-03-12, PDF dated March 16, 2026), PDF via pypdf layout mode and arXiv HTML v2; arXiv v1 (2025-03-26) has no Table VI energies; Phys. Rev. B 113, 224440 (2026) full text not reached (APS returned 401 / 'Authorization Required' from this session); APS page: Received 22 December 2025, Revised 12 March 2026, Accepted 2 June 2026, Published 23 June 2026",
+          "location": "Table VI, row (vi) ('(vi) EP phase in 16×16 sites'), column E; caption 'Energy and variational mean-field parameters for different cases (12×12 sites by default) with J1/J2 = 0.7, Jr = 0.'",
+          "reported_as": "-0.37642 (Table VI column E; unit not printed, per site in units of J2)",
+          "conversion": "-0.37642 * 4 * 256 = -385.454080 (S.S per site in units of J2 -> Pauli total)",
+          "note": "Value confirmed: Table VI row '(vi) EP phase in 16×16 sites' prints E = -0.37642; -0.37642 * 4 * 256 = -385.454080 (S.S per site in units of J2 -> Pauli total) equals stored -385.45408. Lattice 16 x 16 (row label), torus (fermion BCs +/- define 4 topological sectors on a torus), J1/J2 = 0.7, Jr = 0 (caption), J1 on square bonds, J2 on the dimer diagonals = QMBL J = 0.7, Jd = 1; no constant shift; no error bar printed; bound_type variational agrees. Published as Phys. Rev. B 113, 224440 (2026) (Crossref and the APS abstract page, read 2026-10-24); the journal full text was not reached.",
+          "source_entry": "famP5-arxiv-2503-20122#24 (qmbl-verify 2026-10-23; skeptic upheld)"
+        }
+      }
+    }
+  ]
+}

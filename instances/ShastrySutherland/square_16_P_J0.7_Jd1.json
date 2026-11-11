@@ -1,0 +1,67 @@
+{
+  "model": "ShastrySutherland",
+  "lattice": "square",
+  "n_sites": 16,
+  "boundary": "P",
+  "params": {
+    "J": 0.7,
+    "Jd": 1
+  },
+  "cluster": "4 x 4 square lattice with orthogonal dimers, periodic boundaries: not printed in the source (arXiv:cond-mat/0309368); QMBL's Lanczos ground state of the 4 x 4 torus, -6.3502520 in the source's units, is the printed -6.3502 truncated (checks/exact-recompute-2026-10-families/, 2026-10-24)",
+  "instance_id": "ShastrySutherland/square_16_P_J0.7_Jd1",
+  "rows": [
+    {
+      "energy": -25.401007836214,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 16,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "exact values",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "numerically exact reference as stated by the source (assigned during source reading)",
+      "reference": "Munehisa & Munehisa, The Stochastic State Selection Method for Energy Eigenvalues in the Shastry-Sutherland Model, J. Phys. Soc. Jpn. 73, 340 (2004), doi:10.1143/JPSJ.73.340, arXiv:cond-mat/0309368",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:cond-mat/0309368 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.63502 ×10^1",
+        "note": "Sec. 3, the exact ground-state energy of the 4 x 4 cluster at J'/J = 0.7, printed '-0.63502 ×10^1' (layout text); the two stochastic estimates of the same state are not rows; version read: arXiv text (sources/cond-mat-0309368.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Sec. 3: H = (1/4) J sum h (dimer bonds) + (1/4) J' sum h (square bonds), h = sigma.sigma, so S.S sums; J = 1, J'/J = 0.7; total energy of the 16-site cluster. QMBL's Lanczos diagonalization of the 4 x 4 torus gives -6.35025196 (SWEEP.md, 2026-10-20).",
+        "secondary_of": null
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.63502 ×10^1",
+          "location": "arXiv:cond-mat/0309368 Sec. 3",
+          "version_read": "arXiv text (sources/)",
+          "conversion": "none",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate: the exact ground-state energy of the 4 x 4 cluster the stochastic estimates are compared with. The method string matches no deterministic marker, so the fallback in units.mjs read it as sampled (RULES.md 6).",
+          "source_entry": "families pass 2026-10-20 (first reading and adversarial second reading)",
+          "from": true
+        },
+        {
+          "field": "energy",
+          "to": -25.401007836214,
+          "reported_as": "-0.63502 ×10^1 (total energy, units of J = Jd, S.S form)",
+          "location": "Sec. 3 and Table I, row L = 1 (arXiv:cond-mat/0309368)",
+          "version_read": "recomputation (checks/exact-recompute-2026-10-families/); printed value read in arXiv:cond-mat/0309368v2 and v1 (pypdf layout); J. Phys. Soc. Jpn. 73, 340 not reached",
+          "conversion": "-0.63502e1 x 4 = -25.4008 (S units total x 4); recomputed -25.401007836214 = 4 x (-6.350251959)",
+          "checked_on": "2026-10-24",
+          "reason": "Rule for exact rows QMBL recomputed (2026-09-30; ruled for this row 2026-10-24): the printed -0.63502 x 10^1 is QMBL's ground state truncated to the printed digits (-6.3502520 would round to -6.3503), so the row keeps its citation and carries QMBL's digits; the printed value stays here. Recomputed by Lanczos on the 4 x 4 orthogonal-dimer torus in the S^z = 0 basis (12,870 states, ed.c), the same code in the full 2^16 basis, and scipy eigsh, all -25.401007836214. The source does not print the boundary; the torus reproduces the printed digits, so the instance's periodic boundary stands. Codes and outputs in checks/exact-recompute-2026-10-families/.",
+          "source_entry": "famE-exact-recompute#18, famP7-kitaev-shastrysutherland#1 (ambiguous: boundary, closed) (qmbl-verify 2026-10-23); rule for recomputed exact rows, 2026-09-30, ruled for these rows 2026-10-24",
+          "from": -25.4008
+        }
+      ],
+      "sampled": false
+    }
+  ]
+}

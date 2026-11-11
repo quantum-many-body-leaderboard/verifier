@@ -1,0 +1,122 @@
+{
+  "model": "tJ",
+  "lattice": "square",
+  "n_sites": 16,
+  "boundary": "O",
+  "params": {
+    "t": 1,
+    "J": 0.4,
+    "N_up": 7,
+    "N_dn": 7,
+    "nn_term": true
+  },
+  "cluster": "4 x 4 square lattice, open boundaries (arXiv:1908.10000, lines 79-80); QMBL's diagonalization gives -0.564366793 per site (checks/tj-ed-2026-10/)",
+  "instance_id": "tJ/square_16_O_h2_J0.4",
+  "rows": [
+    {
+      "energy": -9.02848,
+      "sigma": 0.00032,
+      "energy_variance": null,
+      "dof": 14,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "fPEPS",
+      "method_detail": "gradient optimisation, contraction dimension Dc = 56",
+      "method_as_published": "E_fPEPS (D = 12, Dc = 56)",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Dong, Wang, Han, Yang & He, Stable diagonal stripes in the t-J model at n_h = 1/8 doping from fPEPS calculations, npj Quantum Mater. 5, 28 (2020), doi:10.1038/s41535-020-0226-4, arXiv:1908.10000",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:1908.10000 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-0.56428(2)",
+        "note": "journal Supplementary Information, Table S2, row 4×4 (line 64); the arXiv text prints E_fPEPS = -0.56428 without an error bar (sources/1908.10000.txt, line 93); version read: the journal's Supplementary Information (npj Quantum Mater. 5, 28 (2020), ESM of doi:10.1038/s41535-020-0226-4, text in sources/1908.10000-si.txt) and the arXiv text (sources/1908.10000.txt); the journal value is stored where the two differ (RULES.md 8): the error bar (2) is printed only in the SI, and the contraction dimension is Dc = 56 in the journal (Methods; SI Sec. A, line 18) against Dc = 48 in arXiv v1 | Eq. (1): H = -t sum (c+c + H.c.) + J sum (S_i.S_j - n_i n_j / 4), t = 1, J/t = 0.4, open boundaries (lines 79-80); energies per site: QMBL's diagonalization of the open 4 x 4 lattice with 2 holes gives -0.564366793 per site, the printed E_ED -0.56436.",
+        "secondary_of": null
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 12,
+        "iterations": null,
+        "reported_as": "method string: \"E_fPEPS (D = 12, Dc = 56)\"",
+        "source": "the row's published method string (scripts/method_names.mjs, 2026-09-17)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Only the numbers the method string states; nothing else about this run's cost is recorded."
+      }
+    },
+    {
+      "energy": -9.029868687223,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 14,
+      "einf": null,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "E_ED",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "numerically exact reference as stated by the source (assigned during source reading)",
+      "reference": "Dong, Wang, Han, Yang & He, Stable diagonal stripes in the t-J model at n_h = 1/8 doping from fPEPS calculations, npj Quantum Mater. 5, 28 (2020), doi:10.1038/s41535-020-0226-4, arXiv:1908.10000",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:1908.10000 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-0.56436",
+        "note": "text: E_ED of the 4 x 4 lattice with 2 holes, J/t = 0.4, open boundaries (line 94); version read: arXiv text (sources/1908.10000.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eq. (1): H = -t sum (c+c + H.c.) + J sum (S_i.S_j - n_i n_j / 4), t = 1, J/t = 0.4, open boundaries (lines 79-80); energies per site: QMBL's diagonalization of the open 4 x 4 lattice with 2 holes gives -0.564366793 per site, the printed E_ED -0.56436.",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "npj Quantum Mater. 5, 28 journal PDF (sources/tjP7-dl/osti-1760263.pdf, eScholarship copy of the publisher PDF) and SI (sources/tjP7-dl/npjqm-5-28-SI.pdf), pypdf plain+layout; arXiv:1908.10000v1 text also read",
+          "location": "journal p. 2 'Ground state energies'; SI section B; arXiv v1 line 94",
+          "reported_as": "compared with the exact energy EED = −0.56436",
+          "conversion": "-0.56436 x 16 = -9.02976",
+          "note": "Transcribed correctly; same in journal, SI and arXiv. The printed value is truncated, not rounded: QMBL ED (checks/tj-ed-2026-10) gives -0.564366793 per site = -9.0298686872, 1.09e-4 below the stored total (outside the printed half-digit, 8e-5); for the exact-recompute pass. Producer not named in the paper; Ref. 13 (Hellberg & Manousakis, arXiv:cond-mat/9812022v1) treats a 4x4 open only in x and prints no -0.56436, so the row stays primary. No duplicate.",
+          "source_entry": "tjP7-tj#9 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -9.029868687223,
+          "reported_as": "-0.56436 (E_ED per site)",
+          "location": "text: E_ED of the 4 x 4 lattice with 2 holes, J/t = 0.4, open boundaries (line 94)",
+          "version_read": "recomputation: checks/tj-exact-recompute-2026-10/ (tjk.c, 2026-10-23); the printed value as the generator read it (scripts/tj_2026_10_22.mjs)",
+          "conversion": "-0.56436 x 16 = -9.02976 (stored); recomputed -9.029868687223 = -0.5643667930 in the printed form, which truncates to the printed digits",
+          "checked_on": "2026-10-23",
+          "reason": "Rule for exact rows QMBL recomputed (2026-09-30; applied to the t-J rows, ruled 2026-10-24): the printed value is QMBL's value truncated (rounding would print -0.56437) to the printed digits, so the row keeps its citation and carries QMBL's digits; the printed value stays here. Recomputed by tjk.c (symmetry-adapted Lanczos, |dE| < 1e-13 per step; the full space at its electron number, lowest sector sq16O_h2_J0.4_full, dimension 411840), whose code agrees with the brute-force bf.py to 1e-10 on 12 small clusters; codes and outputs in checks/tj-exact-recompute-2026-10/.",
+          "source_entry": "tjE-exact-recompute#6 (qmbl-verify 2026-10-23); rule for recomputed exact rows, ruled 2026-10-24",
+          "from": -9.02976
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.56436",
+          "location": "text: E_ED of the 4 x 4 lattice with 2 holes, J/t = 0.4, open boundaries (line 94)",
+          "version_read": "the row's published method string; the exact diagonalization is recomputed in checks/tj-exact-recompute-2026-10/",
+          "conversion": "none",
+          "checked_on": "2026-10-24",
+          "reason": "Deterministic: an exact (Lanczos) diagonalization carries no statistical error, but the label \"E_ED\" matches none of isSampled's deterministic markers, so the row read as a sampled energy without an error bar (the README marked it); ruled 2026-10-24.",
+          "source_entry": "tjE-exact-recompute#6 (qmbl-verify 2026-10-23); ruled 2026-10-24 (exact rows whose label reads as sampled)",
+          "from": true
+        }
+      ],
+      "sampled": false
+    }
+  ]
+}

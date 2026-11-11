@@ -1,0 +1,55 @@
+{
+  "model": "tJ",
+  "lattice": "square",
+  "n_sites": 32,
+  "boundary": "P",
+  "params": {
+    "t": 1,
+    "J": 0.3,
+    "t2": 0.3,
+    "t3": -0.2,
+    "N_up": 14,
+    "N_dn": 14,
+    "nn_term": true
+  },
+  "cluster": "square-shaped periodic cluster of 32 sites, edge vectors (4, 4) and (4, -4) (RULES.md 2.1); the source states 'a square lattice with 32 sites and periodic boundary conditions'",
+  "instance_id": "tJ/square_32_P_h4_J0.3_tp0.3_tpp-0.2",
+  "rows": [
+    {
+      "energy": -20.461647,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 28,
+      "einf": null,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "exact diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "numerically exact reference as stated by the source (assigned during source reading)",
+      "reference": "Leung, Charge carrier correlation in the electron-doped t-J model, Phys. Rev. B 73, 075104 (2006), doi:10.1103/PhysRevB.73.075104, arXiv:cond-mat/0508035",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:cond-mat/0508035 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "−20.461647",
+        "note": "Table I, E_Nc for Nc = 4 charge carriers of the electron-doped model (t = -1, t' = 0.3, t'' = -0.2, J = 0.3) (line 70); version read: arXiv text (sources/cond-mat-0508035.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eq. (1): H = -sum t_ij (c~+c~ + h.c.) + J sum_nn (S_i.S_j - n_i n_j / 4); the electron-doped model is Eq. (1) with t = -1, t' = 0.3, t'' = -0.2, J = 0.3 in the hole operators of the electron-hole transformation (lines 98-114), Nc charge carriers on 32 sites: a t-J model with 32 - Nc particles and no double occupancy. The cluster is bipartite, so the gauge c_i -> (-1)^i c_i takes t = -1 to t = 1 and leaves t' and t'' (same-sublattice hops): t' = 0.3, t'' = -0.2 in the form -t' sum - t'' sum. Total energies (Table I). Convention check: at half filling the source prints E00 = -11.329720 (Table I caption, sources/cond-mat-0508035.txt line 65); with J = 0.3 and -n_i n_j / 4 on the 64 bonds this is 0.3 (E_S.S - 16), so E_S.S / 32 = -0.6801792, the 32-site Heisenberg energy per site -0.680179 printed by Schulz, Ziman & Poilblanc (arXiv:cond-mat/9402061 Table II, J2 = 0.00, column 32; sources/cond-mat-9402061.txt line 1642). Without the -n_i n_j / 4 term E00 would be -6.53.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:cond-mat/0508035v1 and v2 PDFs (sources/cond-mat-0508035v{1,2}.pdf; v2 byte-identical to the repo copy), pypdf layout mode, read 2026-10-24",
+          "location": "Table I, row Nc = 4 (k = (0, 0), s, NB = 2,817,694,064); identical in v1 and v2",
+          "reported_as": "−20.461647 (E_Nc total, units of |t|)",
+          "conversion": "none: total energy, |t| = 1; stored -20.461647",
+          "note": "Eq. (1) H = -sum_<ij> t_ij (c+c + c+c) + J sum_nn (S_i.S_j - 1/4 n_i n_j), J = 0.3; 'by electron-doped model we mean (1) with hopping parameters t = -1, t' = 0.3, and t'' = -0.2'; t_ij = t, t', t'' at distances 1, sqrt2, 2; 32-site square lattice with periodic boundary conditions. RULES 2.1: on the bipartite 32-site cluster the gauge takes t = -1 to t = 1 and leaves t', t'' (same sublattice): instance t2 = 0.3, t3 = -0.2; Nc carriers = instance holes (32 - Nc spin objects). Internal checks: E00 = -11.329720 = 0.3 (E_S.S - 16) gives -0.680179 per site (the 32-site Heisenberg value), so the -n n/4 term and one count per bond hold; Table II E(pi,0) = -2.583895 gives E1 = E00 + E = -13.913615 (printed -13.913616); Eq. (5) binding energies E2I = -0.1042 and E4I = 1.2037 are reproduced from Table I (-0.104177, 1.203657). Independent exact recompute of this run (out/tjE-exact-recompute) reproduces h1 (-13.9136156041) and h2 (-16.6016890531) in the printed ground-state sectors; h4 was out of reach there. Table I caption: 'Ground state energies, momenta and point group symmetries of the electron-doped model with Nc charge carriers': the global ground state at Nc = 4; bound_type exact (Lanczos ED) is right; journal version (Phys. Rev. B 73, 075104) not reached: journals.aps.org PDF returned 401 on 2026-10-24; arXiv v1 and v2 both read, Table I identical in both; no duplicate on the instance (the data file holds only this row)",
+          "source_entry": "tjP6-tj#10 (qmbl-verify 2026-10-23)"
+        }
+      }
+    }
+  ]
+}

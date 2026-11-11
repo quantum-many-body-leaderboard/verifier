@@ -1,0 +1,92 @@
+{
+  "model": "Heisenberg",
+  "lattice": "pyrochlore-2x2x6",
+  "n_sites": 96,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/pyrochlore-2x2x6_96_P",
+  "rows": [
+    {
+      "energy": -188.8128,
+      "sigma": 0.1536,
+      "energy_variance": null,
+      "dof": 96,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "PP",
+      "method_detail": "",
+      "method_as_published": "mVMC (Table II)",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "N. Astrakhantsev, T. Westerhout, A. Tiwari, K. Choo, A. Chen, M. H. Fischer, G. Carleo & T. Neupert, Broken-Symmetry Ground States of the Heisenberg Model on the Pyrochlore Lattice, Phys. Rev. X 11, 041021 (2021), arXiv:2101.08787, doi:10.1103/PhysRevX.11.041021",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2101.08787 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.4917(4)",
+        "note": "Appendix H Table II, geometry 4x2^2x6, column mVMC, first line of cell; sources/2101.08787.txt line 1130; version read: arXiv text, Appendix H Table II (sources/2101.08787.txt) | Spin-1/2 operators S = sigma/2, J = 1; Table II caption: first line of each cell is the energy per site (S.S units). Cluster 4 x L^3 is L^3 FCC primitive cells of 4 sites (4 x 2^3 = VarBench's pyrochlore-2x2x2_32_P).",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "mVMC",
+            "version": null,
+            "url": "https://github.com/issp-center-dev/mVMC"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Here, we use the highly-optimized realization of mVMC from Ref. [39, 49]. ... Numerical simulations were performed using the open-source codes mVMC [39] for mVMC, Netket [49, 63] for NQS and lattice symmetries [74] for ED.",
+          "location": "arXiv:2101.08787 (sources/2101.08787.txt), Sec. II B Many-variable wave function; Sec. V Acknowledgements",
+          "checked_on": "2026-10-23",
+          "pass": "passes/code/libraries-2026-10-23.json"
+        }
+      }
+    },
+    {
+      "energy": -188.16,
+      "sigma": 0.384,
+      "energy_variance": null,
+      "dof": 96,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "CNN",
+      "method_detail": "",
+      "method_as_published": "NQS CNN (Table II)",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "N. Astrakhantsev, T. Westerhout, A. Tiwari, K. Choo, A. Chen, M. H. Fischer, G. Carleo & T. Neupert, Broken-Symmetry Ground States of the Heisenberg Model on the Pyrochlore Lattice, Phys. Rev. X 11, 041021 (2021), arXiv:2101.08787, doi:10.1103/PhysRevX.11.041021",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2101.08787 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-0.490(1)",
+        "note": "Appendix H Table II, geometry 4x2^2x6, column NQS CNN, first line of cell; sources/2101.08787.txt line 1130; version read: arXiv text, Appendix H Table II (sources/2101.08787.txt) | Spin-1/2 operators S = sigma/2, J = 1; Table II caption: first line of each cell is the energy per site (S.S units). Cluster 4 x L^3 is L^3 FCC primitive cells of 4 sites (4 x 2^3 = VarBench's pyrochlore-2x2x2_32_P).",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "NetKet",
+            "version": null,
+            "url": "https://www.netket.org/"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "In this work, we employ the comprehensive NetKet NQS implementation [63]. ... Numerical simulations were performed using the open-source codes mVMC [39] for mVMC, Netket [49, 63] for NQS and lattice symmetries [74] for ED.",
+          "location": "arXiv:2101.08787 (sources/2101.08787.txt), Sec. II C Neural Network Quantum States; Sec. V Acknowledgements",
+          "checked_on": "2026-10-23",
+          "pass": "passes/code/libraries-2026-10-23.json"
+        }
+      }
+    }
+  ]
+}

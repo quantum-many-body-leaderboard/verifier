@@ -1,0 +1,252 @@
+{
+  "model": "J1J2",
+  "lattice": "triangular",
+  "n_sites": 144,
+  "boundary": "P",
+  "params": {
+    "J2": 0.125
+  },
+  "instance_id": "J1J2/triangular_144_P_0.125",
+  "rows": [
+    {
+      "energy": -295.01568,
+      "sigma": 0.05184,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "GCNN",
+      "method_detail": "1 Lanczos step",
+      "method_as_published": "GCNN + Lanczos step",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Roth, Szabo & MacDonald, High-accuracy variational Monte Carlo for frustrated magnets with deep neural networks, Phys. Rev. B 108, 054410 (2023), arXiv:2211.07749",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF extracted locally with pypdf in layout mode, no LLM transcription",
+        "reported_as": "-0.51218 (+/- 0.00009) per site in S.S units",
+        "note": "Read from Table III of arXiv:2211.07749 (J1-J2 triangular lattice, periodic, energies in units of J1 per spin, i.e. the S.S per-site convention), extracted from the PDF with pypdf in layout mode so the column positions are unambiguous. Column \"GCNN+LS\" at J2/J1 = 1/8, N = 144.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv PDF sources/2211.07749v2.pdf extracted locally with pypdf, layout mode (2211.07749v2.vp10.layout.txt) and plain mode (2211.07749v2.vp10.plain.txt); both modes give the same cells, and the em dash of a missing entry is distinct from the minus sign in both",
+          "location": "Table III (p. 7), \"Optimised ground-state energies (in units of J1/spin) ... for the J1−J2 triangular-lattice Heisenberg model\", row J2/J1 = 1/8, N = 144, column \"GCNN+LS\"",
+          "reported_as": "−0.51218(9) per site (units of J1/spin, S.S)",
+          "conversion": "-0.51218 x 4 x 144 = -295.01568; sigma 0.00009 x 576 = 0.05184",
+          "note": "Record row, read hardest. One Lanczos step (App. D), variational; J2 = 1/8. The 0.23 % margin over the runner-up (flag M11) is the Lanczos step's gain over the same paper's plain GCNN −0.51101(6); it sits 5.7e-4 per site above the Exact/Interpolated −0.51275 (an extrapolation). Cluster vectors are not printed; 12 × 12 is the only 144-site triangular torus with the full C6v point group the GCNN projects on, and the paper compares it in one row with Iqbal et al.'s 144-site Gutzwiller+LS value. The instance was created from this paper. No duplicate on the instance.",
+          "source_entry": "VP10-heisenberg-j1j2#28 (qmbl-verify 2026-09-29)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 108, 054410 (2023), sources/journal/prb108-054410.pdf, sha256 62c13865 (pypdf layout + plain); APS abstract page lists no Supplemental Material; compared with arXiv:2211.07749v2 (qmbl/sources/2211.07749.txt/.pdf): every cell of Tables I and III identical",
+          "location": "Table III (p. 054410-7), 'Optimized ground-state energies (in units of J1/spin) ... J1-J2 triangular-lattice', row J2/J1 = 1/8, N = 144, column GCNN+LS",
+          "reported_as": "−0.51218(9) per site (S.S)",
+          "conversion": "-0.51218 x 576 = -295.01568; sigma 0.00009 x 576 = 0.05184",
+          "note": "Record row, read hardest. J2 = 1/8, periodic 144-site cluster, GCNN + one Lanczos step, variational, own computation; the same row's Gutzwiller+LS [10] -0.510558(5) is Iqbal et al.'s value, stored separately (DSL row -294.081408). 'Exact/Interpolated' -0.51275 is an interpolation, not a cluster energy. Energy, sigma, size, boundary, couplings and bound_type agree with the source; no other row on the instance carries the same number from this or a quoted paper.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#14"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "NVIDIA A100",
+        "n_devices": 1,
+        "samples": null,
+        "wall_clock": "12 days (4 days + 8 days)",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 900,
+        "reported_as": "For the more challenging J2 = J1/8 model, we found that even deep GCNNs struggled to resolve the ground states of the 108- and 144-site clusters with sufficient accuracy (...) we used the residual GCNN architecture shown in Sec. II B, with 12 residual blocks of six feature maps. Instead of the standard SR step (7), we trained these very deep networks using a modified algorithm, dubbed LayerSR (...) In particular, we used 4096 samples until the energy plateaued, which took 4 days (approx. 600 steps), and then 16384 samples for an additional 8 days (approx. 300 steps). After training, we further improved the variational energies by applying a Lanczos step as described in Appendix D. All simulations were carried out on a single NVIDIA A100 GPU. || We compute sigma and mu3 by finding the local estimators (B1) of the operators H - <H> and (H - <H>)^2, labelled eps_loc and nu_loc, respectively, for 2^14 Monte Carlo samples",
+        "source": "Sec. IV (J2 = J1/8 paragraph); Sec. II C (single A100); Appendix D (Lanczos step samples), arXiv:2211.07749 (compute pass 2026-09-16)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "Residual GCNN with 12 residual blocks of six feature maps, trained with LayerSR; parameter count not stated. Statement covers the 108- and 144-site J2 = J1/8 runs jointly. iterations = approx. 600 steps at 4096 samples + approx. 300 steps at 16384 samples; samples left null because two sample sizes are used in sequence. The Lanczos-step estimators (sigma, mu3) used 2^14 = 16384 Monte Carlo samples; cost of the Lanczos step itself not stated."
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "NetKet",
+            "version": null,
+            "url": "https://www.netket.org/"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Simulations were performed using the NetKet [24] library.",
+          "location": "arXiv:2211.07749 (sources/2211.07749.txt), Acknowledgments",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -294.34176,
+      "sigma": 0.03456,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "GCNN",
+      "method_detail": "",
+      "method_as_published": "GCNN (deep group-equivariant CNN)",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Roth, Szabo & MacDonald, High-accuracy variational Monte Carlo for frustrated magnets with deep neural networks, Phys. Rev. B 108, 054410 (2023), arXiv:2211.07749",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF extracted locally with pypdf in layout mode, no LLM transcription",
+        "reported_as": "-0.51101 (+/- 0.00006) per site in S.S units",
+        "note": "Read from Table III of arXiv:2211.07749 (J1-J2 triangular lattice, periodic, energies in units of J1 per spin, i.e. the S.S per-site convention), extracted from the PDF with pypdf in layout mode so the column positions are unambiguous. Row J2/J1 = 1/8, N = 144.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv PDF sources/2211.07749v2.pdf extracted locally with pypdf, layout mode (2211.07749v2.vp10.layout.txt) and plain mode (2211.07749v2.vp10.plain.txt); both modes give the same cells, and the em dash of a missing entry is distinct from the minus sign in both",
+          "location": "Table III (p. 7), \"Optimised ground-state energies (in units of J1/spin) ... for the J1−J2 triangular-lattice Heisenberg model\", row J2/J1 = 1/8, N = 144, column \"GCNN\"",
+          "reported_as": "−0.51101(6) per site (units of J1/spin, S.S)",
+          "conversion": "-0.51101 x 4 x 144 = -294.34176; sigma 0.00006 x 576 = 0.03456",
+          "note": "Residual GCNN before the Lanczos step; J2 = 1/8, variational. Cluster vectors are not printed; 12 × 12 is the only 144-site triangular torus with the full C6v point group the GCNN projects on, and the paper compares it in one row with Iqbal et al.'s 144-site Gutzwiller+LS value. The instance was created from this paper. No duplicate on the instance.",
+          "source_entry": "VP10-heisenberg-j1j2#29 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 108, 054410 (2023), sources/journal/prb108-054410.pdf, sha256 62c13865 (pypdf layout + plain); APS abstract page lists no Supplemental Material; compared with arXiv:2211.07749v2 (qmbl/sources/2211.07749.txt/.pdf): every cell of Tables I and III identical",
+          "location": "Table III (p. 054410-7), 'Optimized ground-state energies (in units of J1/spin) ... J1-J2 triangular-lattice', row J2/J1 = 1/8, N = 144, column GCNN",
+          "reported_as": "−0.51101(6) per site (S.S)",
+          "conversion": "-0.51101 x 576 = -294.34176; sigma 0.00006 x 576 = 0.03456",
+          "note": "Energy, sigma, size, boundary, couplings and bound_type agree with the source; no other row on the instance carries the same number from this or a quoted paper.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#15"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "NVIDIA A100",
+        "n_devices": 1,
+        "samples": null,
+        "wall_clock": "12 days (4 days + 8 days)",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 900,
+        "reported_as": "For the more challenging J2 = J1/8 model, we found that even deep GCNNs struggled to resolve the ground states of the 108- and 144-site clusters with sufficient accuracy (...) we used the residual GCNN architecture shown in Sec. II B, with 12 residual blocks of six feature maps. Instead of the standard SR step (7), we trained these very deep networks using a modified algorithm, dubbed LayerSR (...) In particular, we used 4096 samples until the energy plateaued, which took 4 days (approx. 600 steps), and then 16384 samples for an additional 8 days (approx. 300 steps). After training, we further improved the variational energies by applying a Lanczos step as described in Appendix D. All simulations were carried out on a single NVIDIA A100 GPU.",
+        "source": "Sec. IV (J2 = J1/8 paragraph); Sec. II C (single A100), arXiv:2211.07749 (compute pass 2026-09-16)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "Residual GCNN with 12 residual blocks of six feature maps, trained with LayerSR; parameter count not stated. Statement covers the 108- and 144-site J2 = J1/8 runs jointly. iterations = approx. 600 steps at 4096 samples + approx. 300 steps at 16384 samples; samples left null because two sample sizes are used in sequence."
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "NetKet",
+            "version": null,
+            "url": "https://www.netket.org/"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Simulations were performed using the NetKet [24] library.",
+          "location": "arXiv:2211.07749 (sources/2211.07749.txt), Acknowledgments",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -294.081408,
+      "sigma": 0.00288,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "Gutzwiller-projected fermions (Dirac spin liquid), 2 Lanczos steps",
+      "method_as_published": "DSL",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Iqbal, Hu, Thomale, Poilblanc & Becca, Spin liquid nature in the Heisenberg J1-J2 triangular antiferromagnet, Phys. Rev. B 93, 144411 (2016), arXiv:1601.06018",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF extracted locally with pypdf in layout mode, no LLM transcription",
+        "reported_as": "-0.510558 (+/- 0.000005) per site in S.S units",
+        "note": "Read from Table III of arXiv:2211.07749 (J1-J2 triangular lattice, periodic, energies in units of J1 per spin, i.e. the S.S per-site convention), extracted from the PDF with pypdf in layout mode so the column positions are unambiguous. Column \"Gutzwiller+LS [10]\" = Phys. Rev. B 93, 144411 (2016).",
+        "secondary_of": "Roth, Szabo & MacDonald, High-accuracy variational Monte Carlo for frustrated magnets with deep neural networks, Phys. Rev. B 108, 054410 (2023), arXiv:2211.07749",
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 93, 144411 (2016), sources/journal/prb93-144411.pdf, sha256 3c0f8916, pypdf plain; arXiv:1601.06018v4 compared: identical",
+          "location": "Table III, row Size 12, column 2-LS (DSL, S = 0)",
+          "reported_as": "-0.510558(5)",
+          "conversion": "-0.510558 x 4 x 144 = -294.081408; sigma 5e-6 x 576 = 0.00288",
+          "note": "12 x 12 periodic spin model, J2/J1 = 1/8, S = 0, p = 2 Lanczos steps on the DSL (method_detail says so; method_as_published 'DSL' is the column-group label per ruling B4), variational, primary. Journal = arXiv v4. Duplicate check: no other row on J1J2/triangular_144_P_0.125 carries -294.081408.",
+          "source_entry": "JP12-heisenberg-j1j2-hubbard-tv-tfising#9"
+        }
+      },
+      "corrections": [
+        {
+          "field": "provenance",
+          "to": "primary",
+          "reported_as": "12 -0.501828(1) -0.508438(3) -0.510558(5) -0.497619(1) -0.504574(2) -0.506895(4) -0.51213(10) -0.50841(11) 0.53(2) (columns: DSL 0-LS 1-LS 2-LS | S = 2 state 0-LS 1-LS 2-LS | Ground state | S = 2 state | S = 2 gap), J2/J1 = 1/8, energy per site in units of J1",
+          "location": "arXiv:1601.06018v4 Table III, row Size 12, column 2-LS (DSL, S = 0; third energy column)",
+          "version_read": "arXiv:1601.06018v4 (11 Apr 2016; jref Phys. Rev. B 93, 144411 (2016), doi 10.1103/PhysRevB.93.144411)",
+          "conversion": null,
+          "checked_on": "2026-09-29",
+          "reason": "Read in the producing paper (Table III of Iqbal et al.), same digits as the quote in arXiv:2211.07749 Table III; the row no longer rests on the quote (verified.secondary_of would become null, found_via Roth, Szabo & MacDonald). Duplicate check: no other row on J1J2/triangular_144_P_0.125 carries -0.510558.",
+          "source_entry": "VP16-heisenberg-hubbard-j1j2-tfising#52 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "secondary"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "jref: Phys. Rev. B 93, 144411 (2016); doi 10.1103/PhysRevB.93.144411",
+          "location": "arXiv abs page of 1601.06018; Table III of v4",
+          "version_read": "arXiv:1601.06018v4 (11 Apr 2016; jref Phys. Rev. B 93, 144411 (2016), doi 10.1103/PhysRevB.93.144411)",
+          "conversion": null,
+          "checked_on": "2026-09-29",
+          "reason": "Resolves metric flag M10 'peer_reviewed missing': the producing paper is PRB 93, 144411; the loader writes null for every row with a primary (line 78).",
+          "source_entry": "VP16-heisenberg-hubbard-j1j2-tfising#53 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": null
+        },
+        {
+          "field": "reference",
+          "to": "Iqbal, Hu, Thomale, Poilblanc & Becca, Spin liquid nature in the Heisenberg J1-J2 triangular antiferromagnet, Phys. Rev. B 93, 144411 (2016), arXiv:1601.06018",
+          "reported_as": "12 -0.501828(1) -0.508438(3) -0.510558(5) -0.497619(1) -0.504574(2) -0.506895(4) -0.51213(10) -0.50841(11) 0.53(2) (columns: DSL 0-LS 1-LS 2-LS | S = 2 state 0-LS 1-LS 2-LS | Ground state | S = 2 state | S = 2 gap), J2/J1 = 1/8, energy per site in units of J1",
+          "location": "arXiv:1601.06018v4 Table III, row Size 12, column 2-LS (DSL, S = 0; third energy column)",
+          "version_read": "arXiv:1601.06018v4 (11 Apr 2016; jref Phys. Rev. B 93, 144411 (2016), doi 10.1103/PhysRevB.93.144411)",
+          "conversion": null,
+          "checked_on": "2026-09-29",
+          "reason": "Add the arXiv id of the version read (the constant is shared with the same paper's interpolated rows, which it fits equally).",
+          "source_entry": "VP16-heisenberg-hubbard-j1j2-tfising#54 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Iqbal, Hu, Thomale, Poilblanc & Becca, Spin liquid nature in the Heisenberg J1-J2 triangular antiferromagnet, Phys. Rev. B 93, 144411 (2016)"
+        },
+        {
+          "field": "method",
+          "to": "DSL",
+          "reported_as": "12 -0.501828(1) -0.508438(3) -0.510558(5) -0.497619(1) -0.504574(2) -0.506895(4) -0.51213(10) -0.50841(11) 0.53(2) (columns: DSL 0-LS 1-LS 2-LS | S = 2 state 0-LS 1-LS 2-LS | Ground state | S = 2 state | S = 2 gap), J2/J1 = 1/8, energy per site in units of J1",
+          "location": "arXiv:1601.06018v4 Table III, row Size 12, column 2-LS (DSL, S = 0; third energy column)",
+          "version_read": "arXiv:1601.06018v4 (11 Apr 2016; jref Phys. Rev. B 93, 144411 (2016), doi 10.1103/PhysRevB.93.144411)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "The number is the p = 2 value: Table III prints -0.501828(1) (p = 0), -0.508438(3) (p = 1) and -0.510558(5) (p = 2) for L = 12, so 'Lanczos step' / '1 Lanczos step' misstates the method. The quote's column label 'Gutzwiller+LS' does not say how many steps; the primary does. Energy, sigma, 12 x 12 periodic spin Hamiltonian, J2/J1 = 1/8, S.S per site, S = 0, variational all check. The instance's 'GCNN + Lanczos step' rows are Roth et al.'s own and are not affected. Ruling B4 (2026-10-02): a corrected published string quotes a label the source prints, verbatim, and what explains it is the row's method_detail (method_names.mjs). The label is the Table III column group's, 'DSL' (the Dirac spin liquid); the 2-LS column (two Lanczos steps) and the Gutzwiller-projected fermionic construction are the detail.",
+          "source_entry": "VP16-heisenberg-hubbard-j1j2-tfising#51 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Gutzwiller-projected fermionic state + Lanczos step"
+        }
+      ]
+    }
+  ]
+}

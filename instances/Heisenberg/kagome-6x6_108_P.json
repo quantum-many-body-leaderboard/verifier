@@ -1,0 +1,163 @@
+{
+  "model": "Heisenberg",
+  "lattice": "kagome-6x6",
+  "n_sites": 108,
+  "boundary": "P",
+  "params": {},
+  "cluster": "rhombic torus of 6 x 6 three-site unit cells, edge vectors 6 a1 and 6 a2 (a1, a2 the triangular Bravais vectors, 60 degrees apart). Defined by arXiv:2401.02866 ('6 x 6 x 3 cluster, periodic boundary conditions'). For arXiv:1205.4858 inferred, not printed: Table I labels the cluster 'Torus 6' and Fig. 8 draws the DMRG path, but no edge vectors are given; its tori have N = 3 L^2 sites, and its 'Torus 3' energy equals the 27-site exact energy it is compared with (2026-10-27)",
+  "instance_id": "Heisenberg/kagome-6x6_108_P",
+  "rows": [
+    {
+      "energy": -192.72,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 108,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "GCNN",
+      "method_detail": "spinon pair-density-wave state (χ0, P_Z2 = −1, q = (π, π/√3))",
+      "method_as_published": "GCNN, spinon pair-density-wave state (chi0, P_Z2 = -1, q = (pi, pi/sqrt3))",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Ðurić, Chung, Yang & Sengupta, Spin-1/2 Kagome Heisenberg Antiferromagnet: Machine Learning Discovery of the Spinon Pair-Density-Wave Ground State, Phys. Rev. X 15, 011047 (2025), arXiv:2401.02866",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF text extracted locally with pypdf, no LLM transcription",
+        "reported_as": "-0.4461111111111111 per site in S.S units",
+        "note": "Sec. III (end of the 108-site paragraph) and Fig. 5 caption: \"The obtained ground state energy E0 = -48.18(0) is ~1.78% lower than the ground state energy obtained with DMRG calculations (E_DMRG = -47.33964)\"; same value in arXiv v1 (Fig. 12 caption, \"E_chi0 = -48.18(0)\"). Total in S.S units; E/N = -0.4461111. The only error statement is the parenthesised (0): a statistical error that rounds to zero at the 0.01 level, while the other five 108-site states in the same figure carry (3)-(8). No variance, acceptance rate or autocorrelation time is printed in either version. A near-zero error bar from 2^13 samples of a non-eigenstate is itself a symptom of frozen Markov chains, so no sigma is recorded. Sampler stated by the paper: single spin flips over the whole Hilbert space, no S^z_tot = 0 sector (Sec. III end). DISPUTED - see the defect flag.",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. X 15, 011047 (2025), doi:10.1103/PhysRevX.15.011047, sources/journal/prx15-011047.pdf, sha256 66682815 (APS, ETH network; no Supplemental Material linked); arXiv:2401.02866v2 compared: no number differs; pypdf layout and plain mode",
+          "location": "Sec. III, 108-site paragraph, and Fig. 5 caption",
+          "reported_as": "E0 = -48.18(0) (total, S.S units); Fig. 5 caption: 'EGCNN = -48.18(0)'",
+          "conversion": "-48.18 x 4 = -192.72; '(0)' is not a usable sigma, stays null",
+          "note": "6 x 6 x 3 cluster, periodic boundary conditions; GCNN four layers, four features; lowest state chi0, P_Z2 = -1, q = (pi, pi/sqrt3), sampled with single spin flips over the whole Hilbert space. Journal identical to arXiv v2. Transcription is correct; the existing non-ergodic-sampler flag (1.78% below the DMRG -47.33964, Comment arXiv:2605.28861) is unaffected by the journal reading and stands. No duplicate.",
+          "source_entry": "JP8-j1j2-hubbard-heisenberg#59"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 8192,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Sec. II (end): Within the optimization procedure we take relatively large learning rate (imaginary time step) Delta tau = 0.05 in Eq. (5) and N_s = 2^12 or 2^13 Monte Carlo samples in each training step for the clusters with 48 and 108 lattice sites respectively. The number of samples is taken to be the maximum number allowed by the available GPU memory restrictions, since training with more samples helps the GCNN ansatz to learn the wave function representations that have better generalization properties [...] In our calculations epsilon_1 and epsilon_2 values are taken to be epsilon_1 = 0.001 and epsilon_2 = 0.001. || Sec. II: Our calculations have been performed with GCNN ansaetze having 6 layers and 6 feature maps in each layer for the kagome lattice cluster with 48 lattice sites and GCNN ansaetze having 4 layers and 4 feature maps in each layer for the kagome lattice cluster with 108 lattice sites. || Sec. I: Our numerical calculations were performed using computational speedup on GPUs and NetKet, JAX, FLAX, and OPTAX libraries. || Acknowledgments: This work was supported by the Google cloud research credits academic research grant [...] We would also like to acknowledge the NTU High Performance Computing Centre for providing computing resources, facilities, and services that have contributed to this work.",
+        "source": "Sec. II (Methods: GCNN architecture paragraph and optimization paragraph), Sec. I, Acknowledgments, Fig. 4 / Fig. 5 captions, arXiv:2401.02866 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "samples = N_s = 2^13 = 8192 Monte Carlo samples per training step, stated for the 108-site cluster (chosen as the maximum allowed by GPU memory). Architecture: GCNN, 4 layers x 4 complex feature maps, symmetrized over space group and Z2 spin parity; ground state at the M point found by transfer learning from the fully symmetric state (same architecture, different characters); no parameter count given. GPUs used (Google Cloud credits, NTU HPC Centre) but no GPU model, count, run time or GPU-hours stated. Number of SR training steps only visible as the x-axis of Fig. 5. Delta tau = 0.05, QGT regularisation eps1 = eps2 = 0.001."
+      },
+      "defect": {
+        "flag": "sampling-nonergodic",
+        "finding": "Flag upheld from the primary text, not only from the Comment. (1) Update rule and sector are stated by the paper itself: Sec. III, last paragraph before Sec. IV (arXiv:2401.02866v2, sources/2401.02866.txt lines 1013-1020; identical wording in v1, sources/2401.02866v1.txt lines 3040-3047): \"Whilst for the 48 sites cluster the best variational energy is obtained by the free energy minimization within the total Sz = 0 sector where the samples are generated by exchanging spins at two randomly chosen lattice sites, for the 108 sites cluster the best results are found by sampling within the whole Hilbert space with samples generated by flipping a spin at random lattice site.\" Sec. II defines the Z2 spin-parity symmetry P_Z2 = prod_i sigma^x_i only \"for the eigenstates with Mz = sum_i sigma(r_i) = 0\", yet the 108-site run is not restricted to that sector; the Hamiltonian (Eq. 7, H = J sum_<ij> S_i.S_j, no constant shift) conserves S^z_tot, so single spin flips out of the S^z_tot = 0 sector have vanishing acceptance once the ansatz concentrates there. N_s = 2^13 samples per step (Sec. II). Neither arXiv version prints an acceptance rate, autocorrelation time or number of chains (grep \"acceptance\": 0 hits in v1 and v2). (2) The energy is printed as E0 = -48.18(0) (v2 Sec. III text and Fig. 5 caption; v1 Fig. 12 caption \"E_chi0 = -48.18(0)\") while the five other 108-site states in the same figure carry (3), (4), (5), (7), (8): a statistical error rounding to zero at the 0.01 level from 2^13 samples is what identical, frozen samples produce, so the printed (0) is evidence for the defect rather than a usable sigma. The 48-site run with the exchange sampler carries a normal error, -21.00 +/- 0.01 (Sec. III). (3) Nothing has changed since the Comment: arXiv:2401.02866 has v1 (5 Jan 2024) and v2 (9 Mar 2025, the PRX text, dated March 11, 2025), both with -48.18(0) and the same sampler sentence; the Comment arXiv:2605.28861 has only v1 (21 May 2026, sources/2605.28861.txt: acceptance exactly zero beyond 5000 iterations, Fig. 1(a); exchange-update optimisation of the same 4x4 GCNN converges to E ~ -45.6 vs DMRG -47.3, spin-flip-trained parameters re-evaluated ergodically give E ~ -42.6, Fig. 1(b); split-R-hat 1.39 frozen vs 1.03 ergodic; numerics in the (Gamma, chi0) sector, argued to carry over to (M, chi0)). No Reply exists: arXiv API au:Duric AND au:Sengupta lists only 2401.02866v2, 2512.11670 and 2606.14101 (sources/arxiv_api_duric_sengupta.xml); Crossref record of 10.1103/PhysRevX.15.011047 has empty updated-by (no erratum) and a bibliographic search for the Comment title returns no PRX Comment or Reply (sources/crossref_prx15_011047.json, crossref_comment_search.json); none of the 16 OpenAlex citing works is a Reply (sources/openalex_citing_prx15_011047.json). No code repository: GitHub repository search on seven title/author/method queries returns 0 hits and no author handle with public repositories; the paper has no code or data availability statement. The authors later preprint arXiv:2512.11670 (1/9 plateau, same 108-site cluster) keeps the unconstrained single-spin-flip scheme (sources/2512.11670.txt lines 416-433) and does not revisit -48.18. (4) Flag stands as written: the row keeps bound_type variational (it is what the method claims) and is skipped for the record under RULES.md 6.1 and 10 (non-ergodic sampling clause).",
+        "diagnosis": "The reported energy is an artifact of non-ergodic Monte Carlo sampling, not a property of the ansatz. The kagome Heisenberg Hamiltonian is SU(2) symmetric and its ground state lies in a fixed total-magnetisation sector, so a single-spin-flip update - which changes S^z_tot - is incompatible with the symmetry. As the network concentrates on the physical S^z_tot = 0 sector the acceptance rate collapses to exactly zero beyond 5000 iterations and the chains freeze, so the reported average is taken over a non-representative set of configurations. With the magnetisation-preserving exchange update the same architecture and optimizer converge stably to E ~ -45.6 against a DMRG value of E ~ -47.3; re-evaluating the spin-flip-optimised PARAMETERS under ergodic sampling raises the energy further, to E ~ -42.6. The published -48.18 lies below all of them.",
+        "ruled_out": "NOT a variational-principle violation, and that is the point: DMRG at finite bond dimension is itself an upper bound, so an energy below it is not on its own evidence of error - it would ordinarily just be a better state. Nothing about the number alone identifies it as wrong. The refutation had to come from the sampler.",
+        "evidence": "arXiv:2605.28861 (Kamal, Kufel, Vu, Laumann & Yao), Fig. 1(a) acceptance-rate collapse and Fig. 1(b) energy convergence; Ðurić et al., Phys. Rev. X 15, 011047 (2025), arXiv:2401.02866, Sec. IV.",
+        "source_entry": "FP3-arxiv-2401-02866#0 (qmbl-verify 2026-09-19-flagged)"
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "NetKet",
+            "version": null,
+            "url": "https://www.netket.org/"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Our numerical calculations were performed using computational speedup on GPUs and NetKet,65,66 JAX,120 FLAX,121 and OPTAX122 libraries.",
+          "location": "arXiv:2401.02866 (sources/2401.02866.txt), Introduction, paragraph stating the work done in this paper",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -189.3456,
+      "sigma": 0.1296,
+      "energy_variance": null,
+      "dof": 108,
+      "einf": 0,
+      "v_score": null,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "extrapolated: truncation error → 0",
+      "method_as_published": "DMRG, truncation-error extrapolated (Torus 6)",
+      "family": "tensor network",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Depenbrock, McCulloch & Schollwoeck, Nature of the Spin Liquid Ground State of the S=1/2 Heisenberg Model on the Kagome Lattice, Phys. Rev. Lett. 109, 067201 (2012), arXiv:1205.4858",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF text extracted locally with pypdf, no LLM transcription",
+        "reported_as": "-0.4383 per site in S.S units",
+        "note": "Table I row \"Torus 6 -0.4383(3)\", the 108-site torus (\"we also consider tori of up to 108 sites\"). E/N x 108 = -47.336, consistent with the -47.33964 that Ðurić et al. quote as the DMRG benchmark. Extrapolated in the truncation error, so not a strict bound (RULES.md 4).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:1205.4858v2 (14 Aug 2012, latest; PDF stamp 'arXiv:1205.4858v2'), PDF text extracted locally with pypdf layout mode (sources/vp15_1205.4858.layout.clean.txt); journal version Phys. Rev. Lett. 109, 067201 (2012) not read",
+          "location": "Table I, row 'Torus 6', column E/N; p. 2 'we also consider tori of up to 108 sites'",
+          "reported_as": "−0.4383(3) per site (E/N), units of J, S.S; gap 0.1148(1)",
+          "conversion": "-0.4383 x 4 x 108 = -189.3456; sigma 3e-4 x 432 = 0.1296 (both agree)",
+          "note": "6 x 6 x 3 = 108-site torus = kagome-6x6_108_P; extrapolated (C6); M6 settled as for Torus 4. Ðurić et al.'s DMRG benchmark -47.33964 (= -0.4383300 per site) agrees with this cell to its printed digits but has one more digit than Depenbrock print; the 'E earlier' -0.43111 in the same row is Jiang, Weng & Sheng's (quoted, not in QMBL). No duplicate on the instance (rows: Ðurić GCNN (flagged), this).",
+          "source_entry": "VP15-hubbard-j1j2-heisenberg#48 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. Lett. 109, 067201 (2012), sources/journal/prl109-067201.pdf, sha256 80049032, and EPAPS supplement prl109-067201-supp.pdf (KagomePaper_EPAPS.pdf), sha256 83020790 (journals.aps.org, node fetch); compared with arXiv:1205.4858v2: Table I torus rows identical; pypdf plain",
+          "location": "Table I, row Torus 6",
+          "reported_as": "Torus 6 −0.4383(3) 0.1148(1)",
+          "conversion": "-0.4383 x 432 = -189.3456; sigma 3e-4 x 432 = 0.1296",
+          "note": "RECORD row. 108-site torus = 'tori of up to 108 sites'. Journal = arXiv v2. bound_type extrapolated correct; S.S per-site convention (Torus 3 row equals the 27-site exact -0.436 278 of ref. [47]). Reference title differs from the journal only by the hyphen in 'Spin-Liquid' (Crossref: 'Nature of the Spin-Liquid Ground State of the S=1/2 Heisenberg Model on the Kagome Lattice'); not worth a correction unless titles are normalised. No duplicate on the instance.",
+          "source_entry": "JP11-j1j2-heisenberg-hubbard#62"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 16000,
+        "iterations": null,
+        "reported_as": "Exploiting SU(2) spin symmetry, which allows us to keep up to 16 000 DMRG states, we consider cylinders with circumferences up to 17 lattice spacings [...] Instead of earlier Abelian U(1) DMRG with up to 8 000 ansatz states, we employ non-Abelian SU(2) DMRG [68, 69] based on irreducible representations corresponding to 16 000 ansatz states in a U(1) approach. [...] we also consider tori of up to 108 sites. [...] Energies for cylinders of fixed c and L are extrapolated in the truncation error of single-site DMRG [70] [...] At 16 000 states, DMRG is highly accurate [...] In the case of tori, which we considered mainly for reference purposes, only a single path was retained (Fig. 8).",
+        "source": "Abstract; main text 'Energies' paragraph (p. 2); Table I (Torus rows); Supplementary 'Mapping two-dimensional kagome lattices to one-dimensional chains', arXiv:1205.4858 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "bond_dimension = 16 000 is the paper-wide maximum ('up to 16 000 DMRG states', SU(2) irreps 'corresponding to 16 000 ansatz states in a U(1) approach'); the number of states kept for the torus calculations specifically is not stated. Torus energies in Table I are 'truncation-error extrapolated'. No CPU hours, core count, wall-clock, machine or sweep count is stated anywhere; acknowledgments list only funding (DFG, ARC)."
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2009.01821",
+        "arXiv:2501.00096",
+        "arXiv:2502.17144",
+        "arXiv:2505.20406",
+        "arXiv:2512.11670"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ]
+}

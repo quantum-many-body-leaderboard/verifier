@@ -1,0 +1,541 @@
+{
+  "model": "TFIsing",
+  "lattice": "chain",
+  "n_sites": 10,
+  "boundary": "O",
+  "params": {
+    "h": 1
+  },
+  "instance_id": "TFIsing/chain_10_O_1",
+  "rows": [
+    {
+      "energy": -12.381489999654734,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "Exact Diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/ed_netket.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "QMBL ED cost run checks/cost/ed/results/TFIsing--chain_10_O_1.json (checks/cost/ed/run_ed.py: NetKet 3.22.4 operator, sparse CSR built in blocks, SciPy eigsh/ARPACK k=1 SA; commit 716e043); results file read locally, no rerun",
+        "location": "checks/cost/ed/results/TFIsing--chain_10_O_1.json: fields energy, stored_exact, relative_difference, reproduces_stored",
+        "reported_as": "energy -12.381489999654761 (stored_exact -12.381489999654734, relative_difference 2.15e-15, reproduces_stored true)",
+        "conversion": "none: the cost run works in the stored convention (Pauli totals for spin models, totals for fermions and impurity)",
+        "note": "|reproduced - stored| = 2.66e-14 (relative 2.15e-15); within 1e-9 relative. Sector none, dimension 1024, 81 Lanczos steps (the file states no residual). The stored value is the source's own ED (varbench@2024-10-22), so two codes agree; a third code, E1's node Lanczos (qmbl-runs/qmbl-verify/out/E1-exact-recompute/results/TFIsing__chain_10_O_1.json), gives -12.381489999654757 (3.55e-15 from the cost run). Also read by VB4-tfising-tv#3 (scope value: ed.py lines 7-10; vmc.py lines 20-51, 73-78).",
+        "source_entry": "VB4-tfising-tv#3, VE-exact-recompute#56 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/ed_netket.sh",
+        "script": "scripts/TFIsing/chain_10_O_1/ed_netket.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/ed_netket.sh)",
+          "location": "VarBench table vendor/varbench/TFIsing/chain_10_O_1.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -12.381489999654796,
+      "sigma": null,
+      "energy_variance": 4.8e-13,
+      "dof": 10,
+      "einf": 0,
+      "v_score": 3.1310890179777417e-14,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "DMRG (bond dimension = 13)",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/dmrg.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 13,
+        "iterations": 50,
+        "sweep_schedule": {
+          "code": "ITensors.jl 0.6.16",
+          "eigensolver_applications": 3,
+          "eigensolver_source": "ITensors.jl 0.6.16 dmrg(): eigsolve_krylovdim = 3, eigsolve_maxiter = 1 (defaults, not overridden)",
+          "maxdim": [
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128,
+            128
+          ],
+          "start": "random MPS at bond dimension 128",
+          "cutoff": 1e-12,
+          "variance_after": [
+            50
+          ],
+          "lattice": {
+            "order": "chain",
+            "n_sites": 10,
+            "periodic": false,
+            "site_dimension": 2,
+            "operators_per_bond": 1
+          }
+        },
+        "reported_as": "method string: \"DMRG (bond dimension = 13)\" || scripts/TFIsing/chain_10_O_1/dmrg.sh: \"julia --project ising_1d.jl --L 10 --h 1 --max_B 128 --seed 123\" || programs/dmrg_itensors/common.jl get_sweeps: \"sweeps = Sweeps(args[\\\"max_step\\\"]); setmaxdim!(sweeps, args[\\\"max_B\\\"]); setcutoff!(sweeps, 1e-12)\" || programs/dmrg_itensors/args.jl: \"--max_step\" default = 50 || ising_1d.jl: \"H_sqr = real(inner(H, psi, H, psi))\" after dmrg",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/TFIsing/chain_10_O_1/dmrg.sh, with programs/dmrg_itensors/{common,args,ising_1d}.jl (compute pass 2026-09-23)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Sweep schedule, eigensolver setting and lattice order read from the run script; 50 sweeps, maximum bond dimension 128. No time is recorded anywhere in the repository."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "varbench/methods ed31bb0 scripts/TFIsing/chain_10_O_1/dmrg.sh -> programs/dmrg_itensors/ising_1d.jl, common.jl, args.jl (ITensors.jl, Manifest pinned)",
+        "location": "dmrg.sh: julia --project ising_1d.jl --L 10 --h 1 --max_B 128 --seed 123; ising_1d.jl lines 24-40 (4*J Sz Sz 'Spin to Pauli', 2*h Sx; bonds i = 1..L-1+peri with mod1 wrap); common.jl lines 38-44 (50 sweeps, maxdim = max_B, cutoff 1e-12, noise 1e-3 -> 1e-12 over 25 sweeps then 0)",
+        "reported_as": "VarBench TFIsing/chain_10_O_1.md: Energy -12.381489999654796 | Sigma (empty) | Energy Variance 4.8e-13 | DOF 10 | Einf 0 | Method \"DMRG (bond dimension = 13)\"",
+        "conversion": "none (total energy, J units; per site -1.238149000)",
+        "note": "Script builds the instance (Pauli TFIM +sum ZZ + h sum X on the open 10-site chain, h = 1, equivalent to -sum ZZ - h sum X on this bipartite cluster; no symmetry or magnetisation constraint). The label's bond dimension is the one reached under the 1e-12 cutoff with max_B = 128. Energy is the last sweep's, variational, no extrapolation; variance <H^2> - E^2 of the final MPS (ising_*.jl lines 63-65). No output log (config scope). Value since 77a95d7 (2022-12-12, 'Add TFIM chain L = 10', with the ED row); script link attached 2024-07-19 (f88f9ba, cd362c4). Record row when read (the best bound then). 3.9e-14 below the free-fermion E0 -12.381489999654757 and 6.2e-14 below the ED row: double-precision noise (relative 3e-15), inside the validator's relative 1e-8. M6 flag (V-score 3.1e-14 'outlier') settled: the state is exact to machine precision, so Var = 4.8e-13 is the floating-point floor of <H^2> - E^2 (E^2 ~ 153), not an error.",
+        "source_entry": "VB4-tfising-tv#5 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/dmrg.sh",
+        "script": "scripts/TFIsing/chain_10_O_1/dmrg.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/dmrg.sh)",
+          "location": "VarBench table vendor/varbench/TFIsing/chain_10_O_1.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -12.381718,
+      "sigma": 0.000022,
+      "energy_variance": 0.00049440652,
+      "dof": 10,
+      "einf": 0,
+      "v_score": 0.00003224945445805451,
+      "method": "VMC",
+      "ansatz": "RBM",
+      "method_detail": "α = 1",
+      "method_as_published": "RBM (alpha = 1)",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/vmc_rbm.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 120,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 10,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "onthefly_dense"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/TFIsing/chain_10_O_1/vmc_rbm.sh: \"python3 vmc.py --ham ising --boundary open --ham_dim 1 --L 10 --h 1 --net rbm --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py: \"--batch_size\" default=1024; \"--max_step\" default=10**4; \"--features\" default=1; \"--dtype\" default=\"float32\"; \"--optimizer\" default=\"sr\" || programs/vmc_netket/vmc.py: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, ...)\"; sampler \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py: \"alpha = args.features ... return nk.models.RBM(alpha=alpha, param_dtype=args.dtype, activation=log_cosh, ..., hidden_bias_init=zeros, visible_bias_init=zeros)\" || NetKet 3.13.0 netket/models/rbm.py: \"use_hidden_bias: bool = True\"; \"use_visible_bias: bool = True\"; \"features=int(self.alpha * input.shape[-1])\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); no sign, IsingJax (vmc.py:78); P=120<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 120x120 real (qgt_onthefly.py:292-301, solvers.py:258) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); no sign, IsingJax (vmc.py:78); P=120<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 120x120 real (qgt_onthefly.py:292-301, solvers.py:258)",
+        "source": "run script, VarBench methods repository at ed31bb0 (route1a-nqs-pass 2026-09-24): https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/TFIsing/chain_10_O_1/vmc_rbm.sh ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L186 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L170 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L136 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L154 ; https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py#L311 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L133 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L103 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L43 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L45 (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "parameters = alpha N^2 + alpha N + N = 1*10^2 + 1*10 + 10 = 120 real (float32) parameters: nk.models.RBM is a dense RBM (Dense kernel N x alpha N, hidden bias alpha N, visible bias N; both biases on by NetKet default, alpha = --features = 1), no weight sharing across translations. QMBL's own rerun of vmc.py --net rbm on a 10-site TFIsing chain printed \"n_params 120\" (qmbl/checks/tfising-rbm-varbench-rerun/run.log (QMBL's own rerun of vmc.py at ed31bb0 with NetKet 3.13.0, 2026-09-19)). samples = 1024 per optimisation step (MCState n_samples = batch_size; MetropolisLocal with n_chains = batch_size = 1024, one sample per chain per step, each separated by sweep_size = N = 10 proposals (NetKet default), n_discard_per_chain = 0); iterations = 10000 (\"--max_step\" default=10**4); optimizer SR (VMC_SRt when n_parameters >= n_samples), lr 1e-3. The final energy is then estimated once with estim_size = 1024^2 = 1048576 samples (not an optimisation step). NetKet pinned twice by the program: programs/vmc_netket/requirements.txt \"NetKet==3.13.0\" and conda_env.yaml \"netket=3.11.4\"; every NetKet line cited here reads the same at both tags. The energy is older than the script: VarBench's data file listed it with no code link (\"TODO: own code\", varbench/varbench 0ef1497c and 6e9f6b83, 2024-07-11) until the scripts were added on 2024-07-30 (5047bfd6 RBM, d54f7c01 RNN, 765c5d13 GCNN), which changed only the reference column, so the script documents the settings after the fact, with library versions that may postdate the run. || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 10 x (1 + 0)/1 = 10: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 120 < n_samples = 1024, so nk.VMC with SR(QGTOnTheFly(), solver=solve); solve() calls A.to_dense(), which applies the lazy S to the P = 120 unit vectors (P jvp + transpose mat-vecs over all 1024 samples per step): kind onthefly_dense (verify/agent-A.md item 1: 3.9-23x the network count for the 26 rows with P < 1024). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "defect": {
+        "flag": "below-exact",
+        "finding": "-12.381718(22) sits 2.28e-4 (10.4 sigma) below the exact energy -12.38148999965 (VarBench ED via NetKet and DMRG rows; Lanczos on the 1024-state space here agrees to 1e-13). Same provenance as chain_10_P_1: the number entered VarBench in commit 6e7a021 (Dian Wu, 2023-01-09, 'Update Ising Jastrow and RBM baselines', no code), replacing -12.381447(21), var 0.00047990793 (77a95d7, 2022-12-12; 4.3e-5 = 2.0 sigma ABOVE exact) with a value 2.7e-4 (12 sigma) lower at a variance that changed by only 3% (0.00049440652). The linked script scripts/TFIsing/chain_10_O_1/vmc_rbm.sh -> programs/vmc_netket/vmc.py was written in July 2024 (methods 1347303, link added in dataset 5047bfd with the value unchanged) and does not produce the stored number: the bit-faithful rerun (NetKet 3.13.0, jax 0.4.30, CPU, seed 123) prints energy -12.381393 +- 0.000027 [var 0.000753, R_hat 1.0005], 9.7e-5 ABOVE exact and 3.2e-4 (12 sigma) above the stored value; full summation of the final parameters gives -12.381410828 (above exact) and five repeated 2^20-sample estimates (-12.381428, -12.381419, -12.381402, -12.381353, -12.381416; sigma 2.6e-5, tau_corr <= 0.04, R_hat 1.0005) scatter around it within 2.2 sigma (checks/tfising-rbm-varbench-rerun/ising_open_1d_L10_h=1.eval.json). The published code (persistent chains, float64 matrix elements, between-chain error estimate; see the chain_10_P_1 finding) has no mechanism for a below-exact value; the stored sigma = sqrt(0.00049440652/2^20) = 2.17e-5 marks the number as a 2^20-sample final estimate, so it is neither a trace point (per-step sigma 9e-4 in the rerun) nor a 10-sigma fluctuation, but a biased estimate from an unpublished January 2023 run. Earlier 'minimum of the optimization trace' diagnosis withdrawn.",
+        "diagnosis": "The three values were entered in VarBench commit 6e7a021 (Dian Wu, 2023-01-09, 'Update Ising Jastrow and RBM baselines', no code, no log), replacing uploads that sat above the exact energy: chain_10_P_1 -12.784707(48) and chain_10_O_1 -12.381447(21) of 2022-12-12 (77a95d7; 4.2 and 2.0 sigma above), while chain_32_P_0.5 was below exact in both its uploads (2022-07 and 2023-01). The linked program, programs/vmc_netket in varbench/methods, was written in July 2024 (IsingJax and VMC_SRt did not exist in January 2023) and the links were attached on 2024-07-30 (5047bfd) without regenerating a number. Run as pinned (NetKet 3.13.0, jax 0.4.30, seed 123, CPU, 2026-09-19) the script gives -12.784382(65), -12.381393(27) and -34.03197(10): all above the exact energies, with full summation of the same parameters at -12.784376 and -12.381411 and five repeated 2^20-sample estimates scattering around them (tau_corr ~ 0, R_hat 1.0005). The stored sigmas equal sqrt(stored variance / 2^20), so the stored numbers are final 2^20-sample estimates of a better-converged 2023 state (variance about half of the rerun's) whose bias below the exact energy no published source explains.",
+        "ruled_out": "Not a minimum of the optimisation trace: the program prints a separate final estimate, the per-step noise (2.2e-3, 8.9e-4, 3.1e-3 at 1024 samples) is 40x the stored bars, and the trace minima lie about 1e-2 below the exact energy, not 2-3e-4. Not an unthermalised restart of the sampler: the chains persist into the final estimate, and a fresh restart biases the estimate upward (seen on the 32-site evaluation). Not float32 local energies: the local energy is accumulated in float64 with float32 amplitude ratios. The 2026-09-11 check (checks/tfising_rbm_check.py: complex RBM, netket 3.22.4, 2000 steps) ran a different program and is withdrawn as a diagnosis.",
+        "evidence": "VarBench dataset commits 77a95d7, 6e7a021, 5047bfd; varbench/methods programs/vmc_netket/vmc.py (1347303, c686621, bba4595); checks/tfising-rbm-varbench-rerun/ (run.sh, run.log, *.eval.json, trace_summary.json); the first rerun, checks/tfising_rbm_check.py, for the withdrawn diagnosis.",
+        "source_entry": "FB1-varbench-code-tfising#1 (qmbl-verify 2026-09-19-flagged)"
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/vmc_rbm.sh",
+        "script": "scripts/TFIsing/chain_10_O_1/vmc_rbm.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/vmc_rbm.sh)",
+          "location": "VarBench table vendor/varbench/TFIsing/chain_10_O_1.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -12.37844,
+      "sigma": 0.00019,
+      "energy_variance": 0.03606162,
+      "dof": 10,
+      "einf": 0,
+      "v_score": 0.0023534956549224858,
+      "method": "VMC",
+      "ansatz": "Jastrow",
+      "method_detail": "",
+      "method_as_published": "Jastrow baseline",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/vmc_jastrow.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 45,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 10,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "onthefly_dense"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/TFIsing/chain_10_O_1/vmc_jastrow.sh: \"python3 vmc.py --ham ising --boundary open --ham_dim 1 --L 10 --h 1 --net jas --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py defaults (not overridden): \"--batch_size\" default=1024, \"--max_step\" default=10**4, \"--estim_size\" default=1024**2, \"--dtype\" default=\"float32\", \"--optimizer\" default=\"sr\", \"--lr\" default=1e-3, \"--diag_shift\" default=1e-2, \"--chunk_size\" default=1024 || vmc.py: \"n_samples=args.batch_size\", \"n_chains=args.batch_size\", \"vmc.run(n_iter=args.max_step, ...)\", \"vstate.n_samples = args.estim_size\" || NetKet 3.13.0 netket/models/jastrow.py: \"kernel = self.param(\\\"kernel\\\", self.kernel_init, (nv * (nv - 1) // 2,), self.param_dtype)\" || netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || requirements.txt: \"NetKet==3.13.0\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); no sign, IsingJax (vmc.py:78); P=45<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 45x45 real (qgt_onthefly.py:292-301, solvers.py:258) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); no sign, IsingJax (vmc.py:78); P=45<1024: nk.VMC+SR(QGTOnTheFly,solve) (vmc.py:211-225), _mode real (qgt_onthefly.py:135-136); dense S 45x45 real (qgt_onthefly.py:292-301, solvers.py:258)",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/TFIsing/chain_10_O_1/vmc_jastrow.sh, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/requirements.txt; NetKet v3.13.0 https://github.com/netket/netket/blob/v3.13.0/netket/models/jastrow.py, https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters evaluated: NetKet 3.13.0 Jastrow stores the strictly lower triangle of W, N(N-1)/2 = 10*9/2 = 45 real (float32) weights, which is also what vmc.py prints as n_params (tree_size_real_nonzero). Samples: 1024 per SR step, 1024 chains of length 1, each sample one sweep of 10 single-spin proposals, no discard. Iterations: 10^4 steps (--max_step default). Driver: nk.VMC with nk.optimizer.SR(QGTOnTheFly) (n_parameters < n_samples). After training the energy is estimated from 2^20 samples. stored sigma 0.00019 vs sqrt(stored variance 0.03606162 / 2^20) = 0.00019: consistent with the script's 2^20-sample final estimate (--estim_size default). Provenance: the value entered VarBench in 77a95d7 (2022-12-12, Dian Wu); the linked script was added to varbench/methods in c686621 (2024-07-30) without the value changing, so the script is the authors' later reconstruction of the baseline, not a log of the run (the same holds for the TFIsing RBM rows, scripts/defects.mjs). The 2^20-sample final estimate is corroborated by the stored sigma; batch size and step count are not independently corroborated. No device or time is recorded (the conda env includes CUDA; the README says a GPU is \"usually needed for VMC on larger lattices\", which is not a statement about these runs). || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 10 x (1 + 0)/1 = 10: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 45 < n_samples = 1024, so nk.VMC with SR(QGTOnTheFly(), solver=solve); solve() calls A.to_dense(), which applies the lazy S to the P = 45 unit vectors (P jvp + transpose mat-vecs over all 1024 samples per step): kind onthefly_dense (verify/agent-A.md item 1: 3.9-23x the network count for the 26 rows with P < 1024). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "varbench/methods ed31bb0 scripts/TFIsing/chain_10_O_1/vmc_jastrow.sh -> programs/vmc_netket/vmc.py, args_parser.py (NetKet 3.13.0 per requirements.txt)",
+        "location": "vmc_jastrow.sh --ham ising --boundary open --ham_dim 1 --L 10 --h 1 --net jas --seed 123; vmc.py lines 20-51 (Grid graph), 73-78 (IsingJax(J=-1, h)), 118-124, 160-179 (MetropolisLocal), 193-237 (SR, 10^4 steps), 268-270 (final 2^20-sample estimate)",
+        "reported_as": "VarBench TFIsing/chain_10_O_1.md: Energy -12.37844 | Sigma 1.9e-4 | Energy Variance 0.03606162 | DOF 10 | Einf 0 | Method \"Jastrow baseline\"",
+        "conversion": "none (total energy, J units)",
+        "note": "Script builds the instance (open chain of 10 sites, h = 1, Pauli TFIM) with nk.models.Jastrow (vmc.py lines 118-124); +0.00305 from the exact -12.381489999654757 (above it, as a variational energy must be). sigma check: sqrt(Var/2^20) = sqrt(0.03606162/1048576) = 1.85e-4 vs stored 0.00019 (vmc.py lines 268-270: final estimate with estim_size = 2^20 samples); variance is Var(H) of the total energy. The linked script was attached on 2024-07-30 (fdb4bfb Jastrow / 5047bfd RBM) to a number already in VarBench (77a95d7 (2022-12-12)); vmc.py uses nk.operator.IsingJax (vmc.py line 78), so it is a later reimplementation of the baseline that documents the ansatz and protocol, not the output of the run that produced this number (no log in the methods repo). Value unchanged since 77a95d7; no value was changed and restored.",
+        "source_entry": "VB4-tfising-tv#14 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/vmc_jastrow.sh",
+        "script": "scripts/TFIsing/chain_10_O_1/vmc_jastrow.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/TFIsing/chain_10_O_1/vmc_jastrow.sh)",
+          "location": "VarBench table vendor/varbench/TFIsing/chain_10_O_1.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -12.38133801299217,
+      "sigma": null,
+      "energy_variance": 0.0007985776929899657,
+      "dof": 10,
+      "einf": 0,
+      "v_score": 0.00005209331734324039,
+      "method": "VQE",
+      "ansatz": null,
+      "method_detail": "Hamiltonian variational, depth 24",
+      "method_as_published": "VQE HV (d = 24)",
+      "family": "VQE / circuit",
+      "bound_type": "variational",
+      "bound_type_reason": "\\bvqe\\b|\\bcircuit\\b|\\bpq",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/programs/pqc_ising_1d/pqc_HamVar.py)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 48,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "programs/pqc_ising_1d/pqc_HamVar.py: \"n=10 #number of sites\", \"n_blocks = 24\", 48 hard-coded angles (\"thetas[:48]=[...]\") || README.md: \"The codes do not perform parameter optimization. Here we simply load the optimal parameters which have been found with the VQE algorithm.\" || arXiv:2302.04919 SM Sec. S3 D: \"The total number of parameters is ℓd.\" (ℓ = 2 for TFIM)",
+        "source": "program, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/pqc_ising_1d/pqc_HamVar.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/pqc_ising_1d/README.md; VarBench SM, arXiv:2302.04919 (qmbl/sources/2302.04919.txt) (compute pass 2026-09-24)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters: 2 x d = 2 x 24 = 48, equal to the number of hard-coded angles. Samples and iterations: not found. The program only evaluates the stored angles (README), and the VarBench SM describes the ansatz and says each point of Fig. S1 \"corresponds to a full VQE optimization\" without optimiser, step count or shots (\"We only consider noiseless emulations of the quantum circuits, i.e., neglecting this measurement sampling noise\"), so the run was exact state-vector (no shots). Searched: the program, README, requirements.txt, the VarBench SM Sec. S3 D and Fig. S1 caption, the dataset history (value entered 1d0b247, 2022-12-12, Dian Wu; program added c3b05e6, 2024-08-02). No device or time is recorded."
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "VarBench TFIsing/chain_10_O_1.md: Energy -12.38133801299217 | Sigma (empty) | Energy Variance 0.0007985776929899657 | DOF 10 | Einf 0 | Method \"VQE HV (d = 24)\"",
+          "location": "pqc_HamVar.py lines 20-24 (n = 10, gamma = -1, J = -1, open), 31-77 (H = J sum Z_i Z_i+1 + gamma sum X_i), 124-154 (|+>^10, 24 x [exp(i theta ZZ) block, RX block]), 168 (n_blocks = 24), 176-186 (thetas)",
+          "version_read": "varbench/methods ed31bb0 programs/pqc_ising_1d/pqc_HamVar.py (G. Mazzola; qutip 4.7): the hard-coded 48 parameters evaluated here in a 10-qubit statevector with qutip's gate conventions (work/tfising_checks.mjs; no optimisation, no diagonalisation)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "The committed program, pqc_HamVar.py (24 blocks, 48 parameters), evaluated in a 10-qubit statevector with its hard-coded parameters, reproduces the stored energy and variance: a deterministic statevector expectation with no statistical error (ruling 2, 2026-09-30; RULES.md 6). The string names no deterministic marker, so the fallback counted it sampled. The instance is solved and the row is not the best bound, so nothing changes here.",
+          "source_entry": "VB4-tfising-tv#12 (qmbl-verify 2026-09-29; reader's reading; no skeptic checked it); ruling 2, 2026-09-30",
+          "from": true
+        }
+      ],
+      "sampled": false,
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "varbench/methods ed31bb0 programs/pqc_ising_1d/pqc_HamVar.py (G. Mazzola; qutip 4.7): the hard-coded 48 parameters evaluated here in a 10-qubit statevector with qutip's gate conventions (work/tfising_checks.mjs; no optimisation, no diagonalisation)",
+        "location": "pqc_HamVar.py lines 20-24 (n = 10, gamma = -1, J = -1, open), 31-77 (H = J sum Z_i Z_i+1 + gamma sum X_i), 124-154 (|+>^10, 24 x [exp(i theta ZZ) block, RX block]), 168 (n_blocks = 24), 176-186 (thetas)",
+        "reported_as": "VarBench TFIsing/chain_10_O_1.md: Energy -12.38133801299217 | Sigma (empty) | Energy Variance 0.0007985776929899657 | DOF 10 | Einf 0 | Method \"VQE HV (d = 24)\"",
+        "conversion": "statevector: <H> = -12.381338013039802, Var = 0.000798577079962115; stored -12.38133801299217, 0.0007985776929899657; differences -4.8e-11 and -6.1e-10 (the file prints the parameters to 8 digits)",
+        "note": "The committed program reproduces the stored energy and variance: deterministic statevector expectation, 24 blocks = 48 parameters, open chain h = 1, total energy 1.52e-4 above the exact -12.3814899997. Upload history: until ff71117 (2024-08-05) VarBench listed VQE HV at d = 8, 12, 16, 20, 24, 26, with this exact number and variance under 'd = 26' and -12.381299615657655 (var 0.0009568460000082268) under 'd = 24'; ff71117 kept one row, relabelled 'd = 24', with the former d = 26 value. The program's 24-block circuit gives this value, so the current label matches the linked program and the pre-2024 'd = 26' label was the inconsistent one; the dropped d = 24 number is listed under Unlisted numbers. Note: units.mjs isSampled() counts 'VQE HV (d = 24)' as sampled (no deterministic marker in the string) although the energy is an exact statevector expectation; it has no effect here (the instance is solved and the row is not the best bound).",
+        "source_entry": "VB4-tfising-tv#12 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/programs/pqc_ising_1d/pqc_HamVar.py",
+        "script": "programs/pqc_ising_1d/pqc_HamVar.py",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/programs/pqc_ising_1d/pqc_HamVar.py)",
+          "location": "VarBench table vendor/varbench/TFIsing/chain_10_O_1.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -12.380038028233812,
+      "sigma": null,
+      "energy_variance": 0.007944439359960143,
+      "dof": 10,
+      "einf": 0,
+      "v_score": 0.0005183454574944895,
+      "method": "VQE",
+      "ansatz": null,
+      "method_detail": "R-CX, depth 10",
+      "method_as_published": "VQE R-CX (d = 10)",
+      "family": "VQE / circuit",
+      "bound_type": "variational",
+      "bound_type_reason": "\\bvqe\\b|\\bcircuit\\b|\\bpq",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/programs/pqc_ising_1d/pqc_RYCNOT.py)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 110,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "programs/pqc_ising_1d/pqc_RYCNOT.py: \"n=10 #number of sites\", \"n_blocks = 10\", 110 hard-coded angles (\"thetas=[...]\") || README.md: \"The codes do not perform parameter optimization. Here we simply load the optimal parameters which have been found with the VQE algorithm.\" || arXiv:2302.04919 SM Sec. S3 D: \"the total number of variational parameters is L(d + 1)\"",
+        "source": "program, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/pqc_ising_1d/pqc_RYCNOT.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/pqc_ising_1d/README.md; VarBench SM, arXiv:2302.04919 (qmbl/sources/2302.04919.txt) (compute pass 2026-09-24)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters: L(d + 1) = 10 x 11 = 110, equal to the number of hard-coded angles. Samples and iterations: not found. The program only evaluates the stored angles (README), and the VarBench SM describes the ansatz and says each point of Fig. S1 \"corresponds to a full VQE optimization\" without optimiser, step count or shots (\"We only consider noiseless emulations of the quantum circuits, i.e., neglecting this measurement sampling noise\"), so the run was exact state-vector (no shots). Searched: the program, README, requirements.txt, the VarBench SM Sec. S3 D and Fig. S1 caption, the dataset history (value entered 1d0b247, 2022-12-12, Dian Wu; program added c3b05e6, 2024-08-02). No device or time is recorded."
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "VarBench TFIsing/chain_10_O_1.md: Energy -12.380038028233812 | Sigma (empty) | Energy Variance 0.007944439359960143 | DOF 10 | Einf 0 | Method \"VQE R-CX (d = 10)\"",
+          "location": "pqc_RYCNOT.py lines 19-23 (n = 10, gamma = -1, J = -1, open), 81-87 (|1>^10), 124-166 (10 x [RY layer, CNOT(0,1)...CNOT(8,9)] + final RY layer), 180 (n_blocks = 10), 189-216 (thetas)",
+          "version_read": "varbench/methods ed31bb0 programs/pqc_ising_1d/pqc_RYCNOT.py (G. Mazzola; qutip 4.7): the hard-coded 110 parameters evaluated here in a 10-qubit statevector (work/tfising_checks.mjs)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "The committed program, pqc_RYCNOT.py (10 blocks, 110 parameters), evaluated in a 10-qubit statevector with its hard-coded parameters, reproduces the stored energy and variance: a deterministic statevector expectation with no statistical error (ruling 2, 2026-09-30; RULES.md 6). The string names no deterministic marker, so the fallback counted it sampled. The instance is solved and the row is not the best bound, so nothing changes here.",
+          "source_entry": "VB4-tfising-tv#13 (qmbl-verify 2026-09-29; reader's reading; no skeptic checked it); ruling 2, 2026-09-30",
+          "from": true
+        }
+      ],
+      "sampled": false,
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "varbench/methods ed31bb0 programs/pqc_ising_1d/pqc_RYCNOT.py (G. Mazzola; qutip 4.7): the hard-coded 110 parameters evaluated here in a 10-qubit statevector (work/tfising_checks.mjs)",
+        "location": "pqc_RYCNOT.py lines 19-23 (n = 10, gamma = -1, J = -1, open), 81-87 (|1>^10), 124-166 (10 x [RY layer, CNOT(0,1)...CNOT(8,9)] + final RY layer), 180 (n_blocks = 10), 189-216 (thetas)",
+        "reported_as": "VarBench TFIsing/chain_10_O_1.md: Energy -12.380038028233812 | Sigma (empty) | Energy Variance 0.007944439359960143 | DOF 10 | Einf 0 | Method \"VQE R-CX (d = 10)\"",
+        "conversion": "statevector: <H> = -12.380038028230706, Var = 0.00794443898965369; stored -12.380038028233812, 0.007944439359960143; differences 3.1e-12 and -3.7e-10",
+        "note": "The committed program reproduces the stored energy and variance (statevector, deterministic), 1.45e-3 above exact. The row kept its 2022 label and value through ff71117 (2024-08-05), which dropped the d = 4, 6, 8, 12 rows (Unlisted numbers). Same isSampled() remark as the HV row.",
+        "source_entry": "VB4-tfising-tv#13 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/programs/pqc_ising_1d/pqc_RYCNOT.py",
+        "script": "programs/pqc_ising_1d/pqc_RYCNOT.py",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/programs/pqc_ising_1d/pqc_RYCNOT.py)",
+          "location": "VarBench table vendor/varbench/TFIsing/chain_10_O_1.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -12.381549,
+      "sigma": 0.000007,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "LRU",
+      "method_detail": "iterative retraining from a cold start",
+      "method_as_published": "1D LRU (linear recurrent unit) NQS, iterative retraining from cold start",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Parallel Scan Recurrent Neural Quantum States for Scalable Variational Monte Carlo, arXiv:2605.13807",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2605.13807 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; adversarial re-read: confirmed",
+        "reported_as": "-1.2381549(7)",
+        "note": "TABLE I, N=10 row: e_1DLRU(10)=-1.2381549(7) vs e_exact(10)=-1.2381490 | matches instance exact_per_site -1.2381489999654733 to 7 significant figures, confirming per-site convention at h=1, OBC",
+        "secondary_of": null
+      },
+      "compute": {
+        "parameters": 75000,
+        "gpu_hours": null,
+        "device": "NVIDIA H100 95GB",
+        "n_devices": 1,
+        "samples": 1024,
+        "wall_clock": "00:18:23 cumulative training time (hh:mm:ss) from N = 6 up to and including N = 10; 10 ms per training step at N = 10",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 30000,
+        "reported_as": "TABLE I caption: [...] The cumulative training time, hereafter, is reported in hh:mm:ss format. We also report our runtimes for training the 1D LRU using a single H100 95GB GPU. VMC is performed using 1024 samples at each iteration, and the final energies are computed at the end of each size's training procedure using 1,024,000 samples. For reference, this model consists of 3 layers with d = d_h = 64 and has around 75,000 variational parameters. || TABLE I row N = 10: Time per training step (ms) 10; Number of training steps 30000; Cumulative training time 00:18:23. || Sec. IV.B: The runtime increases with system size, from about 8 ms per step at N = 6 to about 0.9 s per step at N = 256. Overall, the full set of calculations required slightly less than nine hours on a single H100 GPU.",
+        "source": "Sec. IV.B Table I (row N = 10) and caption; Appendix A Table III, arXiv:2605.13807 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Row-level from Table I: 30000 training steps at N = 10 at 10 ms per step on a single H100 95GB GPU; 00:18:23 is the CUMULATIVE time from the N = 6 cold start (iterative retraining), not for N = 10 alone. parameters ~75,000 is for the 3-layer d = d_h = 64 1D LRU (scope ansatz). samples = 1024 per iteration (training); final energy evaluated with 1,024,000 samples. Whole 1D TFIM sweep to N = 256 took 'slightly less than nine hours' on the same GPU."
+      },
+      "defect": {
+        "flag": "below-exact",
+        "finding": "E/N = -1.2381549(7) (arXiv:2605.13807v1, Table I, row N = 10, column e_1DLRU(N); the only arXiv version, submitted 2026-05-13, PDF byte-identical to the cached copy) against e_exact(10) = -1.2381490 printed in the same row: 5.90e-6 per site, 8.4 sigma, below an exact value the paper itself derives from [1 - csc(pi/(2(2N+1)))]/N and that its released code recomputes with the same formula (PSR-NQS/lru_1d/run_training.py line 22-23, exact_obc_critical_energy_density) for the same Hamiltonian H = -sum sz sz - h sum sx, J = -1, h = 1, open chain (run_training.py 282, 318-319; vmc_utils.py 12-13, 28). Stored total -12.381549 +/- 0.000007 = 10 x per-site value, matches the instance exact row -12.38148999965 to 7 digits. The released code shows what the number is: run_training.py 189-230 evaluates the model state at the END of training with 1000 x 1024 = 1,024,000 fresh autoregressive samples and writes energy_mean and energy_error_of_mean = sqrt(Var/1024000) to final_stats.csv; the Table I caption says the same. A 1024-sample training-step bar would be sqrt(1000) = 31.6x larger (2.2e-5 per site, printed as (2) at five decimals), so the printed (7) is the final-estimate standard error, not a per-step one. The lowest_energy checkpoint (run_training.py 52-58, 141-160, UCB rule after half the steps) is saved but never restored; the reported energy is not a minimum over the optimization trace, and the mechanism established for the VarBench RBM (alpha = 1) row on this instance does not apply here (that dip would be ~4 sigma_step = 9e-5 per site, 15x deeper than observed, with a 30x wider bar). Samples are exact autoregressive draws (wvfn_1d.py 116-151, log_softmax conditionals, categorical sampling), so no autocorrelation correction is missing either. With a normalized causal ansatz (checked: the parallel path shifts inputs by one site and skip-adds the unshifted input, ssm_1d.py 108-112, ssm_blocks.py 50-55, identical to the sampler loop at wvfn_1d.py 134-149) and consistent psi evaluations, the estimator is unbiased and 8.4 sigma below E0 has probability ~1e-17: the printed value cannot come from the released procedure unless the two psi evaluations it mixes disagree. They are different code paths: the denominator psi(sigma) is the sampler sequential recurrence (run_training.py 200-201, model.log_psis(samples, clp)), the N numerators psi(sigma^i) are a parallel associative-scan forward pass (vmc_utils.py 22-24, parallel=True). A mismatch delta between them enters as exp(delta) and biases the field term downward (Jensen); an rms mismatch of ~4e-3 in log psi would reproduce the N = 10 dip. The repository sanity check never tests this: benchmark_trainstep_vs_L_1D_lru.py 280-292 passes clp into both sides of the sampled-input comparison, as its own comment admits. Not run here (out of scope for this pass); no results, logs or CSVs were ever committed (27 commits, 1D code in one commit 8335644 of 2026-05-12). Whatever the mechanism, the same column has two more sub-exact entries (N = 24: -1.57e-5, 15.7 sigma; N = 32: -5.92e-5, 29.6 sigma) and two entries within 1 sigma of exact (N = 8, N = 128), so the printed bars understate the true uncertainty of the column by an order of magnitude; the paper and the script both print the relative error unsigned (rel_err = abs(E - exact)/abs(exact), run_training.py 221), which is why the sign flips went unnoticed and Table I text reads the non-monotonic error as optimization noise. The flag stands; the row holds no record. Corrections: the RBM-rerun diagnosis attached to this row through SHARED[\"below-exact\"] in scripts/defects.mjs is about a different row and must come off (separate correction entry).",
+        "source_entry": "FP5-arxiv-2605-13807#0 (qmbl-verify 2026-09-19-flagged)"
+      },
+      "artifacts": {
+        "code": "https://github.com/ParallelScan-RNNs/PSR-NQS",
+        "read_from": {
+          "quote": "Our implementation of the presented methods and all scripts needed to reproduce our results in this manuscript are openly available on GitHub https://github.com/ParallelScan-RNNs/PSR-NQS .",
+          "location": "arXiv:2605.13807 (sources/2605.13807.html), Code Availability",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2605.13807"
+      ],
+      "found": 1,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen. Energies from: arXiv:2605.13807."
+    }
+  ],
+  "qmbl_ed_cost": {
+    "core_hours": 0.00293,
+    "wall_clock": "00:00:11",
+    "cores": 1,
+    "cpu": "AMD EPYC 7763 64-Core Processor",
+    "energy": -12.381489999654761,
+    "reproduces": {
+      "energy": -12.381489999654734,
+      "method": "Exact Diagonalization",
+      "relative_difference": 2.15e-15
+    },
+    "sector": {
+      "conserved": "none",
+      "dimension": 1024,
+      "nonzeros": 11264,
+      "lattice_symmetries": "none"
+    },
+    "lanczos_steps": 81,
+    "peak_memory_gb": 0.75,
+    "code": "NetKet 3.22.4 (sparse matrix) and SciPy 1.18.1 eigsh (ARPACK Lanczos)",
+    "note": "Measured by QMBL, not reported: wall-clock from process start to the eigenvalue on 1 core (imports 8 s, Hamiltonian 0 s, sparse matrix 3 s, Lanczos 0 s); core_hours = wall-clock x cores. Process CPU time 60 % of wall-clock x cores, core clock 1.70 GHz on average, node load 26.2 of 128 CPUs.",
+    "script": "checks/cost/ed/run_ed.py",
+    "results_file": "checks/cost/ed/results/TFIsing--chain_10_O_1.json",
+    "commit": "716e043",
+    "measured_on": "2026-09-24"
+  }
+}

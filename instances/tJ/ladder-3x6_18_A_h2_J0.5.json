@@ -1,0 +1,80 @@
+{
+  "model": "tJ",
+  "lattice": "ladder-3x6",
+  "n_sites": 18,
+  "boundary": "A",
+  "params": {
+    "t": 1,
+    "J": 0.5,
+    "N_up": 8,
+    "N_dn": 8,
+    "nn_term": true
+  },
+  "cluster": "three-leg ladder of 6 rungs, isotropic (t' = t, J' = J on the rungs), antiperiodic along the legs and open across them (arXiv:cond-mat/9706147 Table I); QMBL's diagonalization reproduces both energies (checks/tj-ed-2026-10/)",
+  "instance_id": "tJ/ladder-3x6_18_A_h2_J0.5",
+  "rows": [
+    {
+      "energy": -11.806802485145,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 16,
+      "einf": null,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "Lanczos",
+      "method_as_published": "Lanczos",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "numerically exact reference as stated by the source (assigned during source reading)",
+      "reference": "Rice, Haas, Sigrist & Zhang, Lightly doped t-J three-leg ladders: An analog for the underdoped cuprates, Phys. Rev. B 56, 14655 (1997), doi:10.1103/PhysRevB.56.14655, arXiv:cond-mat/9706147",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:cond-mat/9706147 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-11.80680",
+        "note": "Table I, 3 x 6 isotropic ladder, 2 holes, lowest entry of the column (k = 0, R = +1) (line 599); version read: arXiv text (sources/cond-mat-9706147.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eq. (1): H = -t sum P(c+c + h.c.)P - t' sum (rungs) + J sum (S.S - n n / 4) + J' sum (rungs), isotropic t' = t, J' = J, J/t = 0.5; Table I prints total energies per symmetry sector; the lowest of each column is the ground state, and QMBL's diagonalization of the 3 x 6 ladder with antiperiodic legs gives -10.4075745288 (1 hole) and -11.8068024851 (2 holes).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:cond-mat/9706147v2 PDF, pypdf layout (sources/tjP7-dl/cond-mat-9706147v2.layout.txt); journal PDF not reachable (APS 401); and an independent recomputation: independent exact diagonalization written for this check (checks/tj-exact-recompute-2026-10/tjk.c: C/OpenMP, basis adapted to lattice translations and point-group operations with 1D characters, Lanczos to |dE| < 1e-13 per step; clusters and sectors from gen.py), run 2026-10-23; validated against a brute-force full-space ED (bf.py) on 12 small clusters (agreement to 1e-10)",
+          "location": "Table I, 2-hole column, row k = 0, R = +1",
+          "reported_as": "-11.80680",
+          "conversion": "total, no conversion",
+          "note": "Lowest 2-hole entry; text: 'The groundstate has even parity and a total wavevector of k=0'. QMBL ED -11.8068024851 agrees. No duplicate. | Recomputation: E = -11.8068024851 (t = 1); printed form total, units of t: -11.80680 vs printed -11.80680; 3 x 6 ladder (three legs of 6 sites), hopping across the leg boundary with the opposite sign (antiperiodic legs), open across, isotropic; full space, no symmetry; full space at this electron number (ground state), best sector lad3x6A_h2_J0.5_full, dim 1969110; 8 s wall on 16 threads over all sectors; QMBL's earlier ED (checks/tj-ed-2026-10/) gave -11.8068024851, difference -4.5e-11",
+          "source_entry": "tjP7-tj#6 (qmbl-verify 2026-10-23), tjE-exact-recompute#5 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -11.806802485145,
+          "reported_as": "-11.80680 (total, units of t)",
+          "location": "Table I, 3 x 6 isotropic ladder, 2 holes, lowest entry of the column (k = 0, R = +1) (line 599)",
+          "version_read": "recomputation: checks/tj-exact-recompute-2026-10/ (tjk.c, 2026-10-23); the printed value as the generator read it (scripts/tj_2026_10_22.mjs)",
+          "conversion": "-11.80680 (total) = -11.8068 (stored); recomputed -11.806802485145 = -11.8068024851 in the printed form, which rounds to the printed digits",
+          "checked_on": "2026-10-23",
+          "reason": "Rule for exact rows QMBL recomputed (2026-09-30; applied to the t-J rows, ruled 2026-10-24): the printed value is QMBL's value rounded to the printed digits, so the row keeps its citation and carries QMBL's digits; the printed value stays here. Recomputed by tjk.c (symmetry-adapted Lanczos, |dE| < 1e-13 per step; the full space at its electron number, lowest sector lad3x6A_h2_J0.5_full, dimension 1969110), whose code agrees with the brute-force bf.py to 1e-10 on 12 small clusters; codes and outputs in checks/tj-exact-recompute-2026-10/.",
+          "source_entry": "tjE-exact-recompute#5 (qmbl-verify 2026-10-23); rule for recomputed exact rows, ruled 2026-10-24",
+          "from": -11.8068
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-11.80680",
+          "location": "Table I, 3 x 6 isotropic ladder, 2 holes, lowest entry of the column (k = 0, R = +1) (line 599)",
+          "version_read": "the row's published method string; the exact diagonalization is recomputed in checks/tj-exact-recompute-2026-10/",
+          "conversion": "none",
+          "checked_on": "2026-10-24",
+          "reason": "Deterministic: an exact (Lanczos) diagonalization carries no statistical error, but the label \"Lanczos\" matches none of isSampled's deterministic markers, so the row read as a sampled energy without an error bar (the README marked it); ruled 2026-10-24.",
+          "source_entry": "tjE-exact-recompute#5 (qmbl-verify 2026-10-23); ruled 2026-10-24 (exact rows whose label reads as sampled)",
+          "from": true
+        }
+      ],
+      "sampled": false
+    }
+  ]
+}

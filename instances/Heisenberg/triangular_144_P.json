@@ -1,0 +1,504 @@
+{
+  "model": "Heisenberg",
+  "lattice": "triangular",
+  "n_sites": 144,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/triangular_144_P",
+  "rows": [
+    {
+      "energy": -314.632,
+      "sigma": 0.013,
+      "energy_variance": 43.3,
+      "dof": 144,
+      "einf": 0,
+      "v_score": 0.06298608378773432,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "Dirac spin liquid + field + Jastrow",
+      "method_as_published": "VMC with Dirac+field+Jastrow",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_gutzwiller.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 20,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "scripts/Heisenberg/triangular_144_P/vmc_gutzwiller_inputs/VMC.in: \"&montecarlo itestr=2 iseed=9880221 iopt=1 iread=0 nw=1 ngen=500000 nscra=140 / &vmc nbra=200 /\" || scripts/Heisenberg/triangular_144_P/vmc_gutzwiller_inputs/datprep.in: \"&rangeham ioptPH=-1 irange=1 / &nelectrons nelup=72 neldo=72 / &wavefunction ieskin=1 iesspin=17 iesaf=1 /\" || programs/vmc_gutzwiller/monte_carlo_tj.f: \"np=iesspin+iesdens+2*iesBCS+2*ieskin+iesmu+2*iesonsite+iesaf\" (\"the factor 2 is due to the fact that there are real and imaginary parts\"), \"c     itestr=2 VMC\", \"c     itestr=-2 Full Minimizator\" || README: \"Bash scripts to reproduce results in the dataset are collected in the \\\"scripts\\\" folder, together with the input files containing the optimal variational parameters.\"",
+        "source": "run script and inputs, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_144_P/vmc_gutzwiller.sh, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_144_P/vmc_gutzwiller_inputs/VMC.in, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_144_P/vmc_gutzwiller_inputs/datprep.in, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_gutzwiller/monte_carlo_tj.f, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_gutzwiller/README (compute pass 2026-09-24)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters evaluated with the code's own count: iesspin=17 + 2*ieskin=1 + iesaf=1 = 20 (vjspin 17 (17 nonzero), dek_r 1 (1 nonzero), dek_i 1 (0 nonzero), dAF 1 (1 nonzero); 19 of the stated values are nonzero; entries stated as exactly 0 or 1 may be fixed by symmetry or normalisation, but the code sizes its SR matrix, np + 1, with all of them). Samples and iterations of the optimisation are not in any source: the script is a measurement run (itestr=2) of stored optimal parameters, 500000 generations of 200 Metropolis proposals (a random site and a random neighbour within the coupling range) each on 1 walker, one energy measurement per generation, full recomputation every 140 generations (vmc_schedule). The optimiser exists in monte_carlo_tj.f (itestr=-2, namelist &optimization nweight/ibinit/tau), but the script leaves &optimization empty. Searched: the script, all four input files, programs/vmc_gutzwiller README and sources, VarBench SM (arXiv:2302.04919 Sec. S3 C, general VMC description, no step counts), the dataset history (value entered 5ee34f3, 2021-09-21, Francesco Ferrari; script added to methods ff5c8e3, 2024-07-30). The method string names no paper, so no paper-specific optimisation protocol can be attached. No device or time is recorded."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_144_P.md (snapshot 390a21e), row 'VMC with Dirac+field+Jastrow'; linked scripts/Heisenberg/triangular_144_P/vmc_gutzwiller.sh",
+        "reported_as": "| -314.632 | 0.013 | 43.3 | 144 | 0 | VMC with Dirac+field+Jastrow | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_gutzwiller.sh) |",
+        "conversion": "stored = 4N x <H>/N of read_ene.x (S.S per site), sigma x 4N, variance 16 Var_S(H); per site S.S = -314.632/(4 x 144) = -0.5462361",
+        "note": "vmc_gutzwiller inputs: 2-site supercell x '12 0 0 6' = 12x12 triangular torus (basis at 120 degrees), nelup = neldo = 72 (Sz = 0), jperp = 1, uvv = 0.25 (H = sum S.S), Dirac spin liquid fluxes + 120-degree field at K (pitch 2/3, 1/sqrt(3) in datprep.in) + spin Jastrow (iesspin=17); binned error (ratio 2.02). Conversion is on record: first upload -2.18494 | 9e-05 | 2e-03 (5276be9, 2021-08-31; per site, already x4) -> -314.632 | 0.013 | 43.3 (5ee34f3, 2021-09-21): -2.18494 x 144 = -314.63136, 9e-05 x 144 = 0.01296, and 43.3/144^2 = 0.00209 (the per-site variance had been printed to one digit). 1.781 above the 2D-RNN record of Moss et al. Linked d186176 (2024-07-30).",
+        "source_entry": "VB3-varbench-code-heisenberg#62 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_gutzwiller.sh",
+        "script": "scripts/Heisenberg/triangular_144_P/vmc_gutzwiller.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_gutzwiller.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_144_P.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -299.46304457007847,
+      "sigma": null,
+      "energy_variance": 100.89209006595773,
+      "dof": 144,
+      "einf": 0,
+      "v_score": 0.16200676117313792,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "DMRG (bond dimension = 512)",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/dmrg.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 512,
+        "iterations": 50,
+        "sweep_schedule": {
+          "code": "ITensors.jl 0.6.16",
+          "eigensolver_applications": 3,
+          "eigensolver_source": "ITensors.jl 0.6.16 dmrg(): eigsolve_krylovdim = 3, eigsolve_maxiter = 1 (defaults, not overridden)",
+          "maxdim": [
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512,
+            512
+          ],
+          "start": "random MPS at bond dimension 512",
+          "cutoff": 1e-12,
+          "variance_after": [
+            50
+          ],
+          "lattice": {
+            "order": "snake",
+            "rows": 12,
+            "cols": 12,
+            "wrap_row": true,
+            "wrap_col": true,
+            "diagonals": [
+              "\\"
+            ],
+            "site_dimension": 2,
+            "operators_per_bond": 3
+          }
+        },
+        "reported_as": "method string: \"DMRG (bond dimension = 512)\" || scripts/Heisenberg/triangular_144_P/dmrg.sh: \"julia --project heisenberg_2d.jl --peri --L 12 --J2 1 --zero_mag --max_B 512 --seed 123\" || programs/dmrg_itensors/common.jl get_sweeps: \"sweeps = Sweeps(args[\\\"max_step\\\"]); setmaxdim!(sweeps, args[\\\"max_B\\\"]); setcutoff!(sweeps, 1e-12)\" || programs/dmrg_itensors/args.jl: \"--max_step\" default = 50 || heisenberg_2d.jl: \"H_sqr = real(inner(H, psi, H, psi))\" after dmrg",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_144_P/dmrg.sh, with programs/dmrg_itensors/{common,args,heisenberg_2d}.jl (compute pass 2026-09-23)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Sweep schedule, eigensolver setting and lattice order read from the run script; 50 sweeps, maximum bond dimension 512. No time is recorded anywhere in the repository."
+      },
+      "defect": null,
+      "corrections": [
+        {
+          "field": "dof",
+          "to": 144,
+          "reported_as": "| -299.46304457007847 |       | 100.89209006595773 | 100 | 0    | DMRG (bond dimension = 512)  | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/dmrg.sh) |",
+          "location": "vendor/varbench/Heisenberg/triangular_144_P.md row 2 (DMRG), DOF cell; sibling rows 1, 3, 4 carry 144",
+          "version_read": "VarBench snapshot 390a21e (vendor/varbench) and full history (varbench-history: git show 107dd73, c85080f, 59e621a, abd23ae, 37648ad ... 390a21e); varbench/methods shallow clone ed31bb0; VarBench README.md; arXiv:2302.04919 text (sources/2302.04919.txt)",
+          "conversion": "dof = number of spins = n_sites = 12 x 12 = 144 (script: --L 12, L2 = L). v_score recomputes as 144 * 100.89209006595773 / 299.46304457007847^2 = 0.16200676117313792 (stored 0.11250469525912354 equals 100 * Var / E^2 exactly; ratio 1.44).",
+          "checked_on": "2026-09-19",
+          "reason": "By VarBench's own definition DOF is the number of spins and is constant within a file. VarBench README.md (vendor/varbench/README.md, snapshot 390a21e): \"`DOF`: number of degrees of freedom. For spins and spinless fermions it is the number of particles, and for spinful fermions it is `Nup + Ndown`\" and \"Note that all rows in a same file always have the same `DOF` and `Einf`, but we replicate them in every row to simplify data analysis.\" VarBench paper arXiv:2302.04919 (sources/2302.04919.txt, dated Sept. 12, 2024), Eq. (1) and text: \"where N is the number of degrees of freedom, which is the number of spins for spin models\" and \"For unconstrained spin-1/2 Hilbert spaces, we define N to be equal to the number of lattice sites Ns.\" varbench-history: DOF column introduced in 107dd73 (Dian Wu, 2022-08-18, \"Add DOF to each data row\"), where Heisenberg/triangular_12_PP_144.md received DOF = 144 on every existing row. The DMRG row was inserted by c85080f (Dian Wu, 2022-09-03, \"Update DMRG baseline for Heisenberg\"), a hand-typed line (column alignment differs from the programmatically aligned siblings) with DOF = 100; the same commit replaced the square_10_PP_100.md DMRG row (bond dimension 80 -> 1024, DOF 100, correct there). The cell then passed unchanged through abd23ae (Add Einf, programmatic rewrite), 37648ad (rename to Heisenberg/triangular_144_P.md), 0ef1497, f88f9ba (code link), cd362c4, d186176, fdb4bfb, 5047bfd and 390a21e (snapshot). Never edited, never restored. Across all six VarBench folders the two flagged rows are the only rows whose DOF differs from their file siblings (survey of every DMRG row: DOF = site count for every spin-model DMRG row, e.g. J1J2/square_196_P_0.5 DMRG (bond dimension = 512) has DOF = 196). varbench-methods scripts/Heisenberg/triangular_144_P/dmrg.sh: `julia --project heisenberg_2d.jl --peri --L 12 --J2 1 --zero_mag --max_B 512 --seed 123`; programs/dmrg_itensors/heisenberg_2d.jl builds 12 x 12 = 144 sites, periodic in both directions, square bonds plus J2 = 1 on the (i,j)-(i+1,j+1) diagonal (lines 64-70) and J22 = 0 (args.jl: \"Set J22 = 0 for triangular lattices\") = triangular lattice with 3 x 144 = 432 bonds of equal strength, Pauli form (`J *= 4`), Sz_total = 0 sector, 50 sweeps, max bond dimension 512, cutoff 1e-12. Prints `energy` and `energy_var` only; no parameter count or DOF, no output log in the methods repo (scope config). QMBL DATA.md: \"`dof` is the spin count for spin models\"; scripts/units.mjs expectedDof returns n_sites for spin models, so validate.mjs expects 144. Not a duplicate: no other row on Heisenberg/triangular_144_P carries this energy (data/Heisenberg/triangular_144_P.json, 5 rows read).",
+          "source_entry": "FB2-varbench-code-heisenberg#2 (qmbl-verify 2026-09-19-flagged, ruling 2026-09-21: option a throughout)",
+          "from": 100
+        },
+        {
+          "field": "defect",
+          "to": null,
+          "reported_as": "n/a (flag lift)",
+          "location": "scripts/defects.mjs lines 23-26",
+          "version_read": "same sources as the dof correction",
+          "conversion": "none",
+          "checked_on": "2026-09-19",
+          "reason": "Same cause and same fix as the square_196_P row: both DMRG rows were inserted by the one commit c85080f with the 10x10 file's DOF; VarBench's definition fixes DOF = 144 here. Lift the flag together with the dof correction (RULES.md 10; apply_corrections.mjs recomputes v_score = 0.16200676117313792). If the ruling is to keep the flag until VarBench fixes it upstream, the rewritten finding is: \"VarBench c85080f (Dian Wu, 2022-09-03) inserted this DMRG row by hand with DOF = 100 on a 144-spin file whose other rows carry 144; VarBench's README and paper define DOF as the number of spins. The stored v_score 0.1125 is 100 Var/E^2; with 144 it is 0.1620 (x1.44). VarBench's own per-method V-score point for this row is understated by the same factor; the instance-level V-score in the VarBench figure is unaffected (lowest-energy row is VMC with Dirac+field+Jastrow, -314.632).\"",
+          "source_entry": "FB2-varbench-code-heisenberg#3 (qmbl-verify 2026-09-19-flagged, ruling 2026-09-21: option a throughout)",
+          "from": {
+            "flag": "dof-mismatch",
+            "finding": "Row stores dof = 100 on a 144-site instance. Same typo."
+          }
+        }
+      ],
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_144_P.md (snapshot 390a21e), row 'DMRG (bond dimension = 512)'; linked scripts/Heisenberg/triangular_144_P/dmrg.sh",
+        "reported_as": "| -299.46304457007847 | | 100.89209006595773 | 100 | 0 | DMRG (bond dimension = 512) | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/dmrg.sh) |",
+        "conversion": "none: VarBench stores the total in Pauli form (SM Eq. S2, J = 1); per site S.S = -299.46304457007847/(4 x 144) = -0.519901119",
+        "note": "dmrg.sh: heisenberg_2d.jl --peri --L 12 --J2 1 --zero_mag --max_B 512: 12x12 triangular torus (432 bonds), Pauli, J = 1, Sz = 0, 50 sweeps at D = 512. M2 (5.4% above the record): a torus of width 12 at D = 512 in a snake MPS; no constant shift. The DOF cell (VarBench 100) is already corrected to 144 on the row (ruling 2026-09-21). Entered c85080f (2022-09-03, Dian Wu), never changed; linked 2024-07-19.",
+        "source_entry": "VB3-varbench-code-heisenberg#63 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/dmrg.sh",
+        "script": "scripts/Heisenberg/triangular_144_P/dmrg.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/dmrg.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_144_P.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -282.04227,
+      "sigma": 0.013,
+      "energy_variance": 168.431,
+      "dof": 144,
+      "einf": 0,
+      "v_score": 0.3048990817330671,
+      "method": "VMC",
+      "ansatz": "RBM",
+      "method_detail": "α = 1",
+      "method_as_published": "RBM (alpha = 1)",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_rbm.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 21024,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 144,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "minsr"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/Heisenberg/triangular_144_P/vmc_rbm.sh: \"python3 vmc.py --ham heis_tri --boundary peri --sign mars --ham_dim 2 --L 12 --zero_mag --net rbm --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py: \"--batch_size\" default=1024; \"--max_step\" default=10**4; \"--features\" default=1; \"--dtype\" default=\"float32\"; \"--optimizer\" default=\"sr\" || programs/vmc_netket/vmc.py: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, ...)\"; sampler \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py: \"alpha = args.features ... return nk.models.RBM(alpha=alpha, param_dtype=args.dtype, activation=log_cosh, ..., hidden_bias_init=zeros, visible_bias_init=zeros)\" || NetKet 3.13.0 netket/models/rbm.py: \"use_hidden_bias: bool = True\"; \"use_visible_bias: bool = True\"; \"features=int(self.alpha * input.shape[-1])\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); sign in H (vmc.py:86); P=21024>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x21024 real, Gram 1024x1024 (vmc_srt.py:69,85) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); sign in H (vmc.py:86); P=21024>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x21024 real, Gram 1024x1024 (vmc_srt.py:69,85)",
+        "source": "run script, VarBench methods repository at ed31bb0 (route1a-nqs-pass 2026-09-24): https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_144_P/vmc_rbm.sh ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L186 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L170 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L136 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L154 ; https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py#L311 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L133 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L103 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L43 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L45 (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "parameters = alpha N^2 + alpha N + N = 1*144^2 + 1*144 + 144 = 21024 real (float32) parameters: nk.models.RBM is a dense RBM (Dense kernel N x alpha N, hidden bias alpha N, visible bias N; both biases on by NetKet default, alpha = --features = 1), no weight sharing across translations. samples = 1024 per optimisation step (MCState n_samples = batch_size; MetropolisExchange with n_chains = batch_size = 1024, one sample per chain per step, each separated by sweep_size = N = 144 proposals (NetKet default), n_discard_per_chain = 0); iterations = 10000 (\"--max_step\" default=10**4); optimizer SR (VMC_SRt when n_parameters >= n_samples), lr 1e-3. The final energy is then estimated once with estim_size = 1024^2 = 1048576 samples (not an optimisation step). NetKet pinned twice by the program: programs/vmc_netket/requirements.txt \"NetKet==3.13.0\" and conda_env.yaml \"netket=3.11.4\"; every NetKet line cited here reads the same at both tags. The energy is older than the script: VarBench's data file listed it with no code link (\"TODO: own code\", varbench/varbench 0ef1497c and 6e9f6b83, 2024-07-11) until the scripts were added on 2024-07-30 (5047bfd6 RBM, d54f7c01 RNN, 765c5d13 GCNN), which changed only the reference column, so the script documents the settings after the fact, with library versions that may postdate the run. || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 144 x (1 + 0)/1 = 144: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 21024 >= n_samples = 1024, so nkx.driver.VMC_SRt: dense Jacobian and the samples x samples matrix O_LT @ O_LT.T per step: kind minsr (verify/agent-A.md item 2). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_144_P.md (snapshot 390a21e), row 'RBM (alpha = 1)'; linked scripts/Heisenberg/triangular_144_P/vmc_rbm.sh",
+        "reported_as": "| -282.04227 | 0.013 | 168.431 | 144 | 0 | RBM (alpha = 1) | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_rbm.sh) |",
+        "conversion": "none: VarBench stores the total in Pauli form (SM Eq. S2, J = 1); per site S.S = -282.04227/(4 x 144) = -0.489656719",
+        "note": "scripts/Heisenberg/triangular_144_P/vmc_rbm.sh: 'python3 vmc.py --ham heis_tri --boundary peri --sign mars --ham_dim 2 --L 12 --zero_mag --net rbm --seed 123 --show_progress' -> 12x12 triangular lattice (ColoredJ1J2 back_diag=False: square grid + (i,j)-(i+1,j+1) diagonals), periodic; NetKet Heisenberg J = 1 in Pauli form with Marshall rotation on the square bonds only (sign_rule=[True, False], a unitary: the diagonals join same-sublattice sites); Sz = 0 (total_sz=0, MetropolisExchange); real float32 RBM, alpha = 1 (nk.models.RBM, log_cosh); 10^4 SR steps; final estimate over 2^20 samples (vmc.py lines 268-269). sigma/sqrt(Var/2^20) = 1.026: the stored sigma is the error of that final estimate. 34.3711 above the 2D-RNN record -316.41336(5641) (Moss et al.). M2/M6 flags (if any): real float32 parameters make the amplitudes positive, so on this frustrated lattice the ansatz cannot carry the ground-state signs; no constant shift is involved and the energy is a valid bound. History: entered 10f5c12 (2022-07-11, Dian Wu) as -281.863 | 0.013 | 173.486 | RBM (alpha = 1); af1d48f (2022-09-01, 'Add Jastrow baseline'): energy -281.863 -> -282.04227; variance 173.486 -> 168.431; linked 5047bfd (2024-07-30). The value change sits in af1d48f, titled 'Add Jastrow baseline' (a re-run). Program files postdate the value (scripts added to varbench/methods 2024-07-30); they document the settings after the run.",
+        "source_entry": "VB3-varbench-code-heisenberg#64 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_rbm.sh",
+        "script": "scripts/Heisenberg/triangular_144_P/vmc_rbm.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_rbm.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_144_P.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -279.66142,
+      "sigma": 0.012,
+      "energy_variance": 154.749,
+      "dof": 144,
+      "einf": 0,
+      "v_score": 0.28492150283393475,
+      "method": "VMC",
+      "ansatz": "Jastrow",
+      "method_detail": "",
+      "method_as_published": "Jastrow baseline",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 10296,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 144,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "minsr"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh: \"python3 vmc.py --ham heis_tri --boundary peri --sign mars --ham_dim 2 --L 12 --zero_mag --net jas --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py defaults (not overridden): \"--batch_size\" default=1024, \"--max_step\" default=10**4, \"--estim_size\" default=1024**2, \"--dtype\" default=\"float32\", \"--optimizer\" default=\"sr\", \"--lr\" default=1e-3, \"--diag_shift\" default=1e-2, \"--chunk_size\" default=1024 || vmc.py: \"n_samples=args.batch_size\", \"n_chains=args.batch_size\", \"vmc.run(n_iter=args.max_step, ...)\", \"vstate.n_samples = args.estim_size\" || NetKet 3.13.0 netket/models/jastrow.py: \"kernel = self.param(\\\"kernel\\\", self.kernel_init, (nv * (nv - 1) // 2,), self.param_dtype)\" || netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || requirements.txt: \"NetKet==3.13.0\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); sign in H (vmc.py:86); P=10296>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x10296 real, Gram 1024x1024 (vmc_srt.py:69,85) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); sign in H (vmc.py:86); P=10296>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x10296 real, Gram 1024x1024 (vmc_srt.py:69,85)",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/requirements.txt; NetKet v3.13.0 https://github.com/netket/netket/blob/v3.13.0/netket/models/jastrow.py, https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters evaluated: NetKet 3.13.0 Jastrow stores the strictly lower triangle of W, N(N-1)/2 = 144*143/2 = 10296 real (float32) weights, which is also what vmc.py prints as n_params (tree_size_real_nonzero). Samples: 1024 per SR step, 1024 chains of length 1, each sample one sweep of 144 exchange proposals, no discard. Iterations: 10^4 steps (--max_step default). Driver: nkx.driver.VMC_SRt (n_parameters >= n_samples = 1024). After training the energy is estimated from 2^20 samples. stored sigma 0.012 vs sqrt(stored variance 154.749 / 2^20) = 0.012: consistent with the script's 2^20-sample final estimate (--estim_size default). Provenance: the value entered VarBench in 59e621a (2022-09-13, Dian Wu); the linked script was added to varbench/methods in c686621 (2024-07-30) without the value changing, so the script is the authors' later reconstruction of the baseline, not a log of the run (the same holds for the TFIsing RBM rows, scripts/defects.mjs). The 2^20-sample final estimate is corroborated by the stored sigma; batch size and step count are not independently corroborated. No device or time is recorded (the conda env includes CUDA; the README says a GPU is \"usually needed for VMC on larger lattices\", which is not a statement about these runs). || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 144 x (1 + 0)/1 = 144: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 10296 >= n_samples = 1024, so nkx.driver.VMC_SRt: dense Jacobian and the samples x samples matrix O_LT @ O_LT.T per step: kind minsr (verify/agent-A.md item 2). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_144_P.md (snapshot 390a21e), row 'Jastrow baseline'; linked scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh",
+        "reported_as": "| -279.66142 | 0.012 | 154.749 | 144 | 0 | Jastrow baseline | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh) |",
+        "conversion": "none: VarBench stores the total in Pauli form (SM Eq. S2, J = 1); per site S.S = -279.66142/(4 x 144) = -0.485523299",
+        "note": "scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh: 'python3 vmc.py --ham heis_tri --boundary peri --sign mars --ham_dim 2 --L 12 --zero_mag --net jas --seed 123 --show_progress' -> 12x12 triangular lattice (ColoredJ1J2 back_diag=False: square grid + (i,j)-(i+1,j+1) diagonals), periodic; NetKet Heisenberg J = 1 in Pauli form with Marshall rotation on the square bonds only (sign_rule=[True, False], a unitary: the diagonals join same-sublattice sites); Sz = 0 (total_sz=0, MetropolisExchange); real float32 Jastrow (nk.models.Jastrow); 10^4 SR steps; final estimate over 2^20 samples (vmc.py lines 268-269). sigma/sqrt(Var/2^20) = 0.988: the stored sigma is the error of that final estimate. 36.7519 above the 2D-RNN record -316.41336(5641) (Moss et al.). M2/M6 flags (if any): real float32 parameters make the amplitudes positive, so on this frustrated lattice the ansatz cannot carry the ground-state signs; no constant shift is involved and the energy is a valid bound. History: entered af1d48f (2022-09-01, Dian Wu) as -277.77834 | 0.011 | 149.787 | Jastrow baseline; 59e621a (2022-09-13, 'Update Jastrow and RBM baselines'): energy -277.77834 -> -279.66142; sigma 0.011 -> 0.012; variance 149.787 -> 154.749; linked fdb4bfb (2024-07-30). Program files postdate the value (scripts added to varbench/methods 2024-07-30); they document the settings after the run.",
+        "source_entry": "VB3-varbench-code-heisenberg#65 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh",
+        "script": "scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_144_P/vmc_jastrow.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_144_P.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -315.072,
+      "sigma": 0.04608,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "EPS",
+      "method_detail": "16-site plaquettes",
+      "method_as_published": "Entangled-plaquette state (EPS), 16-site plaquettes",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Mezzacapo & Cirac, Ground-state properties of the spin-1/2 antiferromagnetic Heisenberg model on the triangular lattice: a variational study based on entangled-plaquette states, New J. Phys. 12, 103039 (2010), arXiv:1006.4480",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-28",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-28",
+        "method": "source text of arXiv:1006.4480 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading by a reader agent, line checked in the committed text by the session",
+        "reported_as": "-0.54700(8)",
+        "note": "Table 2 (sources/1006.4480.txt L252-258), row N = 144; 'N plaquettes comprising 16 sites have been employed'. | Table 2: 'Variational GS energy per site (in units of Jxy) ... for the spin-1/2 AHM on a triangular lattice of size N with PBC' at the Heisenberg point Jxy = Jz = 1, S.S units; N = 324 is the 18 x 18 cluster and N = 144 the 12 x 12. Its N = 36 value -0.55420(5) is already carried on Heisenberg/triangular_36_P as a secondary row and is left to qmbl-verify.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:1006.4480v3 PDF (sources/vp16_1006.4480v3.pdf, byte-identical in size to qmbl/sources/1006.4480.pdf), pypdf plain + layout",
+          "location": "Table 2, row N = 144 (p. 6)",
+          "reported_as": "-0.54700(8) (GS energy per site, units of J_xy, S.S)",
+          "conversion": "-0.54700 x 4 x 144 = -315.072; sigma 0.00008 x 576 = 0.04608",
+          "note": "Hamiltonian S.S with J = 1 (Eq. 3), PBC, S^z_tot = 0, variational (Table 2 'Variational GS energy per site'), 16-site plaquettes, own computation, NJP (peer reviewed) all agree. Cluster: 12 x 12 torus via the paper's same-N comparison with Ref. [31] (L x L clusters). Duplicate check: no other row on triangular_144_P carries this number.",
+          "source_entry": "VP16-heisenberg-hubbard-j1j2-tfising#5 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF New J. Phys. 12, 103039 (2010), sources/journal/njp12-103039.pdf, sha256 d222cb34 (in-page fetch of iopscience.iop.org/article/10.1088/1367-2630/12/10/103039/pdf in a browser over the ETH network), pypdf layout + plain (njp12-103039.R5.*.txt); compared with arXiv:1006.4480v3 (sha256 bf4542be, layout)",
+          "location": "Table 2 (journal p. 6), row N = 144",
+          "reported_as": "144 −0.547 00(8) –",
+          "conversion": "-0.547 x 576 = -315.072; sigma 8e-5 x 576 = 0.04608",
+          "note": "Journal Table 2 (p. 6) equals arXiv v3 Table 2 digit for digit. Caption: \"Variational GS energy per site (in units of J xy) computed, by using the entangled-plaquette ansatz, for the spin-1/2 AHM on a triangular lattice of size N with PBC. Error bars are in parenthesis; N plaquettes comprising 16 sites were employed.\" PBC, S·S per site (exact N = 36 value −0.560 373), variational EPS with 16-site plaquettes; the journal abstract prints −0.554 20(4) for N = 36, as arXiv does (table bar (5) is the one stored). Reference and peer_reviewed true right. No field changes.",
+          "source_entry": "R5-browser#19"
+        }
+      }
+    },
+    {
+      "energy": -316.413360596,
+      "sigma": 0.056408,
+      "energy_variance": 31.818569,
+      "dof": 144,
+      "einf": 0,
+      "v_score": 0.04576500448814385,
+      "method": "VMC",
+      "ansatz": "2D RNN",
+      "method_detail": "iterative retraining, s = 4.0, r = 0.158",
+      "method_as_published": "2D RNN wavefunction (iterative retraining, s=4.0, r=0.158)",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Moss, Wiersema, Hibat-Allah, Carrasquilla & Melko, Leveraging recurrence in neural network wavefunctions for large-scale simulations of Heisenberg antiferromagnets on the triangular lattice, Phys. Rev. B 112, 134449 (2025), arXiv:2505.20406",
+      "peer_reviewed": true,
+      "source": "repo-data-2026-09-16",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-16",
+        "method": "authors' data release read locally (pickle via numpy), values copied by key, no transcription; the file is committed as sources/2505.20406-repo-final_energies_data.json and reproduces Table V's L = 6 energy and Table II's V-scores",
+        "reported_as": "-0.5493287510342069 +/- 0.00009793047021398267 per site (S.S), Var(E/N) = 0.00009590376996331745, V-score 0.04576500475194352",
+        "note": "github.com/mschuylermoss/HeisenbergRNN, commit 5f5cffa5cb (2025-10-28, HEAD; file last changed in d58a945cd4 2025-05-27, 'final plotting data and plotting notebooks'), Triangular/final_plotting/plotting_data/final_energies_data_plotting.pkl, sha256 bdc59e5bc3780fb4ea7444400dc9abd9984a6a259ab03f9299c1f80edb87d276: ['TriangularMS,periodicBC']['scale=4.0,rate=0.158,T=1.00'], L = 12. The paper's most accurate schedule (Table II, whose L = 12 V-score 4.6e-2 is this run's 0.0458); plotted in Fig. 4(a), not printed. TriangularMS is the 120-degree basis rotation U_tri, which changes the representation, not the Hamiltonian. Variance is Var(H)/N^2 in S.S units; total = var x N^2 x 16.",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "authors' data release github.com/mschuylermoss/HeisenbergRNN@5f5cffa5cb Triangular/final_plotting/plotting_data/final_energies_data_plotting.pkl (sources/repo-2505.20406/, sha256 bdc59e5b, same file as the committed JSON's source), decoded by walking pickle opcodes without executing them (tools/pkl_arrays.py); cross-checked against the journal PRB 112, 134449 Table II V-scores (sources/journal/prb112-134449.pdf, sha256 ea3dde74); pypdf layout mode unless noted",
+          "location": "pickle key ['TriangularMS,periodicBC']['scale=4.0,rate=0.158,T=1.00'], index L = 12; journal Table II row L = 12",
+          "reported_as": "energies -0.5493287510342069, variances 0.00009590376996331745, std errors 0.00009793047021398267, vscores 0.04576500475194352 (pickle); V-score 4.6 x 10^-2 (journal Table II)",
+          "conversion": "-0.5493287510342069 x 4 x 144 = -316.413361; sigma 0.00009793047021398267 x 576 = 0.056408; variance (per-sample Var(E/N) = Var(H)/N^2, since N v / e^2 reproduces the V-score) 0.00009590376996331745 x 144^2 x 16 = 31.818569",
+          "note": "Triangular L x L torus with periodic boundary conditions, S.S Heisenberg (stored Pauli total = 4 x S.S total); s = 4.0, r = 0.158 is the paper's 'most accurate simulation' (Table II caption); the energy is plotted in Fig. 4(a), not printed; TriangularMS is the 120-degree basis rotation (representation, not Hamiltonian). Final variational estimate from 1e4 samples (std error^2 x 1e4 = variance). All stored values reproduce to the stored digits. Record row: own computation, read hardest; no other row on the instance carries this number.",
+          "source_entry": "JP10-hubbard-heisenberg#45"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": 1700,
+        "device": "NVIDIA H200",
+        "n_devices": 2,
+        "samples": 10000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Sec. IV Discussion: The longest simulation reported in this work took 1,700 GPU hours and produced energies for six different system sizes up to 30x30, albeit with more modern hardware (see Appendix E). Appendix E, Figs. 10-11 captions: ... using two H200 GPUs. Fig. 4 caption: Each of our variational energies is estimated with 10x10^3 samples.",
+        "source": "Sec. IV Discussion, Appendix E Figs. 10-11 captions, Fig. 4 caption, arXiv:2505.20406 (compute pass 2026-09-16, block reused for the repository row)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "1,700 GPU-hours is the paper's total for its longest iterative-retraining chain (L = 6 ... 30), read as the s = 4.0, r = 0.158 schedule this row comes from; the paper does not split it per size. No parameter count stated."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Moss, Wiersema, Hibat-Allah, Carrasquilla & Melko, Leveraging recurrence in neural network wavefunctions for large-scale simulations of Heisenberg antiferromagnets on the triangular lattice, Phys. Rev. B 112, 134449 (2025), arXiv:2505.20406",
+          "reported_as": "Crossref 10.1103/nh89-6jmf: 'Leveraging recurrence in neural network wavefunctions for large-scale simulations of Heisenberg antiferromagnets on the triangular lattice', Physical Review B 112, 134449, issued 2025-10-28, authors M. Schuyler Moss, Roeland Wiersema, Mohamed Hibat-Allah, Juan Carrasquilla, Roger G. Melko (the square-lattice companion arXiv:2502.17144 is PRB 112, 134450)",
+          "location": "Crossref record; arXiv abs page (v3 2025-10-13, no journal-ref yet)",
+          "version_read": "arXiv:2505.20406v3 (energies); journal version not read",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "The paper is published (M10 flag answered: yes, PRB 112, 134449, 2025-10-28). RECORD ROW (triangular_144_P). Energy verified from the authors' data file (key ['TriangularMS,periodicBC']['scale=4.0,rate=0.158,T=1.00'], L = 12): energy -0.5493287510342069 +/- 9.793047021398267e-05 per spin, variance 9.590376996331745e-05, vscore 0.04576500475194352; Table 2 prints V-score 4.6e-2 for L = 12 (PDF p. 16). Conversion -0.5493287510342069 x 576 = stored energy; sigma 9.793047021398267e-05 x 576; Var = 9.590376996331745e-05 x 144^2 x 16. All stored numbers (energy, sigma, energy_variance, v_score) reproduced to their stored digits; 12x12..30x30 torus, PBC, J = 1, variational. The value is only plotted in the paper (Fig. 4(a)), so the data release is the source of the digits; the record stands (0.43% below the EPS row -0.547, 18 combined sigma). The same TREF feeds rows L = 18, 24, 30.",
+          "source_entry": "VP11-heisenberg-hubbard-j1j2#48 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Moss, Wiersema, Hibat-Allah, Carrasquilla & Melko, arXiv:2505.20406v3 (2025-10-13)"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "Crossref 10.1103/nh89-6jmf: 'Leveraging recurrence in neural network wavefunctions for large-scale simulations of Heisenberg antiferromagnets on the triangular lattice', Physical Review B 112, 134449, issued 2025-10-28, authors M. Schuyler Moss, Roeland Wiersema, Mohamed Hibat-Allah, Juan Carrasquilla, Roger G. Melko (the square-lattice companion arXiv:2502.17144 is PRB 112, 134450)",
+          "location": "Crossref record",
+          "version_read": "Crossref 2026-09-29",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Published in Phys. Rev. B.",
+          "source_entry": "VP11-heisenberg-hubbard-j1j2#49 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": false
+        }
+      ],
+      "artifacts": {
+        "code": "https://github.com/mschuylermoss/HeisenbergRNN",
+        "read_from": {
+          "quote": "Our implementation of the presented methods, all scripts needed to reproduce our results, and most of the data needed to reproduce the figures in this manuscript are openly available on GitHub github.com/mschuylermoss/HeisenbergRNN [97].",
+          "location": "arXiv:2505.20406 (sources/2505.20406.txt and .html), Sec. VI Code Availability",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2211.07749",
+        "arXiv:2404.07869",
+        "arXiv:2502.17144"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ]
+}

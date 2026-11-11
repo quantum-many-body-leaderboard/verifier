@@ -1,0 +1,150 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 10,
+  "boundary": "O",
+  "params": {
+    "N_up": 5,
+    "N_dn": 5,
+    "R": 1,
+    "basis": "aug-cc-pVTZ"
+  },
+  "instance_id": "Hchain/chain_10_O_R1_augccpvtz",
+  "rows": [
+    {
+      "energy": -4.1495,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "HF",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "HF",
+      "family": "mean field",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, C. Genovese, F. Ma, Z.-H. Cui, R. Sawaya, G. K.-L. Chan, N. Chepiga, P. Helms, C. Jiménez-Hoyos, A. J. Millis, U. Ray, E. Ronca, H. Shi, S. Sorella, E. M. Stoudenmire, S. R. White & S. Zhang, Ground-State Properties of the Hydrogen Chain: Dimerization, Insulator-to-Metal Transition, and Magnetic Phases, Phys. Rev. X 10, 031058 (2020), arXiv:1911.01618, doi:10.1103/PhysRevX.10.031058",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1911.01618 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.41495 per atom (HF column)",
+        "note": "SI Table III, row \"aug-TZ\" (NAO 230), HF column; sources/1911.01618-anc-si.txt line 1274; version read: APS Supplemental Material (si.pdf, sources/1911.01618-PhysRevX.10.031058-si.txt) and the arXiv ancillary SI; identical | Hartree per atom, total energy with nuclear repulsion: the cc-pVDZ HF value -0.40101 matches RHF/cc-pVDZ of the 2017 data set (-4.010066006349 for H10).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "APS Supplemental Material of Phys. Rev. X 10, 031058 (si.pdf, published 2020-09-14; text identical byte for byte to the arXiv:1911.01618v2 ancillary SI) and arXiv:1911.01618v1 ancillary SI; pypdf layout mode (extract.py); same numbers in both",
+          "location": "SI Sec. D.1 \"Gaussian basis convergence\", Table III (H10 molecule at OBC, R = 1.0 aB), row aug-TZ (NAO 230), HF column; APS SI p. 21 (text line 1215), arXiv v1 anc SI p. 20 (line 1294)",
+          "reported_as": "-0.41495 (HF column, per atom, Hartrees)",
+          "conversion": "-0.41495 x 10 = -4.1495 Ha",
+          "note": "Instance: H10 equally spaced, open, R = 1.0 bohr, neutral closed shell (caption 'H10 molecule at OBC (R = 1.0 aB)'); basis label aug-TZ (NAO 230) matches aug-cc-pVTZ by NAO (aug-cc-pVTZ has 23 spherical functions per H). Correlation energy row allowed (13.3): reference HF printed in the same row. bound_type variational (RULES 13.4: RHF/UHF variational) agrees. Own computation, peer reviewed (PRX 10, 031058). No sigma in source (deterministic). Not a duplicate: no other row on this instance has this method. No independent same-method value exists on this instance to cross-check the Hamiltonian; see the ambiguous entries on the cc-pVxZ HF rows for the same table.",
+          "secondary_of": null,
+          "source_entry": "h-p-1911-01618#8 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    },
+    {
+      "energy": -4.3752,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "MP2",
+      "ansatz": null,
+      "method_detail": "HF reference",
+      "method_as_published": "MP2 [HF reference]",
+      "family": "FCIQMC / CC",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, C. Genovese, F. Ma, Z.-H. Cui, R. Sawaya, G. K.-L. Chan, N. Chepiga, P. Helms, C. Jiménez-Hoyos, A. J. Millis, U. Ray, E. Ronca, H. Shi, S. Sorella, E. M. Stoudenmire, S. R. White & S. Zhang, Ground-State Properties of the Hydrogen Chain: Dimerization, Insulator-to-Metal Transition, and Magnetic Phases, Phys. Rev. X 10, 031058 (2020), arXiv:1911.01618, doi:10.1103/PhysRevX.10.031058",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1911.01618 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "HF -0.41495 + MP2 correlation -0.02257 per atom",
+        "note": "SI Table III, row \"aug-TZ\" (NAO 230), HF and MP2 columns; sources/1911.01618-anc-si.txt line 1274; version read: APS Supplemental Material (si.pdf, sources/1911.01618-PhysRevX.10.031058-si.txt) and the arXiv ancillary SI; identical | Hartree per atom, total energy with nuclear repulsion: the cc-pVDZ HF value -0.40101 matches RHF/cc-pVDZ of the 2017 data set (-4.010066006349 for H10).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "APS Supplemental Material of Phys. Rev. X 10, 031058 (si.pdf, published 2020-09-14; text identical byte for byte to the arXiv:1911.01618v2 ancillary SI) and arXiv:1911.01618v1 ancillary SI; pypdf layout mode (extract.py); same numbers in both",
+          "location": "SI Sec. D.1 \"Gaussian basis convergence\", Table III (H10 molecule at OBC, R = 1.0 aB), row aug-TZ (NAO 230), HF and MP2 columns; APS SI p. 21 (text line 1215), arXiv v1 anc SI p. 20 (line 1294)",
+          "reported_as": "HF -0.41495, MP2 correlation -0.02257 (per atom, Hartrees)",
+          "conversion": "(-0.41495) + (-0.02257) = -0.43752 per atom; x 10 = -4.3752 Ha",
+          "note": "Instance: H10 equally spaced, open, R = 1.0 bohr, neutral closed shell (caption 'H10 molecule at OBC (R = 1.0 aB)'); basis label aug-TZ (NAO 230) matches aug-cc-pVTZ by NAO (aug-cc-pVTZ has 23 spherical functions per H). Correlation energy row allowed (13.3): reference HF printed in the same row. bound_type approximate (13.4: finite-order PT) agrees. Own computation, peer reviewed (PRX 10, 031058). No sigma in source (deterministic). Not a duplicate: no other row on this instance has this method (the 2017 data set has no MP2). No independent same-method value exists on this instance to cross-check the Hamiltonian; see the ambiguous entries on the cc-pVxZ HF rows for the same table.",
+          "secondary_of": null,
+          "source_entry": "h-p-1911-01618#9 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "HF -0.41495 + MP2 correlation -0.02257 per atom",
+          "location": "SI Table III, row \"aug-TZ\" (NAO 230), HF and MP2 columns; sources/1911.01618-anc-si.txt line 1274; version read: APS Supplemental Material (si.pdf, sources/1911.01618-PhysRevX.10.031058-si.txt) and the arXiv ancillary SI; identical",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -4.4012,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "CCSD",
+      "ansatz": null,
+      "method_detail": "HF reference",
+      "method_as_published": "CCSD [HF reference]",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, C. Genovese, F. Ma, Z.-H. Cui, R. Sawaya, G. K.-L. Chan, N. Chepiga, P. Helms, C. Jiménez-Hoyos, A. J. Millis, U. Ray, E. Ronca, H. Shi, S. Sorella, E. M. Stoudenmire, S. R. White & S. Zhang, Ground-State Properties of the Hydrogen Chain: Dimerization, Insulator-to-Metal Transition, and Magnetic Phases, Phys. Rev. X 10, 031058 (2020), arXiv:1911.01618, doi:10.1103/PhysRevX.10.031058",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1911.01618 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "HF -0.41495 + CCSD correlation -0.02517 per atom",
+        "note": "SI Table III, row \"aug-TZ\" (NAO 230), HF and CCSD columns; sources/1911.01618-anc-si.txt line 1274; version read: APS Supplemental Material (si.pdf, sources/1911.01618-PhysRevX.10.031058-si.txt) and the arXiv ancillary SI; identical | Hartree per atom, total energy with nuclear repulsion: the cc-pVDZ HF value -0.40101 matches RHF/cc-pVDZ of the 2017 data set (-4.010066006349 for H10).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "APS Supplemental Material of Phys. Rev. X 10, 031058 (si.pdf, published 2020-09-14; text identical byte for byte to the arXiv:1911.01618v2 ancillary SI) and arXiv:1911.01618v1 ancillary SI; pypdf layout mode (extract.py); same numbers in both",
+          "location": "SI Sec. D.1 \"Gaussian basis convergence\", Table III (H10 molecule at OBC, R = 1.0 aB), row aug-TZ (NAO 230), HF and CCSD columns; APS SI p. 21 (text line 1215), arXiv v1 anc SI p. 20 (line 1294)",
+          "reported_as": "HF -0.41495, CCSD correlation -0.02517 (per atom, Hartrees)",
+          "conversion": "(-0.41495) + (-0.02517) = -0.44012 per atom; x 10 = -4.4012 Ha",
+          "note": "Instance: H10 equally spaced, open, R = 1.0 bohr, neutral closed shell (caption 'H10 molecule at OBC (R = 1.0 aB)'); basis label aug-TZ (NAO 230) matches aug-cc-pVTZ by NAO (aug-cc-pVTZ has 23 spherical functions per H). Correlation energy row allowed (13.3): reference HF printed in the same row. bound_type projected (13.4: CCSD and higher) agrees. Own computation, peer reviewed (PRX 10, 031058). No sigma in source (deterministic). Not a duplicate: no other row on this instance has this method. No independent same-method value exists on this instance to cross-check the Hamiltonian; see the ambiguous entries on the cc-pVxZ HF rows for the same table.",
+          "secondary_of": null,
+          "source_entry": "h-p-1911-01618#10 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "HF -0.41495 + CCSD correlation -0.02517 per atom",
+          "location": "SI Table III, row \"aug-TZ\" (NAO 230), HF and CCSD columns; sources/1911.01618-anc-si.txt line 1274; version read: APS Supplemental Material (si.pdf, sources/1911.01618-PhysRevX.10.031058-si.txt) and the arXiv ancillary SI; identical",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    }
+  ]
+}

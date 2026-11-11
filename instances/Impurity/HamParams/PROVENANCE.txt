@@ -1,0 +1,3 @@
+VarBench's impurity Hamiltonian parameters, copied unchanged from QMBL's vendored snapshot of
+https://github.com/varbench/varbench at 390a21eab7eb6898d663bc594bc139d1ec616711 (Impurity/HamParams),
+Apache-2.0 (LICENSE in this folder). Read by qrec_verify/impurity.py.

@@ -1,0 +1,556 @@
+{
+  "model": "Heisenberg",
+  "lattice": "triangular",
+  "n_sites": 100,
+  "boundary": "O",
+  "params": {},
+  "instance_id": "Heisenberg/triangular_100_O",
+  "rows": [
+    {
+      "energy": -200.276,
+      "sigma": 0.004,
+      "energy_variance": 5.032,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.01254535094003916,
+      "method": "VMC",
+      "ansatz": "RNN",
+      "method_detail": "",
+      "method_as_published": "RNN",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rnn.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 3384,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 100000,
+        "evaluation": {
+          "proposals_per_sample": 1,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "none"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)"
+        },
+        "reported_as": "scripts/Heisenberg/triangular_100_O/vmc_rnn.sh: \"python3 vmc.py --ham heis_tri --boundary open --sign mars --ham_dim 2 --L 10 --net rnn_lstm --layers 2 --features 16 --seed 123 --optimizer adam --max_step 100000 --show_progress\" || programs/vmc_netket/args_parser.py: \"--batch_size\" default=1024; \"--max_step\" default=10**4; \"--features\" default=1; \"--dtype\" default=\"float32\"; \"--optimizer\" default=\"sr\" || programs/vmc_netket/vmc.py: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, ...)\"; \"if args.net.startswith(\\\"rnn\\\"): return nk.sampler.ARDirectSampler(hilbert, ...)\" || programs/vmc_netket/vmc.py: \"return nkx.models.FastLSTMNet(hilbert=hilbert, layers=args.layers, features=args.features, graph=graph, param_dtype=args.dtype)\" || NetKet 3.13.0 netket/experimental/nn/rnn/cells.py LSTMCell: kernel \"(in_features + hid_features, self.features * 4)\", bias \"(self.features * 4,)\"; netket/models/autoreg.py: \"features = [model.features] * (model.layers - 1) + [model.hilbert.local_size]\"; netket/experimental/nn/rnn/ordering.py: \"max_prev_neighbors = int(np.median([len(x) for x in n]) + 0.5)\" || Heisenberg/triangular_100_O/vmc_rnn.sh: \"python3 vmc.py ... --net rnn_lstm --layers 2 --features 16 --seed 123 --optimizer adam --max_step 100000 --show_progress\" || programs/vmc_netket/vmc.py L148-155: \"return nkx.models.FastLSTMNet(hilbert=hilbert, layers=args.layers, features=args.features, graph=graph, param_dtype=args.dtype)\"; L174-175: \"if args.net.startswith(\\\"rnn\\\"): return nk.sampler.ARDirectSampler(hilbert, dtype=dtype_real(args.dtype))\"; L214-215: \"else: preconditioner = identity_preconditioner\"; L221-230 \"if (preconditioner == identity_preconditioner ...): vmc = nk.VMC(...)\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\"",
+        "source": "run script, VarBench methods repository at ed31bb0 (route1a-nqs-pass 2026-09-24): https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_100_O/vmc_rnn.sh ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L186 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L175 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L136 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L154 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L149 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/nn/rnn/cells.py#L76 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/autoreg.py#L249 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/nn/rnn/ordering.py#L252 (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L148 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L174 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L214 (pass 2026-09-27) (compute pass 2026-09-27)",
+        "scope": "row",
+        "confidence": "low",
+        "note": "parameters evaluated from the stated architecture: FastLSTMNet, layers = 2, features = [16, 2] (the last layer has hilbert.local_size = 2 features), real float32 parameters. Each LSTM layer l has a kernel (in_l + n_prev f_l) x 4 f_l and a bias 4 f_l, with in_0 = 1 (the spin at the previous site), in_1 = 16, and n_prev = 3 previous neighbours per site: NetKet orders the 100 sites of the graph vmc.py builds (ColoredJ1J2((10, 10), pbc=False, back_diag=False)) greedily and takes the median number of earlier neighbours, rounded up (median 3; evaluated here by re-implementing ordering.py, not by running NetKet). So (1 + 3*16)*64 + 64 = 3200 and (16 + 3*2)*8 + 8 = 184, total 3384. samples = 1024 per optimisation step (MCState n_samples = batch_size; ARDirectSampler (autoregressive, one pass per sample)); iterations = 100000 (--max_step 100000); optimizer Adam, lr 1e-3. The final energy is then estimated once with estim_size = 1024^2 = 1048576 samples (not an optimisation step). NetKet pinned twice by the program: programs/vmc_netket/requirements.txt \"NetKet==3.13.0\" and conda_env.yaml \"netket=3.11.4\"; every NetKet line cited here reads the same at both tags. The energy is older than the script: VarBench's data file listed it with no code link (\"TODO: own code\", varbench/varbench 0ef1497c and 6e9f6b83, 2024-07-11) until the scripts were added on 2024-07-30 (5047bfd6 RBM, d54f7c01 RNN, 765c5d13 GCNN), which changed only the reference column, so the script documents the settings after the fact, with library versions that may postdate the run. || pass 2026-09-27: evaluation: ARDirectSampler with FastLSTMNet draws each sample in one autoregressive pass (proposals_per_sample 1); Adam (--optimizer adam -> identity preconditioner, plain nk.VMC): sr none; float32 real parameters: complex false; NetKet local energy pads to all connected elements: all. confidence medium -> low: the stored sigma and variance imply 1e5-2.6e6 final samples per row (var/sigma^2 = 2.58e6, 2.47e6, 1.10e5, 2.16e6, 3.15e5, 1.80e5), not the script's 2^20, so the energies did not come from these scripts as written; before 2024-07-31 (614e5b4) vmc.py used the non-fast LSTMNet, which samples with N passes per sample (verify/agent-A.md item 3)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_100_O.md (snapshot 390a21e), row 'RNN'; linked scripts/Heisenberg/triangular_100_O/vmc_rnn.sh",
+        "reported_as": "| -200.276 | 0.004 | 5.032 | 100 | 0 | RNN | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rnn.sh) |",
+        "conversion": "none: VarBench stores the total in Pauli form (SM Eq. S2, J = 1); per site S.S = -200.276/(4 x 100) = -0.500690000",
+        "note": "vmc_rnn.sh: heis_tri, open 10x10 (ColoredJ1J2 back_diag=False), Pauli, J = 1 on all three directions, Marshall rotation on the square bonds only (a unitary), full Hilbert space, FastLSTMNet 2 x 16, Adam 10^5 steps. The stored (sigma, Var) imply 3.1e5 independent samples (ratio 1.83): from the 2022 run (5af37ba, 2022-03-04, Dian Wu), not the 2024 script. 5.63 above the DMRG record: a valid bound limited by the sign structure a real network can carry.",
+        "source_entry": "VB3-varbench-code-heisenberg#54 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rnn.sh",
+        "script": "scripts/Heisenberg/triangular_100_O/vmc_rnn.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rnn.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_100_O.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -205.90673107198964,
+      "sigma": null,
+      "energy_variance": 11.224306962726814,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.026473931907252366,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "DMRG (bond dimension = 4096)",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/dmrg.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 4096,
+        "iterations": 50,
+        "sweep_schedule": {
+          "code": "ITensors.jl 0.6.16",
+          "eigensolver_applications": 3,
+          "eigensolver_source": "ITensors.jl 0.6.16 dmrg(): eigsolve_krylovdim = 3, eigsolve_maxiter = 1 (defaults, not overridden)",
+          "maxdim": [
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096,
+            4096
+          ],
+          "start": "random MPS at bond dimension 4096",
+          "cutoff": 1e-12,
+          "variance_after": [
+            50
+          ],
+          "lattice": {
+            "order": "snake",
+            "rows": 10,
+            "cols": 10,
+            "wrap_row": false,
+            "wrap_col": false,
+            "diagonals": [
+              "\\"
+            ],
+            "site_dimension": 2,
+            "operators_per_bond": 3
+          }
+        },
+        "reported_as": "method string: \"DMRG (bond dimension = 4096)\" || scripts/Heisenberg/triangular_100_O/dmrg.sh: \"julia --project heisenberg_2d.jl --L 10 --J2 1 --zero_mag --max_B 4096 --seed 123\" || programs/dmrg_itensors/common.jl get_sweeps: \"sweeps = Sweeps(args[\\\"max_step\\\"]); setmaxdim!(sweeps, args[\\\"max_B\\\"]); setcutoff!(sweeps, 1e-12)\" || programs/dmrg_itensors/args.jl: \"--max_step\" default = 50 || heisenberg_2d.jl: \"H_sqr = real(inner(H, psi, H, psi))\" after dmrg",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_100_O/dmrg.sh, with programs/dmrg_itensors/{common,args,heisenberg_2d}.jl (compute pass 2026-09-23)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Sweep schedule, eigensolver setting and lattice order read from the run script; 50 sweeps, maximum bond dimension 4096. No time is recorded anywhere in the repository."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_100_O.md (snapshot 390a21e), row 'DMRG (bond dimension = 4096)'; linked scripts/Heisenberg/triangular_100_O/dmrg.sh",
+        "reported_as": "| -205.90673107198964 | | 11.224306962726814 | 100 | 0 | DMRG (bond dimension = 4096) | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/dmrg.sh) |",
+        "conversion": "none: VarBench stores the total in Pauli form (SM Eq. S2, J = 1); per site S.S = -205.90673107198964/(4 x 100) = -0.514766828",
+        "note": "Record (no exact row). dmrg.sh first line: heisenberg_2d.jl --L 10 --J2 1 --zero_mag --max_B 4096: open 10x10 grid plus the (i,j)-(i+1,j+1) diagonal = the VarBench triangular rhombus, Pauli (J *= 4), J = J2 = 1, Sz = 0, 50 sweeps at D = 4096, cutoff 1e-12, noise to 1e-12: final DMRG energy, variational. It lies below every other row on the instance (Tensor-RNN -205.5452(35), 2D MPS-RNN, RNN, RBM, Jastrow). The script's second half (build the C++ 10x10 program after cd programs/dmrg_itensors_c++) cannot run and produced no row; arXiv:2207.14314's D = 4000 DMRG at 10x10 is only plotted. M11: now read (config). Entered 3c108e3 (2022-07-11, Dian Wu), never changed; linked f88f9ba/cd362c4 (2024-07-19).",
+        "source_entry": "VB3-varbench-code-heisenberg#55 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/dmrg.sh",
+        "script": "scripts/Heisenberg/triangular_100_O/dmrg.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/dmrg.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_100_O.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -195.8572,
+      "sigma": 0.0089,
+      "energy_variance": 80.60808,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.21013553201026944,
+      "method": "VMC",
+      "ansatz": "1D MPS-RNN",
+      "method_detail": "",
+      "method_as_published": "1D MPS-RNN (bond dimension = 40)",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.L032001) [code](https://github.com/cqsl/mps-rnn)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 40,
+        "iterations": null,
+        "reported_as": "During the training, we use Adam optimizer with batch size 1,024 for all reported results, and we have found that the stochastic reconfiguration (SR) and the plain stochastic gradient descent (SGD) generally produce higher variational energies within the same number of training steps or wall-clock time. Gradient clipping with global norm 1 is applied to alleviate the energy spikes. After the training, each reported variational energy is estimated from 10^6 samples, and its statistical error is too small to be visible in the plots. [...] For bond dimensions chi <= 10, we use learning rate 1e-2 for 10,000 steps, 1e-3 for another 10,000 steps, and finally 1e-4 for 20,000 steps. We manually reduce the learning rate by a factor of 10 if we find the variational energy diverges in the middle of training. For bond dimensions chi > 10, we start from learning rate 1e-3. The training of a tensor-RNN with chi = 64 on the 10 x 10 triangular AFHM takes about 2 days on an Nvidia V100 GPU. || method string: \"1D MPS-RNN (bond dimension = 40)\"",
+        "source": "Supplemental Material Sec. S7 'Details of numerical experiments' (arXiv:2206.12363v2 = Phys. Rev. Research 5, L032001; published PDF checked, identical text), arXiv:2206.12363 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "Blanket statement for all reported results. samples = 1024 is the Adam batch size per training step; the final energies are evaluated from 1e6 samples. The only device/wall-clock statement ('about 2 days on an Nvidia V100 GPU') is for the tensor-RNN with chi = 64 on the 10x10 triangular lattice, which is not the bond dimension of this row, so device/wall_clock are left null here. Step count is stated only for chi <= 10 (40,000 steps total); for chi > 10 only the starting learning rate is given. Parameter counts are shown only graphically (Fig. S3, energy error vs number of parameters), no number stated; static memory scales as O(V chi^2) for 1D/2D MPS-RNN and O(V chi^3) for tensor-RNN. bond_dimension is left null because the worklist's chi (40 for 10x10, 64 for the 20x20 TFIM) is not stated as a number in the paper text (Fig. 4 plots energy vs chi without a table; the 20x20 TFIM appears only in Fig. S4(b) with chi = 16). Worklist had no arXiv id; arXiv 2206.12363 read from the repo cache."
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": true,
+          "reported_as": "'After the training, each reported variational energy is estimated from 10^6 samples' (Supplemental Material S7, 'Details of numerical experiments')",
+          "location": "arXiv:2206.12363v2 Supplemental Material S7",
+          "version_read": "arXiv:2206.12363v2 (8 Mar 2023) and v1 PDFs, pypdf plain + layout (VA5); Phys. Rev. Research 5, L032001 (2023) published PDF (VJ2)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "MPS-RNN and tensor-RNN are autoregressive networks: the energy is a Monte Carlo estimate over 10^6 exact samples, and the stored sigma is that estimate's error (the upload's Var/sigma^2 = 10^6). The method string's fallback reads 'MPS' and 'bond dimension' as deterministic markers. Ruling 2 (2026-09-30): MPS-RNN and tensor-RNN rows are marked sampled. No eligibility change: sigma is stored.",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#25, VJ2-journal-other#3 (qmbl-verify 2026-09-29; reader's reading; no skeptic checked it); ruling 2, 2026-09-30",
+          "from": false
+        }
+      ],
+      "sampled": true,
+      "verified": {
+        "checked_on": "2026-09-30",
+        "scope": "value",
+        "method": "Phys. Rev. Research 5, L032001 (2023), published PDF (sources/journal/prr5-L032001.pdf, 6 pp., sha256 0e96ec27..., Distiller 2023-07-03, CC-BY; main text and references only, the Supplemental Material is a separate file at link.aps.org/supplemental and is not local); text by pypdf plain + layout (work/vj2_prr5-L032001.*); Fig. 4 is vector content inline in the page-4 stream, parsed with work/vecparse.py (every painted path with its CTM, colour and bbox) and decoded by work/decode_prr_fig4.mjs on the journal's own major ticks (panel a: 10^1/10^2 at x = 128.936/181.922, 10^-4..10^-1 at y = 651.542/678.017/704.492/730.967; panel b: 10^1/10^2 at x = 334.524/387.509, 10^-2/10^-1 at y = 681.108/724.604; decade labels identified from the outlined superscript glyphs); compared marker by marker with the VA5 decodes of arXiv:2206.12363v1/v2",
+        "location": "Fig. 4(b) (10 x 10 triangular, OBC), orange 1D MPS-RNN marker at chi = 40 (journal page coordinates x = 366.424, y = 711.054)",
+        "reported_as": "Fig. 4(b) marker, no printed digits: relative error 4.8806e-2 with respect to DMRG with chi = 4096",
+        "conversion": "E/N = E_ref (1 - rel) with E_ref = -205.90673107198964/400 (the instance's DMRG chi = 4096 row, the paper's panel-(b) reference, not printed): -0.48964289 x 400 = -195.8572; stored -195.8572",
+        "note": "The published figure carries the same point as arXiv v2 and the HAL deposit (VA5 decode v2 b|1D MPS-RNN|40 -> the same total to 1.5e-4; positions agree to 3e-5 decades), so the earlier arXiv-based verification stands in the journal. Panel (b) reference is the authors' DMRG with chi = 4096, which the paper does not print; with the instance's DMRG (bond dimension = 4096) row as E_ref every chi = 40 marker reproduces its stored value to 1e-4 in the total. Journal text: \"We perform numerical experiments on a 10 x 10 square lattice with open boundary conditions (OBCs)\" / \"the AFHM on a 10 x 10 triangular lattice with OBC\"; VMC-optimised variational energies (bound_type variational). sigma and energy_variance are printed nowhere in the journal PDF (SM Sec. S7, not local, is where the 10^6-sample evaluation is described in the arXiv versions); they remain the author's VarBench upload values. peer reviewed: PRR. Also read by VA5-hubbard-heisenberg-tfising-j1j2#25 (scope value: Fig. 4(b) (10 x 10 triangular, OBC), orange marker at chi = 40 (x = 398.333 pt); identical in v1 and v2).",
+        "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#25, VJ2-journal-other#3 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/cqsl/mps-rnn",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [paper](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.L032001) [code](https://github.com/cqsl/mps-rnn)",
+          "location": "VarBench table vendor/varbench/Heisenberg/square_100_O.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -203.2108,
+      "sigma": 0.005,
+      "energy_variance": 25.73127,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.06231142033639836,
+      "method": "VMC",
+      "ansatz": "2D MPS-RNN",
+      "method_detail": "",
+      "method_as_published": "2D MPS-RNN (bond dimension = 40)",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.L032001) [code](https://github.com/cqsl/mps-rnn)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 40,
+        "iterations": null,
+        "reported_as": "During the training, we use Adam optimizer with batch size 1,024 for all reported results, and we have found that the stochastic reconfiguration (SR) and the plain stochastic gradient descent (SGD) generally produce higher variational energies within the same number of training steps or wall-clock time. Gradient clipping with global norm 1 is applied to alleviate the energy spikes. After the training, each reported variational energy is estimated from 10^6 samples, and its statistical error is too small to be visible in the plots. [...] For bond dimensions chi <= 10, we use learning rate 1e-2 for 10,000 steps, 1e-3 for another 10,000 steps, and finally 1e-4 for 20,000 steps. We manually reduce the learning rate by a factor of 10 if we find the variational energy diverges in the middle of training. For bond dimensions chi > 10, we start from learning rate 1e-3. The training of a tensor-RNN with chi = 64 on the 10 x 10 triangular AFHM takes about 2 days on an Nvidia V100 GPU. || method string: \"2D MPS-RNN (bond dimension = 40)\"",
+        "source": "Supplemental Material Sec. S7 'Details of numerical experiments' (arXiv:2206.12363v2 = Phys. Rev. Research 5, L032001; published PDF checked, identical text), arXiv:2206.12363 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "Blanket statement for all reported results. samples = 1024 is the Adam batch size per training step; the final energies are evaluated from 1e6 samples. The only device/wall-clock statement ('about 2 days on an Nvidia V100 GPU') is for the tensor-RNN with chi = 64 on the 10x10 triangular lattice, which is not the bond dimension of this row, so device/wall_clock are left null here. Step count is stated only for chi <= 10 (40,000 steps total); for chi > 10 only the starting learning rate is given. Parameter counts are shown only graphically (Fig. S3, energy error vs number of parameters), no number stated; static memory scales as O(V chi^2) for 1D/2D MPS-RNN and O(V chi^3) for tensor-RNN. bond_dimension is left null because the worklist's chi (40 for 10x10, 64 for the 20x20 TFIM) is not stated as a number in the paper text (Fig. 4 plots energy vs chi without a table; the 20x20 TFIM appears only in Fig. S4(b) with chi = 16). Worklist had no arXiv id; arXiv 2206.12363 read from the repo cache."
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": true,
+          "reported_as": "'After the training, each reported variational energy is estimated from 10^6 samples' (Supplemental Material S7, 'Details of numerical experiments')",
+          "location": "arXiv:2206.12363v2 Supplemental Material S7",
+          "version_read": "arXiv:2206.12363v2 (8 Mar 2023) and v1 PDFs, pypdf plain + layout (VA5); Phys. Rev. Research 5, L032001 (2023) published PDF (VJ2)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "MPS-RNN and tensor-RNN are autoregressive networks: the energy is a Monte Carlo estimate over 10^6 exact samples, and the stored sigma is that estimate's error (the upload's Var/sigma^2 = 10^6). The method string's fallback reads 'MPS' and 'bond dimension' as deterministic markers. Ruling 2 (2026-09-30): MPS-RNN and tensor-RNN rows are marked sampled. No eligibility change: sigma is stored.",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#26, VJ2-journal-other#4 (qmbl-verify 2026-09-29; reader's reading; no skeptic checked it); ruling 2, 2026-09-30",
+          "from": false
+        }
+      ],
+      "sampled": true,
+      "verified": {
+        "checked_on": "2026-09-30",
+        "scope": "value",
+        "method": "Phys. Rev. Research 5, L032001 (2023), published PDF (sources/journal/prr5-L032001.pdf, 6 pp., sha256 0e96ec27..., Distiller 2023-07-03, CC-BY; main text and references only, the Supplemental Material is a separate file at link.aps.org/supplemental and is not local); text by pypdf plain + layout (work/vj2_prr5-L032001.*); Fig. 4 is vector content inline in the page-4 stream, parsed with work/vecparse.py (every painted path with its CTM, colour and bbox) and decoded by work/decode_prr_fig4.mjs on the journal's own major ticks (panel a: 10^1/10^2 at x = 128.936/181.922, 10^-4..10^-1 at y = 651.542/678.017/704.492/730.967; panel b: 10^1/10^2 at x = 334.524/387.509, 10^-2/10^-1 at y = 681.108/724.604; decade labels identified from the outlined superscript glyphs); compared marker by marker with the VA5 decodes of arXiv:2206.12363v1/v2",
+        "location": "Fig. 4(b) (10 x 10 triangular, OBC), green 2D MPS-RNN marker at chi = 40 (journal page coordinates x = 366.424, y = 686.198)",
+        "reported_as": "Fig. 4(b) marker, no printed digits: relative error 1.3093e-2 with respect to DMRG with chi = 4096",
+        "conversion": "E/N = E_ref (1 - rel) with E_ref = -205.90673107198964/400 (the instance's DMRG chi = 4096 row, the paper's panel-(b) reference, not printed): -0.50802707 x 400 = -203.2108; stored -203.2108",
+        "note": "The published figure carries the same point as arXiv v2 and the HAL deposit (VA5 decode v2 b|2D MPS-RNN|40 -> the same total to 1.5e-4; positions agree to 3e-5 decades), so the earlier arXiv-based verification stands in the journal. Panel (b) reference as for the 1D row. Journal text: \"We perform numerical experiments on a 10 x 10 square lattice with open boundary conditions (OBCs)\" / \"the AFHM on a 10 x 10 triangular lattice with OBC\"; VMC-optimised variational energies (bound_type variational). sigma and energy_variance are printed nowhere in the journal PDF (SM Sec. S7, not local, is where the 10^6-sample evaluation is described in the arXiv versions); they remain the author's VarBench upload values. peer reviewed: PRR. Also read by VA5-hubbard-heisenberg-tfising-j1j2#26 (scope value: Fig. 4(b), green marker at chi = 40; identical in v1 and v2).",
+        "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#26, VJ2-journal-other#4 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/cqsl/mps-rnn",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [paper](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.L032001) [code](https://github.com/cqsl/mps-rnn)",
+          "location": "VarBench table vendor/varbench/Heisenberg/square_100_O.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -205.5452,
+      "sigma": 0.0035,
+      "energy_variance": 12.31392,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.029146180428250745,
+      "method": "VMC",
+      "ansatz": "Tensor-RNN",
+      "method_detail": "",
+      "method_as_published": "Tensor-RNN (bond dimension = 40)",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.L032001) [code](https://github.com/cqsl/mps-rnn)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 40,
+        "iterations": null,
+        "reported_as": "During the training, we use Adam optimizer with batch size 1,024 for all reported results, and we have found that the stochastic reconfiguration (SR) and the plain stochastic gradient descent (SGD) generally produce higher variational energies within the same number of training steps or wall-clock time. Gradient clipping with global norm 1 is applied to alleviate the energy spikes. After the training, each reported variational energy is estimated from 10^6 samples, and its statistical error is too small to be visible in the plots. [...] For bond dimensions chi <= 10, we use learning rate 1e-2 for 10,000 steps, 1e-3 for another 10,000 steps, and finally 1e-4 for 20,000 steps. We manually reduce the learning rate by a factor of 10 if we find the variational energy diverges in the middle of training. For bond dimensions chi > 10, we start from learning rate 1e-3. The training of a tensor-RNN with chi = 64 on the 10 x 10 triangular AFHM takes about 2 days on an Nvidia V100 GPU. || method string: \"Tensor-RNN (bond dimension = 40)\"",
+        "source": "Supplemental Material Sec. S7 'Details of numerical experiments' (arXiv:2206.12363v2 = Phys. Rev. Research 5, L032001; published PDF checked, identical text), arXiv:2206.12363 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "Blanket statement for all reported results; samples = 1024 is the Adam batch size per training step, final energies evaluated from 1e6 samples. The paper's only device/wall-clock statement is for this ansatz and lattice but at chi = 64 ('The training of a tensor-RNN with chi = 64 on the 10 x 10 triangular AFHM takes about 2 days on an Nvidia V100 GPU'); the worklist gives chi = 40 for this row, so device/wall_clock are left null and the statement is quoted only. Step count stated only for chi <= 10 (40,000 steps). No parameter count stated (Fig. S3 only graphically). Worklist had no arXiv id; arXiv 2206.12363 read from the repo cache."
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": true,
+          "reported_as": "'After the training, each reported variational energy is estimated from 10^6 samples' (Supplemental Material S7, 'Details of numerical experiments')",
+          "location": "arXiv:2206.12363v2 Supplemental Material S7",
+          "version_read": "arXiv:2206.12363v2 (8 Mar 2023) and v1 PDFs, pypdf plain + layout (VA5); Phys. Rev. Research 5, L032001 (2023) published PDF (VJ2)",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "MPS-RNN and tensor-RNN are autoregressive networks: the energy is a Monte Carlo estimate over 10^6 exact samples, and the stored sigma is that estimate's error (the upload's Var/sigma^2 = 10^6). The method string's fallback reads 'MPS' and 'bond dimension' as deterministic markers. Ruling 2 (2026-09-30): MPS-RNN and tensor-RNN rows are marked sampled. No eligibility change: sigma is stored.",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#27, VJ2-journal-other#5 (qmbl-verify 2026-09-29; reader's reading; no skeptic checked it); ruling 2, 2026-09-30",
+          "from": false
+        }
+      ],
+      "sampled": true,
+      "verified": {
+        "checked_on": "2026-09-30",
+        "scope": "value",
+        "method": "Phys. Rev. Research 5, L032001 (2023), published PDF (sources/journal/prr5-L032001.pdf, 6 pp., sha256 0e96ec27..., Distiller 2023-07-03, CC-BY; main text and references only, the Supplemental Material is a separate file at link.aps.org/supplemental and is not local); text by pypdf plain + layout (work/vj2_prr5-L032001.*); Fig. 4 is vector content inline in the page-4 stream, parsed with work/vecparse.py (every painted path with its CTM, colour and bbox) and decoded by work/decode_prr_fig4.mjs on the journal's own major ticks (panel a: 10^1/10^2 at x = 128.936/181.922, 10^-4..10^-1 at y = 651.542/678.017/704.492/730.967; panel b: 10^1/10^2 at x = 334.524/387.509, 10^-2/10^-1 at y = 681.108/724.604; decade labels identified from the outlined superscript glyphs); compared marker by marker with the VA5 decodes of arXiv:2206.12363v1/v2",
+        "location": "Fig. 4(b) (10 x 10 triangular, OBC), red tensor-RNN marker at chi = 40 (journal page coordinates x = 366.424, y = 648.246)",
+        "reported_as": "Fig. 4(b) marker, no printed digits: relative error 1.7558e-3 with respect to DMRG with chi = 4096",
+        "conversion": "E/N = E_ref (1 - rel) with E_ref = -205.90673107198964/400 (the instance's DMRG chi = 4096 row, the paper's panel-(b) reference, not printed): -0.51386299 x 400 = -205.5452; stored -205.5452",
+        "note": "The published figure carries the same point as arXiv v2 and the HAL deposit (VA5 decode v2 b|Tensor-RNN|40 -> the same total to 1.5e-4; positions agree to 3e-5 decades), so the earlier arXiv-based verification stands in the journal. Panel (b) reference as for the 1D row. Journal text: \"We perform numerical experiments on a 10 x 10 square lattice with open boundary conditions (OBCs)\" / \"the AFHM on a 10 x 10 triangular lattice with OBC\"; VMC-optimised variational energies (bound_type variational). sigma and energy_variance are printed nowhere in the journal PDF (SM Sec. S7, not local, is where the 10^6-sample evaluation is described in the arXiv versions); they remain the author's VarBench upload values. peer reviewed: PRR. Also read by VA5-hubbard-heisenberg-tfising-j1j2#27 (scope value: Fig. 4(b), red 'Tensor-RNN' marker at chi = 40; identical in v1 and v2).",
+        "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#27, VJ2-journal-other#5 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/cqsl/mps-rnn",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [paper](https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.5.L032001) [code](https://github.com/cqsl/mps-rnn)",
+          "location": "VarBench table vendor/varbench/Heisenberg/square_100_O.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -193.8193,
+      "sigma": 0.0082,
+      "energy_variance": 69.24535,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.1843302335200169,
+      "method": "VMC",
+      "ansatz": "RBM",
+      "method_detail": "α = 1",
+      "method_as_published": "RBM (alpha = 1)",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rbm.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 10200,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 100,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "minsr"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/Heisenberg/triangular_100_O/vmc_rbm.sh: \"python3 vmc.py --ham heis_tri --boundary open --sign mars --ham_dim 2 --L 10 --zero_mag --net rbm --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py: \"--batch_size\" default=1024; \"--max_step\" default=10**4; \"--features\" default=1; \"--dtype\" default=\"float32\"; \"--optimizer\" default=\"sr\" || programs/vmc_netket/vmc.py: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, ...)\"; sampler \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py: \"alpha = args.features ... return nk.models.RBM(alpha=alpha, param_dtype=args.dtype, activation=log_cosh, ..., hidden_bias_init=zeros, visible_bias_init=zeros)\" || NetKet 3.13.0 netket/models/rbm.py: \"use_hidden_bias: bool = True\"; \"use_visible_bias: bool = True\"; \"features=int(self.alpha * input.shape[-1])\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); sign in H (vmc.py:86); P=10200>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x10200 real, Gram 1024x1024 (vmc_srt.py:69,85) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: RBM float32, script has no --dtype (args_parser.py:111,266; vmc.py:133-140); sign in H (vmc.py:86); P=10200>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x10200 real, Gram 1024x1024 (vmc_srt.py:69,85)",
+        "source": "run script, VarBench methods repository at ed31bb0 (route1a-nqs-pass 2026-09-24): https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_100_O/vmc_rbm.sh ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L186 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L170 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L136 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L154 ; https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py#L311 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L133 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py#L103 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L43 ; https://github.com/netket/netket/blob/v3.13.0/netket/models/rbm.py#L45 (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "parameters = alpha N^2 + alpha N + N = 1*100^2 + 1*100 + 100 = 10200 real (float32) parameters: nk.models.RBM is a dense RBM (Dense kernel N x alpha N, hidden bias alpha N, visible bias N; both biases on by NetKet default, alpha = --features = 1), no weight sharing across translations. samples = 1024 per optimisation step (MCState n_samples = batch_size; MetropolisExchange with n_chains = batch_size = 1024, one sample per chain per step, each separated by sweep_size = N = 100 proposals (NetKet default), n_discard_per_chain = 0); iterations = 10000 (\"--max_step\" default=10**4); optimizer SR (VMC_SRt when n_parameters >= n_samples), lr 1e-3. The final energy is then estimated once with estim_size = 1024^2 = 1048576 samples (not an optimisation step). NetKet pinned twice by the program: programs/vmc_netket/requirements.txt \"NetKet==3.13.0\" and conda_env.yaml \"netket=3.11.4\"; every NetKet line cited here reads the same at both tags. The energy is older than the script: VarBench's data file listed it with no code link (\"TODO: own code\", varbench/varbench 0ef1497c and 6e9f6b83, 2024-07-11) until the scripts were added on 2024-07-30 (5047bfd6 RBM, d54f7c01 RNN, 765c5d13 GCNN), which changed only the reference column, so the script documents the settings after the fact, with library versions that may postdate the run. || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 100 x (1 + 0)/1 = 100: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 10200 >= n_samples = 1024, so nkx.driver.VMC_SRt: dense Jacobian and the samples x samples matrix O_LT @ O_LT.T per step: kind minsr (verify/agent-A.md item 2). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_100_O.md (snapshot 390a21e), row 'RBM (alpha = 1)'; linked scripts/Heisenberg/triangular_100_O/vmc_rbm.sh",
+        "reported_as": "| -193.8193 | 0.0082 | 69.24535 | 100 | 0 | RBM (alpha = 1) | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rbm.sh) |",
+        "conversion": "none: VarBench stores the total in Pauli form (SM Eq. S2, J = 1); per site S.S = -193.8193/(4 x 100) = -0.484548250",
+        "note": "scripts/Heisenberg/triangular_100_O/vmc_rbm.sh: 'python3 vmc.py --ham heis_tri --boundary open --sign mars --ham_dim 2 --L 10 --zero_mag --net rbm --seed 123 --show_progress' -> 10x10 triangular lattice (ColoredJ1J2 back_diag=False: square grid + (i,j)-(i+1,j+1) diagonals), open; NetKet Heisenberg J = 1 in Pauli form with Marshall rotation on the square bonds only (sign_rule=[True, False], a unitary: the diagonals join same-sublattice sites); Sz = 0 (total_sz=0, MetropolisExchange); real float32 RBM, alpha = 1 (nk.models.RBM, log_cosh); 10^4 SR steps; final estimate over 2^20 samples (vmc.py lines 268-269). sigma/sqrt(Var/2^20) = 1.009: the stored sigma is the error of that final estimate. 12.0874 above the DMRG record -205.90673107. M2/M6 flags (if any): real float32 parameters make the amplitudes positive, so on this frustrated lattice the ansatz cannot carry the ground-state signs; no constant shift is involved and the energy is a valid bound. History: entered 10f5c12 (2022-07-11, Dian Wu) as -193.617 | 0.0072 | 52.8388 | RBM (alpha = 1); af1d48f (2022-09-01, 'Add Jastrow baseline'): energy -193.617 -> -193.6172; variance 52.8388 -> 52.83883; 59e621a (2022-09-13, 'Update Jastrow and RBM baselines'): energy -193.6172 -> -193.8193; sigma 0.0072 -> 0.0082; variance 52.83883 -> 69.24535; linked 5047bfd (2024-07-30). Program files postdate the value (scripts added to varbench/methods 2024-07-30); they document the settings after the run.",
+        "source_entry": "VB3-varbench-code-heisenberg#56 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rbm.sh",
+        "script": "scripts/Heisenberg/triangular_100_O/vmc_rbm.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_rbm.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_100_O.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -190.6983,
+      "sigma": 0.0093,
+      "energy_variance": 87.62059,
+      "dof": 100,
+      "einf": 0,
+      "v_score": 0.24094201066103857,
+      "method": "VMC",
+      "ansatz": "Jastrow",
+      "method_detail": "",
+      "method_as_published": "Jastrow baseline",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 4950,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 1024,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 10000,
+        "evaluation": {
+          "proposals_per_sample": 100,
+          "local_energy": "all",
+          "complex": false,
+          "sr": {
+            "kind": "minsr"
+          },
+          "code": "NetKet 3.13.0 (varbench/methods programs/vmc_netket/vmc.py @ ed31bb0; requirements.txt NetKet==3.13.0, conda_env.yaml netket=3.11.4)",
+          "jacobian": "real"
+        },
+        "reported_as": "scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh: \"python3 vmc.py --ham heis_tri --boundary open --sign mars --ham_dim 2 --L 10 --zero_mag --net jas --seed 123 --show_progress\" || programs/vmc_netket/args_parser.py defaults (not overridden): \"--batch_size\" default=1024, \"--max_step\" default=10**4, \"--estim_size\" default=1024**2, \"--dtype\" default=\"float32\", \"--optimizer\" default=\"sr\", \"--lr\" default=1e-3, \"--diag_shift\" default=1e-2, \"--chunk_size\" default=1024 || vmc.py: \"n_samples=args.batch_size\", \"n_chains=args.batch_size\", \"vmc.run(n_iter=args.max_step, ...)\", \"vstate.n_samples = args.estim_size\" || NetKet 3.13.0 netket/models/jastrow.py: \"kernel = self.param(\\\"kernel\\\", self.kernel_init, (nv * (nv - 1) // 2,), self.param_dtype)\" || netket/sampler/metropolis.py: \"if sweep_size is None: sweep_size = hilbert.size\" || requirements.txt: \"NetKet==3.13.0\" || programs/vmc_netket/args_parser.py: \"--dtype\" ... default=\"float32\", choices=[\"float32\", \"float64\", \"complex64\", \"complex128\"]; \"--optimizer\" ... default=\"sr\" || programs/vmc_netket/vmc.py L182-190: \"nk.vqs.MCState(sampler, model, n_samples=args.batch_size, n_discard_per_chain=0, chunk_size=args.chunk_size, seed=args.seed)\"; L167-178 samplers \"n_chains=args.batch_size\" || NetKet 3.13.0 netket/sampler/metropolis.py L310-311: \"if sweep_size is None: sweep_size = hilbert.size\" || programs/vmc_netket/vmc.py L206-213: \"if args.optimizer == \\\"sr\\\": solver = nk.optimizer.solver.solve ... preconditioner = nk.optimizer.SR(qgt=QGTOnTheFly(), solver=solver, diag_shift=diag_shift)\"; L221-237: \"if (preconditioner == identity_preconditioner or vstate.n_parameters < vstate.n_samples): vmc = nk.VMC(H, variational_state=vstate, optimizer=optimizer, preconditioner=preconditioner) else: vmc = nkx.driver.VMC_SRt(H, variational_state=vstate, optimizer=optimizer, diag_shift=preconditioner.diag_shift)\" || NetKet 3.13.0 netket/optimizer/solver/solvers.py L237-258: \"def solve(A, b, *, assume_a=\\\"pos\\\", x0=None): ... A = A.to_dense()\"; netket/optimizer/qgt/qgt_onthefly.py L285-293 \"def _to_dense(self: QGTOnTheFlyT) ... Npars = nkjax.tree_size(self._params) I = jax.numpy.eye(Npars)\"; netket/experimental/driver/vmc_srt.py L85: \"O_LT @ O_LT.T\" || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); sign in H (vmc.py:86); P=4950>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x4950 real, Gram 1024x1024 (vmc_srt.py:69,85) || jacobian pass 2026-09-29: varbench/methods @ ed31bb0 programs/vmc_netket, NetKet v3.13.0: Jastrow float32, script has no --dtype (args_parser.py:111,266; vmc.py:122-124); sign in H (vmc.py:86); P=4950>=1024: VMC_SRt (vmc.py:232), jacobian_mode=None -> RealMode (vmc_srt.py:246-253, default_mode.py:135); O 1024x4950 real, Gram 1024x1024 (vmc_srt.py:69,85)",
+        "source": "run script, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/requirements.txt; NetKet v3.13.0 https://github.com/netket/netket/blob/v3.13.0/netket/models/jastrow.py, https://github.com/netket/netket/blob/v3.13.0/netket/sampler/metropolis.py (compute pass 2026-09-24) || https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L206 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/vmc.py#L221 ; https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_netket/args_parser.py ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/solver/solvers.py#L237 ; https://github.com/netket/netket/blob/v3.13.0/netket/optimizer/qgt/qgt_onthefly.py#L285 ; https://github.com/netket/netket/blob/v3.13.0/netket/experimental/driver/vmc_srt.py#L85 (pass 2026-09-27) (compute pass 2026-09-27) (compute pass 2026-09-29) (compute pass 2026-09-29)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters evaluated: NetKet 3.13.0 Jastrow stores the strictly lower triangle of W, N(N-1)/2 = 100*99/2 = 4950 real (float32) weights, which is also what vmc.py prints as n_params (tree_size_real_nonzero). Samples: 1024 per SR step, 1024 chains of length 1, each sample one sweep of 100 exchange proposals, no discard. Iterations: 10^4 steps (--max_step default). Driver: nkx.driver.VMC_SRt (n_parameters >= n_samples = 1024). After training the energy is estimated from 2^20 samples. stored sigma 0.0093 vs sqrt(stored variance 87.62059 / 2^20) = 0.0091: consistent with the script's 2^20-sample final estimate (--estim_size default). Provenance: the value entered VarBench in 59e621a (2022-09-13, Dian Wu); the linked script was added to varbench/methods in c686621 (2024-07-30) without the value changing, so the script is the authors' later reconstruction of the baseline, not a log of the run (the same holds for the TFIsing RBM rows, scripts/defects.mjs). The 2^20-sample final estimate is corroborated by the stored sigma; batch size and step count are not independently corroborated. No device or time is recorded (the conda env includes CUDA; the README says a GPU is \"usually needed for VMC on larger lattices\", which is not a statement about these runs). || pass 2026-09-27: evaluation from the script's code path. proposals_per_sample = N x (s + d)/s = 100 x (1 + 0)/1 = 100: batch 1024 = n_samples = n_chains (one sample per chain per step), n_discard_per_chain = 0, sweep_size = hilbert.size = N (NetKet default, every proposal a full forward). sr: n_parameters = 4950 >= n_samples = 1024, so nkx.driver.VMC_SRt: dense Jacobian and the samples x samples matrix O_LT @ O_LT.T per step: kind minsr (verify/agent-A.md item 2). complex false: --dtype default float32, param_dtype=args.dtype, no script overrides it. local_energy all: NetKet's get_conn_padded; the NetKet LocalOperator pads to the batch maximum of nonzero elements, so on Heisenberg/J1-J2 'all' overstates the local energy by about 10-30 % (verify/agent-A.md item 4). Caveat: the scripts (2024-07-30, commit bba4595 the same day replaced cg(maxiter=20) by solve and added VMC_SRt) postdate the 2022 energies; the SR path of the original runs is not known (agent-A.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md). || pass 2026-09-29: evaluation.jacobian \"real\" (high confidence), the matrix the code's SR builds (DATA.md)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/triangular_100_O.md (snapshot 390a21e), row 'Jastrow baseline'; linked scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh",
+        "reported_as": "| -190.6983 | 0.0093 | 87.62059 | 100 | 0 | Jastrow baseline | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh) |",
+        "conversion": "none: VarBench stores the total in Pauli form (SM Eq. S2, J = 1); per site S.S = -190.6983/(4 x 100) = -0.476745750",
+        "note": "scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh: 'python3 vmc.py --ham heis_tri --boundary open --sign mars --ham_dim 2 --L 10 --zero_mag --net jas --seed 123 --show_progress' -> 10x10 triangular lattice (ColoredJ1J2 back_diag=False: square grid + (i,j)-(i+1,j+1) diagonals), open; NetKet Heisenberg J = 1 in Pauli form with Marshall rotation on the square bonds only (sign_rule=[True, False], a unitary: the diagonals join same-sublattice sites); Sz = 0 (total_sz=0, MetropolisExchange); real float32 Jastrow (nk.models.Jastrow); 10^4 SR steps; final estimate over 2^20 samples (vmc.py lines 268-269). sigma/sqrt(Var/2^20) = 1.017: the stored sigma is the error of that final estimate. 15.2084 above the DMRG record -205.90673107. M2/M6 flags (if any): real float32 parameters make the amplitudes positive, so on this frustrated lattice the ansatz cannot carry the ground-state signs; no constant shift is involved and the energy is a valid bound. History: entered af1d48f (2022-09-01, Dian Wu) as -189.0484 | 0.0091 | 84.02770 | Jastrow baseline; 59e621a (2022-09-13, 'Update Jastrow and RBM baselines'): energy -189.0484 -> -190.6983; sigma 0.0091 -> 0.0093; variance 84.02770 -> 87.62059; linked fdb4bfb (2024-07-30). Program files postdate the value (scripts added to varbench/methods 2024-07-30); they document the settings after the run.",
+        "source_entry": "VB3-varbench-code-heisenberg#57 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh",
+        "script": "scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/triangular_100_O/vmc_jastrow.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/triangular_100_O.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2404.07869",
+        "arXiv:2502.17144"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ]
+}

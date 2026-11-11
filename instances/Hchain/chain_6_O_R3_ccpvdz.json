@@ -1,0 +1,425 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 6,
+  "boundary": "O",
+  "params": {
+    "N_up": 3,
+    "N_dn": 3,
+    "R": 3,
+    "basis": "cc-pVDZ"
+  },
+  "instance_id": "Hchain/chain_6_O_R3_ccpvdz",
+  "rows": [
+    {
+      "energy": -3.1571,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "CCSD",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "CCSD",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "coupled cluster",
+      "reference": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.05168 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-3.1571 Ha per total",
+        "note": "Table II; sources/2305.05168.txt line 259; version read: arXiv text; no journal version found | Table II caption line 254: 'energies (in Hartree)', R_H-H=3 a.u. | Boundary not stated, open assumed. | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "reference",
+          "from": "Karol Kowalski, Nicholas P. Bauman, Quantum flow algorithms for simulating many-body systems on quantum computers, arXiv:2305.05168",
+          "to": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1571 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row CCSD",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none (reference field)",
+          "reason": "The paper is published: Phys. Rev. Lett. 131, 200601 (2023), doi:10.1103/PhysRevLett.131.200601 (Crossref, title and authors match; PRL PDF read). refs.mjs only follows the arXiv API <arxiv:doi> field, which is empty for 2305.05168, so the Crossref step never ran. Value check passed: printed -3.1571 Ha (PRL) = -3.1571 Ha (arXiv v2), total energy, stored eps -0.5261833333333333 x 6 = -3.1571; instance (open linear chain, N = 6, R = 3 bohr, cc-pVDZ, S_z = 0) and bound_type projected agree.",
+          "source_entry": "h-p-2305-05168-c2#16 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1571 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row CCSD",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none",
+          "reason": "Published in Phys. Rev. Lett. 131, 200601 (2023) (peer reviewed). The journal Tables I and II are identical to arXiv v2 in every cell of this row. The evidence string ('no journal version found') changes with it: with peer_reviewed true the template at gen/readers.mjs line 77 would write 'journal copy not reached (HTTP 403...)', which is also wrong; the journal PDF was reached on 2026-10-24 and agrees.",
+          "source_entry": "h-p-2305-05168-c2#17 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-3.1571 Ha per total",
+          "location": "Table II; sources/2305.05168.txt line 259; version read: arXiv text; no journal version found",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -3.1619,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "CCSDT",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "CCSDT",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "coupled cluster",
+      "reference": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.05168 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-3.1619 Ha per total",
+        "note": "Table II; sources/2305.05168.txt line 260; version read: arXiv text; no journal version found | Table II caption line 254: 'energies (in Hartree)', R_H-H=3 a.u. | Boundary not stated, open assumed. | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "reference",
+          "from": "Karol Kowalski, Nicholas P. Bauman, Quantum flow algorithms for simulating many-body systems on quantum computers, arXiv:2305.05168",
+          "to": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1619 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row CCSDT",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none (reference field)",
+          "reason": "The paper is published: Phys. Rev. Lett. 131, 200601 (2023), doi:10.1103/PhysRevLett.131.200601 (Crossref, title and authors match; PRL PDF read). refs.mjs only follows the arXiv API <arxiv:doi> field, which is empty for 2305.05168, so the Crossref step never ran. Value check passed: printed -3.1619 Ha (PRL) = -3.1619 Ha (arXiv v2), total energy, stored eps -0.5269833333333334 x 6 = -3.1619; instance (open linear chain, N = 6, R = 3 bohr, cc-pVDZ, S_z = 0) and bound_type projected agree.",
+          "source_entry": "h-p-2305-05168-c2#18 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1619 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row CCSDT",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none",
+          "reason": "Published in Phys. Rev. Lett. 131, 200601 (2023) (peer reviewed). The journal Tables I and II are identical to arXiv v2 in every cell of this row. The evidence string ('no journal version found') changes with it: with peer_reviewed true the template at gen/readers.mjs line 77 would write 'journal copy not reached (HTTP 403...)', which is also wrong; the journal PDF was reached on 2026-10-24 and agrees.",
+          "source_entry": "h-p-2305-05168-c2#19 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-3.1619 Ha per total",
+          "location": "Table II; sources/2305.05168.txt line 260; version read: arXiv text; no journal version found",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -3.1591,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "CCSDTQ",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "CCSDTQ",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "coupled cluster",
+      "reference": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.05168 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-3.1591 Ha per total",
+        "note": "Table II; sources/2305.05168.txt line 261; version read: arXiv text; no journal version found | Table II caption line 254: 'energies (in Hartree)', R_H-H=3 a.u. | Boundary not stated, open assumed. | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "reference",
+          "from": "Karol Kowalski, Nicholas P. Bauman, Quantum flow algorithms for simulating many-body systems on quantum computers, arXiv:2305.05168",
+          "to": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1591 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row CCSDTQ",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none (reference field)",
+          "reason": "The paper is published: Phys. Rev. Lett. 131, 200601 (2023), doi:10.1103/PhysRevLett.131.200601 (Crossref, title and authors match; PRL PDF read). refs.mjs only follows the arXiv API <arxiv:doi> field, which is empty for 2305.05168, so the Crossref step never ran. Value check passed: printed -3.1591 Ha (PRL) = -3.1591 Ha (arXiv v2), total energy, stored eps -0.5265166666666666 x 6 = -3.1591; instance (open linear chain, N = 6, R = 3 bohr, cc-pVDZ, S_z = 0) and bound_type projected agree.",
+          "source_entry": "h-p-2305-05168-c2#21 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1591 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row CCSDTQ",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none",
+          "reason": "Published in Phys. Rev. Lett. 131, 200601 (2023) (peer reviewed). The journal Tables I and II are identical to arXiv v2 in every cell of this row. The evidence string ('no journal version found') changes with it: with peer_reviewed true the template at gen/readers.mjs line 77 would write 'journal copy not reached (HTTP 403...)', which is also wrong; the journal PDF was reached on 2026-10-24 and agrees.",
+          "source_entry": "h-p-2305-05168-c2#22 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-3.1591 Ha per total",
+          "location": "Table II; sources/2305.05168.txt line 261; version read: arXiv text; no journal version found",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -3.157,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "DUCC-QFlow",
+      "ansatz": null,
+      "method_detail": "DUCC(6act) downfolded Hamiltonian, (4e,4o) active space",
+      "method_as_published": "DUCC(6act)-QFlow(4e,4o)",
+      "family": "VQE / circuit",
+      "bound_type": "approximate",
+      "bound_type_reason": "DUCC-QFlow: QFlow minimisation of the approximate downfolded Hamiltonian A(7), not an expectation value of H (ruled 2026-10-24)",
+      "reference": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.05168 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-3.1570 Ha per total",
+        "note": "Table II; sources/2305.05168.txt line 263; version read: arXiv text; no journal version found | Table II caption line 254: 'energies (in Hartree)', R_H-H=3 a.u. | Boundary not stated, open assumed. | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "reference",
+          "from": "Karol Kowalski, Nicholas P. Bauman, Quantum flow algorithms for simulating many-body systems on quantum computers, arXiv:2305.05168",
+          "to": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1570 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row DUCC(6act)-QFlow(4e,4o)",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none (reference field)",
+          "reason": "The paper is published: Phys. Rev. Lett. 131, 200601 (2023), doi:10.1103/PhysRevLett.131.200601 (Crossref, title and authors match; PRL PDF read). refs.mjs only follows the arXiv API <arxiv:doi> field, which is empty for 2305.05168, so the Crossref step never ran. Value check passed: printed -3.1570 Ha (PRL) = -3.1570 Ha (arXiv v2), total energy, stored eps -0.5261666666666667 x 6 = -3.157; instance (open linear chain, N = 6, R = 3 bohr, cc-pVDZ, S_z = 0) and bound_type null agree.",
+          "source_entry": "h-p-2305-05168-c2#23 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1570 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row DUCC(6act)-QFlow(4e,4o)",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none",
+          "reason": "Published in Phys. Rev. Lett. 131, 200601 (2023) (peer reviewed). The journal Tables I and II are identical to arXiv v2 in every cell of this row. The evidence string ('no journal version found') changes with it: with peer_reviewed true the template at gen/readers.mjs line 77 would write 'journal copy not reached (HTTP 403...)', which is also wrong; the journal PDF was reached on 2026-10-24 and agrees.",
+          "source_entry": "h-p-2305-05168-c2#24 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "bound_type",
+          "from": null,
+          "to": "approximate",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1570 Ha per total",
+          "location": "PRL 131, 200601 (2023), p. 200601-4 and Table II",
+          "version_read": "Phys. Rev. Lett. 131, 200601 (2023) publisher PDF and arXiv:2305.05168v2",
+          "conversion": "none",
+          "reason": "Ruling 6 (2026-10-24): DUCC-QFlow minimises an approximate downfolded Hamiltonian (the A(7) truncation of the commutator expansion), not an expectation value of H, so the energy is no bound: approximate.",
+          "source_entry": "h-p-2305-05168-c2#25 (qmbl-verify 2026-10-23/24, ambiguous); ruling 6, 2026-10-24"
+        },
+        {
+          "field": "bound_type_reason",
+          "from": "downfolded effective Hamiltonian + QFlow, not in RULES list",
+          "to": "DUCC-QFlow: QFlow minimisation of the approximate downfolded Hamiltonian A(7), not an expectation value of H (ruled 2026-10-24)",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1570 Ha per total",
+          "location": "PRL 131, 200601 (2023), p. 200601-4 and Table II",
+          "version_read": "Phys. Rev. Lett. 131, 200601 (2023) publisher PDF and arXiv:2305.05168v2",
+          "conversion": "none",
+          "reason": "Ruling 6 (2026-10-24): DUCC-QFlow minimises an approximate downfolded Hamiltonian (the A(7) truncation of the commutator expansion), not an expectation value of H, so the energy is no bound: approximate.",
+          "source_entry": "h-p-2305-05168-c2#25 (qmbl-verify 2026-10-23/24, ambiguous); ruling 6, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-3.1570 Ha per total",
+          "location": "Table II; sources/2305.05168.txt line 263; version read: arXiv text; no journal version found",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -3.1589,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "DUCC-QFlow",
+      "ansatz": null,
+      "method_detail": "DUCC(7act) downfolded Hamiltonian, (4e,4o) active space",
+      "method_as_published": "DUCC(7act)-QFlow(4e,4o)",
+      "family": "VQE / circuit",
+      "bound_type": "approximate",
+      "bound_type_reason": "DUCC-QFlow: QFlow minimisation of the approximate downfolded Hamiltonian A(7), not an expectation value of H (ruled 2026-10-24)",
+      "reference": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.05168 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-3.1589 Ha per total",
+        "note": "Table II; sources/2305.05168.txt line 264; version read: arXiv text; no journal version found | Table II caption line 254: 'energies (in Hartree)', R_H-H=3 a.u. | Boundary not stated, open assumed. | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "reference",
+          "from": "Karol Kowalski, Nicholas P. Bauman, Quantum flow algorithms for simulating many-body systems on quantum computers, arXiv:2305.05168",
+          "to": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1589 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row DUCC(7act)-QFlow(4e,4o)",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none (reference field)",
+          "reason": "The paper is published: Phys. Rev. Lett. 131, 200601 (2023), doi:10.1103/PhysRevLett.131.200601 (Crossref, title and authors match; PRL PDF read). refs.mjs only follows the arXiv API <arxiv:doi> field, which is empty for 2305.05168, so the Crossref step never ran. Value check passed: printed -3.1589 Ha (PRL) = -3.1589 Ha (arXiv v2), total energy, stored eps -0.5264833333333333 x 6 = -3.1589; instance (open linear chain, N = 6, R = 3 bohr, cc-pVDZ, S_z = 0) and bound_type null agree.",
+          "source_entry": "h-p-2305-05168-c2#26 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1589 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row DUCC(7act)-QFlow(4e,4o)",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none",
+          "reason": "Published in Phys. Rev. Lett. 131, 200601 (2023) (peer reviewed). The journal Tables I and II are identical to arXiv v2 in every cell of this row. The evidence string ('no journal version found') changes with it: with peer_reviewed true the template at gen/readers.mjs line 77 would write 'journal copy not reached (HTTP 403...)', which is also wrong; the journal PDF was reached on 2026-10-24 and agrees.",
+          "source_entry": "h-p-2305-05168-c2#27 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "bound_type",
+          "from": null,
+          "to": "approximate",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1589 Ha per total",
+          "location": "PRL 131, 200601 (2023), p. 200601-4 and Table II",
+          "version_read": "Phys. Rev. Lett. 131, 200601 (2023) publisher PDF and arXiv:2305.05168v2",
+          "conversion": "none",
+          "reason": "Ruling 6 (2026-10-24): DUCC-QFlow minimises an approximate downfolded Hamiltonian (the A(7) truncation of the commutator expansion), not an expectation value of H, so the energy is no bound: approximate.",
+          "source_entry": "h-p-2305-05168-c2#28 (qmbl-verify 2026-10-23/24, ambiguous); ruling 6, 2026-10-24"
+        },
+        {
+          "field": "bound_type_reason",
+          "from": "downfolded effective Hamiltonian + QFlow, not in RULES list",
+          "to": "DUCC-QFlow: QFlow minimisation of the approximate downfolded Hamiltonian A(7), not an expectation value of H (ruled 2026-10-24)",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1589 Ha per total",
+          "location": "PRL 131, 200601 (2023), p. 200601-4 and Table II",
+          "version_read": "Phys. Rev. Lett. 131, 200601 (2023) publisher PDF and arXiv:2305.05168v2",
+          "conversion": "none",
+          "reason": "Ruling 6 (2026-10-24): DUCC-QFlow minimises an approximate downfolded Hamiltonian (the A(7) truncation of the commutator expansion), not an expectation value of H, so the energy is no bound: approximate.",
+          "source_entry": "h-p-2305-05168-c2#28 (qmbl-verify 2026-10-23/24, ambiguous); ruling 6, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-3.1589 Ha per total",
+          "location": "Table II; sources/2305.05168.txt line 264; version read: arXiv text; no journal version found",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -3.1591,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "ED",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalisation in cc-pVDZ",
+      "reference": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.05168 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-3.1591 Ha per total",
+        "note": "Table II; sources/2305.05168.txt line 265; version read: arXiv text; no journal version found | Table II caption line 254: 'energies (in Hartree)', R_H-H=3 a.u. | Boundary not stated, open assumed. | reader confidence medium",
+        "secondary_of": null
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "from": "Karol Kowalski, Nicholas P. Bauman, Quantum flow algorithms for simulating many-body systems on quantum computers, arXiv:2305.05168",
+          "to": "Karol Kowalski, Nicholas P. Bauman, Quantum Flow Algorithms for Simulating Many-Body Systems on Quantum Computers, Physical Review Letters 131, 200601 (2023), arXiv:2305.05168, doi:10.1103/PhysRevLett.131.200601",
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1591 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row ED",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none (reference field)",
+          "reason": "The paper is published: Phys. Rev. Lett. 131, 200601 (2023), doi:10.1103/PhysRevLett.131.200601 (Crossref, title and authors match; PRL PDF read). refs.mjs only follows the arXiv API <arxiv:doi> field, which is empty for 2305.05168, so the Crossref step never ran. Value check passed: printed -3.1591 Ha (PRL) = -3.1591 Ha (arXiv v2), total energy, stored eps -0.5265166666666666 x 6 = -3.1591; instance (open linear chain, N = 6, R = 3 bohr, cc-pVDZ, S_z = 0) and bound_type exact agree.",
+          "source_entry": "h-p-2305-05168-c2#29 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "-3.1591 (Hartree)",
+          "location": "Table II (H6, R_H-H = 3 a.u., cc-pVDZ), row ED",
+          "version_read": "arXiv:2305.05168v2 PDF (8 Aug 2023) and Phys. Rev. Lett. 131, 200601 (2023) publisher PDF (journals.aps.org, fetched 2026-10-24), pypdf layout mode; arXiv v1 Table I also compared",
+          "conversion": "none",
+          "reason": "Published in Phys. Rev. Lett. 131, 200601 (2023) (peer reviewed). The journal Tables I and II are identical to arXiv v2 in every cell of this row. The evidence string ('no journal version found') changes with it: with peer_reviewed true the template at gen/readers.mjs line 77 would write 'journal copy not reached (HTTP 403...)', which is also wrong; the journal PDF was reached on 2026-10-24 and agrees.",
+          "source_entry": "h-p-2305-05168-c2#30 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        }
+      ]
+    }
+  ]
+}

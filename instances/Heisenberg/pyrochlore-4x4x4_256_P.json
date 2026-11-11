@@ -1,0 +1,196 @@
+{
+  "model": "Heisenberg",
+  "lattice": "pyrochlore-4x4x4",
+  "n_sites": 256,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/pyrochlore-4x4x4_256_P",
+  "rows": [
+    {
+      "energy": -494.6944,
+      "sigma": 0.1024,
+      "energy_variance": 109.41,
+      "dof": 256,
+      "einf": 0,
+      "v_score": 0.11445189693250583,
+      "method": "VMC",
+      "ansatz": "PP",
+      "method_detail": "projected: SU(2), unspecified",
+      "method_as_published": "mVMC with SU(2) and symmetry projections",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.11.041021)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -494.6944,
+          "reported_as": "-0.4831(1) (energy per site, S.S units, j1 = 1)",
+          "location": "Appendix H, Table II, row 4x4^3, column mVMC (identical in v1)",
+          "version_read": "arXiv:2101.08787v2 (= PRX 11, 041021) and v1, pypdf layout + plain",
+          "conversion": "-0.4831 x 4 x 256 = -494.6944",
+          "checked_on": "2026-09-29",
+          "reason": "Exact conversion of the printed value, which is also what the first author first uploaded as a total (ebbbbbb, 2021-09-15: -494.6944) before rounding it to -494.69 the same day (e27d6d6). Shift 0.0044 (0.04 sigma); not the record (the generalized-RVB row -497.238 is lower).",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#7 (qmbl-verify 2026-09-29; skeptic refuted; applied as proposed under the ruling of 2026-09-30 (table over figure): VA5's Table II value stands; the skeptic's figure-decoded -494.7417 is not used)",
+          "from": -494.69
+        },
+        {
+          "field": "sigma",
+          "to": 0.1024,
+          "reported_as": "-0.4831(1) (energy per site, S.S units, j1 = 1)",
+          "location": "Appendix H, Table II, row 4x4^3, column mVMC (identical in v1)",
+          "version_read": "arXiv:2101.08787v2 (= PRX 11, 041021) and v1, pypdf layout + plain",
+          "conversion": "1e-4 x 4 x 256 = 0.1024; stored 0.076 = 3e-4 x 256 (0.0768) truncated",
+          "checked_on": "2026-09-29",
+          "reason": "The paper prints (1) = 1e-4 per site and so did the author's first upload (f6b5945, 2021-07-23: -0.4831, sigma 1e-4, variance 3.2e-4). The Pauli per-site conversion (13b96b6, 2021-09-01) multiplied the variance by 4 (3.2e-4 -> 1.3e-3) but wrote sigma 3e-4 instead of 4e-4, and the total 0.076 (ebbbbbb) follows from that. A conversion slip, not a finer bar; if the authors hold a finer one (7.4e-5 per site) the stored value could stay, but no source prints it. energy_variance 109.41 printed in neither version (author upload bf9dc0d, 2022-02-24).",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#8 (qmbl-verify 2026-09-29; skeptic upheld); same value proposed by VJ2-journal-other#17",
+          "from": 0.076
+        }
+      ],
+      "verified": {
+        "checked_on": "2026-10-15",
+        "scope": "value",
+        "method": "published PDF Phys. Rev. X 11, 041021 (2021) (open access), sources/journal/prx11-041021.pdf, sha256 e65c26b3, pypdf layout (ð1Þ = (1) in the font); arXiv:2101.08787v2 compared (qmbl/sources/2101.08787.txt Table II identical)",
+        "location": "Table II, row '4 x 4^3', column mVMC",
+        "reported_as": "-0.4831(1) per site (S.S, J = 1)",
+        "conversion": "-0.4831 x 1024 = -494.6944; sigma 0.1024",
+        "note": "H = j1 sum h_lambda(i,j) + j2 sum ..., h_lambda = lambda/2 (S+S- + S-S+) + SzSz (Eqs. 1-2), Heisenberg point lambda = 1, j2 = 0; Table II: 'The ground-state energy per site is listed in the first line of every cell'; 'We consider pyrochlore clusters with periodic boundary conditions'. Geometry 4 x L^3 = 4L^3 sites. Stored Pauli total = 4 x N x E/N. Own computation (mVMC / NQS CNN columns). The paper prints no energy variance: the stored energy_variance is the VarBench upload's only. Published 29 October 2021, peer reviewed. No duplicate.",
+        "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#55",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "mVMC",
+            "version": null,
+            "url": "https://github.com/issp-center-dev/mVMC"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Numerical simulations were performed using the open-source codes mVMC [39] for mVMC, Netket [49, 63] for NQS and lattice symmetries [74] for ED.",
+          "location": "arXiv:2101.08787 (sources/2101.08787.txt), Acknowledgments",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -497.238062785,
+      "sigma": 0.00295852,
+      "energy_variance": 78.300938,
+      "dof": 256,
+      "einf": 0,
+      "v_score": 0.08107336487954171,
+      "method": "VMC",
+      "ansatz": "RVB",
+      "method_detail": "generalized RVB",
+      "method_as_published": "Generalized RVB ansatz, unrestricted VMC optimization (no quantum-number projection)",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz; energy is a strict upper bound (assigned during source verification)",
+      "reference": "Cheng & Li, Closely competing valence bond crystal orders in the ground state of the spin-1/2 antiferromagnetic Heisenberg model on the pyrochlore lattice: A large scale unrestricted variational study, Phys. Rev. B 113, 075158 (2026), arXiv:2509.13746, doi:10.1103/dsr3-sjt6",
+      "peer_reviewed": true,
+      "source": "sweep-worklist-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "arXiv PDF text extracted locally with pypdf in layout mode, no LLM transcription",
+        "reported_as": "E0 ~ -0.4855 J/site, approximate, no error bar",
+        "note": "Sec. A: \"The obtained ground state energy is E0 ~ -0.5118 J/site for the L = 2 cluster and E0 ~ -0.4855 J/site for the L = 4 cluster\", periodic boundary conditions on both; the L = 4 cluster carries Nv = 4N^2 = 262144 parameters, so N = 256. Units: the same passage quotes the mVMC energy -0.5162 J/site for L = 2, which is the pyrochlore-2x2x2_32_P record -0.516266 in the S.S per-site convention. Approximate and without an error bar. It is 0.5% below the VarBench mVMC record -0.4830957, although the ansatz has no symmetry projection and sits above mVMC at L = 2 - which says more about that record than about this row. 2026-09-19: the authors measured the fixed state on request, E/N = -0.4855840(29) J with Var(H) = 4.894(22) J^2 (see corrections and error_metrics on this row).",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 113, 075158 (2026), sources/journal/prb113-075158.pdf, sha256 45e97f46, pypdf plain; arXiv:2509.13746v3 compared; authors' file qmbl/sources/2509.13746-authors-pyro-result.dat (read-only)",
+          "location": "journal Sec. III A ('E0 ~ -0.4855 J/site for the L = 4 cluster'); authors' result file lines energy_per_site_J, energy_sem_chain_per_site_J, variance_total_J2",
+          "reported_as": "journal: E0 ~ -0.4855 J/site; authors: energy_per_site_J = -4.8558404568894675E-001, energy_sem_chain_per_site_J = 2.8891780023232759E-006, variance_total_J2 = 4.8938086505829848E+000",
+          "conversion": "-0.48558404568894675 x 4 x 256 = -497.238062785; sigma 2.889178e-6 x 1024 = 0.00295852; variance 4.8938087 x 16 = 78.300938 (Pauli total)",
+          "note": "Record row read hardest: 256-site pyrochlore (L = 4), periodic, S.S with J = 1, no symmetry projection, variational, own state; all stored numbers agree with the authors' file, and the journal value is the same as arXiv v3 (~ -0.4855). Journal vs arXiv difference: the journal adds a paragraph on stopping the optimisation for the largest sizes ('uncertainty in the variational energy ... smaller than 10^-4 J/site', for e.g. L = 8); it is a convergence statement, not an error bar, and does not change this row. Duplicate check: the only other row is VarBench's mVMC -494.6944.",
+          "source_entry": "JP12-heisenberg-j1j2-hubbard-tv-tfising#17"
+        }
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -497.238062785,
+          "reported_as": "energy_total_J =  -1.2430951569637037E+002 | energy_per_site_J =  -4.8558404568894675E-001",
+          "location": "sources/2509.13746-authors-pyro-result.dat, the authors' dedicated Monte Carlo measurement of the optimized L = 4 state (Rong Cheng, 2026-09-19; README in sources/2509.13746-authors-README_QMBL.txt)",
+          "version_read": "private correspondence, data files as received 2026-09-19 (zip sha256 da066f4b244e886c82bf347a2b5e43cecd0e12369ccfa240b809170c71b79dcc)",
+          "conversion": "S.S total x 4 = Pauli total; per site -0.48558404568894675 x 1024",
+          "checked_on": "2026-09-19",
+          "reason": "The paper gives the energy as approximate to four decimals; the authors measured the same fixed state with 8,388,608 samples over 256 chains and obtained E/N = -0.4855840(29) J, one unit of the last printed digit below the printed value and 29 sigma of the new error bar, so a sigma cannot sit on the printed number. Corrected to the measured value with the printed one kept here (ruling 2026-09-19).",
+          "source_entry": "qmbl-runs/repo-data-census/search/replies/2509.13746-cheng-2026-09-19.txt, ruling 1 (2026-09-19)",
+          "from": -497.152
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "E0 ≈ −0.4855 J/site for the L = 4 cluster (paper); energy_per_site_J = -4.8558404568894675E-001, energy_sem_chain_per_site_J = 2.8891780023232759E-006, variance_total_J2 = 4.8938086505829848E+000 (authors' measurement)",
+          "location": "arXiv v3 Sec. III A (paper value); sources/2509.13746-authors-pyro-result.dat (stored value)",
+          "version_read": "arXiv:2509.13746v3 (20 Nov 2025, latest of v1 17 Sep / v2 22 Oct / v3 20 Nov 2025), PDF text extracted locally with pypdf layout mode (sources/vp15_2509.13746.layout.clean.txt, PDF stamp 'arXiv:2509.13746v3'); the authors' measurement files as committed in qmbl sources/2509.13746-authors-{pyro-result,pyro-blocking,pyro-chains}.dat and -README_QMBL.txt (read-only), and the reply qmbl-runs/repo-data-census/search/replies/2509.13746-cheng-2026-09-19.txt; journal version Phys. Rev. B 113, 075158 (2026) not read",
+          "conversion": "-0.48558404568894675 x 4 x 256 = -497.2380627855 (stored -497.238062785); sigma 2.8891780e-6 x 1024 = 0.00295852 (stored); variance 4.8938086506 x 16 = 78.300938 (stored). All three agree.",
+          "checked_on": "2026-09-29",
+          "reason": "M10 settled: the preprint was published in Phys. Rev. B 113, 075158 on 2026-02-27, seven months before this pass. Crossref API, DOI 10.1103/dsr3-sjt6, queried 2026-09-29: 'Physical Review B', vol 113, issue 7, article 075158, issued/published online 2026-02-27, 'Closely competing valence bond crystal orders in the ground state of the spin-1/2 antiferromagnetic Heisenberg model on the pyrochlore lattice: A large scale unrestricted variational study', authors Rong Cheng, Tao Li. The arXiv abs page (fetched 2026-09-29) still shows no journal ref (DOI record re-queried by the retry agent on 2026-09-29: same journal, volume, article number and date). Caveat for the ruling: what the referees saw is the printed 'E0 ≈ −0.4855 J/site' and the state behind it; the stored digits -0.4855840(29), the sigma and the variance come from the authors' measurement of that same state sent for QMBL on 2026-09-19 (error_metrics.measured_by authors, private correspondence), which no referee saw. If peer_reviewed is meant to describe the paper that defends the state, true is right; if it must describe the print of the stored number, the row has no refereed print of those digits and the field should say so (for example true with a note, as the Ferrari & Becca private-communication rows raise the same question). Record row, read hardest (second reading). Value: paper v3 Sec. III A prints 'E0 ≈ −0.4855 J/site for the L = 4 cluster'; the stored -497.238062785 is the authors' measurement energy_per_site_J = -4.8558404568894675E-001 x 1024 = -497.2380627855 (12 significant digits, add_worklist_rows.mjs line 62), the printed -0.4855 x 1024 = -497.152 kept in `corrections` (ruling 2026-09-19). The measured value truncates, not rounds, to the printed four decimals (-0.485584 -> -0.4855), consistent with the same state. Sigma: energy_sem_chain_per_site_J = 2.8891780023232759E-006 x 1024 = 0.0029585 (stored 0.00295852). energy_variance: variance_total_J2 = 4.8938086505829848 (S.S total) x 16 = 78.300938 (stored). V-score 256 x 78.300938 / 497.238063^2 = 0.08107 (stored 0.0810734). Im E = -5.3(3.4)e-4 total, 1.6 sigma from zero. Instance: N = 4L^3 = 256, L = 4, periodic in all three directions = pyrochlore-4x4x4_256_P (M9 settled); S^z = 0, no projection; H = J sum S_i.S_j, J = 1, every bond once. bound_type variational (fixed-state measurement of an optimized variational state). Own computation, not a quote. M11 'record 0.51% below the runner-up' settled from the source: the runner-up is VarBench's mVMC -494.69 (Astrakhantsev et al.), which the paper quotes (-0.4831) and explains: that mVMC imposed translational symmetry on the Pfaffian elements f_ij (O(N) instead of O(N^2) parameters), which the paper's 2a1 x 2a2 x 2a3 VBC breaks. Plausible, and consistent with larger-cluster references (DMRG extrapolated -0.4928 at 128 sites, Pohle et al. -0.48851(3) at 432 sites), above which it sits. No duplicate: the instance has two rows, VarBench's mVMC -494.69 and this one.",
+          "source_entry": "VP15-hubbard-j1j2-heisenberg#63 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": false
+        },
+        {
+          "field": "reference",
+          "to": "Cheng & Li, Closely competing valence bond crystal orders in the ground state of the spin-1/2 antiferromagnetic Heisenberg model on the pyrochlore lattice: A large scale unrestricted variational study, Phys. Rev. B 113, 075158 (2026), arXiv:2509.13746, doi:10.1103/dsr3-sjt6",
+          "reported_as": "Crossref: 'Physical Review B' vol 113 art 075158, 2026-02-27, Rong Cheng, Tao Li",
+          "location": "Crossref DOI 10.1103/dsr3-sjt6",
+          "version_read": "arXiv:2509.13746v3 (20 Nov 2025, latest of v1 17 Sep / v2 22 Oct / v3 20 Nov 2025), PDF text extracted locally with pypdf layout mode (sources/vp15_2509.13746.layout.clean.txt, PDF stamp 'arXiv:2509.13746v3'); the authors' measurement files as committed in qmbl sources/2509.13746-authors-{pyro-result,pyro-blocking,pyro-chains}.dat and -README_QMBL.txt (read-only), and the reply qmbl-runs/repo-data-census/search/replies/2509.13746-cheng-2026-09-19.txt; journal version Phys. Rev. B 113, 075158 (2026) not read",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Journal reference, DOI and authors added (published 2026-02-27; title capitalisation as in the journal). Crossref API, DOI 10.1103/dsr3-sjt6, queried 2026-09-29: 'Physical Review B', vol 113, issue 7, article 075158, issued/published online 2026-02-27, 'Closely competing valence bond crystal orders in the ground state of the spin-1/2 antiferromagnetic Heisenberg model on the pyrochlore lattice: A large scale unrestricted variational study', authors Rong Cheng, Tao Li. The arXiv abs page (fetched 2026-09-29) still shows no journal ref. The numbers were read in arXiv v3 and the authors' files; the journal text was not read. Unchanged by this: the energy, sigma and variance on the row, which are the authors' 2026-09-19 measurement per ruling, documented in the row's corrections and error_metrics blocks.",
+          "source_entry": "VP15-hubbard-j1j2-heisenberg#64 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Closely competing valence bond crystal orders in the ground state of the spin-1/2 antiferromagnetic Heisenberg model on the pyrochlore lattice: a large scale unrestricted variational study, arXiv:2509.13746"
+        }
+      ],
+      "error_metrics": {
+        "fields": [
+          "energy_variance",
+          "sigma"
+        ],
+        "measured_by": "authors",
+        "checked_on": "2026-09-19",
+        "source": "the authors' dedicated Monte Carlo measurement of the optimized L = 4 state, sent by Rong Cheng on 2026-09-19 for the QMBL entry (private correspondence, via Tao Li); outputs as received in sources/2509.13746-authors-pyro-result.dat, -pyro-blocking.dat, -pyro-chains.dat, README in sources/2509.13746-authors-README_QMBL.txt",
+        "source_file": "sources/2509.13746-authors-pyro-result.dat",
+        "reported_as": "energy_per_site_J =  -4.8558404568894675E-001 | energy_sem_chain_per_site_J =   2.8891780023232759E-006 | variance_total_J2 =   4.8938086505829848E+000 | variance_jk_sem_block_total_J2 =   2.2171090771727381E-002",
+        "conversion": "var_total_SS",
+        "note": "H = J sum S_i.S_j, J = 1, 256 sites, periodic. One standard error of the energy from the dispersion of 256 independently seeded chain means (1000 warmup sweeps, 32768 samples per chain at one sweep each, 8,388,608 samples), checked against temporal blocking: 2.867e-6 at blocks of 1024 and 2.84e-6 to 2.92e-6 for every block size >= 256 (pyro-blocking.dat), so RULES.md 6 is met. Var(H) = <|E_loc|^2> - <Re E_loc>^2 of the total S.S Hamiltonian, complex wavefunction, +/- 0.022 J^2 by block jackknife (one run; the authors note the variance error is more sensitive to high-second-moment chains than the energy error and is not yet confirmed by a second run). Stored as Pauli total, x 16. The row's energy is the same measurement (corrections on the row), so the agreement check is exact. Measurement cost: 256 MPI ranks x 674 s."
+      },
+      "compute": {
+        "parameters": 262144,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "FIG. 2: Convergence of the variational energy of the spin-1/2 PAFH on a L = 4 pyrochlore cluster with the optimization steps. Shown here is the result obtained from the unrestricted optimization of a generalized RVB ansatz which contains as many as N_v = 262144 variational parameters. The purple horizontal line marks the energy obtained from the mVMC package with additional symmetry projection. Here we only show the evolution of the variational energy in the last 50000 optimization steps for brevity. || For example, on the L = 4 pyrochlore cluster, the total number of variational parameter to be optimized is N_v = 4N^2 = 262144. || For the L = 2 and L = 4 cluster, we start the optimization from a random initial guess. || Such a finite-depth BFGS algorithm can achieve good balance between numerical efficiency, numerical stability and storage demand and make possible the optimization of millions of variational parameters with relatively small amount of computational resources.",
+        "source": "Fig. 2 caption; Sec. IV (L = 4 paragraph); Sec. IV opening; Sec. I, arXiv:2509.13746 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Parameter count 262144 = 4N^2 for N = 256 is stated explicitly (real parameters of the complex pairing matrix U). Total optimization steps not stated (Fig. 2 shows only \"the last 50000 optimization steps\", so the run had more than 50000 finite-depth BFGS steps, started from a random initial guess). No hardware, core-hours, wall-clock or Monte Carlo sample counts stated anywhere; the only cost remark is qualitative (\"relatively small amount of computational resources\"; for L = 8 \"heavy computational cost\")."
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2509.09189",
+        "arXiv:2509.13746",
+        "arXiv:2606.16875"
+      ],
+      "found": 1,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen. Energies from: arXiv:2509.13746."
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "model": "Impurity",
+  "lattice": "SB-DMFT-MI-HF",
+  "n_sites": 10,
+  "params": {},
+  "instance_id": "Impurity/SB-DMFT-MI-HF_10",
+  "rows": [
+    {
+      "energy": -34.58052046520677,
+      "sigma": null,
+      "energy_variance": 4.547473508864641e-13,
+      "dof": 11,
+      "einf": -31.843050000043313,
+      "v_score": 6.675195328515662e-13,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "fork tensor product states; symmetric: U(1) charge, U(1) spin",
+      "method_as_published": "DMRG (bond dimension 100) using fork tensor product states with U(1) symmetries for charge and spin sector",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 100,
+        "iterations": 60,
+        "reported_as": "The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. (...) The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79]. Except for the three-band model with spin-orbital coupling, which has only U(1) symmetry for the charge sector, all calculations are performed under the global U(1) symmetries for the charge and spin sectors. We first perform 30 DMRG sweeps without symmetries with a relatively low bond dimension to find the correct charge and spin sector. Then, the charge and the spin quantum numbers are fixed to be <N_alpha> and <S^z_alpha> for each spin-orbital alpha, respectively. Finally, the ground state is found by another 60 DMRG sweeps in the fixed quantum number sector with a maximum bond dimension m = 100 for single-band models and m = 350 for three-band models. || VarBench script scripts/Impurity/SB-*_9.py: Nbath = 9; bondList = [100]; DMRGSec = DMRGParams(tw=1E-12, maxmI=100, maxmIB=100, maxmB=100, nmax=8, sweeps=30, ...); DMRG = DMRGParams(tw=1E-40, maxm=bond, nmax=16, normErr=1E-14, conv=1E-14, sweeps=60, DMRGMethod=\"TwoSite\", ...). || arXiv:1612.05587 (PRX 7, 031013) states costs only for its own SrVO3 three-orbital DMFT calculations with Nb = 109 bath sites per orbital: \"With the parameters mentioned above one full DMFT-cycle takes about five hours on 16 cores.\" and \"Computational resources have been provided by the Vienna Scientific Cluster (VSC). All calculations involving tensor networks were performed using the ITensor library.\"",
+        "source": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S6 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (m = 100 for single-band models, as in the SM and the script). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py)",
+          "reported_as": "| -34.58052046520677 | | 4.547473508864641e-13 | 11 | -31.843050000043313 | DMRG (bond dimension 100) using fork tensor product states with U(1) symmetries for charge and spin sector | |",
+          "location": "VarBench dataset Impurity/SB-DMFT-MI-HF_9.md data row 1 (Zenodo v1.0.0 and v1.1.0, vendor 390a21e); checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json; qmbl-verify/out/A2-prx7-031013-impurity/ed_sb_results.json",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Who produced the number: VarBench itself. The cited PRX 7, 031013 (Bauernfeind, Zingl, Triebl, Aichhorn & Evertz, arXiv:1612.05587) is the forkTPS method paper; no ground-state energy of any system turned up in any reading of it (arXiv v1-v3 PDFs in both pypdf modes, the v3 LaTeX source and the v3 HTML; see tried_in_cited_paper), and the attribution below rests on the VarBench artefacts, not on that absence. varbench-history: 6dad457 (Xiaodong Cao, VarBench co-author, 2022-12-09, 'added data for impurity models') enters all 32 values, bit for bit as stored, with an empty 'Data Repository' cell and a 'Mean field energy' row per instance, and a README that says 'We have constructed the following models'; the cell stays empty through Zenodo v1.0.0 (2023-08-18); 2dab43d (Dian Wu, 2024-07-11, 'Update references for Impurity') writes 'TODO: ask Xiaodong' into it; 55736f0 (xiaodongcao, 2024-08-02, 'added scripts and programs link for Impurity (#18)') fills it with the PRX link and the run-script link together and adds to the README: 'The scripts used to obtain these results are available in [scripts](https://github.com/varbench/methods/tree/main/scripts/Impurity)'. varbench/methods programs/Impurity/README.md: 'This library is used to generate the Ground State Energy and Variance of quantum impurity models in this work. For detailed information on forkTPS, please refer to [Daniel's paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013).' VarBench SM S3 B 2 (arXiv:2302.04919 v1 and v2): 'The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. ... The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79].' ([78] = Bauernfeind et al.) So the paper link is a method citation, attached twenty months after the upload; the number is VarBench's reference calculation, first public in the VarBench dataset. On the 2026-09-16 hold (DECISIONS.md section 1, 'do not apply baseline or contributed changes'): that hold rested on not_found, a reading result. Here the premise is established from the artefacts, the case ruling 1a settled for the six t-V LCT-INT rows (2026-09-19: 'baseline: true, reference = the run script only'; corrections.mjs: 'The 2026-09-16 hold on baseline changes was about rows whose number could not be located; here the cited paper's content is known and the artefact exists'). Consequence: the README's Impurity table credits all 12 records to 'Bauernfeind et al. (2017)'; after the change they read 'run script, Wu et al. (2024)' like every other VarBench-computed row. The linked script SB-DMFT-MI-HF_9.py is the run: it sets bondList = [100] and U = 8. Companion change, so the method paper stays named: scripts/method_names.mjs line 427 detail 'fork tensor product states; symmetric: U(1) charge, U(1) spin' -> 'fork tensor product states of PRX 7, 031013; symmetric: U(1) charge, U(1) spin', the form method_names.mjs line 72 gives the t-V rows ('...; LCT-INT of PRB 91, 235151'). RULES.md 3 keeps the source of the number out of method_detail; the method's own paper is not that source here.",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#0 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013) [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py)"
+        },
+        {
+          "field": "baseline",
+          "to": true,
+          "reported_as": "VarBench 6dad457 (Xiaodong Cao, 2022-12-09, 'added data for impurity models'), Impurity/OB_DMFT_MI_9.md: | -34.58052046520677 | | 4.547473508864641e-13 | 11 | DMRG (bond dimension 100) using fork tensor product states with U(1) symmetries for charge and spin sector | |",
+          "location": "varbench-history 6dad457 Impurity/OB_DMFT_MI_9.md (renamed 37648ad, 7d8801b); Zenodo v1.0.0 (2023-08-18) Impurity/SB-DMFT-MI-HF_9.md with the 'Data Repository' cell empty",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Computed by VarBench, not collected (RULES.md 8.2); evidence in the reference correction on this row. emit.mjs line 49 counts a row as collected whenever its reference carries a [paper] link, so the method-paper link added on 2024-08-02 turned VarBench's own reference calculations into 'collected' rows. Ruling 1a (2026-09-19) set baseline true on the six t-V LCT-INT rows on the same kind of evidence. Eligibility does not change (RULES.md 8.2: 'A baseline row is a full citizen of the table').",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#1 (qmbl-verify 2026-09-29; skeptic upheld)"
+        }
+      ],
+      "baseline": true
+    },
+    {
+      "energy": -34.58052046520682,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 11,
+      "einf": -31.843050000043313,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "Exact diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py) (a forkTPS DMRG script; QMBL's exact diagonalization reproduces this number to 3.3e-15 relative, checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "No statement. arXiv:1612.05587 (PRX 7, 031013) states costs only for its own SrVO3 three-orbital DMFT calculations with Nb = 109 bath sites per orbital: \"With the parameters mentioned above one full DMFT-cycle takes about five hours on 16 cores.\" and \"Computational resources have been provided by the Vienna Scientific Cluster (VSC). All calculations involving tensor networks were performed using the ITensor library.\"",
+        "source": "arXiv:2302.04919 (VarBench) SM Sec. S6 B 2 and Sec. S6 A; VarBench methods repository script named in the row reference; arXiv:1612.05587 read in full, arXiv:1612.05587 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "low",
+        "note": "These impurity rows are VarBench reference calculations (dataset arXiv:2302.04919, code github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 (arXiv:1612.05587) only as the FTPS method paper; the PRX paper contains none of these instances. For the exact-diagonalization row nothing is stated about cost anywhere (the VarBench SM describes ED only generically; the linked script performs the FTPS calculation, not the ED). PRX 7, 031013 gives \"five hours on 16 cores\" per DMFT cycle only for its own SrVO3 (109 bath sites per orbital) calculations, which is not this row."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py)",
+          "reported_as": "| -34.58052046520682 | | | 11 | -31.843050000043313 | Exact diagonalization | |",
+          "location": "VarBench dataset Impurity/SB-DMFT-MI-HF_9.md data row 2 (Zenodo v1.0.0 and v1.1.0, vendor 390a21e); checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json; qmbl-verify/out/A2-prx7-031013-impurity/ed_sb_results.json",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Who produced the number: VarBench itself. The cited PRX 7, 031013 (Bauernfeind, Zingl, Triebl, Aichhorn & Evertz, arXiv:1612.05587) is the forkTPS method paper; no ground-state energy of any system turned up in any reading of it (arXiv v1-v3 PDFs in both pypdf modes, the v3 LaTeX source and the v3 HTML; see tried_in_cited_paper), and the attribution below rests on the VarBench artefacts, not on that absence. varbench-history: 6dad457 (Xiaodong Cao, VarBench co-author, 2022-12-09, 'added data for impurity models') enters all 32 values, bit for bit as stored, with an empty 'Data Repository' cell and a 'Mean field energy' row per instance, and a README that says 'We have constructed the following models'; the cell stays empty through Zenodo v1.0.0 (2023-08-18); 2dab43d (Dian Wu, 2024-07-11, 'Update references for Impurity') writes 'TODO: ask Xiaodong' into it; 55736f0 (xiaodongcao, 2024-08-02, 'added scripts and programs link for Impurity (#18)') fills it with the PRX link and the run-script link together and adds to the README: 'The scripts used to obtain these results are available in [scripts](https://github.com/varbench/methods/tree/main/scripts/Impurity)'. varbench/methods programs/Impurity/README.md: 'This library is used to generate the Ground State Energy and Variance of quantum impurity models in this work. For detailed information on forkTPS, please refer to [Daniel's paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013).' VarBench SM S3 B 2 (arXiv:2302.04919 v1 and v2): 'The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. ... The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79].' ([78] = Bauernfeind et al.) So the paper link is a method citation, attached twenty months after the upload; the number is VarBench's reference calculation, first public in the VarBench dataset. On the 2026-09-16 hold (DECISIONS.md section 1, 'do not apply baseline or contributed changes'): that hold rested on not_found, a reading result. Here the premise is established from the artefacts, the case ruling 1a settled for the six t-V LCT-INT rows (2026-09-19: 'baseline: true, reference = the run script only'; corrections.mjs: 'The 2026-09-16 hold on baseline changes was about rows whose number could not be located; here the cited paper's content is known and the artefact exists'). Consequence: the README's Impurity table credits all 12 records to 'Bauernfeind et al. (2017)'; after the change they read 'run script, Wu et al. (2024)' like every other VarBench-computed row. For this exact-diagonalization row the linked script is not the producer either: SB-DMFT-MI-HF_9.py discretises the bath and runs forkTPS DMRG (S.solve), and neither varbench/methods nor forkTPS.src contains an exact-diagonalization program. The link is kept because the script builds this row's Hamiltonian; the value stands on QMBL's two independent recomputations (value_check). Which link the row should carry is asked separately (ambiguous entry on this row).",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#3 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013) [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py)"
+        },
+        {
+          "field": "baseline",
+          "to": true,
+          "reported_as": "VarBench 6dad457 (Xiaodong Cao, 2022-12-09, 'added data for impurity models'), Impurity/OB_DMFT_MI_9.md: | -34.58052046520682 | | | 11 | Exact diagonalization | |",
+          "location": "varbench-history 6dad457 Impurity/OB_DMFT_MI_9.md (renamed 37648ad, 7d8801b); Zenodo v1.0.0 (2023-08-18) Impurity/SB-DMFT-MI-HF_9.md with the 'Data Repository' cell empty",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Computed by VarBench, not collected (RULES.md 8.2); evidence in the reference correction on this row. emit.mjs line 49 counts a row as collected whenever its reference carries a [paper] link, so the method-paper link added on 2024-08-02 turned VarBench's own reference calculations into 'collected' rows. Ruling 1a (2026-09-19) set baseline true on the six t-V LCT-INT rows on the same kind of evidence. Eligibility does not change (RULES.md 8.2: 'A baseline row is a full citizen of the table').",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#4 (qmbl-verify 2026-09-29; skeptic upheld)"
+        },
+        {
+          "field": "reference",
+          "to": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py) (a forkTPS DMRG script; QMBL's exact diagonalization reproduces this number to 3.3e-15 relative, checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json)",
+          "reported_as": "checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json: energy -34.5805204652067, stored_exact -34.58052046520682, relative_difference 3.2875976472361663e-15, reproduces_stored true",
+          "location": "checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json (checks/cost/ed/run_ed.py at commit 716e043, measured 2026-09-24); the stored number is Xiaodong Cao's VarBench upload, 6dad457 (2022-12-09)",
+          "version_read": "VarBench git history (qmbl-runs/qmbl-verify-2026-09-29/varbench-history, git log -S / git show), read 2026-10-02; checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json",
+          "conversion": "none (citation)",
+          "checked_on": "2026-10-02",
+          "reason": "The linked SB-DMFT-MI-HF_9.py runs forkTPS DMRG (S.solve with DMRG parameters) and writes that run's energy; the reader found no exact-diagonalization driver in forkTPS or in varbench/methods (VA2). QMBL's exact diagonalization of the instance (213444 states) reproduces the stored number, so the row cites that reproduction beside the link; the number keeps its digits. The row is the instance's only exact reference. Ruling E5 (2026-10-02): an exact row cites the printing paper or QMBL's reproduction beside the link; the link stays and no row is flagged.",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#6 (qmbl-verify 2026-09-29, ambiguous; skeptic upheld); ruling E5, 2026-10-02",
+          "from": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/SB-DMFT-MI-HF_9.py)"
+        }
+      ],
+      "baseline": true
+    }
+  ],
+  "relabelled": {
+    "from": "Impurity/SB-DMFT-MI-HF_9",
+    "checked_on": "2026-09-29",
+    "reason": "The name's 9 is the run script's Nbath (varbench/methods scripts/Impurity/SB-DMFT-MI-HF_9.py, line 17); at U = 8 and half filling the script discretises the bath with Nb = Nbath + 1 = 10 sites per spin-orbital (lines 41-44), and the Hamiltonian file it was run on (HamParams/SB-DMFT-MI_9.h5) holds ten. Both rows were computed there: QMBL's exact diagonalization on eleven orbitals per spin (the impurity and ten bath sites; N_up = 6, N_dn = 5, dimension 213444) reproduces both to 1e-13, and the stored E_inf follows only from the ten-site bath.",
+    "evidence": "checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json"
+  },
+  "qmbl_ed_cost": {
+    "core_hours": 0.00743,
+    "wall_clock": "00:00:27",
+    "cores": 1,
+    "cpu": "AMD EPYC 7H12 64-Core Processor",
+    "energy": -34.5805204652067,
+    "reproduces": {
+      "energy": -34.58052046520682,
+      "method": "Exact diagonalization",
+      "relative_difference": 3.29e-15
+    },
+    "sector": {
+      "conserved": "N_up = 6, N_dn = 5 (11 sites per spin)",
+      "dimension": 213444,
+      "nonzeros": 2541924,
+      "lattice_symmetries": "none"
+    },
+    "lanczos_steps": 111,
+    "peak_memory_gb": 1.31,
+    "code": "NetKet 3.22.4 (sparse matrix) and SciPy 1.18.1 eigsh (ARPACK Lanczos)",
+    "note": "Measured by QMBL, not reported: wall-clock from process start to the eigenvalue on 1 core (imports 13 s, Hamiltonian 0 s, sparse matrix 12 s, Lanczos 1 s); core_hours = wall-clock x cores. Process CPU time 68 % of wall-clock x cores, core clock 1.80 GHz on average, node load 36.9 of 128 CPUs.",
+    "script": "checks/cost/ed/run_ed.py",
+    "results_file": "checks/cost/ed/results/Impurity--SB-DMFT-MI-HF_9.json",
+    "commit": "716e043",
+    "measured_on": "2026-09-24"
+  }
+}

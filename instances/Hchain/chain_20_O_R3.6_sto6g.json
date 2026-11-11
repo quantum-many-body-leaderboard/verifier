@@ -1,0 +1,76 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 20,
+  "boundary": "O",
+  "params": {
+    "N_up": 10,
+    "N_dn": 10,
+    "R": 3.6,
+    "basis": "STO-6G"
+  },
+  "instance_id": "Hchain/chain_20_O_R3.6_sto6g",
+  "rows": [
+    {
+      "energy": -9.63956,
+      "sigma": 0.00002,
+      "energy_variance": null,
+      "dof": 20,
+      "einf": null,
+      "v_score": null,
+      "method": "FCIQMC",
+      "ansatz": null,
+      "method_detail": "GUGA-FCIQMC, no initiator",
+      "method_as_published": "E_FCIQMC (GUGA-FCIQMC, no initiator)",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "FCIQMC is projected, also without the initiator approximation: a stochastic projection is not a bound (rule of 2026-10-20)",
+      "reference": "Kai Guther, Robert J. Anderson, Nick S. Blunt et al., NECI: N -Electron Configuration Interaction with an emphasis on state-of-the-art stochastic methods, The Journal of Chemical Physics 153, 034107 (2020), arXiv:2006.14956, doi:10.1063/5.0005754",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2006.14956 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-0.481978(1) Ha per atom",
+        "note": "Table II; sources/2006.14956.txt line 1480; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | Table II caption line 1471: 'energy per site E/L'; columns '[Eh]'; 'r = 3.6 a0' (line 1473); 'STO-6G' (line 1471) | Boundary not stated; linear chain of Motta et al. taken as open. Per-atom value, total = N x value by loader. Nuclear repulsion not stated (Eref per site -0.48 at 3.6 bohr suggests included). | reader confidence medium",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/ghb24/NECI_STABLE",
+        "read_from": {
+          "quote": "The NECI program can be obtained at https://github. com/ghb24/NECI_STABLE, the development version can be obtained from the corresponding author upon reasonable request.",
+          "location": "XVIII. Data Availability Statement (sources/2006.14956.txt, lines 1776-1778)",
+          "checked_on": "2026-10-22",
+          "pass": "passes/track3/code-links-2026-10-22-hydrogen.json"
+        }
+      },
+      "corrections": [
+        {
+          "field": "bound_type",
+          "from": null,
+          "to": "projected",
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.481978(1) Ha per atom",
+          "location": "Table II, row L=20 S=0 (sources/2006.14956.txt line 1480); caption lines 1469-1475",
+          "version_read": "arXiv:2006.14956v1 (only version; QMBL copy sources/2006.14956.txt, pypdf layout text, lines 1469-1485). Journal version J. Chem. Phys. 153, 034107 (2020) not reached: doi.org/pubs.aip.org returned HTTP 403 to node fetch and HTTP 429 'Too Many Requests' in the automation browser, 2026-10-24; Unpaywall/OpenAlex list no repository copy of the published version (MPG.PuRe and arXiv hold the submitted version). Primary named by the caption: W. Dobrautz, PhD thesis, Univ. Stuttgart (2019), doi:10.18419/opus-10593, PDF werner_dobrautz_thesis_ub_abgabe_v2.pdf from elib.uni-stuttgart.de, pypdf layout text, Table 4.8 (thesis p. 111, PDF page 127)",
+          "conversion": "-0.481978 x 20 = -9.63956 Ha total; sigma 0.000001 x 20 = 0.00002 Ha",
+          "reason": "Ruling 2026-10-20 (prior-findings.md, passes 2026-10-16 to 10-19): FCIQMC is `projected` even with the initiator error converged. Caption: 'The GUGA-FCIQMC results were obtained without the initiator approximation' - the ruling covers FCIQMC as a method class, so no-initiator FCIQMC also files as projected, not null. Stored bound_type_reason ('not in RULES list') predates the ruling.",
+          "source_entry": "h-p-2006-14956#0 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "bound_type_reason",
+          "from": "FCIQMC without initiator approximation is stochastic FCI-exact in the limit but not in RULES list; stated walker convergence not checked",
+          "to": "FCIQMC is projected, also without the initiator approximation: a stochastic projection is not a bound (rule of 2026-10-20)",
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.481978(1) Ha per atom",
+          "location": "Table II, row L=20 S=0 (sources/2006.14956.txt line 1480); caption lines 1469-1475",
+          "version_read": "arXiv:2006.14956v1 (only version; QMBL copy sources/2006.14956.txt, pypdf layout text, lines 1469-1485). Journal version J. Chem. Phys. 153, 034107 (2020) not reached: doi.org/pubs.aip.org returned HTTP 403 to node fetch and HTTP 429 'Too Many Requests' in the automation browser, 2026-10-24; Unpaywall/OpenAlex list no repository copy of the published version (MPG.PuRe and arXiv hold the submitted version). Primary named by the caption: W. Dobrautz, PhD thesis, Univ. Stuttgart (2019), doi:10.18419/opus-10593, PDF werner_dobrautz_thesis_ub_abgabe_v2.pdf from elib.uni-stuttgart.de, pypdf layout text, Table 4.8 (thesis p. 111, PDF page 127)",
+          "conversion": "-0.481978 x 20 = -9.63956 Ha total; sigma 0.000001 x 20 = 0.00002 Ha",
+          "reason": "goes with the bound_type correction of the same entry; the old reason predates the rule of 2026-10-20",
+          "source_entry": "h-p-2006-14956#0 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        }
+      ]
+    }
+  ]
+}

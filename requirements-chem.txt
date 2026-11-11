@@ -1,0 +1,3 @@
+# Optional: hydrogen chains and sheets in a Gaussian basis (qrec_verify/chem.py): the one- and two-electron
+# integrals and the FCI reference of the tests. Install on top of requirements.txt.
+pyscf==2.15.0

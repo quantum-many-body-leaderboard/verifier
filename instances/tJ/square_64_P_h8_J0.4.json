@@ -1,0 +1,125 @@
+{
+  "model": "tJ",
+  "lattice": "square",
+  "n_sites": 64,
+  "boundary": "P",
+  "params": {
+    "t": 1,
+    "J": 0.4,
+    "N_up": 28,
+    "N_dn": 28,
+    "nn_term": true
+  },
+  "cluster": "8 x 8 torus (arXiv:cond-mat/0110460: '8 holes on the 8 x 8 lattice', PBC clusters)",
+  "instance_id": "tJ/square_64_P_h8_J0.4",
+  "rows": [
+    {
+      "energy": -42.67008,
+      "sigma": 0.00384,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": null,
+      "v_score": null,
+      "method": "FN-GFMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "lattice fixed node; projected BCS + Jastrow, 2 Lanczos steps",
+      "method_as_published": "FN+2LS",
+      "family": "AFQMC / GFMC",
+      "bound_type": "projected",
+      "bound_type_reason": "projection (GFMC/fixed-node) on a trial state; not a strict variational bound (assigned during source reading)",
+      "reference": "Sorella, Martins, Becca, Gazza, Capriotti, Parola & Dagotto, Superconductivity in the two-dimensional t-J model, Phys. Rev. Lett. 88, 117002 (2002), doi:10.1103/PhysRevLett.88.117002, arXiv:cond-mat/0110460",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:cond-mat/0110460 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "−0.66672(6)",
+        "note": "text: 8 holes on the 8 x 8 lattice, J/t = 0.4, energy per site (best variational energy per site (FN+2LS)) (line 154); version read: arXiv text (sources/cond-mat-0110460.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eq. (1): H = J sum (S_i.S_j - n_i n_j / 4) - t sum c~+c~ + h.c.; energies per site in units of t ('best variational energy per site', 'E = ... t'), 8 holes on the 8 x 8 PBC cluster, J/t = 0.4.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:cond-mat/0110460v1 PDF text (sources/cond-mat-0110460.txt, pypdf layout), read 2026-10-24; journal PDF not reachable (APS 401)",
+          "location": "p. 3, right column",
+          "reported_as": "our best variational energy per site (FN+2LS) is E=−0.66672(6)t",
+          "conversion": "-0.66672 x 64 = -42.67008; sigma 0.00006 x 64 = 0.00384",
+          "note": "Fixed node with the 2-Lanczos-step state as guiding function (ten Haaf lattice FN, Ref. 14): projected, correct. Same cluster/sector/couplings as the record row. No duplicate.",
+          "source_entry": "tjP7-tj#1 (qmbl-verify 2026-10-23)"
+        }
+      }
+    },
+    {
+      "energy": -42.944,
+      "sigma": 0.064,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "projected BCS + Jastrow with Lanczos steps; extrapolated: variance → 0",
+      "method_as_published": "zero variance extrapolation",
+      "family": "classic VMC",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "zero-variance or bond-dimension extrapolation; not an upper bound (assigned during source reading)",
+      "reference": "Sorella, Martins, Becca, Gazza, Capriotti, Parola & Dagotto, Superconductivity in the two-dimensional t-J model, Phys. Rev. Lett. 88, 117002 (2002), doi:10.1103/PhysRevLett.88.117002, arXiv:cond-mat/0110460",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:cond-mat/0110460 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "−0.671(1)",
+        "note": "text: 8 holes on the 8 x 8 lattice, J/t = 0.4, energy per site (the zero variance extrapolation) (line 156); version read: arXiv text (sources/cond-mat-0110460.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eq. (1): H = J sum (S_i.S_j - n_i n_j / 4) - t sum c~+c~ + h.c.; energies per site in units of t ('best variational energy per site', 'E = ... t'), 8 holes on the 8 x 8 PBC cluster, J/t = 0.4.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:cond-mat/0110460v1 PDF text (sources/cond-mat-0110460.txt, pypdf layout), read 2026-10-24; journal PDF not reachable (APS 401)",
+          "location": "p. 3, right column, paragraph 'For 8 holes on the 8×8 lattice and J/t=0.4'",
+          "reported_as": "close to the zero variance extrapolation E=−0.671(1)t",
+          "conversion": "-0.671 x 64 = -42.944; sigma 0.001 x 64 = 0.064",
+          "note": "Record row. Own computation; PBC 8x8, 8 holes (N_up = N_dn = 28), J/t = 0.4, Eq. (1) is the QMBL form incl. -n n/4; variance extrapolation (Ref. 6) -> extrapolated, correct. Lies 4.3 sigma below the FN+2LS bound; holds the record as an extrapolation under RULES 6. No duplicate on the instance.",
+          "source_entry": "tjP7-tj#0 (qmbl-verify 2026-10-23)"
+        }
+      }
+    },
+    {
+      "energy": -41.13024,
+      "sigma": 0.00512,
+      "energy_variance": null,
+      "dof": 56,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "",
+      "method_as_published": "VMC",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Sorella, Martins, Becca, Gazza, Capriotti, Parola & Dagotto, Superconductivity in the two-dimensional t-J model, Phys. Rev. Lett. 88, 117002 (2002), doi:10.1103/PhysRevLett.88.117002, arXiv:cond-mat/0110460",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:cond-mat/0110460 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "−0.64266(8)",
+        "note": "text: 8 holes on the 8 x 8 lattice, J/t = 0.4, energy per site (the pure variational calculation) (line 157); version read: arXiv text (sources/cond-mat-0110460.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eq. (1): H = J sum (S_i.S_j - n_i n_j / 4) - t sum c~+c~ + h.c.; energies per site in units of t ('best variational energy per site', 'E = ... t'), 8 holes on the 8 x 8 PBC cluster, J/t = 0.4.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:cond-mat/0110460v1 PDF text (sources/cond-mat-0110460.txt, pypdf layout), read 2026-10-24; journal PDF not reachable (APS 401)",
+          "location": "p. 3, right column",
+          "reported_as": "much better than the pure variational calculation, E=−0.64266(8)t",
+          "conversion": "-0.64266 x 64 = -41.13024; sigma 0.00008 x 64 = 0.00512",
+          "note": "Pure VMC of the projected BCS + Jastrow state (Eq. 2): variational, correct. No duplicate.",
+          "source_entry": "tjP7-tj#2 (qmbl-verify 2026-10-23)"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "model": "Heisenberg",
+  "lattice": "shuriken",
+  "n_sites": 24,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/shuriken_24_P",
+  "rows": [
+    {
+      "energy": -43.0395889922721,
+      "sigma": null,
+      "energy_variance": 0,
+      "dof": 24,
+      "einf": 0,
+      "v_score": 0,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "Exact diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[paper](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.104.L220408)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -43.0395889922721,
+          "reported_as": "-0.448329 per site (S.S units): the first author's six-decimal VarBench upload of 2021-07-23; arXiv:2110.08198 prints no digits (Fig. 4, ED star)",
+          "location": "Fig. 4 main panel, blue star ('ED', 'the ED energy on the D4 symmetric 6x2^2 cluster') at N^-3/2 = 8.50518e-3 (N = 24.000)",
+          "version_read": "arXiv:2110.08198v3 and v1 PDF: Fig. 4 vector data (pypdf content-stream parse, work/mpl_parse.py); cond-mat/0411673v1 Table I (pypdf plain); recomputation: recomputation; geometry arXiv:2110.08198v3 Supplement Sec. I (as E1; bond list rebuilt independently in code/gen_clusters.mjs)",
+          "conversion": "-0.448329 x 4 x 24 = -43.039584 (stored); recomputed -43.0395889922721 = -0.448329052 per site, which rounds to the six decimals",
+          "checked_on": "2026-09-30",
+          "reason": "Rule for exact rows QMBL recomputed (2026-09-30): the printed value is QMBL's value rounded to the printed digits, so the row keeps its citation and carries QMBL's digits; the printed value stays here. Recomputed by E1 run_spins.mjs (node Lanczos, S^z = 0 full space, D = 2704156, residual 9.9e-11) and ed_full2.py (residual 5.9e-12), 6.4e-11 apart; codes and outputs in checks/exact-recompute-2026-09/.",
+          "source_entry": "VE-exact-recompute#64, VA5-hubbard-heisenberg-tfising-j1j2#15 (qmbl-verify 2026-09-29); rule for recomputed exact rows, 2026-09-30",
+          "from": -43.039584
+        },
+        {
+          "field": "sigma",
+          "to": null,
+          "reported_as": "0 in VarBench's sigma column (no error bar)",
+          "location": "vendor/varbench/Heisenberg/shuriken_24_P.md",
+          "version_read": "VarBench snapshot in vendor/varbench",
+          "conversion": "none",
+          "checked_on": "2026-10-22",
+          "reason": "An exact energy has no statistical error, which QMBL states as a missing sigma (DATA.md); VarBench writes 0 in the sigma column for it. With this entry no row in the table has sigma 0 (the DMRG row on pyrochlore-3x3x3_108_P was set to null on 2026-09-29).",
+          "source_entry": "consistency check 2026-10-22: one convention for a missing error bar; rule 2026-10-22",
+          "from": 0
+        }
+      ],
+      "verified": {
+        "checked_on": "2026-10-15",
+        "scope": "config",
+        "method": "published PDF Phys. Rev. B 104, L220408 (2021), sources/journal/prb104-L220408.pdf, sha256 3743eedf, and the APS Supplemental Material (Shuriken_SupplementalMaterial.pdf, sources/journal/prb104-L220408-supp.pdf, sha256 cf37498d), pypdf plain + layout; arXiv:2110.08198v3 compared via the 2026-09-29/30 pass",
+        "location": "Fig. 4 caption: 'The blue star denotes the exact diagonalization (ED) energy on the D4 symmetric 6 x 2^2 cluster'",
+        "reported_as": "plotted point only ('ED', blue star at 24 sites); no printed digits in the journal main text or SM (searched for 'exact', 'Lanczos', 0.44...)",
+        "conversion": "stored -43.0395889922721 = QMBL's recomputation (-0.448329052 per site S.S x 4 x 24), applied 2026-09-30 under the rule for recomputed exact rows",
+        "note": "Journal caption and SM unchanged against arXiv v3: 24-site D4-symmetric 6 x 2^2 shuriken cluster, J_square = J_triangle = J (SM Fig. S1: 'Our study focuses on ... J_square = J_triangle = J'), periodic. The value rests on QMBL's two-code recomputation, not on a printed number; reference to the paper (which shows the ED point) and peer review (Editors' Suggestion, published 22 December 2021) stand. sigma 0 / variance 0 for an exact row are VarBench placeholders (sigma would read null elsewhere in the table; loader-level). No duplicate.",
+        "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#59",
+        "secondary_of": null
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "citation screen of Astrakhantsev et al. 2021 (PRB 104, L220408, shuriken): citing works from OpenAlex and Semantic Scholar (scripts/cited_by.mjs)",
+      "screened": [
+        "arXiv:2603.10998",
+        "arXiv:2407.20629",
+        "arXiv:2308.12358",
+        "arXiv:2304.04257",
+        "arXiv:2211.16932",
+        "arXiv:2302.04171",
+        "arXiv:2310.05219",
+        "arXiv:2110.08160"
+      ],
+      "found": 0,
+      "note": "48 citing works, 28 on arXiv, 28 fetched; 8 read in full, 20 excluded by a text filter (no energy to four decimals, or no QMBL model named)."
+    }
+  ]
+}

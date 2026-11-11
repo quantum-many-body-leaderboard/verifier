@@ -1,0 +1,79 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 10,
+  "boundary": "O",
+  "params": {
+    "N_up": 5,
+    "N_dn": 5,
+    "R": 3.77945,
+    "basis": "STO-6G"
+  },
+  "instance_id": "Hchain/chain_10_O_R3.77945_sto6g",
+  "rows": [
+    {
+      "energy": -4.790989,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "FCI",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "FCI",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "FCI in STO-6G",
+      "reference": "Nicholas H. Stair, Francesco A. Evangelista, Exploring Hilbert space on a budget: Novel benchmark set and performance metric for testing electronic structure methods in the regime of strong correlation, The Journal of Chemical Physics 153, 104108 (2020), arXiv:2005.11349, doi:10.1063/5.0014928",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2005.11349 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−4.790989 Ha per total; R = 2.00 Å = 3.77945 bohr",
+        "note": "Table I (H10 1D Chain, EFCI/Eh); sources/2005.11349.txt line 428; version read: arXiv text; no journal version found | column header 'EFCI /Eh' (line 424); H10 total of about -5.4 Eh implies nuclear repulsion is included; STO-6G stated line 323; r is nearest-neighbour H-H distance (line 375) | Nuclear repulsion not stated in text; inferred from magnitude. Ecorr column (-0.1082 etc.) not a row: HF reference energy not printed. Ring, 2D triangular sheet and pyramid rows are not in scope. | reader confidence medium",
+        "secondary_of": null
+      },
+      "corrections": [
+        {
+          "field": "method",
+          "from": "EFCI /Eh",
+          "to": "FCI",
+          "checked_on": "2026-10-24",
+          "reported_as": "−4.790989",
+          "location": "Table I column header 'EFCI /Eh' (E_FCI in units of Eh); Sec. III: 'Theground-statesingletenergies ... were calculated using FCI, ACI, and DMRG.' and 'FCI and ACI computations were performed using our open-source code Forte.144' (sources/2005.11349.txt lines 316-343)",
+          "version_read": "arXiv:2005.11349v2 (19 Aug 2020; identical to the project copy sources/2005.11349.pdf, md5 dc52c737) and arXiv:2005.11349v1 (22 May 2020), pypdf layout mode; data release github.com/evangelistalab/hydrogen-models-data at commit 65d2e3c (2020-08-24), H_10_1Dchain_PECs/FCI_basis-STO6G.dat. Journal version J. Chem. Phys. 153, 104108 (2020), doi:10.1063/5.0014928, not reached: pubs.aip.org and doi.org returned HTTP 403 with a Cloudflare challenge to node fetch on 2026-10-24 (another group in this run got HTTP 429 from the automation browser the same day); OSTI copies (osti.gov/biblio/1658972, purl/1803730, both submitted versions per OpenAlex) not reachable from the sandbox.",
+          "conversion": "none",
+          "reason": "RULES §3: `method` is the method's name alone. 'EFCI /Eh' is the table's column header (energy symbol plus unit), not a method name; the paper names the method FCI, and every other exact track-3 row uses 'FCI'. Value confirmed: Table I, row 'H10 1DChain', r = 2.00 Å, column 'EFCI /Eh' prints '−4.790989' in v2 and v1 alike; data release FCI_basis-STO6G.dat line '2.000    -4.790989'; QMBL pyscf FCI (fci/results.jsonl, Hchain/chain_10_O_R3.77945_sto6g) gives -4.790988648 Ha, |diff| = 3.5e-7 Ha, S^2 = 5.7e-10 (singlet). Stored eps -0.4790989 x 10 = -4.790989 Ha. R = 2.00 Å x 1.8897261 = 3.779452 bohr -> 3.77945. Geometry from chain_geom.py: 10 H atoms on z at ±r/2, ±3r/2, ..., ±9r/2 (equal spacing r, open chain). Nuclear repulsion included (agreement with the pyscf total, which includes E_nuc = 5.103830 Ha, to 1e-8). Basis STO-6G (Sec. III). Bound type exact (FCI in the basis) agrees with RULES §13.4. No other row on this instance in the track-3 pass file, the held file or data/ (data/Hchain does not exist): no duplicate.",
+          "source_entry": "h-p-2005-11349#9 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "Crossref 10.1063/5.0014928: 'Exploring Hilbert space on a budget: Novel benchmark set and performance metric for testing electronic structure methods in the regime of strong correlation', The Journal of Chemical Physics 153, 104108, issued 2020-09-09",
+          "location": "api.crossref.org/works?query.bibliographic=... (2026-10-24); OpenAlex doi:10.1063/5.0014928 lists the JCP publishedVersion and PubMed 32933298",
+          "version_read": "arXiv:2005.11349v2 (19 Aug 2020; identical to the project copy sources/2005.11349.pdf, md5 dc52c737) and arXiv:2005.11349v1 (22 May 2020), pypdf layout mode; data release github.com/evangelistalab/hydrogen-models-data at commit 65d2e3c (2020-08-24), H_10_1Dchain_PECs/FCI_basis-STO6G.dat. Journal version J. Chem. Phys. 153, 104108 (2020), doi:10.1063/5.0014928, not reached: pubs.aip.org and doi.org returned HTTP 403 with a Cloudflare challenge to node fetch on 2026-10-24 (another group in this run got HTTP 429 from the automation browser the same day); OSTI copies (osti.gov/biblio/1658972, purl/1803730, both submitted versions per OpenAlex) not reachable from the sandbox.",
+          "conversion": "none",
+          "reason": "The paper is published in J. Chem. Phys. 153, 104108 (2020). gen/refs.mjs sets peer_reviewed from the DOI field of the arXiv API entry, and this arXiv entry carries no DOI or journal_ref, so the publication was missed. The same cause makes the row's evidence string say 'no journal version found' (gen/readers.mjs line 77); with peer_reviewed true it would say 'journal copy not reached', which is the true state on 2026-10-24.",
+          "source_entry": "h-p-2005-11349#10 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "reference",
+          "from": "Nicholas H. Stair, Francesco A. Evangelista, Exploring Hilbert space on a budget: Novel benchmark set and performance metric for testing electronic structure methods in the regime of strong correlation, arXiv:2005.11349",
+          "to": "Nicholas H. Stair, Francesco A. Evangelista, Exploring Hilbert space on a budget: Novel benchmark set and performance metric for testing electronic structure methods in the regime of strong correlation, The Journal of Chemical Physics 153, 104108 (2020), arXiv:2005.11349, doi:10.1063/5.0014928",
+          "checked_on": "2026-10-24",
+          "reported_as": "Crossref DOI 10.1063/5.0014928, container 'The Journal of Chemical Physics', volume 153, article 104108, issued 2020",
+          "location": "Crossref record (2026-10-24)",
+          "version_read": "arXiv:2005.11349v2 (19 Aug 2020; identical to the project copy sources/2005.11349.pdf, md5 dc52c737) and arXiv:2005.11349v1 (22 May 2020), pypdf layout mode; data release github.com/evangelistalab/hydrogen-models-data at commit 65d2e3c (2020-08-24), H_10_1Dchain_PECs/FCI_basis-STO6G.dat. Journal version J. Chem. Phys. 153, 104108 (2020), doi:10.1063/5.0014928, not reached: pubs.aip.org and doi.org returned HTTP 403 with a Cloudflare challenge to node fetch on 2026-10-24 (another group in this run got HTTP 429 from the automation browser the same day); OSTI copies (osti.gov/biblio/1658972, purl/1803730, both submitted versions per OpenAlex) not reachable from the sandbox.",
+          "conversion": "none",
+          "reason": "Reference lacks the journal citation and DOI (same cause as peer_reviewed: refs.mjs only reads the DOI from the arXiv API entry). Format follows the refs.mjs output for papers with a DOI.",
+          "source_entry": "h-p-2005-11349#11 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        }
+      ]
+    }
+  ]
+}

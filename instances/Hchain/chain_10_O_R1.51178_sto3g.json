@@ -1,0 +1,100 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 10,
+  "boundary": "O",
+  "params": {
+    "N_up": 5,
+    "N_dn": 5,
+    "R": 1.51178,
+    "basis": "STO-3G"
+  },
+  "instance_id": "Hchain/chain_10_O_R1.51178_sto3g",
+  "rows": [
+    {
+      "energy": -5.2835524518,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "FCI",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "FCI",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "full configuration interaction in the instance's basis, computed by QMBL; deterministic (RULES.md 13.4)",
+      "reference": "QMBL, checks/hchain-fci/ (full CI of the open H10 chain in STO-3G at R = 0.8 Å, PySCF)",
+      "peer_reviewed": false,
+      "source": "qmbl-verify-2026-10-21",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-21",
+        "method": "checks/hchain-fci/fci_all.py (PySCF 2.14: RHF with conv_tol 1e-12, then pyscf.fci.FCI in the RHF orbitals with conv_tol 1e-10), 16 CPU threads, 2026-10-21; results in checks/hchain-fci/results.jsonl",
+        "reported_as": "-5.28355245181676 (results.jsonl, field E; unit Angstrom, R 0.8, basis sto-3g)",
+        "note": "Total in hartree, nuclear repulsion included (12.75957550735178); E/N = -0.528355245. Geometry: 10 protons on a line, spacing 0.8 Å = 1.51178 bohr (PySCF's bohr 0.52917721092 Å), open chain; STO-3G as PySCF ships it; S_z = 0, <S^2> = 3.1e-13 (singlet). Carried to 10 decimals, the full CI convergence tolerance. The UCCSD row (TenCirChem, arXiv:2303.10825, Table 1, -5,282.21 mHa) lies 1.34 mHa above it; that table's energy minus its printed error vs FCI (1.37 mHa) is -5283.58 mHa.",
+        "secondary_of": null
+      },
+      "computed_by": "qmbl",
+      "artifacts": {
+        "code": "https://github.com/quantum-many-body-leaderboard/quantum-many-body-leaderboard/tree/d1019579/checks/hchain-fci",
+        "commit": "d1019579",
+        "script": "checks/hchain-fci/",
+        "read_from": {
+          "quote": "QMBL, checks/hchain-fci/ (full CI of the open H10 chain in STO-3G at R = 0.8 Å, PySCF)",
+          "location": "the row's reference (QMBL check directory)",
+          "checked_on": "2026-11-09",
+          "pass": "passes/code/code-links-2026-11-09.json"
+        }
+      }
+    },
+    {
+      "energy": -5.28221,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "VQE",
+      "ansatz": null,
+      "method_detail": "UCCSD ansatz, TenCirChem",
+      "method_as_published": "UCCSD (TenCirChem)",
+      "family": "VQE / circuit",
+      "bound_type": "variational",
+      "bound_type_reason": "UCCSD unitary ansatz, energy is an expectation value (not in RULES list; text says error vs FCI, reducible with more excitations)",
+      "reference": "Weitang Li, Jonathan Allcock, Lixue Cheng et al., TenCirChem: An Efficient Quantum Computational Chemistry Package for the NISQ Era, Journal of Chemical Theory and Computation 19, 3966-3981 (2023), arXiv:2303.10825, doi:10.1021/acs.jctc.3c00319",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2303.10825 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "-5,282.21 mHa per total; R = 0.8 Å = 1.51178 bohr",
+        "note": "Table 1; sources/2303.10825.txt line 659; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | Table 1 header line 650 'Energy Error (mH) (mH)'; line 636-637 'STO-3G ... interatomic distance set to 0.8 Å'; thousands separator comma: -2,167.55 mH = -2.16755 Ha | Unit mH printed in header only; inferred from magnitude and header. Boundary not stated, open assumed. Nuclear repulsion not stated. Table also prints error vs FCI in mH (would imply FCI = energy - error, not printed itself). | reader confidence medium",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/tencent-quantum-lab/TenCirChem",
+        "read_from": {
+          "quote": "The source code is hosted on the GitHub repository https://github. com/tencent-quantum-lab/TenCirChem.",
+          "location": "2.5 Installing and contributing to TenCirChem (sources/2303.10825.txt, lines 474-475)",
+          "checked_on": "2026-10-22",
+          "pass": "passes/track3/code-links-2026-10-22-hydrogen.json"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-5,282.21 mHa per total; R = 0.8 Å = 1.51178 bohr",
+          "location": "Table 1; sources/2303.10825.txt line 659; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8)",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    }
+  ]
+}

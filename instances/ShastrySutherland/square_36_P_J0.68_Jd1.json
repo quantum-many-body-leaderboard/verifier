@@ -1,0 +1,65 @@
+{
+  "model": "ShastrySutherland",
+  "lattice": "square",
+  "n_sites": 36,
+  "boundary": "P",
+  "params": {
+    "J": 0.68,
+    "Jd": 1
+  },
+  "cluster": "6 x 6 square lattice with orthogonal dimers, periodic boundaries",
+  "instance_id": "ShastrySutherland/square_36_P_J0.68_Jd1",
+  "rows": [
+    {
+      "energy": -54.3894826212,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 36,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "Lanczos",
+      "method_as_published": "exact diagonalisation (Lanczos)",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "numerically exact reference as stated by the source (assigned during source reading)",
+      "reference": "Sindermann, Löw & Zittartz, Ground state properties of two spin models with exactly known ground states on the square lattice, Int. J. Mod. Phys. C 17, 1085 (2006), doi:10.1142/S0129183106009709, arXiv:cond-mat/0605464",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:cond-mat/0605464 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.377704740424690",
+        "note": "Table II (6 x 6), x = 0.68; version read: arXiv text (sources/cond-mat-0605464.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Eq. (1) H = J2 sum S.S (square bonds) + J1 sum S.S (diagonal dimer bonds), x = J2/J1, E0/N per site in units of J1 (the Fig. 1 caption swaps the labels; the tables fix them: E0/N = -0.375, the dimer-product energy, for all x below xc, and x = 0.8 equals the 6 x 6 ED of arXiv:2311.16889).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:cond-mat/0605464v1 PDF, pypdf layout mode (shared cache sources/cond-mat-0605464v1.layout.txt), checked against the plain extraction, the project's sources/cond-mat-0605464.txt and a 110 dpi render of page 11",
+          "location": "Table II (N = 6 x 6 = 36, left half), row J2/J1 = 0.68",
+          "reported_as": "-0.377704740424690 (E0/N, per site, units of J1 = Jd, S.S form)",
+          "conversion": "-0.377704740424690 * 4 * 36 = -54.389482621155360; stored -54.3894826212 (12 significant digits, |diff| = 4.5e-11)",
+          "note": "Value, x = J2/J1 = J/Jd, N, periodic boundaries, bound_type exact and method agree. Hamiltonian Eq. (1) in spin-1/2 S operators, J1 on the diagonal dimer bonds (E0/N = -0.375 = -3/8 J1 below xc fixes the dimer bond as the unit; the Fig. 1 caption swaps the labels). Cluster: 6 x 6 periodic; Table III sector dimension 504,174,594 equals exactly the Burnside count for the 6 x 6 torus with the Shastry-Sutherland translations (2,0),(0,2), Sz = 0 and spin inversion. Sector: the caption calls it 'the subspace containing the ground state' (Sz = 0, momentum, spin inversion). journal version (Int. J. Mod. Phys. C 17, 1085 (2006)) not reached: worldscientific.com /doi/pdf, /doi/epdf and /doi/abs all returned HTTP 403 with a Cloudflare JavaScript challenge on 2026-10-24; arXiv:cond-mat/0605464v1 (the only arXiv version, comment 'to appear in IJMPC 17') read alone. Duplicate check (data/ShastrySutherland/square_36_P_J0.68_Jd1.json, read-only): no other row on the instance carries this number.",
+          "source_entry": "famP2-10-1142-s0129183106009709#15 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.377704740424690",
+          "location": "arXiv:cond-mat/0605464 Table II (6 x 6), x = 0.68",
+          "version_read": "the row's published method string (arXiv text, sources/cond-mat-0605464.txt)",
+          "conversion": "none",
+          "checked_on": "2026-10-25",
+          "reason": "Deterministic: an exact (Lanczos) diagonalization carries no statistical error, but the label \"exact diagonalisation (Lanczos)\" matches none of isSampled's deterministic markers, so the row read as a sampled energy without an error bar; set as on the t-J Lanczos rows (ruled 2026-10-25).",
+          "source_entry": "ruling of 2026-10-25 on the families port: sampled false on the cond-mat/0605464 exact rows",
+          "from": true
+        }
+      ],
+      "sampled": false
+    }
+  ]
+}

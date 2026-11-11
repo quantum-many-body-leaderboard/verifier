@@ -1,0 +1,181 @@
+{
+  "model": "tJ",
+  "lattice": "square",
+  "n_sites": 64,
+  "boundary": "O",
+  "params": {
+    "t": 1,
+    "J": 0.3333333333333333,
+    "N_up": 32,
+    "N_dn": 31,
+    "nn_term": true
+  },
+  "cluster": "8 x 8 square lattice, open boundaries (arXiv:2602.21206: 'N_x x N_y under the OBC')",
+  "instance_id": "tJ/square_64_O_h1_J0.333333",
+  "rows": [
+    {
+      "energy": -23.8223333333,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 63,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "phase string",
+      "method_detail": "single-hole phase-string state with an antimeron",
+      "method_as_published": "VMC (single-hole ansatz with antimeron, Eq. 6)",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Minimal loop currents and cat states in doped Mott insulators, Phys. Rev. B 114, 185101 (2026), doi:10.1103/c75n-7j8f, arXiv:2602.21206 (arXiv title: Minimal loop currents in doped Mott insulators)",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2602.21206 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "−71.467",
+        "note": "text: E_tot(VMC) of the 8 x 8 lattice, OBC, one hole, t = 3, J = 1 (line 200); version read: arXiv text (sources/2602.21206.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eqs. (4)-(5): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 the energy unit and t = 3 (lines 185-186): the instance's J/t = 1/3 and a factor 3 (scale). Total energies E_tot of the 8 x 8 OBC lattice with one hole.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2602.21206v1 PDF (sources/2602.21206v1.pdf, byte-identical to the repo copy), pypdf layout mode, read 2026-10-24",
+          "location": "Sec. II.B text, 'total energy E_tot(VMC) = −71.467 close to the DMRG result E_tot(DMRG) = −72.979' (p. 4)",
+          "reported_as": "−71.467 (E_tot, units of J, t = 3, J = 1)",
+          "conversion": "-71.467 / 3 = -23.8223333333 (normalised.factor 3); stored -23.8223333333",
+          "note": "Eqs. (4)-(5): H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - 1/4 n_i n_j); 'The superexchange term J = 1 is set as the energy unit, and the hopping integral t = 3 is fixed throughout the paper unless explicitly specified. The size of the square lattice is N_x x N_y under the OBC.' So the source H is 3 x the instance H (t = 1, J = 1/3); E_tot is a total energy in units of J; division by 3 is right. Table III caption: 'single-hole ground-state energies (in units of J) ... on an 8x8 lattice for the t-J model'; sector S_z = -1/2 (Appendix A), equivalent to the instance's N_up = 32, N_dn = 31 by spin symmetry. Internal check: Table III E_t + E_J reproduces E_tot (-2.16 - 65.82 = -67.98; -6.41 - 65.00 = -71.41 vs -71.42 printed, rounding; -8.64 - 64.34 = -72.98); Table I gives <H - E0> = -3.853 and E_t = -6.659 for the Eq. (6) state, consistent with E_tot(VMC) = -71.467 and E0 = -67.614 (8x8 OBC Heisenberg with the -n n/4 term, -0.619 per site in S.S units after adding back 112/4). Monte Carlo estimate of the Eq. (6) state; no error bar printed anywhere in v1 (searched ±, 'error', 'statistical', 'samples'); variational; journal version (Phys. Rev. B 114, 185101, doi:10.1103/c75n-7j8f, journal title adds 'and cat states') not reached: journals.aps.org PDF returned 401 on 2026-10-24; the APS abstract page was read and its abstract matches arXiv v1; arXiv v1 is the only arXiv version; no duplicate on the instance (the data file holds only these four rows)",
+          "source_entry": "tjP6-tj#4 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t = 3 (units of J; lines 185-186)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      }
+    },
+    {
+      "energy": -24.3263333333,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 63,
+      "einf": null,
+      "v_score": null,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "DMRG",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Minimal loop currents and cat states in doped Mott insulators, Phys. Rev. B 114, 185101 (2026), doi:10.1103/c75n-7j8f, arXiv:2602.21206 (arXiv title: Minimal loop currents in doped Mott insulators)",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2602.21206 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "−72.979",
+        "note": "text: E_tot(DMRG) of the 8 x 8 lattice, OBC, one hole, t = 3, J = 1 (line 201); version read: arXiv text (sources/2602.21206.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eqs. (4)-(5): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 the energy unit and t = 3 (lines 185-186): the instance's J/t = 1/3 and a factor 3 (scale). Total energies E_tot of the 8 x 8 OBC lattice with one hole.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2602.21206v1 PDF (sources/2602.21206v1.pdf, byte-identical to the repo copy), pypdf layout mode, read 2026-10-24",
+          "location": "Sec. II.B text (p. 4); Table III row DMRG prints the same value rounded, -72.98 (E_t -8.64, E_J -64.34, Lz ±1)",
+          "reported_as": "−72.979 (E_tot, units of J, t = 3, J = 1)",
+          "conversion": "-72.979 / 3 = -24.3263333333 (normalised.factor 3); stored -24.3263333333",
+          "note": "Eqs. (4)-(5): H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - 1/4 n_i n_j); 'The superexchange term J = 1 is set as the energy unit, and the hopping integral t = 3 is fixed throughout the paper unless explicitly specified. The size of the square lattice is N_x x N_y under the OBC.' So the source H is 3 x the instance H (t = 1, J = 1/3); E_tot is a total energy in units of J; division by 3 is right. Table III caption: 'single-hole ground-state energies (in units of J) ... on an 8x8 lattice for the t-J model'; sector S_z = -1/2 (Appendix A), equivalent to the instance's N_up = 32, N_dn = 31 by spin symmetry. Internal check: Table III E_t + E_J reproduces E_tot (-2.16 - 65.82 = -67.98; -6.41 - 65.00 = -71.41 vs -71.42 printed, rounding; -8.64 - 64.34 = -72.98); Table I gives <H - E0> = -3.853 and E_t = -6.659 for the Eq. (6) state, consistent with E_tot(VMC) = -71.467 and E0 = -67.614 (8x8 OBC Heisenberg with the -n n/4 term, -0.619 per site in S.S units after adding back 112/4). own DMRG: Appendix A 'We perform DMRG calculations for the single-hole-doped t-J model using the ITensor library. For the single-hole case the bond dimension is kept up to D = 5000, yielding a maximum truncation error eps ~ 5.5 x 10^-6 ... U(1) spin symmetry is enforced by fixing the total S_z = -1/2'; a finite-D energy, so variational is right; the compute block could carry bond_dimension 5000 (not in the method string); not a quote; journal version (Phys. Rev. B 114, 185101, doi:10.1103/c75n-7j8f, journal title adds 'and cat states') not reached: journals.aps.org PDF returned 401 on 2026-10-24; the APS abstract page was read and its abstract matches arXiv v1; arXiv v1 is the only arXiv version; no duplicate on the instance (the data file holds only these four rows)",
+          "source_entry": "tjP6-tj#5 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t = 3 (units of J; lines 185-186)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      }
+    },
+    {
+      "energy": -22.66,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 63,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Bloch wave",
+      "method_detail": "single-hole Bloch-wave state",
+      "method_as_published": "|Ψ_Bloch⟩_1h",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Minimal loop currents and cat states in doped Mott insulators, Phys. Rev. B 114, 185101 (2026), doi:10.1103/c75n-7j8f, arXiv:2602.21206 (arXiv title: Minimal loop currents in doped Mott insulators)",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2602.21206 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-67.98",
+        "note": "Table III, E_tot, row |Ψ_Bloch⟩_1h (line 1148); version read: arXiv text (sources/2602.21206.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eqs. (4)-(5): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 the energy unit and t = 3 (lines 185-186): the instance's J/t = 1/3 and a factor 3 (scale). Total energies E_tot of the 8 x 8 OBC lattice with one hole.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2602.21206v1 PDF (sources/2602.21206v1.pdf, byte-identical to the repo copy), pypdf layout mode, read 2026-10-24",
+          "location": "Appendix B, Table III, row |Ψ Bloch⟩1h, column E_tot (E_t -2.16, E_J -65.82, Lz 0)",
+          "reported_as": "-67.98 (E_tot, units of J, t = 3, J = 1)",
+          "conversion": "-67.98 / 3 = -22.6600000000 (normalised.factor 3); stored -22.66",
+          "note": "Eqs. (4)-(5): H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - 1/4 n_i n_j); 'The superexchange term J = 1 is set as the energy unit, and the hopping integral t = 3 is fixed throughout the paper unless explicitly specified. The size of the square lattice is N_x x N_y under the OBC.' So the source H is 3 x the instance H (t = 1, J = 1/3); E_tot is a total energy in units of J; division by 3 is right. Table III caption: 'single-hole ground-state energies (in units of J) ... on an 8x8 lattice for the t-J model'; sector S_z = -1/2 (Appendix A), equivalent to the instance's N_up = 32, N_dn = 31 by spin symmetry. Internal check: Table III E_t + E_J reproduces E_tot (-2.16 - 65.82 = -67.98; -6.41 - 65.00 = -71.41 vs -71.42 printed, rounding; -8.64 - 64.34 = -72.98); Table I gives <H - E0> = -3.853 and E_t = -6.659 for the Eq. (6) state, consistent with E_tot(VMC) = -71.467 and E0 = -67.614 (8x8 OBC Heisenberg with the -n n/4 term, -0.619 per site in S.S units after adding back 112/4). Bloch-wave trial state Eq. (B1); Table III caption 'obtained from VMC and DMRG'; no error bar printed; journal version (Phys. Rev. B 114, 185101, doi:10.1103/c75n-7j8f, journal title adds 'and cat states') not reached: journals.aps.org PDF returned 401 on 2026-10-24; the APS abstract page was read and its abstract matches arXiv v1; arXiv v1 is the only arXiv version; no duplicate on the instance (the data file holds only these four rows)",
+          "source_entry": "tjP6-tj#6 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t = 3 (units of J; lines 185-186)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      }
+    },
+    {
+      "energy": -23.8066666667,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 63,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Bloch wave",
+      "method_detail": "single-hole Bloch-wave state, 1 Lanczos step",
+      "method_as_published": "|Ψ_Lanczos⟩_1h",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Minimal loop currents and cat states in doped Mott insulators, Phys. Rev. B 114, 185101 (2026), doi:10.1103/c75n-7j8f, arXiv:2602.21206 (arXiv title: Minimal loop currents in doped Mott insulators)",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2602.21206 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-71.42",
+        "note": "Table III, E_tot, row |Ψ_Lanczos⟩_1h (line 1149); version read: arXiv text (sources/2602.21206.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eqs. (4)-(5): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 the energy unit and t = 3 (lines 185-186): the instance's J/t = 1/3 and a factor 3 (scale). Total energies E_tot of the 8 x 8 OBC lattice with one hole.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2602.21206v1 PDF (sources/2602.21206v1.pdf, byte-identical to the repo copy), pypdf layout mode, read 2026-10-24",
+          "location": "Appendix B, Table III, row |Ψ Lanczos⟩1h, column E_tot (E_t -6.41, E_J -65.00, Lz 2)",
+          "reported_as": "-71.42 (E_tot, units of J, t = 3, J = 1)",
+          "conversion": "-71.42 / 3 = -23.8066666667 (normalised.factor 3); stored -23.8066666667",
+          "note": "Eqs. (4)-(5): H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - 1/4 n_i n_j); 'The superexchange term J = 1 is set as the energy unit, and the hopping integral t = 3 is fixed throughout the paper unless explicitly specified. The size of the square lattice is N_x x N_y under the OBC.' So the source H is 3 x the instance H (t = 1, J = 1/3); E_tot is a total energy in units of J; division by 3 is right. Table III caption: 'single-hole ground-state energies (in units of J) ... on an 8x8 lattice for the t-J model'; sector S_z = -1/2 (Appendix A), equivalent to the instance's N_up = 32, N_dn = 31 by spin symmetry. Internal check: Table III E_t + E_J reproduces E_tot (-2.16 - 65.82 = -67.98; -6.41 - 65.00 = -71.41 vs -71.42 printed, rounding; -8.64 - 64.34 = -72.98); Table I gives <H - E0> = -3.853 and E_t = -6.659 for the Eq. (6) state, consistent with E_tot(VMC) = -71.467 and E0 = -67.614 (8x8 OBC Heisenberg with the -n n/4 term, -0.619 per site in S.S units after adding back 112/4). Eq. (B2): the Bloch state improved 'via a first-order Lanczos step' with free amplitudes phi1, phi2, phi3; Lz = 2 sector state, still an upper bound; no error bar printed; journal version (Phys. Rev. B 114, 185101, doi:10.1103/c75n-7j8f, journal title adds 'and cat states') not reached: journals.aps.org PDF returned 401 on 2026-10-24; the APS abstract page was read and its abstract matches arXiv v1; arXiv v1 is the only arXiv version; no duplicate on the instance (the data file holds only these four rows)",
+          "source_entry": "tjP6-tj#7 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t = 3 (units of J; lines 185-186)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      }
+    }
+  ]
+}

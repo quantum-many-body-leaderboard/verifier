@@ -1,0 +1,1236 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 10,
+  "boundary": "O",
+  "params": {
+    "N_up": 5,
+    "N_dn": 5,
+    "R": 2.8,
+    "basis": "STO-6G"
+  },
+  "instance_id": "Hchain/chain_10_O_R2.8_sto6g",
+  "rows": [
+    {
+      "energy": -5.0507,
+      "sigma": 0.0005,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "ph-AFQMC",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "AFQMC [phaseless]",
+      "family": "AFQMC / GFMC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.50507(5) per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/AFQMC_basis-STO: -5.0507  0.0005 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "PRX 7, 031059 (2017), journal text sources/1705.01608-PhysRevX.7.031059.txt (published 2017-09-28, corrected 2021-03-24), layout text; arXiv:1705.01608v2 (dated 2017-11-08), sources/1705.01608.txt; dataset github.com/simonsfoundation/hydrogen-benchmark-PRX commit b99a183 (data committed in d54c7fa, 2017-10-09, by the first author) raw file fetched and byte-compared (check.py, scripts/fetch_raw.mjs)",
+          "location": "Table II, R = 2.8 row, AFQMC column (journal p. 031059-20)",
+          "reported_as": "-0.50507(5) per atom",
+          "conversion": "-0.50507 x 10 = -5.05070 Ha total; sigma 5e-05 x 10 = 5e-04",
+          "note": "Journal and arXiv v2 cells identical (Table II: journal text line 1273, arXiv text line 1259). Dataset N_10_OBC/R_2.8/AFQMC_basis-STO '-5.0507  0.0005' agrees within the printed digits. N = 10 open chain, R in bohr, N_up = N_dn = 5, STO-6G; phaseless AFQMC with UHF trial (Appendix A), own computation. Against FCI -5.05024496: -0.00046 (-0.9 sigma).",
+          "secondary_of": null,
+          "source_entry": "h-motta17-afqmc-c1#49 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    },
+    {
+      "energy": -5.032208,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "DMET",
+      "ansatz": null,
+      "method_detail": "fragment of 2 atoms",
+      "method_as_published": "DMET [fragment of 2 atoms]",
+      "family": "other",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.503220 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/DMET_2_basis-STO: -5.032208 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "journal PRX 7, 031059 (2017) text (sources/1705.01608-PhysRevX.7.031059.txt) and arXiv:1705.01608 text (sources/1705.01608.txt); dataset github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183, raw files fetched 2026-10-24 (run sources/1705.01608-data-raw-dmet-c1.json) and the committed TSV; node scripts out/h-motta17-dmet-c1/verify.mjs, rank.mjs",
+          "location": "Table II, DMET[2] column, R = 2.8 row: arXiv -0.503220 (arXiv txt line 1259), journal -0.503220 (journal txt line 1273); dataset file N_10_OBC/R_2.8/DMET_2_basis-STO = '-5.032208' (per atom -0.5032208; the table cell is truncated from it, offset 8.0e-7 per atom)",
+          "reported_as": "-0.503220 per atom",
+          "conversion": "-0.503220 x 10 = -5.0322 Ha",
+          "note": "instance (chain, OBC, N = 10, N_up = N_dn = 5, R = 2.8 bohr, basis STO-6G), fragment size, bound_type projected, sampled false and peer_reviewed agree. Dataset gives one more digit; the printed cell is truncated. 18.04 mHa above QMBL's FCI -5.05024496.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-dmet-c1#47 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.0322,
+          "to": -5.032208,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.503220 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/DMET_2_basis-STO",
+          "conversion": "repository total -5.032208 / 10 = -0.5032208 per atom; the printed -0.503220 is that value truncated to 6 decimals, not rounded; per atom -0.50322 -> -0.5032208, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.503220 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/DMET_2_basis-STO: -5.032208",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.050244,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "Block, bond dimension up to 2000",
+      "method_as_published": "DMRG [Block, bond dimension up to 2000]",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0; source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-5.050244 (total for N = 10)",
+        "note": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_10_OBC/R_2.8/DMRG_basis-STO in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom. | Read as the variational energy of the final sweep at bond dimension D = 2000 (Appendix A runs Block with the standard settings of Ref. [66], whose schedule ends at the maximum M; the paper names no extrapolation in the bond dimension). Medium confidence: Ref. [66] also describes extrapolation to zero discarded weight, and the paper does not say whether these energies were extrapolated (ruled 2026-10-24). | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX commit b99a183 (raw file fetched from GitHub, sources/1705.01608-data-raw-dmrg.json, and the committed TSV); paper arXiv:1705.01608 text (dated 2017-11-08) and journal PRX 7, 031059 (2017) text; parsed with python json/str.split",
+          "location": "dataset file N_10_OBC/R_2.8/DMRG_basis-STO (the paper prints no finite-N DMRG value: Tables II-IV have no DMRG column, Table V is TDL)",
+          "reported_as": "-5.050244 (Hartree, total for N = 10, nuclear repulsion included)",
+          "conversion": "total as printed; per atom -5.050244/10 = -0.5050244 = stored eps -0.5050244",
+          "note": "OBC equispaced chain, R in bohr, neutral N_up = N_dn = N/2, basis per file name (README: STO = STO-6G, DZ = cc-pVDZ, TZ = cc-pVTZ); Appendix A lists this (N, basis) among the Block DMRG runs, D up to 2000; no uncertainty printed; bound_type variational kept (paper names no bond-dimension extrapolation); QMBL pyscf FCI -5.05024496, DMRG - FCI = +9.59e-07 Ha (within print rounding 5e-7 or above FCI: consistent with a variational value)",
+          "secondary_of": null,
+          "source_entry": "h-motta17-dmrg#22 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "corrections": [
+        {
+          "field": "confidence",
+          "from": "high",
+          "to": "medium",
+          "checked_on": "2026-10-24",
+          "reported_as": "-5.050244 (total for N = 10)",
+          "location": "Appendix A (DMRG) and Ref. [66]",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text",
+          "conversion": "none",
+          "reason": "Ruling 3 (2026-10-24): the Motta 2017 DMRG rows stay variational (final sweep at D = 2000) with medium confidence, since the text does not exclude an extrapolation in the discarded weight.",
+          "source_entry": "ruling 3, 2026-10-24"
+        }
+      ]
+    },
+    {
+      "energy": -5.0502449595,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "FCI",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "FCI",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "full CI or exact diagonalization in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.505024 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/FCI_basis-STO: -5.05024496 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.05024,
+          "to": -5.0502449595,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.505024 per atom (Hartree)",
+          "location": "Table II (H10, STO-6G), column FCI, row R = 2.8; data repository file N_10_OBC/R_2.8/FCI_basis-STO = -5.05024496",
+          "version_read": "PRX 7, 031059 (2017) journal text (sources/1705.01608-PhysRevX.7.031059.txt) and arXiv:1705.01608v2 text (sources/1705.01608.txt, v2 stamp read from the PDF with pypdf); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183, files re-fetched from GitHub (sources/1705.01608-data-raw-misc-1.json in the run folder), identical to the committed TSV",
+          "conversion": "printed -0.505024 x 10 = -5.05024 Ha (the table's 6-decimal rounding of the per-atom value); dataset total -5.05024496; QMBL pyscf FCI (fci/results.jsonl, STO-6G, nuclear repulsion 6.889172 included, S^2 = 2.4e-12) -5.0502449595; stored minus pyscf = +4.96e-06 Ha; stored per atom: -5.0502449595 / 10; per atom -0.505024 -> -0.50502449595, stored as totals (x 10)",
+          "reason": "RULES.md §11: where the printed value of an exact row is QMBL's recomputed energy rounded to the printed digits, the row keeps its citation and carries QMBL's digits; the printed value goes to corrections. The table value is the recomputation rounded (within half a unit of the 6th decimal per atom), and the authors' own data file prints the total to 1e-8, equal to the recomputation within 5e-9. With the rounded value stored, variational rows of the same source (DMRG at R = 1.4, 1.6, 2.8, 3.2; MRCI at R = 1.4, 1.6, 2.8, 3.2, 3.6) sit 0.8e-6 to 5e-6 Ha below the exact row although they lie at or above the true FCI energy within their own printed digits (DMRG 6.6e-8 to 1.9e-6 above, MRCI within 5e-9); the full digits remove these false violations. Value, basis, R, N = 10, OBC and bound_type exact otherwise confirmed; journal and arXiv v2 cells identical.",
+          "source_entry": "h-motta17-misc-1#7 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        }
+      ]
+    },
+    {
+      "energy": -4.853231027,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "GF2",
+      "ansatz": null,
+      "method_detail": "self-consistent",
+      "method_as_published": "GF2 [self-consistent]",
+      "family": "other",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.485323 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/GF2_basis-STO: -4.853231027 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "PRX 7, 031059 journal PDF text and arXiv:1705.01608v2 text, both read line by line (check.mjs); dataset file fetched raw from GitHub at b99a183",
+          "location": "Table II (H10, STO-6G), column GF2, row R = 2.8; journal text line 1273, arXiv v2 text line 1259; dataset file N_10_OBC/R_2.8/GF2_basis-STO",
+          "reported_as": "-0.485323 per atom (Table II, journal and arXiv v2 identical); dataset file N_10_OBC/R_2.8/GF2_basis-STO: -4.853231027",
+          "conversion": "-0.485323 x 10 = -4.85323 Ha (total, nuclear repulsion included); dataset -4.853231027 / 10 = -0.4853231027, which Table II prints truncated to -0.485323 (rounding would give -0.485323)",
+          "note": "Instance agrees: equally spaced H10 chain, open boundary (finite molecule), R = 2.8 bohr, STO-6G, N_up = N_dn = 5 (Sec. II: 'We only consider spin-unpolarized systems, with N_up = N_dn = N/2'). GF2 = RHF-based self-consistent second-order Green's function without spin-symmetry breaking (App. A, Sec. a), solved at inverse temperature 100 or 200 /Ha with the electronic energy converged to 1e-6 Ha; bound_type approximate (RULES 13.4 lists GF2), sampled false, sigma null (deterministic; no error bar printed) all agree. Totals include nuclear repulsion: the dataset FCI files equal QMBL's pyscf FCI to < 5e-9 Ha at all ten R. The table truncates the authors' dataset value by 1.03e-6 Ha in the total; the row keeps the table print as the generator intends. QMBL FCI (pyscf) on the instance -5.050244959; this row lies 0.197015 Ha above it (approximate method, no bound claimed). No other row on the instance carries this number (no data/Hchain file exists; no sweep row from another batch within 2e-5 Ha).",
+          "secondary_of": null,
+          "source_entry": "h-motta17-gf2#24 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -4.85323,
+          "to": -4.853231027,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.485323 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/GF2_basis-STO",
+          "conversion": "repository total -4.853231027 / 10 = -0.4853231027 per atom; the printed -0.485323 is that value truncated to 6 decimals (here equal to its rounding; the column truncates elsewhere and never rounds differently); per atom -0.485323 -> -0.48532310269999995, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.485323 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/GF2_basis-STO: -4.853231027",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.05024496,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "MRCI+Q",
+      "ansatz": null,
+      "method_detail": "(10,10) CASSCF reference, Davidson correction",
+      "method_as_published": "MRCI+Q [(10,10) CASSCF reference, Davidson correction]",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0; source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-5.05024496 (total for N = 10)",
+        "note": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_10_OBC/R_2.8/MRCI+Q_basis-STO in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom. | In STO-6G the (10,10) CASSCF reference spans the whole orbital space (one 1s function per atom), so MRCI equals CASSCF equals full CI here and the Davidson correction vanishes. Kept as the paper's published row, no extra exact row (ruled 2026-10-24).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:1705.01608 (sources/1705.01608.txt, layout text) and journal PRX 7, 031059 (2017) (sources/1705.01608-PhysRevX.7.031059.txt); dataset github.com/simonsfoundation/hydrogen-benchmark-PRX commit b99a183 (sources/1705.01608-data-b99a183.tsv); compared by out/h-motta17-mrci-q/check2.mjs",
+          "location": "dataset N_10_OBC/R_2.8/MRCI+Q_basis-STO (no MRCI+Q column in Table II; its caption: \"DMET[5], MRCI, and MRCI+Q energies coincide with FCI to within 10^-6\")",
+          "reported_as": "-5.05024496 (total, Hartree)",
+          "conversion": "total as printed; per atom -0.505024496. QMBL pyscf FCI (fci/results.jsonl) -5.050244959456316: difference -5.437e-10 Ha total (dataset prints 8 decimals)",
+          "note": "N = 10, OBC, STO-6G, nuclear repulsion included (pyscf total with E_nuc agrees). sigma null correct (deterministic).",
+          "secondary_of": null,
+          "source_entry": "h-motta17-mrci-q#47 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-5.05024496 (total for N = 10)",
+          "location": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_10_OBC/R_2.8/MRCI+Q_basis-STO in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.05024496,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "MRCI",
+      "ansatz": null,
+      "method_detail": "(10,10) CASSCF reference, internally contracted",
+      "method_as_published": "MRCI [(10,10) CASSCF reference, internally contracted]",
+      "family": "FCIQMC / CC",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0; source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-5.05024496 (total for N = 10)",
+        "note": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_10_OBC/R_2.8/MRCI_basis-STO in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom. | In STO-6G the (10,10) CASSCF reference spans the whole orbital space (one 1s function per atom), so MRCI equals CASSCF equals full CI here and the Davidson correction vanishes. Kept as the paper's published row, no extra exact row (ruled 2026-10-24).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183, raw file fetched with node (out/h-motta17-mrci/fetch_mrci.mjs) and compared mechanically (out/h-motta17-mrci/compare.mjs); conventions from Phys. Rev. X 7, 031059 (2017), journal text sources/1705.01608-PhysRevX.7.031059.txt and arXiv:1705.01608 (text dated November 8, 2017), sources/1705.01608.txt",
+          "location": "N_10_OBC/R_2.8/MRCI_basis-STO; Table II (FCI column + caption)",
+          "reported_as": "-5.05024496 (total for N = 10, Hartree)",
+          "conversion": "per atom -5.05024496 / 10 = -0.505024496; stored eps -0.505024496",
+          "note": "Value byte-identical in the GitHub raw file N_10_OBC/R_2.8/MRCI_basis-STO at b99a183 (fetched 2026-10-24) and in the committed TSV; eps x 10 = total exactly; N=10 OBC, N_up=N_dn=5, R=2.8 bohr, basis STO-6G (README key STO); bound_type variational (ic-MRCI, Table I 'Variational: Yes'), sampled false, sigma null correct (single number, deterministic); method_detail matches Appendix A c. MRCI - MRCI+Q (same basis, dataset) = 0 Ha >= 0; MRCI - DMRG (dataset) = -9.6e-7 Ha. STO-6G: equals dataset FCI_basis-STO (-5.05024496), MRCI+Q_basis-STO, and QMBL's pyscf FCI -5.050244959456316 to -5.437e-10 Ha; Table II prints FCI -0.505024 per atom and its caption says MRCI coincides with FCI to within 1e-6, consistent. Differences to the pyscf FCI of either sign stay below 1e-8 Ha, i.e. within the 8-decimal print and solver convergence; no variational violation.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-mrci#34 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-5.05024496 (total for N = 10)",
+          "location": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_10_OBC/R_2.8/MRCI_basis-STO in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.074866,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "RCCSD(T)",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "RCCSD(T)",
+      "family": "FCIQMC / CC",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.507486 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/RCCSD(T)_basis-STO: -5.074866 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.07486,
+          "to": -5.074866,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.507486 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/RCCSD(T)_basis-STO",
+          "conversion": "repository total -5.074866 / 10 = -0.5074866 per atom; the printed -0.507486 is that value truncated to 6 decimals, not rounded; per atom -0.507486 -> -0.5074866, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.507486 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/RCCSD(T)_basis-STO: -5.074866",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.067298,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "RCCSD",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "RCCSD",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.506729 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/RCCSD_basis-STO: -5.067298 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.06729,
+          "to": -5.067298,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.506729 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/RCCSD_basis-STO",
+          "conversion": "repository total -5.067298 / 10 = -0.5067298 per atom; the printed -0.506729 is that value truncated to 6 decimals, not rounded; per atom -0.506729 -> -0.5067298, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.506729 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/RCCSD_basis-STO: -5.067298",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -4.65843,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "HF",
+      "ansatz": null,
+      "method_detail": "restricted",
+      "method_as_published": "RHF",
+      "family": "mean field",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.465843 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/RHF_basis-STO: -4.6584287534 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "journal text sources/1705.01608-PhysRevX.7.031059.txt (PRX 7, 031059) and arXiv text sources/1705.01608.txt, Table II parsed with node (compare.mjs); dataset raw file fetched from GitHub b99a183",
+          "location": "Table II (H10, STO-6G), row R = 2.8, column RHF; arXiv txt line 1259, journal txt line 1273",
+          "reported_as": "-0.465843 per atom (journal), -0.465843 (arXiv), identical",
+          "conversion": "-0.465843 x 10 = -4.65843 Ha total; dataset N_10_OBC/R_2.8/RHF_basis-STO = -4.6584287534 Ha total = -0.465842875 per atom, agrees with the table to 1.247e-7 per atom (inside the 6th-decimal rounding)",
+          "note": "Instance chain N = 10, open (finite molecule; Table II caption 'Potential energy curve of H10 with the minimal (STO-6G) basis'), R = 2.8 bohr, basis STO-6G, N_up = N_dn = 5. Variational (RHF, RULES 13.4), deterministic: sigma null correct. Above QMBL's FCI -5.05024496 (fci/results.jsonl). QMBL's own pyscf RHF (same file, E_RHF -4.658427915) differs from the dataset total by -8.381e-7 Ha, below the table's printed precision (1e-5 Ha total). The UHF row (same paper, separate column) carries the same printed number at R <= 1.6 where UHF collapses to RHF; not a duplicate from another batch.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-rhf-c1#46 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.465843 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/RHF_basis-STO: -4.6584287534",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -4.88955,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "GW",
+      "ansatz": null,
+      "method_detail": "fully self-consistent",
+      "method_as_published": "GW [fully self-consistent]",
+      "family": "other",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.488955 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SC-GW_basis-STO: -4.88955 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "journal PDF Table II page (pypdf layout mode) + committed journal text + arXiv v2 text, parsed by check.mjs; dataset file fetched raw from GitHub at b99a183",
+          "location": "Table II (H10, STO-6G), column SC-GW, row R = 2.8; journal text line 1273, arXiv v2 text line 1259; dataset file N_10_OBC/R_2.8/SC-GW_basis-STO",
+          "reported_as": "-0.488955 per atom (Table II; journal and arXiv v2 identical); dataset file N_10_OBC/R_2.8/SC-GW_basis-STO: -4.88955",
+          "conversion": "-0.488955 x 10 = -4.88955 Ha (total, nuclear repulsion included) = dataset -4.88955",
+          "note": "Value, journal/arXiv agreement and dataset agree digit for digit. Instance agrees: N = 10 equally spaced protons, open chain (dataset directory N_10_OBC), R = 2.8 bohr, STO-6G (README: 'STO:   STO-6G'), N_up = N_dn = 5 (Sec. II). Method SC-GW = fully self-consistent GW (Sec. III list; App. A 3 c: HF-initialised G, P = GG, W from Dyson, Sigma = -GW, total energy from Sigma and G, beta = 100/Ha, relative precision 1e-7), computed by the paper's collaboration for this study (own result, not quoted); bound_type approximate (RULES 13.4 lists GW), sampled false, sigma null (deterministic, no error bar printed or in the file) agree. Totals include nuclear repulsion (Table II and dataset are the same quantity: per atom x N = file total). SC-GW variant: Hamiltonian H (Pauli 'zero terms' kept, App. A 4 d), not H': the dataset N = 30 and 50 STO-6G values at this R extrapolate linearly in 1/N to -0.490185, 0 mEh from the SC-GW(H) TDL file (-0.490187, = Table V SC-GW) and 26.51 mEh from SC-GW(H') (-0.5167). QMBL pyscf FCI on the instance -5.050244959; this row lies 160.695 mEh above it. No duplicate: no data/Hchain file exists, no other sweep row on the instance carries this number from another batch; no other GW row on the instance; no code link or artifacts on the row; no held entry for SC-GW.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-gw#14 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.488955 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SC-GW_basis-STO: -4.88955",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.045584568,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "SEET",
+      "ansatz": null,
+      "method_detail": "CI-GF2_m(6,SAO)",
+      "method_as_published": "SEET [CI-GF2_m(6,SAO)]",
+      "family": "other",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.5045 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SEET_CI-GF2_mix(6,SAO)_basis-STO: -5.045584568 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "PRX 7, 031059 journal PDF (sources/1705.01608-PhysRevX.7.031059.pdf, pypdf layout mode, fresh extraction) and arXiv text sources/1705.01608.txt; dataset file fetched raw from GitHub at commit b99a183 (raw/seet-files-b99a183.json) and compared mechanically with the committed TSV (check.mjs)",
+          "location": "Table II (journal p. 031059-20, pdf page 20), row R = 2.8, column SEET (CI/GF2)-m(6,SAO); dataset N_10_OBC/R_2.8/SEET_CI-GF2_mix(6,SAO)_basis-STO",
+          "reported_as": "-0.5045 (per atom, Hartree; table caption: H10, STO-6G)",
+          "conversion": "-0.5045 * 10 = -5.045 Ha total; dataset total -5.045584568 (= -0.504558457 per atom); the table value is the dataset value truncated to 4 decimals (rounding would give -0.5046); stored total lies 0.0005846 Ha above the dataset total",
+          "note": "Journal and arXiv Table II agree digit for digit. N = 10, OBC (finite chain), R = 2.8 bohr, STO-6G, N_up = N_dn = 5 (paper: \"N↑ = N↓ = N/2\"), total with nuclear repulsion (Eq. 1), bound_type projected per RULES §13.4 (SEET), sigma null correct (deterministic, no error bar printed), peer_reviewed true. No duplicate on the instance: no data/Hchain file exists; no other sweep row on the instance carries this number from this or a quoted paper; QMBL FCI (pyscf) -5.05024496, dataset minus FCI 0.004660 Ha.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-seet#56 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.045,
+          "to": -5.045584568,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.5045 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/SEET_CI-GF2_mix(6,SAO)_basis-STO",
+          "conversion": "repository total -5.045584568 / 10 = -0.5045584568 per atom; the printed -0.5045 is that value truncated to 4 decimals, not rounded; per atom -0.5045 -> -0.5045584568, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "h-motta17-seet#57 (qmbl-verify 2026-10-23/24, ambiguous); ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.5045 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SEET_CI-GF2_mix(6,SAO)_basis-STO: -5.045584568",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.034651622,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "SEET",
+      "ansatz": null,
+      "method_detail": "CI-HF_m(4,SAO)",
+      "method_as_published": "SEET [CI-HF_m(4,SAO)]",
+      "family": "other",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.5034 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SEET_CI-HF_mix(4,SAO)_basis-STO: -5.034651622 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "PRX 7, 031059 journal PDF (sources/1705.01608-PhysRevX.7.031059.pdf, pypdf layout mode, fresh extraction) and arXiv text sources/1705.01608.txt; dataset file fetched raw from GitHub at commit b99a183 (raw/seet-files-b99a183.json) and compared mechanically with the committed TSV (check.mjs)",
+          "location": "Table II (journal p. 031059-20, pdf page 20), row R = 2.8, column SEET (CI/HF)-m(4,SAO); dataset N_10_OBC/R_2.8/SEET_CI-HF_mix(4,SAO)_basis-STO",
+          "reported_as": "-0.5034 (per atom, Hartree; table caption: H10, STO-6G)",
+          "conversion": "-0.5034 * 10 = -5.034 Ha total; dataset total -5.034651622 (= -0.503465162 per atom); the table value is the dataset value truncated to 4 decimals (rounding would give -0.5035); stored total lies 0.0006516 Ha above the dataset total",
+          "note": "Journal and arXiv Table II agree digit for digit. N = 10, OBC (finite chain), R = 2.8 bohr, STO-6G, N_up = N_dn = 5 (paper: \"N↑ = N↓ = N/2\"), total with nuclear repulsion (Eq. 1), bound_type projected per RULES §13.4 (SEET), sigma null correct (deterministic, no error bar printed), peer_reviewed true. No duplicate on the instance: no data/Hchain file exists; no other sweep row on the instance carries this number from this or a quoted paper; QMBL FCI (pyscf) -5.05024496, dataset minus FCI 0.015593 Ha.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-seet#58 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.034,
+          "to": -5.034651622,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.5034 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/SEET_CI-HF_mix(4,SAO)_basis-STO",
+          "conversion": "repository total -5.034651622 / 10 = -0.5034651622 per atom; the printed -0.5034 is that value truncated to 4 decimals, not rounded; per atom -0.5034 -> -0.5034651622, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "h-motta17-seet#59 (qmbl-verify 2026-10-23/24, ambiguous); ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.5034 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SEET_CI-HF_mix(4,SAO)_basis-STO: -5.034651622",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.044724134,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "SEET",
+      "ansatz": null,
+      "method_detail": "CI-HF_m(6,SAO)",
+      "method_as_published": "SEET [CI-HF_m(6,SAO)]",
+      "family": "other",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.5044 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SEET_CI-HF_mix(6,SAO)_basis-STO: -5.044724134 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "PRX 7, 031059 journal PDF (sources/1705.01608-PhysRevX.7.031059.pdf, pypdf layout mode, fresh extraction) and arXiv text sources/1705.01608.txt; dataset file fetched raw from GitHub at commit b99a183 (raw/seet-files-b99a183.json) and compared mechanically with the committed TSV (check.mjs)",
+          "location": "Table II (journal p. 031059-20, pdf page 20), row R = 2.8, column SEET (CI/HF)-m(6,SAO); dataset N_10_OBC/R_2.8/SEET_CI-HF_mix(6,SAO)_basis-STO",
+          "reported_as": "-0.5044 (per atom, Hartree; table caption: H10, STO-6G)",
+          "conversion": "-0.5044 * 10 = -5.044 Ha total; dataset total -5.044724134 (= -0.504472413 per atom); the table value is the dataset value truncated to 4 decimals (rounding would give -0.5045); stored total lies 0.0007241 Ha above the dataset total",
+          "note": "Journal and arXiv Table II agree digit for digit. N = 10, OBC (finite chain), R = 2.8 bohr, STO-6G, N_up = N_dn = 5 (paper: \"N↑ = N↓ = N/2\"), total with nuclear repulsion (Eq. 1), bound_type projected per RULES §13.4 (SEET), sigma null correct (deterministic, no error bar printed), peer_reviewed true. No duplicate on the instance: no data/Hchain file exists; no other sweep row on the instance carries this number from this or a quoted paper; QMBL FCI (pyscf) -5.05024496, dataset minus FCI 0.005521 Ha.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-seet#60 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.044,
+          "to": -5.044724134,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.5044 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/SEET_CI-HF_mix(6,SAO)_basis-STO",
+          "conversion": "repository total -5.044724134 / 10 = -0.5044724134 per atom; the printed -0.5044 is that value truncated to 4 decimals, not rounded; per atom -0.5044 -> -0.5044724134, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "h-motta17-seet#61 (qmbl-verify 2026-10-23/24, ambiguous); ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.5044 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/SEET_CI-HF_mix(6,SAO)_basis-STO: -5.044724134",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.029597,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "UCCSD(T)",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "UCCSD(T)",
+      "family": "FCIQMC / CC",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.502959 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/UCCSD(T)_basis-STO: -5.029597 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "journal Phys. Rev. X 7, 031059 (2017; published 2017-09-28, corrected 2021-03-24), publisher PDF text qmbl-wt-hydrogen/sources/1705.01608-PhysRevX.7.031059.txt; arXiv:1705.01608v2 (dated November 8, 2017), qmbl-wt-hydrogen/sources/1705.01608.txt; data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183a5a2dd2a471bbde3f3c4952cc3d2432ea (2017-10-09, repository HEAD on 2026-10-24, README: CC BY 4.0); all 90 UCCSD(T)_* files fetched raw from GitHub (sources/1705.01608-data-raw-uccsd-t.json, out/h-motta17-uccsd-t-/fetch_raw.mjs), byte-equal to the committed TSV qmbl-wt-hydrogen/sources/1705.01608-data-b99a183.tsv; comparison by out/h-motta17-uccsd-t-/check.py",
+          "location": "Table II (STO-6G), column UCCSD(T), row R = 2.8; journal text line 1273, arXiv v2 text line 1259, same cell in both; dataset file N_10_OBC/R_2.8/UCCSD(T)_basis-STO = '-5.029597'",
+          "reported_as": "-0.502959 per atom (Hartree); dataset '-5.029597' (total)",
+          "conversion": "-0.502959 x 10 = -5.029590 Ha total; dataset -5.029597 / 10 = -0.5029597, printed cell differs by +7.0e-07 per atom (Table II truncates the dataset value to 6 decimals)",
+          "note": "UCCSD(T) = CCSD with perturbative triples on a UHF reference (journal Sec. III lines 234-237: 'using UHF as a reference state'; dataset README: 'unrestricted coupled-cluster ... perturbative treatment of triples'); PySCF (App. A a); open equispaced chain, N = 10, R = 2.8 bohr, neutral, N_up = N_dn = N/2 (Sec. II), basis STO-6G; total energy in Hartree with nuclear repulsion (C1/C2 card); bound_type approximate per RULES 13.4 (CCSD(T) provisional 2026-10-21); deterministic, no sigma; no duplicate in qmbl-wt-hydrogen/data/ (no Hchain model there: track 3 not loaded); UHF lies 253.4 mHa below RHF here and UCCSD(T) 45.3 mHa above RCCSD(T), the pattern of every broken-symmetry pair in the dataset (refscan.py); 20.6550 mHa above QMBL's pyscf FCI -5.0502449595 (fci/results.jsonl), no bound issue",
+          "secondary_of": null,
+          "source_entry": "h-motta17-uccsd-t-#39 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.02959,
+          "to": -5.029597,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.502959 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/UCCSD(T)_basis-STO",
+          "conversion": "repository total -5.029597 / 10 = -0.5029597 per atom; the printed -0.502959 is that value truncated to 6 decimals, not rounded; per atom -0.502959 -> -0.5029597, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.502959 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/UCCSD(T)_basis-STO: -5.029597",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.028207,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "UCCSD",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "UCCSD",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.502820 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/UCCSD_basis-STO: -5.028207 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "journal PDF PRX 7, 031059 (2017) (sources/1705.01608-PhysRevX.7.031059.pdf) and arXiv:1705.01608v2 PDF (dated November 8, 2017), both extracted with pypdf layout mode (out/h-motta17-uccsd-c1/raw/*-layout.txt); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183, every UCCSD_* file fetched raw from GitHub on 2026-10-24 (raw/uccsd-files-b99a183.json), byte-equal to the committed TSV",
+          "location": "Table II (STO-6G), column UCCSD, row R = 2.8; journal and arXiv v2 print the same cell; dataset file N_10_OBC/R_2.8/UCCSD_basis-STO",
+          "reported_as": "-0.502820 per atom (Hartree); dataset '-5.028207' (total)",
+          "conversion": "-0.502820 x 10 = -5.0282; dataset -5.028207 differs by 7.0e-6 Ha total, inside one unit of the printed last digit x N",
+          "note": "Table II truncates the dataset value to six decimals per atom (dataset -0.5028207, printed -0.502820); the stored total is 7e-6 Ha above the authors' dataset total; the row keeps the journal print (RULES 8), same handling as the RCCSD and RCCSD(T) groups; above QMBL pyscf FCI -5.05024496 by 22.045 mHa total; UCCSD - RCCSD = 39.10 mHa total (broken-symmetry UHF reference); N_up = N_dn = N/2, OBC, R in bohr, total with nuclear repulsion, bound_type and peer_reviewed agree; no data/Hchain file exists (track 3 held); no row from another batch on this instance carries this number",
+          "secondary_of": null,
+          "source_entry": "h-motta17-uccsd-c1#39 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "energy",
+          "from": -5.0282,
+          "to": -5.028207,
+          "checked_on": "2026-10-24",
+          "reported_as": "-0.502820 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259",
+          "version_read": "PRX 7, 031059 (2017) journal text and arXiv:1705.01608v2 text (the cells agree); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183 (sources/1705.01608-data-b99a183.tsv), file N_10_OBC/R_2.8/UCCSD_basis-STO",
+          "conversion": "repository total -5.028207 / 10 = -0.5028207 per atom; the printed -0.502820 is that value truncated to 6 decimals, not rounded; per atom -0.50282 -> -0.5028207, stored as totals (x 10)",
+          "reason": "Ruling 1 (2026-10-24): where the paper's table truncates and the authors' data repository prints more digits, the row stores the repository digits; the printed value stays as reported_as.",
+          "source_entry": "ruling 1, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.502820 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/UCCSD_basis-STO: -5.028207",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -4.93747993,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "GF2",
+      "ansatz": null,
+      "method_detail": "spin-unrestricted, self-consistent",
+      "method_as_published": "UGF2 [spin-unrestricted, self-consistent]",
+      "family": "other",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0; source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-4.93747993 (total for N = 10)",
+        "note": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_10_OBC/R_2.8/UGF2_basis-STO in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "method",
+          "from": "GF2",
+          "to": "UGF2",
+          "checked_on": "2026-10-24",
+          "reported_as": "-4.93747993 in file N_10_OBC/R_2.8/UGF2_basis-STO",
+          "location": "journal text line 1161-1162: 'The acronym UGF2 is used to denote a spin-unrestricted version based on UHF.'; Sec. III method list line 238: 'UGF2, spin-unrestricted GF2 [29].'; dataset file name N_10_OBC/R_2.8/UGF2_basis-STO; README 'UGF2: spin-unrestricted self-consistent second-order Green's function'",
+          "version_read": "journal: Phys. Rev. X 7, 031059 (2017), publisher PDF text (qmbl-wt-hydrogen/sources/1705.01608-PhysRevX.7.031059.txt); arXiv:1705.01608v2 (2017-11-06, latest; sources/1705.01608.txt and .pdf, PDF stamp 'arXiv:1705.01608v2'); data repository github.com/simonsfoundation/hydrogen-benchmark-PRX at b99a183a5a2dd2a471bbde3f3c4952cc3d2432ea, files fetched raw from GitHub on 2026-10-24 and compared with sources/1705.01608-data-b99a183.tsv",
+          "conversion": "none (label only)",
+          "reason": "The source prints this method as UGF2, distinct from GF2 (RHF-based, no spin-symmetry breaking); the generator maps it to the same method string 'GF2' as the restricted rows, unlike RHF/UHF and RCCSD/UCCSD, which keep their printed names. With both labelled 'GF2', the restricted and unrestricted rows of one instance differ only in method_detail; at R = 2.0 (STO-6G) their totals are 4.77e-7 Ha apart, inside the rows' tol 5e-7, so a method + energy duplicate check would merge them. One generator line fixes all ten UGF2 rows.",
+          "source_entry": "h-motta17-gf2#26 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-4.93747993 (total for N = 10)",
+          "location": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_10_OBC/R_2.8/UGF2_basis-STO in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -4.91183,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "HF",
+      "ansatz": null,
+      "method_detail": "unrestricted",
+      "method_as_published": "UHF",
+      "family": "mean field",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-0.491183 per atom",
+        "note": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/UHF_basis-STO: -4.91182602506 | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX b99a183, raw UHF file fetched from raw.githubusercontent.com (raw-uhf-b99a183.json), compared with the committed TSV, the stored row, the journal text (PRX 7, 031059) and arXiv:1705.01608v2 text by compare.mjs; QMBL pyscf FCI/RHF for STO-6G",
+          "location": "Table II (STO-6G, H10), R = 2.8 row, UHF column (last): journal txt line 1273, arXiv v2 txt line 1259; also dataset file N_10_OBC/R_2.8/UHF_basis-STO = '-4.91182602506'",
+          "reported_as": "-0.491183 per atom (Hartree)",
+          "conversion": "-0.491183 x 10 = -4.91183 Ha total; dataset -4.91182602506 differs by -0.000003975 total (-3.98e-7 per atom, inside the half unit 5e-7 of the printed digit)",
+          "note": "Instance chain, N = 10, open (dataset folder N_10_OBC), R = 2.8 bohr, basis STO-6G, N_up = N_dn = 5. UHF = unrestricted Hartree-Fock (journal method list, Ref. [51] Pople-Nesbet): variational (RULES 13.4), deterministic, method_detail empty, peer_reviewed true. Raw file equals the committed TSV; UHF decreases monotonically DZ > TZ > QZ > 5Z (order_check.mjs). QMBL pyscf (fci/results.jsonl): FCI -5.05024495946, RHF -4.65842791533; the dataset UHF total minus the pyscf RHF is -0.2534 Ha (UHF breaks spin symmetry below RHF, as expected for R >= 1.8 in STO-6G); UHF lies 0.138414959456 Ha above FCI. Dataset UHF minus RHF: -0.2534 Ha. No duplicate from another batch: the only same-number row on the instance is the same paper's RHF row (UHF converged to the restricted solution), a different method of the same batch; no data/Hchain file exists (track 3 held).",
+          "secondary_of": null,
+          "source_entry": "h-motta17-uhf-c1#51 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "-0.491183 per atom",
+          "location": "Table II, R = 2.8 row; sources/1705.01608.txt line 1259; version read: journal PDF (PRX 7, 031059, APS, sources/1705.01608-PhysRevX.7.031059.txt) and arXiv text; the table values agree digit for digit. Dataset file N_10_OBC/R_2.8/UHF_basis-STO: -4.91182602506",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.08294,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "CCSDT",
+      "ansatz": null,
+      "method_detail": "RHF orbitals",
+      "method_as_published": "CCSDT [RHF orbitals]",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "G. H. Low, N. P. Bauman, C. E. Granade et al., Q# and NWChem: Tools for Scalable Quantum Chemistry on Quantum Computers, arXiv:1904.01131",
+      "peer_reviewed": false,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1904.01131 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "FCI -5.05024 Ha (total) + difference -32.7 mHa = -5.082940 Ha",
+        "note": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text | Totals in Hartree with nuclear repulsion: the FCI column equals the 2017 STO-6G FCI totals to 5 decimals. | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": false,
+          "checked_on": "2026-10-24",
+          "reported_as": "FCI -5.05024 Ha (total) + difference -32.7 mHa = -5.082940 Ha",
+          "location": "arXiv abs page, Crossref and OpenAlex (venue check)",
+          "version_read": "arXiv:1904.01131v1 (only version; no journal version: arXiv abs page has no journal-ref or DOI, OpenAlex lists only the arXiv preprint W2934652713, Crossref title search 2026-10-24 finds no journal record); PDF fetched 2026-10-24, pypdf layout and plain modes agree cell by cell",
+          "conversion": "none",
+          "reason": "The number is printed only in an arXiv preprint (v1, 2019-04-01, never revised; no journal version found on arXiv, OpenAlex or Crossref). RULES 'peer_reviewed follows the venue that printed the number'; arXiv-only rows are stored as false, null means not determined. Same proposal as group h-p-2605-02056 for its arXiv-only rows.",
+          "source_entry": "h-p-1904-01131-c1#0 and siblings (qmbl-verify 2026-10-23/24, correction on the paper's other 20 rows; skeptic upheld), extended to every row of arXiv:1904.01131"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "FCI -5.05024 Ha (total) + difference -32.7 mHa = -5.082940 Ha",
+          "location": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.04964,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "CCSDTQ",
+      "ansatz": null,
+      "method_detail": "RHF orbitals",
+      "method_as_published": "CCSDTQ [RHF orbitals]",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "G. H. Low, N. P. Bauman, C. E. Granade et al., Q# and NWChem: Tools for Scalable Quantum Chemistry on Quantum Computers, arXiv:1904.01131",
+      "peer_reviewed": false,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1904.01131 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "FCI -5.05024 Ha (total) + difference 0.6 mHa = -5.049640 Ha",
+        "note": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text | Totals in Hartree with nuclear repulsion: the FCI column equals the 2017 STO-6G FCI totals to 5 decimals. | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:1904.01131v1 PDF fetched 2026-10-24 (byte-identical to qmbl-wt-hydrogen/sources/1904.01131.pdf), pypdf layout mode (raw/1904.01131v1-layout.txt) and plain mode (raw/1904.01131v1-plain.txt); mechanical comparison check.mjs -> check-out.json; ancillary NWChem inputs h10_<R>.nw (geometry units bohr, equally spaced linear H10, sto-6g, singlet RHF, qela 5 qelb 5)",
+          "location": "Table II (p. 28), row R = 2.8 a.u., column CCSDTQ under 'Difference from FCI (10^-3 Hartree)', FCI column for the reference; layout line 1787, plain line 1626",
+          "reported_as": "R 2.8: FCI (Hartree) -5.05024; CCSDTQ difference 0.6",
+          "conversion": "-5.05024 + (0.6) x 1e-3 = -5.049640 Ha total (nuclear repulsion included: the FCI column equals QMBL pyscf FCI -5.05024496 to 0.0050 mHa); / 10 = -0.504964 per atom = stored eps -0.504964",
+          "note": "Instance agrees (H10 equally spaced linear chain, open, R = 2.8 bohr per ancillary h10_2.8.nw 'geometry units bohr', STO-6G '20 spin orbitals', RHF singlet 5/5 electrons). Row lies 0.6050 mHa from QMBL FCI, at or above it within print rounding. Own computation ('also have not been studied in Ref. [66]'; refs 73-77 are method papers). bound_type projected per RULES §13.4 (coupled cluster). No sigma printed; deterministic. peer_reviewed null: arXiv preprint, no journal version located. No duplicate: no other CCSDTQ row on this instance in sweep-rows-2026-10-20-hydrogen.json; data/Hchain does not exist (track held).",
+          "secondary_of": null,
+          "source_entry": "h-p-1904-01131-c2#9 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": false,
+          "checked_on": "2026-10-24",
+          "reported_as": "FCI -5.05024 Ha (total) + difference 0.6 mHa = -5.049640 Ha",
+          "location": "arXiv abs page, Crossref and OpenAlex (venue check)",
+          "version_read": "arXiv:1904.01131v1 (only version; no journal version: arXiv abs page has no journal-ref or DOI, OpenAlex lists only the arXiv preprint W2934652713, Crossref title search 2026-10-24 finds no journal record); PDF fetched 2026-10-24, pypdf layout and plain modes agree cell by cell",
+          "conversion": "none",
+          "reason": "The number is printed only in an arXiv preprint (v1, 2019-04-01, never revised; no journal version found on arXiv, OpenAlex or Crossref). RULES 'peer_reviewed follows the venue that printed the number'; arXiv-only rows are stored as false, null means not determined. Same proposal as group h-p-2605-02056 for its arXiv-only rows.",
+          "source_entry": "h-p-1904-01131-c1#0 and siblings (qmbl-verify 2026-10-23/24, correction on the paper's other 20 rows; skeptic upheld), extended to every row of arXiv:1904.01131"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "FCI -5.05024 Ha (total) + difference 0.6 mHa = -5.049640 Ha",
+          "location": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.04964,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "MkMRCCSD",
+      "ansatz": null,
+      "method_detail": "RHF orbitals",
+      "method_as_published": "MkMRCCSD [RHF orbitals]",
+      "family": "FCIQMC / CC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "G. H. Low, N. P. Bauman, C. E. Granade et al., Q# and NWChem: Tools for Scalable Quantum Chemistry on Quantum Computers, arXiv:1904.01131",
+      "peer_reviewed": false,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1904.01131 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "FCI -5.05024 Ha (total) + difference 0.6 mHa = -5.049640 Ha",
+        "note": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text | Totals in Hartree with nuclear repulsion: the FCI column equals the 2017 STO-6G FCI totals to 5 decimals. | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:1904.01131v1 PDF fetched 2026-10-24 (byte-identical to qmbl-wt-hydrogen/sources/1904.01131.pdf), pypdf layout mode (raw/1904.01131v1-layout.txt) and plain mode (raw/1904.01131v1-plain.txt); mechanical comparison check.mjs -> check-out.json; ancillary NWChem inputs h10_<R>.nw (geometry units bohr, equally spaced linear H10, sto-6g, singlet RHF, qela 5 qelb 5)",
+          "location": "Table II (p. 28), row R = 2.8 a.u., column MkMRCCSD under 'Difference from FCI (10^-3 Hartree)', FCI column for the reference; layout line 1787, plain line 1626",
+          "reported_as": "R 2.8: FCI (Hartree) -5.05024; MkMRCCSD difference 0.6",
+          "conversion": "-5.05024 + (0.6) x 1e-3 = -5.049640 Ha total (nuclear repulsion included: the FCI column equals QMBL pyscf FCI -5.05024496 to 0.0050 mHa); / 10 = -0.504964 per atom = stored eps -0.504964",
+          "note": "Instance agrees (H10 equally spaced linear chain, open, R = 2.8 bohr per ancillary h10_2.8.nw 'geometry units bohr', STO-6G '20 spin orbitals', RHF singlet 5/5 electrons). Row lies 0.6050 mHa from QMBL FCI, at or above it within print rounding. Own computation ('also have not been studied in Ref. [66]'; refs 73-77 are method papers). bound_type projected per RULES §13.4 (coupled cluster). No sigma printed; deterministic. peer_reviewed null: arXiv preprint, no journal version located. No duplicate: no other MkMRCCSD row on this instance in sweep-rows-2026-10-20-hydrogen.json; data/Hchain does not exist (track held).",
+          "secondary_of": null,
+          "source_entry": "h-p-1904-01131-c2#10 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": false,
+          "checked_on": "2026-10-24",
+          "reported_as": "FCI -5.05024 Ha (total) + difference 0.6 mHa = -5.049640 Ha",
+          "location": "arXiv abs page, Crossref and OpenAlex (venue check)",
+          "version_read": "arXiv:1904.01131v1 (only version; no journal version: arXiv abs page has no journal-ref or DOI, OpenAlex lists only the arXiv preprint W2934652713, Crossref title search 2026-10-24 finds no journal record); PDF fetched 2026-10-24, pypdf layout and plain modes agree cell by cell",
+          "conversion": "none",
+          "reason": "The number is printed only in an arXiv preprint (v1, 2019-04-01, never revised; no journal version found on arXiv, OpenAlex or Crossref). RULES 'peer_reviewed follows the venue that printed the number'; arXiv-only rows are stored as false, null means not determined. Same proposal as group h-p-2605-02056 for its arXiv-only rows.",
+          "source_entry": "h-p-1904-01131-c1#0 and siblings (qmbl-verify 2026-10-23/24, correction on the paper's other 20 rows; skeptic upheld), extended to every row of arXiv:1904.01131"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "FCI -5.05024 Ha (total) + difference 0.6 mHa = -5.049640 Ha",
+          "location": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.05914,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "MkMRCCSD(T)",
+      "ansatz": null,
+      "method_detail": "RHF orbitals",
+      "method_as_published": "MkMRCCSD(T) [RHF orbitals]",
+      "family": "FCIQMC / CC",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "G. H. Low, N. P. Bauman, C. E. Granade et al., Q# and NWChem: Tools for Scalable Quantum Chemistry on Quantum Computers, arXiv:1904.01131",
+      "peer_reviewed": false,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1904.01131 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "FCI -5.05024 Ha (total) + difference -8.9 mHa = -5.059140 Ha",
+        "note": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text | Totals in Hartree with nuclear repulsion: the FCI column equals the 2017 STO-6G FCI totals to 5 decimals. | perturbative triples on coupled cluster, RULES.md §13.4 (provisional, 2026-10-21) | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": false,
+          "checked_on": "2026-10-24",
+          "reported_as": "FCI -5.05024 Ha (total) + difference -8.9 mHa = -5.059140 Ha",
+          "location": "arXiv abs page, Crossref and OpenAlex (venue check)",
+          "version_read": "arXiv:1904.01131v1 (only version; no journal version: arXiv abs page has no journal-ref or DOI, OpenAlex lists only the arXiv preprint W2934652713, Crossref title search 2026-10-24 finds no journal record); PDF fetched 2026-10-24, pypdf layout and plain modes agree cell by cell",
+          "conversion": "none",
+          "reason": "The number is printed only in an arXiv preprint (v1, 2019-04-01, never revised; no journal version found on arXiv, OpenAlex or Crossref). RULES 'peer_reviewed follows the venue that printed the number'; arXiv-only rows are stored as false, null means not determined. Same proposal as group h-p-2605-02056 for its arXiv-only rows.",
+          "source_entry": "h-p-1904-01131-c1#0 and siblings (qmbl-verify 2026-10-23/24, correction on the paper's other 20 rows; skeptic upheld), extended to every row of arXiv:1904.01131"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "FCI -5.05024 Ha (total) + difference -8.9 mHa = -5.059140 Ha",
+          "location": "Table II, R = 2.8 row; sources/1904.01131.txt line 1759; difference = method - FCI (settled 2026-10-21 from the text); version read: arXiv text",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -5.0503,
+      "sigma": 0.0001,
+      "energy_variance": null,
+      "dof": 10,
+      "einf": null,
+      "v_score": null,
+      "method": "ph-AFQMC",
+      "ansatz": "UHF",
+      "method_detail": "UHF trial",
+      "method_as_published": "AFQMC(UHF)",
+      "family": "AFQMC / GFMC",
+      "bound_type": "projected",
+      "bound_type_reason": "phaseless AFQMC with UHF trial",
+      "reference": "Rod Rofougaran, Neil Mehta, Katherine Klymko et al., Benchmarking quantum trial wavefunctions for phaseless auxiliary-field quantum Monte Carlo, arXiv:2605.02056",
+      "peer_reviewed": false,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2605.02056 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−5.0503(1) Ha per total",
+        "note": "Table III; sources/2605.02056.txt line 1246; version read: arXiv text; no journal version found | header \"R(Bohr)\", \"This work (Ha)\", caption \"AFQMC(UHF) total energies for H10\"; magnitude matches total energy incl. nuclear repulsion (H10 R=1.8 STO-6G ~ -5.42) | unicode minus sign U+2212 as printed",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/rr637/QC-AFQMC",
+        "read_from": {
+          "quote": "The complete implementation used in this work, en- compassing GPU-accelerated VQE and ph-AFQMC sim- ulations with quantum trial wavefunctions, is publicly available at:https://github.com/rr637/QC-AFQMC.",
+          "location": "Code Availability (sources/2605.02056.txt, lines 736-739)",
+          "checked_on": "2026-10-22",
+          "pass": "passes/track3/code-links-2026-10-22-hydrogen.json"
+        }
+      },
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": false,
+          "checked_on": "2026-10-24",
+          "reported_as": "arXiv abstract page lists v1 (2026-05-03) and v2 (2026-05-05), no journal reference and no publisher DOI",
+          "location": "arxiv.org/abs/2605.02056 (fetched 2026-10-24); Crossref bibliographic search and OpenAlex search for the title (2026-10-24) return only the arXiv DOI 10.48550/arxiv.2605.02056",
+          "version_read": "arXiv:2605.02056v2 PDF (pypdf layout and plain mode); v1 PDF diffed: identical text except one author first name (Sam -> Samuel)",
+          "conversion": "n/a",
+          "reason": "The number is printed only in an arXiv preprint; QMBL stores arXiv-only rows as peer_reviewed false (DATA.md example, add_repo_data_rows.mjs lines 146/198). null means 'not determined'; it is determined. Value, sigma, instance, method and bound_type were all checked and agree (see note).",
+          "source_entry": "h-p-2605-02056#5 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        }
+      ]
+    }
+  ]
+}

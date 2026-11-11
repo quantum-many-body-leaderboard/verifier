@@ -19,7 +19,7 @@ own samples.
     --state python:file.py:NAME [--params FILE]            numpy host function
 
     python op_verify.py info        --instance-file F
-    python op_verify.py neel-check  --instance-file F          (spins: Neel state at full size)
+    python op_verify.py neel-check  --instance-file F          (spins: Neel state at full size; t-J: one configuration)
     python op_verify.py fermi-sea   --instance-file F          (fermions: Fermi sea at full size)
     python op_verify.py logpsi-check --instance-file F --state model.py:build_model --params state.msgpack --configs x.npz
     python op_verify.py ed-gate     --instance-file F --state ... --params ... --small SPEC --seed S
@@ -60,7 +60,7 @@ from qrec_verify import score as SC            # noqa: E402
 from qrec_verify import external as EX         # noqa: E402
 from qrec_verify import continuum as CT       # noqa: E402
 
-VERSION = "op-verify 1 (qrec_verify v1.7)"
+VERSION = "op-verify 1 (qrec_verify v1.9)"
 AGREE_SIGMAS = 2.5
 RECORD_SIGMAS = 2.0
 DETERMINISTIC_RTOL = 1e-11      # two exact evaluations of one state (sigma 0) must agree to this
@@ -275,11 +275,11 @@ def main(argv=None):
                                                        "method": q.get("method"), "bound_type": q.get("bound_type")},
                 "budget_samples": (SC.SPIN if SC.is_spin(inst) else SC.FERMION)["min_samples"],
                 "sampler": SC.SPIN if SC.is_spin(inst) else SC.FERMION}
-        info["known_state"] = SC.neel_check(inst) if SC.is_spin(inst) else SC.fermi_sea_reference(inst)
+        info["known_state"] = SC.known_state(inst)
         print(SC.to_json(info))
         return 0
     if a.cmd == "neel-check":
-        r = SC.neel_check(inst)
+        r = SC.known_state(inst) if inst["model"] in ("tJ", "Hchain", "Hsheet", "Impurity") else SC.neel_check(inst)
         print(SC.to_json(r))
         return 0 if r["pass"] else 1
     if a.cmd == "fermi-sea":

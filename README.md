@@ -1,7 +1,8 @@
 # Verifier
 
 The re-measurement of [QMBL](https://qmbl.org) and QMBL: Open Problems. `qrec_verify/` is the
-scorer (v1.7, 2026-10-09); `DESIGN.md` lists its gates. `op_verify.py` is the command line: it
+scorer (v1.7, 2026-10-09; v1.9, 2026-11-11, adds the lattices and models below); `DESIGN.md` lists its gates
+and what came from where. `op_verify.py` is the command line: it
 reads the instance from a QMBL instance file and turns two measurements into one entry.
 The tests in `tests/` need NetKet: `python tests/test_stats.py`, `python tests/test_physics.py`,
 `python tests/test_score.py --cli`, for the framework adapters `python tests/test_adapters.py --cli`
@@ -78,6 +79,49 @@ with the uniform background and the Madelung term.
     python op_verify.py hf-check --instance-file F      (the Hartree-Fock determinant, scored by the verifier)
     python op_verify.py score    --instance-file F --state jax:state.py:build --params p.npz --seed 1 --out score_1.json
 
+## Lattices and models (v1.9)
+
+Every lattice state sees `x` as above: `int8` of shape `(n_conf, n_dof)`. What a row means per model
+(the code that builds each cluster is named):
+
+| model | lattice / cluster | site order (index i) | `n_dof` | local values |
+|---|---|---|---|---|
+| Heisenberg, J1-J2 | square, rectangular | `x * ly + y` | N | +-1 (spin up / down) |
+| Heisenberg, J1-J2 | triangular L x L (N = L^2, `P` or `O`) | `x * L + y` at `x a1 + y a2` (NetKet's `Triangular(extent=[L, L])`) | N | +-1 |
+| Heisenberg, J1-J2 | triangular C6v (N = 3 m^2, `P`) | three sublattice sites per cell, `hamiltonians.triangular_cluster` | N | +-1 |
+| Heisenberg | `kagome-LxM` | NetKet's `Kagome(extent=[L, M])` | N | +-1 |
+| Heisenberg | `pyrochlore-AxBxC` | NetKet's `Pyrochlore(extent=[A, B, C])` (N = 4ABC), or the 16-site cubic cells (N = 16ABC) | N | +-1 |
+| Heisenberg | `shuriken` | L x L square cells of six sites (`hamiltonians.FRUSTRATED`) | N | +-1 |
+| Heisenberg, J1-J2 | `honeycomb-LxM` | NetKet's `Honeycomb(extent=[L, M])` | N | +-1 |
+| ShastrySutherland | square L x L, `P` or `O` | `x * L + y` | N | +-1 |
+| TFIsing | square, rectangular, chain | `x * ly + y` | N | +-1, no S^z constraint |
+| Hubbard | square, rectangular | `x * ly + y` | 2N | occupations, NetKet's orbital order |
+| tJ | square (L x L, or the tilted square torus), `rectangular-WxL`, `ladder-WxL`, `honeycomb-flake24` | `qrec_verify/tj.py` | 2N | occupations as Hubbard, never two on a site |
+| Hchain (Gaussian basis) | open chain | Loewdin orbitals in pyscf's AO order (below) | 2 n_orb | occupations as Hubbard |
+| Impurity | VarBench's models | per block: the impurity orbitals, then the bath orbitals (`qrec_verify/impurity.py`) | 2 n_orb | occupations as Hubbard |
+
+Units (QMBL's, DATA.md): spin models in Pauli totals (S.S per site = E / 4N; TFIsing E / N), t-J in units of t
+(per site E / N), hydrogen in hartree with the nuclear repulsion (per atom E / N), impurity models as totals.
+
+### A hydrogen state in a Gaussian basis
+
+For `Hchain` / `Hsheet` instances whose `params.basis` names a Gaussian basis (STO-3G, STO-6G, cc-pVDZ, ...), the
+verifier builds the ab-initio Hamiltonian of the N atoms in that basis from pyscf's integrals
+(`qrec_verify/chem.py`; `requirements-chem.txt`), in hartree with the nuclear repulsion:
+
+    H = E_nuc + sum_{pq,s} h_pq c+_ps c_qs + 1/2 sum_{pqrs,s s'} (pq|rs) c+_ps c+_rs' c_ss' c_qs
+
+The orbitals p are the Loewdin-orthogonalised atomic orbitals, `S^-1/2` applied to pyscf's atomic orbitals of the
+basis in pyscf's order (atom by atom along the chain, `pyscf.gto.Mole.ao_labels()`; spherical functions). They depend on
+the geometry and the basis only: no SCF, no phase choice. Atoms sit at (0, 0, I R), I = 0 .. N-1, R in bohr as stored
+in `params.R`. A configuration is a row of 2 n_orb occupations: the n_orb spin-down orbitals first, then the n_orb
+spin-up ones (NetKet's `SpinOrbitalFermions(n_orb, s=1/2, n_fermions_per_spin=(N_dn, N_up))`, its fermion sign
+convention, as for Hubbard). A state written in another orbital basis (canonical RHF orbitals, natural orbitals) must
+be rotated to these first; `op_verify.py neel-check` scores one Slater determinant of Loewdin orbitals, and
+`op_verify.py ed-gate --small hchain:N:R:BASIS` scores your state's family on a small chain against exact
+diagonalisation. Continuous-space instances (`basis: none`) and MPS files of these models are refused with the
+reason; at most 128 orbitals are built.
+
 ## Submitting an MPS
 
 A matrix product state (from DMRG or any other tensor-network code) can be submitted as a file instead
@@ -134,17 +178,27 @@ model must put it in itself (e.g. `"Cdu JW"` on the first site).
 
 ## Coverage
 
-Square and rectangular lattices: J1-J2 and Heisenberg (periodic or open), Hubbard with t, t',
-U, V1, V2 (periodic, antiperiodic or open axes). That is 118 of the 152 open problems on
-2026-10-12. Since v1.8 (2026-11-10) also the electron gas in 2D and 3D cells: 503 of the 750 open
-problems on 2026-11-10. Triangular,
-kagome, pyrochlore, shuriken and chain lattices, the transverse-field Ising model and the impurity
-models are not covered yet.
+By model and lattice (v1.9; `DESIGN.md` has the checks behind each):
+- Heisenberg and J1-J2: square and rectangular (periodic or open), triangular (L x L rhombus, periodic or open, and the
+  3 m^2 C6v clusters), honeycomb L x M tori; Heisenberg also on kagome L x M, pyrochlore (primitive and 16-site cubic
+  cells) and shuriken.
+- Shastry-Sutherland: square L x L, torus or open.
+- Transverse-field Ising: chain, square, rectangular.
+- Hubbard with t, t', U, V1, V2: square and rectangular (periodic, antiperiodic or open axes).
+- t-J (with the n n / 4 term): square (L x L and the tilted tori), rectangular, ladders (periodic or antiperiodic),
+  the 24-site honeycomb flake.
+- Hydrogen chains in a Gaussian basis (STO-nG, cc-pVXZ, aug-cc-pVXZ) up to 128 orbitals (`requirements-chem.txt`).
+- Anderson impurity models: VarBench's single-band and three-band models without spin-orbit coupling.
+- The electron gas (since v1.8): 2D and 3D cells.
+
+Not covered: hydrogen in continuous space (`basis: none`) and Gaussian bases above 128 orbitals; the spin-orbit
+impurity models (TB-DMFT-SOC, refused until the Hamiltonian matches VarBench's); MPS files for hydrogen and impurity
+models.
 
 ## Environment
 
 `requirements.txt`: the versions the tests pass with; a flax or JAX state needs nothing else.
 `requirements-torch.txt` and `requirements-julia.txt` add the PyTorch and Julia adapters,
-`requirements-mps.txt` the MPS route; a C/C++
+`requirements-mps.txt` the MPS route, `requirements-chem.txt` (pyscf) hydrogen in a Gaussian basis; a C/C++
 state needs a compiler only on the entrant's side. A model that needs other packages: say so in
 the pull request.

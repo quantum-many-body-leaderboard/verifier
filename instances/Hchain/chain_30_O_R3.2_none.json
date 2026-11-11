@@ -1,0 +1,89 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 30,
+  "boundary": "O",
+  "params": {
+    "N_up": 15,
+    "N_dn": 15,
+    "R": 3.2,
+    "basis": "none"
+  },
+  "instance_id": "Hchain/chain_30_O_R3.2_none",
+  "rows": [
+    {
+      "energy": -15.7665779593,
+      "sigma": 0.000605681,
+      "energy_variance": null,
+      "dof": 30,
+      "einf": null,
+      "v_score": null,
+      "method": "LR-DMC",
+      "ansatz": "LDA determinant",
+      "method_detail": "cc-pVTZ trial basis",
+      "method_as_published": "LR-DMC [LDA trial state, cc-pVTZ trial basis]",
+      "family": "DMC",
+      "bound_type": "projected",
+      "bound_type_reason": "AFQMC, fixed-node or lattice-regularised DMC, coupled cluster, MRCI+Q or an embedding method; not a bound (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0; source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-15.7665779593443 6.056806859435690E-004 (total for N = 30; second number the stated uncertainty)",
+        "note": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_30_OBC/R_3.2/LRDMC_LDA_basis-TZ in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX b99a183: raw file fetched from raw.githubusercontent.com and compared byte-for-byte (trimmed) with the committed sources/1705.01608-data-b99a183.tsv; node",
+          "location": "dataset file N_30_OBC/R_3.2/LRDMC_LDA_basis-TZ (number first printed in the dataset; the paper shows N > 10 LR-DMC only in figures and TDL fits, Table VI)",
+          "reported_as": "-15.7665779593443 6.056806859435690E-004 (total for N = 30; second number the uncertainty)",
+          "conversion": "total as printed: -15.7665779593443 Ha; per atom -15.7665779593443/30 = -0.52555259864481 (stored eps identical); sigma 0.000605680685943569 Ha total, 0.000020189356198118967 per atom (stored identical)",
+          "note": "Instance chain, open boundary (dataset folder N_30_OBC; Table III is the finite H10 molecule), basis-free (real-space fixed-node LR-DMC, RULES 13.1), neutral S_z = 0 by RULES 13.1 default (no other sector stated). bound_type projected per RULES 13.4 (lattice-regularised DMC); the paper presents the a -> 0 limit of the lattice regularisation (Appendix A 2 b), i.e. the fixed-node energy. Trial state LDA Slater determinant/AGP with Jastrow, determinant basis cc-pVTZ per the dataset file name (basis-TZ, README 'TZ : cc-pVTZ'). Not a record row; no other LR-DMC row or same-number row on this instance in passes/track3 (data/Hchain does not exist, track 3 held). Per-atom value consistent with the N-trend at this R (N = 10, 30, 50, ... approach the Table VI TDL value).",
+          "secondary_of": null,
+          "source_entry": "h-motta17-lr-dmc#39 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    },
+    {
+      "energy": -15.7023115051,
+      "sigma": 0.000259513,
+      "energy_variance": null,
+      "dof": 30,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "SJ",
+      "method_detail": "LDA determinant, cc-pVTZ trial basis",
+      "method_as_published": "VMC [LDA determinant with Jastrow factor, cc-pVTZ trial basis]",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "M. Motta, D. M. Ceperley, G. K.-L. Chan, J. A. Gomez, E. Gull, S. Guo, C. A. Jiménez-Hoyos, T. N. Lan, J. Li, F. Ma, A. J. Millis, N. V. Prokof’ev, U. Ray, G. E. Scuseria, S. Sorella, E. M. Stoudenmire, Q. Sun, I. S. Tupitsyn, S. R. White, D. Zgid & S. Zhang, Towards the Solution of the Many-Electron Problem in Real Materials: Equation of State of the Hydrogen Chain with State-of-the-Art Many-Body Methods, Phys. Rev. X 7, 031059 (2017), arXiv:1705.01608, doi:10.1103/PhysRevX.7.031059",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0; source text of arXiv:1705.01608 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "-15.7023115051050 2.595130653031489E-004 (total for N = 30; second number the stated uncertainty)",
+        "note": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX, commit b99a183 (2017-10-09, uploaded by the authors), CC BY 4.0, file N_30_OBC/R_3.2/VMC_LDA_basis-TZ in sources/1705.01608-data-b99a183.tsv; number first printed in the dataset (RULES.md §8), the paper is the method reference | Hartree, lengths in bohr (Appendix B). Total energies with nuclear repulsion: FCI/STO-6G H10 at R = 1.8 is -5.42438538 in the dataset and -0.542439 per atom in Table II, and the paper's FCI E_inf = -0.471039 is the STO-6G hydrogen-atom energy per atom.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "dataset github.com/simonsfoundation/hydrogen-benchmark-PRX: file fetched fresh from raw.githubusercontent.com at commit b99a183 and at master, byte-compared with sources/1705.01608-data-b99a183.tsv (check_dataset.mjs); paper read for conventions (journal text + arXiv v2)",
+          "location": "dataset file N_30_OBC/R_3.2/VMC_LDA_basis-TZ (no finite-N value for N = 30 located in the paper's Tables I-VI; the paper prints finite-N energies for H10 only, and VMC(LDA) at the TDL in Table VI)",
+          "reported_as": "-15.7023115051050 2.595130653031489E-004 (file content: total energy in Hartree for N = 30, then its uncertainty)",
+          "conversion": "total stored as is (-15.7023115051050 Ha); eps = -15.7023115051050/30 = -0.5234103835; sigma 2.595130653031489E-004/30 = 8.650436e-6 per atom (row eps and sigma_per_site agree to 0 and <=2e-19)",
+          "note": "chain of N = 30 atoms, open (finite molecule), R = 3.2 bohr, N_up = N_dn = 15 (paper Sec. II: \"We only consider spin-unpolarized systems, with N_up = N_dn = N/2\"), continuum all-electron Hamiltonian Eq. (1) with nuclear repulsion -> basis = none (RULES 13.1); bound_type variational (RULES 13.4); peer_reviewed (PRX 7, 031059). File content totals: N = 10 files reproduce Table III per-atom values x 10, and the error column is the total-energy error (N = 10: dataset sigma/10 reproduces the printed (n)). VMC lies 2.142 mHa/atom above the same paper's LR-DMC(LDA) on this instance (variational ordering holds). No duplicate row on this instance.",
+          "secondary_of": null,
+          "source_entry": "h-motta17-vmc#39 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "model": "Heisenberg",
+  "lattice": "kagome-2x2",
+  "n_sites": 12,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/kagome-2x2_12_P",
+  "rows": [
+    {
+      "energy": -21.779500867887435,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 12,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "Exact diagonalization (Lanczos)",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization of the full cluster; deterministic, exact to the printed digits (RULES.md 4)",
+      "reference": "Lauchli, Sudan & Sorensen, Ground-state energy and spin gap of spin-1/2 kagome Heisenberg antiferromagnetic clusters: large-scale exact diagonalization results, Phys. Rev. B 83, 212401 (2011), arXiv:1103.1159",
+      "peer_reviewed": true,
+      "source": "exact-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "arXiv PDF extracted locally with pypdf in layout mode, parsed by column position and checked against the paper's own per-site column; no LLM transcription",
+        "reported_as": "Total E = -5.444875216 (S.S), cluster 12",
+        "note": "Table I, \"Cluster studied in this work\", row N = 12: basis vectors a = (2,0), b = (0,2) in units of the kagome lattice vectors a1, a2 (each of length 2a), periodic (torus). E/N = -0.453740 as printed in the table's own E/N column; Pauli total = 4 E. The (2,0),(0,2) cluster is 2 x 2 unit cells, kagome-2x2 in the VarBench naming.",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 83, 212401 (2011), sources/journal/prb83-212401.pdf, sha256 389bb52b (no Supplemental Material linked); compared with arXiv:1103.1159v2 (8 Mar 2011, latest, sha256 c77b836e); pypdf layout + plain",
+          "location": "Table I, row N = 12, basis vectors (2,0), (0,2), column 'Total E (J)'",
+          "reported_as": "–5.444 875 216 (total, J, S.S); E/N –0.453 740",
+          "conversion": "-5.444875216 x 4 = -21.779500864; stored -21.779500867887435 carries QMBL's recomputed digits where applied (ruling 2026-09-30 / A3); |stored/4 - printed| = 9.7e-10 < 1e-9",
+          "note": "Journal and arXiv v2 identical for this cluster. H = J sum<ij> Si.Sj (Eq. 1), J = 1, periodic torus with the listed basis vectors, S = 0 ground state, Lanczos ED (own computation). Only row on its instance; no duplicate.",
+          "source_entry": "JP7-j1j2-heisenberg#52"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "BlueGene/P and PKS-AIMS (MPG RZG), SHARCNET; distributed-memory CPU clusters (acknowledgements only)",
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Abstract: The extension to larger system sizes (and Hilbert space size) was made possible by a distributed memory parallelization of our ED codes. || Sec. II (ED on distributed systems): [...] the largest sectors do not fit into accessible shared memory machines anymore, such that these large system sizes are only treatable on distributed memory systems where each computational node only has a relatively small addressable memory space, typically a few giga-bytes (or less). [...] A Lanczos diagonalization proceeds by iteratively performing, N_it, matrix vector multiplications on vectors of length, M. If treating one element of the vector requires a time t, the full cpu-time for the calculation is roughly, N_it M t. [...] For the largest clusters we therefore only use very few simple symmetries. For the 42 site clusters when no lattice symmetries were used the resulting maximal Hilbert space dimension is then (42 choose 21)/2 = 269 128 937 220. || Acknowledgments: AML acknowledges support by the MPG RZG and allocation of computing time on the PKS-AIMS and the BlueGene/P machines at the MPG RZG. ESS acknowledges allocation of computing time at the Shared Hierarchical Academic Research Computing Network (SHARCNET).",
+        "source": "Abstract; Sec. II ED on distributed systems; Acknowledgments; Table I, arXiv:1103.1159 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "Large-scale Lanczos ED with distributed-memory parallelisation; the paper gives only the cost model N_it x M x t and the machines, no core count, node count, CPU-hours, wall-clock or Lanczos iteration count for any cluster. Hilbert-space dimension is stated only for the 42-site clusters, not for this 2x2 cluster. Symmetry group orders |G| per cluster are listed in Table I. Fetched as fetched/1103.1159.pdf/.txt."
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -21.779500867887435,
+          "reported_as": "-5.444875216 (total, J, S.S)",
+          "location": "Table I, row N = 12, column 'Total E (J)'",
+          "version_read": "arXiv:1103.1159v2 (8 Mar 2011; Phys. Rev. B 83, 212401 (2011)): PDF pypdf layout (sources/vp12_1103.1159v2.layout.txt); v1 PDF also extracted, Table I identical in both versions; recomputation: prior recomputation P4 work/ed.mjs (node Lanczos; value in report.md, no output file) plus this pass: ed_full2.py heis_bonds (no spatial symmetry) and ed_perm2.py (cluster space group)",
+          "conversion": "-5.444875216 x 4 = -21.779500864 (stored); recomputed S.S total -5.4448752169709, truncated to 9 decimals -5.444875216",
+          "checked_on": "2026-09-30",
+          "reason": "Rule for exact rows QMBL recomputed (2026-09-30): the printed value is QMBL's value truncated (rounding would print ...217) to the printed digits, so the row keeps its citation and carries QMBL's digits; the printed value stays here. Recomputed by ed_full2.py (full S^z = 0 space, residual 3.9e-12) and ed_perm2.py (cluster space group), 1.1e-14 apart, and P4's node Lanczos; codes and outputs in checks/exact-recompute-2026-09/.",
+          "source_entry": "VE-exact-recompute#62, VP12-heisenberg-j1j2-hubbard#45 (qmbl-verify 2026-09-29); rule for recomputed exact rows, 2026-09-30",
+          "from": -21.779500864
+        }
+      ]
+    }
+  ]
+}

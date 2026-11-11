@@ -1,0 +1,211 @@
+{
+  "model": "Heisenberg",
+  "lattice": "pyrochlore-4x4x4",
+  "n_sites": 1024,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/pyrochlore-4x4x4_1024_P",
+  "rows": [
+    {
+      "energy": -1998.857,
+      "sigma": 0.048,
+      "energy_variance": 185.53,
+      "dof": 1024,
+      "einf": 0,
+      "v_score": 0.047550014135740046,
+      "method": "VMC",
+      "ansatz": "PP",
+      "method_detail": "1 Lanczos step; projected: spin parity, C3",
+      "method_as_published": "mVMC (PP + 1st step Lanczos, spin-parity projection, C3 point-group projection)",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://arxiv.org/abs/2311.11561) [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/pyrochlore-4x4x4_1024_P/mVMC.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": 16384,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Supplemental Material Sec. I.B: To further reduce the computational cost, we impose full translational invariance on the f_ij parameters by considering a f_ij sublattice. When this sublattice contains M spins, the number of independent variational parameters f_ij is reduced to M × Ns ∼ O(Ns), whereas without assuming translational symmetry, the number of f_ij is (Ns × Ns) ∼ O(Ns^2). ... We therefore take M = 16 in simulations of the 3D pyrochlore lattice, while M = 2 × 2 × 16 = 64 for simulations of the quasi-2D super-tetrahedron square lattice (STSL). ... Sec. I.E: These parameters are optimized by the natural gradient (or equivalently stochastic reconfiguration) method [12-14] with the help of the conjugate gradient method [12, 15]. This allows us to access system sizes as large as Ns = 1024 sites by reducing memory and computational cost [2]. ... Sec. I.G: In principle, higher-power Lanczos steps are possible and will improve the energy even further, however are very costly, which is the reason why we consider only the first-step Lanczos method in this work. ... SM Sec. V: Linear extrapolation to zero variance has been done for 20 to 40 statistically independent measurements of the energy-eigenvalues from a singly optimized wave function within mVMC and mVMC-RBM, in combination with the first Lanczos step. ... Acknowledgments: This work was supported by MEXT as \"Program for Promoting Researches on the Supercomputer Fugaku\" ... and used computational resources of supercomputer Fugaku provided by the RIKEN Center for Computational Science (Project ID: hp200132, No. hp210163, and No. hp220166). Part of the computation was done using the HPC facilities provided by the Supercomputer Center of the Institute for Solid State Physics, the University of Tokyo, and computational resources of the supercomputer Fugaku provided by R-CCS through the HPCI System Research Project (Project ID: hp230169 and hp120281).",
+        "source": "Supplemental Material Secs. I.B, I.E, I.G, V (Tables SI-SIII); main-text Acknowledgments, arXiv:2311.11561 (compute pass 2026-09-16)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "parameters = 16384 is our evaluation of the stated formula M × Ns with M = 16 for the 3D pyrochlore lattice (Ns = 1024); it counts the pair-product f_ij parameters only (plus one Lanczos parameter α_L), not a number printed by the paper. No sample count for the energy evaluation, no iteration count, no wall-clock, core or node count; only Fugaku and ISSP supercomputers are named. Energies are variance-extrapolated from 20-40 independent measurements (SM Sec. V)."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "value",
+        "method": "arXiv:2311.11561v1 (only version; 34-page PDF with the Supplemental Material appended), pypdf plain + layout (sources/2311.11561v1.va5.*; the layout pass loses the SM tables to rotated text, the plain pass keeps them) and per-page search",
+        "location": "SM Table SIII (PDF p. 33), row 'mVMC/Lanczos', column 'psi+ (random)', L = 4 (Ns = 1024)",
+        "reported_as": "-0.48800(1) per site (E/Ns, S.S units); sigma^2 = 0.0000464(7) (relative variance, Eq. S26)",
+        "conversion": "-0.48800 x 4 x 1024 = -1998.848, bar 1e-5 x 4096 = 0.04096; stored -1998.857(0.048) = -0.4880022(117) per site, which prints as -0.48800(1) (0.2 printed sigma from the cell); stored variance 185.53 / 16 = 11.5956 (S.S), / (0.4880022 x 1024)^2 = 4.6436e-5 = printed 0.0000464",
+        "note": "Record row. Cubic L = 4 cluster (16 sites per cubic cell), PBC, J = 1, spin-parity-even singlet sector, C3 point-group projection (Table SIII caption: 'Optimizations were initiated from random initial wave functions with imposed C3 point-group symmetry projections'), one Lanczos step on the variational state: variational. Energy, bar and variance all agree with the printed cell to its precision, so the finer stored digits are the same evaluation as the print (first author R. Pohle's VarBench upload of 2022-02-26, never changed); kept under the 2026-09-16 ruling on the author's finer digits. Runner-up mVMC (Table SIII row 'mVMC') -1988.07552, 0.54 % higher; the E0 row -2015.6416 is extrapolated. Not a duplicate: no other row on the instance carries -0.48800. The linked VarBench input reproduces only the C3-projected optimisation (NQPTrans 3, NLanczosMode 0), not the Lanczos-step evaluation. Venue: arXiv preprint only (first author's list, 2026-09-29), older than 12 months (M10 stale-preprint).",
+        "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#20 (qmbl-verify 2026-09-29)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/pyrochlore-4x4x4_1024_P/mVMC.sh",
+        "script": "scripts/Heisenberg/pyrochlore-4x4x4_1024_P/mVMC.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [paper](https://arxiv.org/abs/2311.11561) [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/pyrochlore-4x4x4_1024_P/mVMC.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/pyrochlore-4x4x4_1024_P.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -1988.07552,
+      "sigma": 0.04096,
+      "energy_variance": 302.91533,
+      "dof": 1024,
+      "einf": 0,
+      "v_score": 0.07847936023321583,
+      "method": "VMC",
+      "ansatz": "PP",
+      "method_detail": "random initial state; projected: spin parity (even), C3",
+      "method_as_published": "mVMC (PP, spin-parity even, C3 projection), random initial state",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Ground state of the $S$=1/2 pyrochlore Heisenberg antiferromagnet: A quantum spin liquid emergent from dimensional reduction, arXiv:2311.11561",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2311.11561 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; verified 2026-09-16 by an independent second reading (arXiv versions, VarBench history)",
+        "reported_as": "−0.48537(1), sigma^2 = 0.00007664(27)",
+        "note": "Supplemental Material Table SIII of arXiv:2311.11561 (v1, the only version; pdftotext layout of the committed PDF) | E/Ns in S.S units with periodic boundaries (caption and Eq. 1); sigma^2 is the relative variance (<E^2>-<E>^2)/<E>^2 of Eq. S26, stored as energy_variance = sigma^2 x E^2 in the instance's units",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2311.11561v1 PDF (sha-identical size 19588607 B to qmbl sources/2311.11561.pdf), pypdf plain mode for SM pp. 32-33 (layout mode drops the SM table pages) plus pypdf text coordinates to assign cells to columns; main text pypdf layout+plain",
+          "location": "SM Table SIII, row 'mVMC', column 'psi+ (random)'; SM Sec. V.B quotes E/Ns = -0.48537(1) for Ns = 1024",
+          "reported_as": "-0.48537(1) per site, sigma^2 = 0.00007664(27)",
+          "conversion": "-0.48537 x 4096 = -1988.07552; sigma 0.04096; Var = 0.00007664 x 1988.07552^2 = 302.91533",
+          "note": "All fields agree; 'C3 projection' is printed for L = 4 (Table SIII caption). M10 answered: no journal version found (arXiv v1 only, no journal-ref; Crossref negative), peer_reviewed false stands; M9: the 128/432/1024-site names are the cubic 16-site-cell tori the paper uses.",
+          "source_entry": "VP11-heisenberg-hubbard-j1j2#15 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "supercomputer Fugaku (RIKEN R-CCS); part on ISSP Supercomputer Center HPC facilities (Univ. Tokyo)",
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "This work was supported by MEXT as \"Program for Promoting Researches on the Supercomputer Fugaku\" (...) and used computational resources of supercomputer Fugaku provided by the RIKEN Center for Computational Science (Project ID: hp200132, No. hp210163, and No. hp220166). Part of the computation was done using the HPC facilities provided by the Supercomputer Center of the Institute for Solid State Physics, the University of Tokyo, and computational resources of the supercomputer Fugaku provided by R-CCS through the HPCI System Research Project (Project ID: hp230169 and hp120281) || To further reduce the computational cost, we impose full translational invariance on the fij parameters by considering a fij sublattice. When this sublattice contains M spins, the number of independent variational parameters fij is reduced to M x Ns ~ O(Ns) (...) We therefore take M = 16 in simulations of the 3D pyrochlore lattice",
+        "source": "Sec. VI Acknowledgements (device); Supplemental Material Sec. I.B (fij sublattice), arXiv:2311.11561 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "low",
+        "note": "No GPU/CPU-hours, node counts or wall-clock stated anywhere; the only hardware statement is the Fugaku/ISSP acknowledgement, which does not say which runs used which machine. Parameter count not stated as a number: mVMC pair-product fij with a 16-site fij sublattice (paper: M x Ns independent fij with M = 16, plus the RBM {a_i, b_k, W_ik} for the -RBM rows; no count given), so parameters left null. Variance extrapolation (SM Sec. V.A): \"Linear extrapolation to zero variance has been done for 20 to 40 statistically independent measurements of the energy-eigenvalues from a singly optimized wave function\". Energies are Tables SI-SIII of the SM."
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "mVMC",
+            "version": null,
+            "url": "https://github.com/issp-center-dev/mVMC"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "We utilize the open source software mVMC [71-73]. ... In the present paper, we apply the state-of-the-art variational Monte Carlo method [71, 72] by employing the code of open-source software mVMC, which generates variational ground-state wave functions ... In the present work, we make full use of the open-source software named many-variable variational Monte Carlo (mVMC) ... To improve the quality of our variational wave function, we combine mVMC with a neural network, namely the restricted Boltzmann machine (RBM) [7-9].",
+          "location": "arXiv:2311.11561 (sources/2311.11561.txt), Sec. I (introduction of the method used), Appendix A; Supplemental Material Sec. I and Sec. D (Restricted Boltzmann machine); ref. [73] is https://github.com/issp-center-dev/mVMC",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -2015.6416,
+      "sigma": 0.8192,
+      "energy_variance": null,
+      "dof": 1024,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "PP",
+      "method_detail": "Lanczos steps; extrapolated: variance → 0",
+      "method_as_published": "mVMC and mVMC/Lanczos, extrapolated in the variance",
+      "family": "classic VMC",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "zero-variance or bond-dimension extrapolation; not an upper bound (assigned during source reading)",
+      "reference": "Ground state of the $S$=1/2 pyrochlore Heisenberg antiferromagnet: A quantum spin liquid emergent from dimensional reduction, arXiv:2311.11561",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2311.11561 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; verified 2026-09-16 by an independent second reading (arXiv versions, VarBench history)",
+        "reported_as": "−0.4921(2)",
+        "note": "Supplemental Material Table SIII of arXiv:2311.11561 (v1, the only version; pdftotext layout of the committed PDF) | E/Ns in S.S units with periodic boundaries (caption and Eq. 1); sigma^2 is the relative variance (<E^2>-<E>^2)/<E>^2 of Eq. S26, stored as energy_variance = sigma^2 x E^2 in the instance's units",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2311.11561v1 PDF (sha-identical size 19588607 B to qmbl sources/2311.11561.pdf), pypdf plain mode for SM pp. 32-33 (layout mode drops the SM table pages) plus pypdf text coordinates to assign cells to columns; main text pypdf layout+plain",
+          "location": "SM Table SIII bottom row E0, column 'psi+ (random)'",
+          "reported_as": "-0.4921(2) per site",
+          "conversion": "-0.4921 x 4096 = -2015.6416; sigma 0.0002 x 4096 = 0.8192",
+          "note": "Extrapolated from mVMC and mVMC/Lanczos (the only two psi+ methods in Table SIII), class correct; M3 flag is the extrapolation distance. M10 answered: no journal version found (arXiv v1 only, no journal-ref; Crossref negative), peer_reviewed false stands; M9: the 128/432/1024-site names are the cubic 16-site-cell tori the paper uses.",
+          "source_entry": "VP11-heisenberg-hubbard-j1j2#16 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "supercomputer Fugaku (RIKEN R-CCS); part on ISSP Supercomputer Center HPC facilities (Univ. Tokyo)",
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "This work was supported by MEXT as \"Program for Promoting Researches on the Supercomputer Fugaku\" (...) and used computational resources of supercomputer Fugaku provided by the RIKEN Center for Computational Science (Project ID: hp200132, No. hp210163, and No. hp220166). Part of the computation was done using the HPC facilities provided by the Supercomputer Center of the Institute for Solid State Physics, the University of Tokyo, and computational resources of the supercomputer Fugaku provided by R-CCS through the HPCI System Research Project (Project ID: hp230169 and hp120281) || To further reduce the computational cost, we impose full translational invariance on the fij parameters by considering a fij sublattice. When this sublattice contains M spins, the number of independent variational parameters fij is reduced to M x Ns ~ O(Ns) (...) We therefore take M = 16 in simulations of the 3D pyrochlore lattice",
+        "source": "Sec. VI Acknowledgements (device); Supplemental Material Sec. I.B (fij sublattice), arXiv:2311.11561 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "low",
+        "note": "No GPU/CPU-hours, node counts or wall-clock stated anywhere; the only hardware statement is the Fugaku/ISSP acknowledgement, which does not say which runs used which machine. Parameter count not stated as a number: mVMC pair-product fij with a 16-site fij sublattice (paper: M x Ns independent fij with M = 16, plus the RBM {a_i, b_k, W_ik} for the -RBM rows; no count given), so parameters left null. Variance extrapolation (SM Sec. V.A): \"Linear extrapolation to zero variance has been done for 20 to 40 statistically independent measurements of the energy-eigenvalues from a singly optimized wave function\". Energies are Tables SI-SIII of the SM."
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "mVMC",
+            "version": null,
+            "url": "https://github.com/issp-center-dev/mVMC"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "We utilize the open source software mVMC [71-73]. ... In the present paper, we apply the state-of-the-art variational Monte Carlo method [71, 72] by employing the code of open-source software mVMC, which generates variational ground-state wave functions ... In the present work, we make full use of the open-source software named many-variable variational Monte Carlo (mVMC) ... To improve the quality of our variational wave function, we combine mVMC with a neural network, namely the restricted Boltzmann machine (RBM) [7-9].",
+          "location": "arXiv:2311.11561 (sources/2311.11561.txt), Sec. I (introduction of the method used), Appendix A; Supplemental Material Sec. I and Sec. D (Restricted Boltzmann machine); ref. [73] is https://github.com/issp-center-dev/mVMC",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "citation screen of Pohle et al. 2023 (arXiv:2311.11561, pyrochlore): citing works from OpenAlex and Semantic Scholar (scripts/cited_by.mjs)",
+      "screened": [
+        "arXiv:2604.11880",
+        "arXiv:2601.07800"
+      ],
+      "found": 0,
+      "note": "8 citing works, 7 on arXiv, 7 fetched; 2 read in full, 5 excluded by a text filter (no energy to four decimals, or no QMBL model named)."
+    }
+  ]
+}

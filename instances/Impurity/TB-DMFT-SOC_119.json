@@ -1,0 +1,315 @@
+{
+  "model": "Impurity",
+  "lattice": "TB-DMFT-SOC",
+  "n_sites": 119,
+  "params": {},
+  "instance_id": "Impurity/TB-DMFT-SOC_119",
+  "rows": [
+    {
+      "energy": -1305.390226379267,
+      "sigma": null,
+      "energy_variance": 0.00004511629231274128,
+      "dof": 438,
+      "einf": -1301.701973300082,
+      "v_score": 0.0014526670473763614,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "fork tensor product states; symmetric: U(1) charge",
+      "method_as_published": "DMRG (bond dimension 310) using fork tensor product states with U(1) symmetry for charge sector",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 310,
+        "iterations": 60,
+        "reported_as": "The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. (...) The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79]. Except for the three-band model with spin-orbital coupling, which has only U(1) symmetry for the charge sector, all calculations are performed under the global U(1) symmetries for the charge and spin sectors. We first perform 30 DMRG sweeps without symmetries with a relatively low bond dimension to find the correct charge and spin sector. Then, the charge and the spin quantum numbers are fixed to be <N_alpha> and <S^z_alpha> for each spin-orbital alpha, respectively. Finally, the ground state is found by another 60 DMRG sweeps in the fixed quantum number sector with a maximum bond dimension m = 100 for single-band models and m = 350 for three-band models. || VarBench script scripts/Impurity/TB-DMFT-SOC_119.py: Nbath = 119; bondList = [310, 330, 350]; paramsDMRG = DMRGParams(maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12). || arXiv:1612.05587 (PRX 7, 031013) states costs only for its own SrVO3 three-orbital DMFT calculations with Nb = 109 bath sites per orbital: \"With the parameters mentioned above one full DMFT-cycle takes about five hours on 16 cores.\" and \"Computational resources have been provided by the Vienna Scientific Cluster (VSC). All calculations involving tensor networks were performed using the ITensor library.\"",
+        "source": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S3 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+          "reported_as": "| -1305.390226379267 | | 4.511629231274128e-05 | 438 | -1301.701973300082 | DMRG (bond dimension 310) using fork tensor product states with U(1) symmetry for charge sector | |",
+          "location": "VarBench dataset Impurity/TB-DMFT-SOC_119.md data row 1 (Zenodo v1.0.0 and v1.1.0, vendor 390a21e); varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py; HamParams/TB-DMFT-SOC_119.h5",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Who produced the number: VarBench itself. The cited PRX 7, 031013 (Bauernfeind, Zingl, Triebl, Aichhorn & Evertz, arXiv:1612.05587) is the forkTPS method paper; no ground-state energy of any system turned up in any reading of it (arXiv v1-v3 PDFs in both pypdf modes, the v3 LaTeX source and the v3 HTML; see tried_in_cited_paper), and the attribution below rests on the VarBench artefacts, not on that absence. varbench-history: 6dad457 (Xiaodong Cao, VarBench co-author, 2022-12-09, 'added data for impurity models') enters all 32 values, bit for bit as stored, with an empty 'Data Repository' cell and a 'Mean field energy' row per instance, and a README that says 'We have constructed the following models'; the cell stays empty through Zenodo v1.0.0 (2023-08-18); 2dab43d (Dian Wu, 2024-07-11, 'Update references for Impurity') writes 'TODO: ask Xiaodong' into it; 55736f0 (xiaodongcao, 2024-08-02, 'added scripts and programs link for Impurity (#18)') fills it with the PRX link and the run-script link together and adds to the README: 'The scripts used to obtain these results are available in [scripts](https://github.com/varbench/methods/tree/main/scripts/Impurity)'. varbench/methods programs/Impurity/README.md: 'This library is used to generate the Ground State Energy and Variance of quantum impurity models in this work. For detailed information on forkTPS, please refer to [Daniel's paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013).' VarBench SM S3 B 2 (arXiv:2302.04919 v1 and v2): 'The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. ... The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79].' ([78] = Bauernfeind et al.) So the paper link is a method citation, attached twenty months after the upload; the number is VarBench's reference calculation, first public in the VarBench dataset. On the 2026-09-16 hold (DECISIONS.md section 1, 'do not apply baseline or contributed changes'): that hold rested on not_found, a reading result. Here the premise is established from the artefacts, the case ruling 1a settled for the six t-V LCT-INT rows (2026-09-19: 'baseline: true, reference = the run script only'; corrections.mjs: 'The 2026-09-16 hold on baseline changes was about rows whose number could not be located; here the cited paper's content is known and the artefact exists'). Consequence: the README's Impurity table credits all 12 records to 'Bauernfeind et al. (2017)'; after the change they read 'run script, Wu et al. (2024)' like every other VarBench-computed row. The linked script TB-DMFT-SOC_119.py is the run: it sets bondList = [310, 330, 350] and HInt(u=U, j=J, up=Up, dd=False). Companion change, so the method paper stays named: scripts/method_names.mjs line 428 detail 'fork tensor product states; symmetric: U(1) charge' -> 'fork tensor product states of PRX 7, 031013; symmetric: U(1) charge', the form method_names.mjs line 72 gives the t-V rows ('...; LCT-INT of PRB 91, 235151'). RULES.md 3 keeps the source of the number out of method_detail; the method's own paper is not that source here.",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#22 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013) [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)"
+        },
+        {
+          "field": "baseline",
+          "to": true,
+          "reported_as": "VarBench 6dad457 (Xiaodong Cao, 2022-12-09, 'added data for impurity models'), Impurity/TB_DMFT_SOC_119.md: | -1305.390226379267 | | 4.511629231274128e-05 | 438 | DMRG (bond dimension 310) using fork tensor product states with U(1) symmetry for charge sector | |",
+          "location": "varbench-history 6dad457 Impurity/TB_DMFT_SOC_119.md (renamed 37648ad); Zenodo v1.0.0 (2023-08-18) Impurity/TB-DMFT-SOC_119.md with the 'Data Repository' cell empty",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Computed by VarBench, not collected (RULES.md 8.2); evidence in the reference correction on this row. emit.mjs line 49 counts a row as collected whenever its reference carries a [paper] link, so the method-paper link added on 2024-08-02 turned VarBench's own reference calculations into 'collected' rows. Ruling 1a (2026-09-19) set baseline true on the six t-V LCT-INT rows on the same kind of evidence. Eligibility does not change (RULES.md 8.2: 'A baseline row is a full citizen of the table').",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#23 (qmbl-verify 2026-09-29; skeptic upheld)"
+        },
+        {
+          "field": "compute.note",
+          "edit": [
+            "(SM statement; the single-band script also sets sweeps=60, two-site DMRG).",
+            "(SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02)."
+          ],
+          "reported_as": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py (ed31bb0): 'Nbath = 119', 'bondList = [310, 330, 350]', 'paramsDMRG = DMRGParams( maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12 )', 'S.solve(h_int=Hint, tevo=paramsTevo, params_GS=paramsDMRG, eta=0.1, calc_me=[])' (no sweep count); forkTPS python/forktps/solver.py: \"sw = kwargs.get('sweeps', 15)\"; c++/forktps/params.cpp: 'sweeps(15)'",
+          "location": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py lines 17-18, 64-66 and 80; forkTPS source (forkTPS.src.zip) python/forktps/solver.py, c++/forktps/params.cpp line 213, ForkCalculus.cpp lines 314 and 328; arXiv:2302.04919 Supplementary Materials Sec. S3 B 2",
+          "version_read": "varbench/methods at ed31bb0 (local clone); forkTPS source zip; arXiv:2302.04919 v1, v2 and the repository copy of the SM (VA2)",
+          "checked_on": "2026-09-29",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#24 (qmbl-verify 2026-09-29, ambiguous; skeptic upheld); ruling E12, 2026-10-02",
+          "conversion": "none (text field)",
+          "reason": "VarBench's SM says the ground state 'is found by another 60 DMRG sweeps'; the linked script passes no sweep count, so forkTPS runs its default 15 (VA2). Ruling E12: iterations stays 60, the statement describing the runs, with a note that the linked script runs 15.",
+          "from": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only.",
+          "to": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only."
+        },
+        {
+          "field": "compute.source",
+          "edit": [
+            "Sec. S6 B 2",
+            "Sec. S3 B 2"
+          ],
+          "reported_as": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py (ed31bb0): 'Nbath = 119', 'bondList = [310, 330, 350]', 'paramsDMRG = DMRGParams( maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12 )', 'S.solve(h_int=Hint, tevo=paramsTevo, params_GS=paramsDMRG, eta=0.1, calc_me=[])' (no sweep count); forkTPS python/forktps/solver.py: \"sw = kwargs.get('sweeps', 15)\"; c++/forktps/params.cpp: 'sweeps(15)'",
+          "location": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py lines 17-18, 64-66 and 80; forkTPS source (forkTPS.src.zip) python/forktps/solver.py, c++/forktps/params.cpp line 213, ForkCalculus.cpp lines 314 and 328; arXiv:2302.04919 Supplementary Materials Sec. S3 B 2",
+          "version_read": "varbench/methods at ed31bb0 (local clone); forkTPS source zip; arXiv:2302.04919 v1, v2 and the repository copy of the SM (VA2)",
+          "checked_on": "2026-09-29",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#24 (qmbl-verify 2026-09-29, ambiguous; skeptic upheld); ruling E12, 2026-10-02",
+          "conversion": "none (text field)",
+          "reason": "The section of arXiv:2302.04919's SM on fork tensor product states for impurity models is S3 B 2 (v1, v2 and the repository copy), not S6 B 2 (VA2).",
+          "from": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S6 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)",
+          "to": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S3 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)"
+        }
+      ],
+      "baseline": true,
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py",
+        "script": "scripts/Impurity/TB-DMFT-SOC_119.py",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+          "location": "VarBench table vendor/varbench/Impurity/TB-DMFT-SOC_119.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -1305.390229553475,
+      "sigma": null,
+      "energy_variance": 0.00003693415783345699,
+      "dof": 438,
+      "einf": -1301.701973300082,
+      "v_score": 0.0011892143371407865,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "fork tensor product states; symmetric: U(1) charge",
+      "method_as_published": "DMRG (bond dimension 330) using fork tensor product states with U(1) symmetry for charge sector",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 330,
+        "iterations": 60,
+        "reported_as": "The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. (...) The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79]. Except for the three-band model with spin-orbital coupling, which has only U(1) symmetry for the charge sector, all calculations are performed under the global U(1) symmetries for the charge and spin sectors. We first perform 30 DMRG sweeps without symmetries with a relatively low bond dimension to find the correct charge and spin sector. Then, the charge and the spin quantum numbers are fixed to be <N_alpha> and <S^z_alpha> for each spin-orbital alpha, respectively. Finally, the ground state is found by another 60 DMRG sweeps in the fixed quantum number sector with a maximum bond dimension m = 100 for single-band models and m = 350 for three-band models. || VarBench script scripts/Impurity/TB-DMFT-SOC_119.py: Nbath = 119; bondList = [310, 330, 350]; paramsDMRG = DMRGParams(maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12). || arXiv:1612.05587 (PRX 7, 031013) states costs only for its own SrVO3 three-orbital DMFT calculations with Nb = 109 bath sites per orbital: \"With the parameters mentioned above one full DMFT-cycle takes about five hours on 16 cores.\" and \"Computational resources have been provided by the Vienna Scientific Cluster (VSC). All calculations involving tensor networks were performed using the ITensor library.\"",
+        "source": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S3 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+          "reported_as": "| -1305.390229553475 | | 3.693415783345699e-05 | 438 | -1301.701973300082 | DMRG (bond dimension 330) using fork tensor product states with U(1) symmetry for charge sector | |",
+          "location": "VarBench dataset Impurity/TB-DMFT-SOC_119.md data row 2 (Zenodo v1.0.0 and v1.1.0, vendor 390a21e); varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py; HamParams/TB-DMFT-SOC_119.h5",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Who produced the number: VarBench itself. The cited PRX 7, 031013 (Bauernfeind, Zingl, Triebl, Aichhorn & Evertz, arXiv:1612.05587) is the forkTPS method paper; no ground-state energy of any system turned up in any reading of it (arXiv v1-v3 PDFs in both pypdf modes, the v3 LaTeX source and the v3 HTML; see tried_in_cited_paper), and the attribution below rests on the VarBench artefacts, not on that absence. varbench-history: 6dad457 (Xiaodong Cao, VarBench co-author, 2022-12-09, 'added data for impurity models') enters all 32 values, bit for bit as stored, with an empty 'Data Repository' cell and a 'Mean field energy' row per instance, and a README that says 'We have constructed the following models'; the cell stays empty through Zenodo v1.0.0 (2023-08-18); 2dab43d (Dian Wu, 2024-07-11, 'Update references for Impurity') writes 'TODO: ask Xiaodong' into it; 55736f0 (xiaodongcao, 2024-08-02, 'added scripts and programs link for Impurity (#18)') fills it with the PRX link and the run-script link together and adds to the README: 'The scripts used to obtain these results are available in [scripts](https://github.com/varbench/methods/tree/main/scripts/Impurity)'. varbench/methods programs/Impurity/README.md: 'This library is used to generate the Ground State Energy and Variance of quantum impurity models in this work. For detailed information on forkTPS, please refer to [Daniel's paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013).' VarBench SM S3 B 2 (arXiv:2302.04919 v1 and v2): 'The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. ... The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79].' ([78] = Bauernfeind et al.) So the paper link is a method citation, attached twenty months after the upload; the number is VarBench's reference calculation, first public in the VarBench dataset. On the 2026-09-16 hold (DECISIONS.md section 1, 'do not apply baseline or contributed changes'): that hold rested on not_found, a reading result. Here the premise is established from the artefacts, the case ruling 1a settled for the six t-V LCT-INT rows (2026-09-19: 'baseline: true, reference = the run script only'; corrections.mjs: 'The 2026-09-16 hold on baseline changes was about rows whose number could not be located; here the cited paper's content is known and the artefact exists'). Consequence: the README's Impurity table credits all 12 records to 'Bauernfeind et al. (2017)'; after the change they read 'run script, Wu et al. (2024)' like every other VarBench-computed row. The linked script TB-DMFT-SOC_119.py is the run: it sets bondList = [310, 330, 350] and HInt(u=U, j=J, up=Up, dd=False). Companion change, so the method paper stays named: scripts/method_names.mjs line 428 detail 'fork tensor product states; symmetric: U(1) charge' -> 'fork tensor product states of PRX 7, 031013; symmetric: U(1) charge', the form method_names.mjs line 72 gives the t-V rows ('...; LCT-INT of PRB 91, 235151'). RULES.md 3 keeps the source of the number out of method_detail; the method's own paper is not that source here.",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#25 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013) [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)"
+        },
+        {
+          "field": "baseline",
+          "to": true,
+          "reported_as": "VarBench 6dad457 (Xiaodong Cao, 2022-12-09, 'added data for impurity models'), Impurity/TB_DMFT_SOC_119.md: | -1305.390229553475 | | 3.693415783345699e-05 | 438 | DMRG (bond dimension 330) using fork tensor product states with U(1) symmetry for charge sector | |",
+          "location": "varbench-history 6dad457 Impurity/TB_DMFT_SOC_119.md (renamed 37648ad); Zenodo v1.0.0 (2023-08-18) Impurity/TB-DMFT-SOC_119.md with the 'Data Repository' cell empty",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Computed by VarBench, not collected (RULES.md 8.2); evidence in the reference correction on this row. emit.mjs line 49 counts a row as collected whenever its reference carries a [paper] link, so the method-paper link added on 2024-08-02 turned VarBench's own reference calculations into 'collected' rows. Ruling 1a (2026-09-19) set baseline true on the six t-V LCT-INT rows on the same kind of evidence. Eligibility does not change (RULES.md 8.2: 'A baseline row is a full citizen of the table').",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#26 (qmbl-verify 2026-09-29; skeptic upheld)"
+        },
+        {
+          "field": "compute.note",
+          "edit": [
+            "(SM statement; the single-band script also sets sweeps=60, two-site DMRG).",
+            "(SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02)."
+          ],
+          "reported_as": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py (ed31bb0): 'Nbath = 119', 'bondList = [310, 330, 350]', 'paramsDMRG = DMRGParams( maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12 )', 'S.solve(h_int=Hint, tevo=paramsTevo, params_GS=paramsDMRG, eta=0.1, calc_me=[])' (no sweep count); forkTPS python/forktps/solver.py: \"sw = kwargs.get('sweeps', 15)\"; c++/forktps/params.cpp: 'sweeps(15)'",
+          "location": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py lines 17-18, 64-66 and 80; forkTPS source (forkTPS.src.zip) python/forktps/solver.py, c++/forktps/params.cpp line 213, ForkCalculus.cpp lines 314 and 328; arXiv:2302.04919 Supplementary Materials Sec. S3 B 2",
+          "version_read": "varbench/methods at ed31bb0 (local clone); forkTPS source zip; arXiv:2302.04919 v1, v2 and the repository copy of the SM (VA2)",
+          "checked_on": "2026-09-29",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#27 (qmbl-verify 2026-09-29, ambiguous; skeptic upheld); ruling E12, 2026-10-02",
+          "conversion": "none (text field)",
+          "reason": "VarBench's SM says the ground state 'is found by another 60 DMRG sweeps'; the linked script passes no sweep count, so forkTPS runs its default 15 (VA2). Ruling E12: iterations stays 60, the statement describing the runs, with a note that the linked script runs 15.",
+          "from": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only.",
+          "to": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only."
+        },
+        {
+          "field": "compute.source",
+          "edit": [
+            "Sec. S6 B 2",
+            "Sec. S3 B 2"
+          ],
+          "reported_as": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py (ed31bb0): 'Nbath = 119', 'bondList = [310, 330, 350]', 'paramsDMRG = DMRGParams( maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12 )', 'S.solve(h_int=Hint, tevo=paramsTevo, params_GS=paramsDMRG, eta=0.1, calc_me=[])' (no sweep count); forkTPS python/forktps/solver.py: \"sw = kwargs.get('sweeps', 15)\"; c++/forktps/params.cpp: 'sweeps(15)'",
+          "location": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py lines 17-18, 64-66 and 80; forkTPS source (forkTPS.src.zip) python/forktps/solver.py, c++/forktps/params.cpp line 213, ForkCalculus.cpp lines 314 and 328; arXiv:2302.04919 Supplementary Materials Sec. S3 B 2",
+          "version_read": "varbench/methods at ed31bb0 (local clone); forkTPS source zip; arXiv:2302.04919 v1, v2 and the repository copy of the SM (VA2)",
+          "checked_on": "2026-09-29",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#27 (qmbl-verify 2026-09-29, ambiguous; skeptic upheld); ruling E12, 2026-10-02",
+          "conversion": "none (text field)",
+          "reason": "The section of arXiv:2302.04919's SM on fork tensor product states for impurity models is S3 B 2 (v1, v2 and the repository copy), not S6 B 2 (VA2).",
+          "from": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S6 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)",
+          "to": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S3 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)"
+        }
+      ],
+      "baseline": true,
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py",
+        "script": "scripts/Impurity/TB-DMFT-SOC_119.py",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+          "location": "VarBench table vendor/varbench/Impurity/TB-DMFT-SOC_119.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -1305.3902308399847,
+      "sigma": null,
+      "energy_variance": 0.00003366637974977493,
+      "dof": 438,
+      "einf": -1301.701973300082,
+      "v_score": 0.0010839969257757168,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "fork tensor product states; symmetric: U(1) charge",
+      "method_as_published": "DMRG (bond dimension 350) using fork tensor product states with U(1) symmetry for charge sector",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 350,
+        "iterations": 60,
+        "reported_as": "The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. (...) The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79]. Except for the three-band model with spin-orbital coupling, which has only U(1) symmetry for the charge sector, all calculations are performed under the global U(1) symmetries for the charge and spin sectors. We first perform 30 DMRG sweeps without symmetries with a relatively low bond dimension to find the correct charge and spin sector. Then, the charge and the spin quantum numbers are fixed to be <N_alpha> and <S^z_alpha> for each spin-orbital alpha, respectively. Finally, the ground state is found by another 60 DMRG sweeps in the fixed quantum number sector with a maximum bond dimension m = 100 for single-band models and m = 350 for three-band models. || VarBench script scripts/Impurity/TB-DMFT-SOC_119.py: Nbath = 119; bondList = [310, 330, 350]; paramsDMRG = DMRGParams(maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12). || arXiv:1612.05587 (PRX 7, 031013) states costs only for its own SrVO3 three-orbital DMFT calculations with Nb = 109 bath sites per orbital: \"With the parameters mentioned above one full DMFT-cycle takes about five hours on 16 cores.\" and \"Computational resources have been provided by the Vienna Scientific Cluster (VSC). All calculations involving tensor networks were performed using the ITensor library.\"",
+        "source": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S3 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "[code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+          "reported_as": "| -1305.3902308399847 | | 3.366637974977493e-05 | 438 | -1301.701973300082 | DMRG (bond dimension 350) using fork tensor product states with U(1) symmetry for charge sector | |",
+          "location": "VarBench dataset Impurity/TB-DMFT-SOC_119.md data row 3 (Zenodo v1.0.0 and v1.1.0, vendor 390a21e); varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py; HamParams/TB-DMFT-SOC_119.h5",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Who produced the number: VarBench itself. The cited PRX 7, 031013 (Bauernfeind, Zingl, Triebl, Aichhorn & Evertz, arXiv:1612.05587) is the forkTPS method paper; no ground-state energy of any system turned up in any reading of it (arXiv v1-v3 PDFs in both pypdf modes, the v3 LaTeX source and the v3 HTML; see tried_in_cited_paper), and the attribution below rests on the VarBench artefacts, not on that absence. varbench-history: 6dad457 (Xiaodong Cao, VarBench co-author, 2022-12-09, 'added data for impurity models') enters all 32 values, bit for bit as stored, with an empty 'Data Repository' cell and a 'Mean field energy' row per instance, and a README that says 'We have constructed the following models'; the cell stays empty through Zenodo v1.0.0 (2023-08-18); 2dab43d (Dian Wu, 2024-07-11, 'Update references for Impurity') writes 'TODO: ask Xiaodong' into it; 55736f0 (xiaodongcao, 2024-08-02, 'added scripts and programs link for Impurity (#18)') fills it with the PRX link and the run-script link together and adds to the README: 'The scripts used to obtain these results are available in [scripts](https://github.com/varbench/methods/tree/main/scripts/Impurity)'. varbench/methods programs/Impurity/README.md: 'This library is used to generate the Ground State Energy and Variance of quantum impurity models in this work. For detailed information on forkTPS, please refer to [Daniel's paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013).' VarBench SM S3 B 2 (arXiv:2302.04919 v1 and v2): 'The many-body wave function of the impurity models is parameterized by the Fork tensor product states (FTPS) [78]. ... The ground state is found in our calculations by the single-site DMRG algorithm supplied with a subspace expansion [79].' ([78] = Bauernfeind et al.) So the paper link is a method citation, attached twenty months after the upload; the number is VarBench's reference calculation, first public in the VarBench dataset. On the 2026-09-16 hold (DECISIONS.md section 1, 'do not apply baseline or contributed changes'): that hold rested on not_found, a reading result. Here the premise is established from the artefacts, the case ruling 1a settled for the six t-V LCT-INT rows (2026-09-19: 'baseline: true, reference = the run script only'; corrections.mjs: 'The 2026-09-16 hold on baseline changes was about rows whose number could not be located; here the cited paper's content is known and the artefact exists'). Consequence: the README's Impurity table credits all 12 records to 'Bauernfeind et al. (2017)'; after the change they read 'run script, Wu et al. (2024)' like every other VarBench-computed row. The linked script TB-DMFT-SOC_119.py is the run: it sets bondList = [310, 330, 350] and HInt(u=U, j=J, up=Up, dd=False). Companion change, so the method paper stays named: scripts/method_names.mjs line 428 detail 'fork tensor product states; symmetric: U(1) charge' -> 'fork tensor product states of PRX 7, 031013; symmetric: U(1) charge', the form method_names.mjs line 72 gives the t-V rows ('...; LCT-INT of PRB 91, 235151'). RULES.md 3 keeps the source of the number out of method_detail; the method's own paper is not that source here.",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#28 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.7.031013) [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)"
+        },
+        {
+          "field": "baseline",
+          "to": true,
+          "reported_as": "VarBench 6dad457 (Xiaodong Cao, 2022-12-09, 'added data for impurity models'), Impurity/TB_DMFT_SOC_119.md: | -1305.3902308399847 | | 3.366637974977493e-05 | 438 | DMRG (bond dimension 350) using fork tensor product states with U(1) symmetry for charge sector | |",
+          "location": "varbench-history 6dad457 Impurity/TB_DMFT_SOC_119.md (renamed 37648ad); Zenodo v1.0.0 (2023-08-18) Impurity/TB-DMFT-SOC_119.md with the 'Data Repository' cell empty",
+          "version_read": "Cited paper: arXiv:1612.05587 v1 (2016-12-16), v2 (2016-12-23), v3 (2017-06-14, the accepted version per OpenAlex) PDFs from the run's source cache, own pypdf extraction in plain and layout mode (r4/1612.05587v{1,2,3}.r4.*.txt, 12/13/15 pages), v3 arXiv HTML parsed with node; journal version PRX 7, 031013 (2017-07-20) not read: journals.aps.org/prx/pdf, link.aps.org/pdf and the abstract page return HTTP 403 to a scripted fetch (retried by this reader 2026-09-29). Producer: VarBench history (6dad457 ... 55736f0, git show per commit), vendor/varbench snapshot 390a21e, Zenodo VarBench dataset v1.0.0 (first version under concept doi:10.5281/zenodo.8263407, record 8263408 per the earlier reader's API check; zip varbench-varbench-6a9e6f9, entries dated 2023-08-18) and v1.1.0 (doi:10.5281/zenodo.13377360, 2024-08-27, metadata read), varbench/methods ed31bb0 (scripts/Impurity/*.py and README, programs/Impurity/README.md, forkTPS.src.zip), HamParams/*.h5 (h5py, read-only), VarBench paper arXiv:2302.04919 v1 (2023-02-09) and v2 (2024-10-22, Science 386, 296) PDFs, own pypdf extraction, SM Secs. S1 C, S2 E, S3 B 2 and Data availability. Fifth reader (retry, 2026-09-29 evening) re-read: the v3 LaTeX source Paper.tex from the arXiv .src tarball and fresh pypdf extractions of v1-v3 (r5/); VarBench SM S3 B 2 and S3 A in arXiv:2302.04919v2 (run source cache, binary-safe grep: the v2 text files contain NUL bytes); varbench-history 6dad457, abd23ae, 2eb31ed, 2dab43d, 55736f0 (git show); Zenodo v1.0.0 Impurity tables; run scripts SB-DMFT-MI-HF_9.py lines 41-52 and TB-*.py lines 17-18, 64-66, 80; forkTPS python/forktps/solver.py lines 190-200 and ForkCalculus.cpp lines 314-330; the single-band E_inf closed form re-run (r4/einf4.py, differences 0 to 1.8e-15); data/Impurity/*.json (qmbl 3876113) for duplicates. All statements of the fourth reader were confirmed; only wording about the cited paper's content was changed to reading results.",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "Computed by VarBench, not collected (RULES.md 8.2); evidence in the reference correction on this row. emit.mjs line 49 counts a row as collected whenever its reference carries a [paper] link, so the method-paper link added on 2024-08-02 turned VarBench's own reference calculations into 'collected' rows. Ruling 1a (2026-09-19) set baseline true on the six t-V LCT-INT rows on the same kind of evidence. Eligibility does not change (RULES.md 8.2: 'A baseline row is a full citizen of the table').",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#29 (qmbl-verify 2026-09-29; skeptic upheld)"
+        },
+        {
+          "field": "compute.note",
+          "edit": [
+            "(SM statement; the single-band script also sets sweeps=60, two-site DMRG).",
+            "(SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02)."
+          ],
+          "reported_as": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py (ed31bb0): 'Nbath = 119', 'bondList = [310, 330, 350]', 'paramsDMRG = DMRGParams( maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12 )', 'S.solve(h_int=Hint, tevo=paramsTevo, params_GS=paramsDMRG, eta=0.1, calc_me=[])' (no sweep count); forkTPS python/forktps/solver.py: \"sw = kwargs.get('sweeps', 15)\"; c++/forktps/params.cpp: 'sweeps(15)'",
+          "location": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py lines 17-18, 64-66 and 80; forkTPS source (forkTPS.src.zip) python/forktps/solver.py, c++/forktps/params.cpp line 213, ForkCalculus.cpp lines 314 and 328; arXiv:2302.04919 Supplementary Materials Sec. S3 B 2",
+          "version_read": "varbench/methods at ed31bb0 (local clone); forkTPS source zip; arXiv:2302.04919 v1, v2 and the repository copy of the SM (VA2)",
+          "checked_on": "2026-09-29",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#30 (qmbl-verify 2026-09-29, ambiguous; skeptic upheld); ruling E12, 2026-10-02",
+          "conversion": "none (text field)",
+          "reason": "VarBench's SM says the ground state 'is found by another 60 DMRG sweeps'; the linked script passes no sweep count, so forkTPS runs its default 15 (VA2). Ruling E12: iterations stays 60, the statement describing the runs, with a note that the linked script runs 15.",
+          "from": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only.",
+          "to": "These impurity rows are VarBench reference calculations (arXiv:2302.04919, github.com/varbench/methods/scripts/Impurity/) that cite PRX 7, 031013 only as the FTPS method paper; the PRX paper contains none of these instances. bond_dimension is the value in the row method string (the VarBench SM states the maximum m = 350 for three-band models; 310 and 330 are the other entries of the script bondList scan). iterations = 60 DMRG sweeps in the fixed quantum-number sector, after 30 preparatory sweeps without symmetries (SM statement; the single-band script also sets sweeps=60, two-site DMRG). The run script this row links sets no sweep count, so forkTPS's defaults apply: 15 sweeps of its single-site DMRG with subspace expansion ('SSImp'), after a 15-sweep sector search where the SM says 30. The 2022 runs left no log, so iterations keeps the SM's 60 (ruling E12, 2026-10-02). No hardware, core-hours or wall-clock stated for these runs; the \"five hours on 16 cores\" in PRX 7, 031013 refers to that paper's SrVO3 DMFT cycle with 109 bath sites per orbital, not to these VarBench instances. Three-band SOC model uses U(1) charge symmetry only."
+        },
+        {
+          "field": "compute.source",
+          "edit": [
+            "Sec. S6 B 2",
+            "Sec. S3 B 2"
+          ],
+          "reported_as": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py (ed31bb0): 'Nbath = 119', 'bondList = [310, 330, 350]', 'paramsDMRG = DMRGParams( maxmI=bond, maxmIB=bond, maxmB=bond, twI=1e-12, twIB=1e-12, twB=1e-12 )', 'S.solve(h_int=Hint, tevo=paramsTevo, params_GS=paramsDMRG, eta=0.1, calc_me=[])' (no sweep count); forkTPS python/forktps/solver.py: \"sw = kwargs.get('sweeps', 15)\"; c++/forktps/params.cpp: 'sweeps(15)'",
+          "location": "varbench/methods scripts/Impurity/TB-DMFT-SOC_119.py lines 17-18, 64-66 and 80; forkTPS source (forkTPS.src.zip) python/forktps/solver.py, c++/forktps/params.cpp line 213, ForkCalculus.cpp lines 314 and 328; arXiv:2302.04919 Supplementary Materials Sec. S3 B 2",
+          "version_read": "varbench/methods at ed31bb0 (local clone); forkTPS source zip; arXiv:2302.04919 v1, v2 and the repository copy of the SM (VA2)",
+          "checked_on": "2026-09-29",
+          "source_entry": "VA2-10-1103-physrevx-7-031013#30 (qmbl-verify 2026-09-29, ambiguous; skeptic upheld); ruling E12, 2026-10-02",
+          "conversion": "none (text field)",
+          "reason": "The section of arXiv:2302.04919's SM on fork tensor product states for impurity models is S3 B 2 (v1, v2 and the repository copy), not S6 B 2 (VA2).",
+          "from": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S6 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)",
+          "to": "arXiv:2302.04919 (VarBench) Supplementary Materials, Sec. S3 B 2 \"Fork tensor product states for impurity models\"; VarBench methods repository script named in the row reference (fetched/s2_varbench_*.py); arXiv:1612.05587 Sec. III and Acknowledgments (own-paper cost, not this row), arXiv:1612.05587 (compute pass 2026-09-16)"
+        }
+      ],
+      "baseline": true,
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py",
+        "script": "scripts/Impurity/TB-DMFT-SOC_119.py",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Impurity/TB-DMFT-SOC_119.py)",
+          "location": "VarBench table vendor/varbench/Impurity/TB-DMFT-SOC_119.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    }
+  ]
+}

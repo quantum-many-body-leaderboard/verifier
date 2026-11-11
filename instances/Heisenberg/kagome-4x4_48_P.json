@@ -1,0 +1,288 @@
+{
+  "model": "Heisenberg",
+  "lattice": "kagome-4x4",
+  "n_sites": 48,
+  "boundary": "P",
+  "params": {},
+  "cluster": "rhombic torus of 4 x 4 three-site unit cells, edge vectors 4 a1 and 4 a2 (a1, a2 the triangular Bravais vectors, 60 degrees apart). Defined by VarBench's Gutzwiller run input (a 6-site supercell repeated '2 0 0 4') and by arXiv:2401.02866 ('4x4x3', periodic), whose ED reference equals this instance's exact row. For arXiv:1205.4858 inferred, not printed: Table I labels the cluster 'Torus 4' and Fig. 8 draws the DMRG path, but no edge vectors are given; its tori have N = 3 L^2 sites, and its 'Torus 3' energy equals the 27-site exact energy it is compared with (2026-10-27)",
+  "instance_id": "Heisenberg/kagome-4x4_48_P",
+  "rows": [
+    {
+      "energy": -84.231148254,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 48,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "Exact Diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[paper](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.033309)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "Hydra (Max Planck Supercomputing & Data Facility, Garching): nodes with 20-core Intel Ivy Bridge 2.8 GHz processors, InfiniBand FDR",
+        "n_devices": 10240,
+        "samples": null,
+        "wall_clock": "258 s per matrix-vector multiplication",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Table I column \"Kagome 48\": computer Hydra; point group D6; No. of symmetries 384; dimension 8.4e10; No. of cores 10240; total memory n.A.; memory lookup 604 MB; Time / MVM 258 s; % comm. time 48%; g.s. sector Gamma.A1.even; g.s. energy -21.0577870635. || TABLE I: Benchmark results for various problems on three different supercomputer systems described in the main text. The employed symmetries include translational, point group and spinflip symmetry. We show the total memory used by all MPI processes and the memory used by the lookup tables for the sublattice coding technique. We also show the amount of time spent for communication. || The benchmarks were performed on three different supercomputers. The Vienna Scientific Cluster VSC3 is built up from over 2020 nodes with two Intel Xeon E5-2650v2, 2.6 GHz, 8 core processors, the supercomputer Hydra at the Max Planck Supercomputing & Data Facility in Garching with over 3500 nodes with 20 core Intel Ivy Bridge 2.8 GHz processors and the System B Sekirei at the Institute for Solid State Physics of the University of Tokyo with over 1584 nodes with two Intel Xeon E5-2680v3 12 core 2.5GHz processors. Both the Hydra and Sekirei use InfiniBand FDR interconnect, whereas the VSC3 uses Intel TrueScale Infiniband for network communication.",
+        "source": "Sec. V Benchmarks, Table I (arXiv:1804.05028v2 = Phys. Rev. E 98, 033309); machine descriptions in Sec. V text, arXiv:1804.05028 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "n_devices = number of CPU cores (10240) used for the Lanczos run on Hydra; wall_clock is the stated time for ONE Hamiltonian matrix-vector multiplication (258 s), not the total run time; the number of Lanczos iterations is not stated, so total time and core-hours cannot be given. Total memory n.A. (not available in the table); Hilbert-space dimension 8.4e10 in the symmetry-adapted basis (384 symmetries). This is the calculation VarBench imported as the exact reference for this instance (row reference PRE 98, 033309)."
+      },
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "g.s. energy -21.0577870635 (total, H = J sum_<i,j> S_i.S_j, J = 1, Eq. (44)); g.s. sector Gamma.A1.even",
+          "location": "Table I, column 'Kagome 48', row 'g.s. energy'",
+          "version_read": "arXiv:1804.05028v2 PDF, pypdf layout mode (identical cell in v1); e-print of v1 (pics/benchmarks/plot_lattice.py, Fig. 5 SVGs); journal Phys. Rev. E 98, 033309 (2018) not read (APS), v2 postdates publication",
+          "conversion": "4 x -21.0577870635 = -84.2311482540 (S.S -> Pauli, RULES §5); stored -84.231148254; E/N = -0.4387038972",
+          "checked_on": "2026-09-29",
+          "reason": "Value, cluster, sector and bound_type verified (scope value); the cited paper is peer reviewed (Phys. Rev. E 98, 033309 (2018)) and the imported row carries no peer_reviewed field.",
+          "source_entry": "VA4-hubbard-tv-heisenberg#85 (qmbl-verify 2026-09-29; skeptic upheld)"
+        },
+        {
+          "field": "sigma",
+          "to": null,
+          "reported_as": "VarBench Heisenberg/kagome-4x4_48_P.md: '-84.2311482540 | 4e-10 |  | 48 | 0 | Exact Diagonalization' (energy | Sigma | variance | DOF | Einf | method)",
+          "location": "VarBench Heisenberg/kagome-4x4_48_P.md (unchanged since the file rename 37648ad, 2023-01-30; vendored snapshot 390a21e)",
+          "version_read": "VarBench git history (qmbl-runs/qmbl-verify/varbench-history)",
+          "conversion": "none",
+          "checked_on": "2026-10-03",
+          "reason": "RULES.md 6 (rule E3, 2026-10-02): a deterministic energy needs no sigma. The 4e-10 is VarBench's Sigma column on Wietek & Läuchli, Phys. Rev. E 98, 033309 (2018)'s exact diagonalization, defined nowhere; with it the README printed this exact record with a bracket at twelve decimals, beyond the deposited digits. Exact records are printed to the stored digits. Ruling L1 (2026-10-03).",
+          "source_entry": "qmbl-verify 2026-09-29, handoff item 3, L1 (the E3 rule beyond the ruled entries); ruling L1, 2026-10-03",
+          "from": 4e-10
+        }
+      ],
+      "peer_reviewed": true,
+      "verified": {
+        "checked_on": "2026-10-15",
+        "scope": "value",
+        "method": "published PDF Phys. Rev. E 98, 033309 (2018), sources/journal/pre98-033309.pdf, sha256 e8e3383f, pypdf layout; arXiv:1804.05028v2 compared (sources/arxiv/1804.05028v2.pdf, its Table I 'g.s. energy' row identical)",
+        "location": "Table I (p. 8), column 'Kagome 48', row 'Ground state energy'",
+        "reported_as": "-21.057 787 063 5 (S.S total, J = 1); sector Gamma.A1.even",
+        "conversion": "-21.0577870635 x 4 = -84.231148254",
+        "note": "H = J sum S_i . S_j, J = 1 (Eq. 44), energies in units of J ('The energy is given in units of the nearest neighbor coupling constant J = 1'), S.S total; stored Pauli total = 4 x printed. Own ED (Lanczos with sublattice coding). Uploaded to VarBench by the first author (1fa8a1c, A. Wietek, 2022-02-11). sigma null for exact (corrected). peer_reviewed true. Cluster: 48-site kagome with full D6 point group (Fig. 5; VarBench's original file name kagome_sqrt48_PP_48, renamed kagome-4x4_48_P). The paper says the value 'has been previously computed [14] with a specialized code and agrees with our results' ([14] = Lauchli, Sudan & Moessner, arXiv:1611.06990): an own recomputation, so this paper is a primary source. No duplicate (the instance's other rows are variational/extrapolated).",
+        "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#48",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -82.643,
+      "sigma": 0.005,
+      "energy_variance": 10.6,
+      "dof": 48,
+      "einf": 0,
+      "v_score": 0.07449634312700791,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "Dirac spin liquid + Jastrow",
+      "method_as_published": "VMC with Dirac spin liquid + Jastrow",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 12,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller_inputs/VMC.in: \"&montecarlo itestr=2 iseed=121 iopt=1 iread=0 nw=1 ngen=500000 nscra=50 / &vmc nbra=200 /\" || scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller_inputs/datprep.in: \"&rangeham ioptPH=-1 irange=1 / &nelectrons nelup=24 neldo=24 / &wavefunction ieskin=2 iesspin=8 /\" || programs/vmc_gutzwiller/monte_carlo_tj.f: \"np=iesspin+iesdens+2*iesBCS+2*ieskin+iesmu+2*iesonsite+iesaf\" (\"the factor 2 is due to the fact that there are real and imaginary parts\"), \"c     itestr=2 VMC\", \"c     itestr=-2 Full Minimizator\" || README: \"Bash scripts to reproduce results in the dataset are collected in the \\\"scripts\\\" folder, together with the input files containing the optimal variational parameters.\"",
+        "source": "run script and inputs, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller.sh, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller_inputs/VMC.in, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller_inputs/datprep.in, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_gutzwiller/monte_carlo_tj.f, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_gutzwiller/README (compute pass 2026-09-24)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters evaluated with the code's own count: iesspin=8 + 2*ieskin=2 = 12 (vjspin 8 (8 nonzero), dek_r 2 (2 nonzero), dek_i 2 (0 nonzero); 10 of the stated values are nonzero; entries stated as exactly 0 or 1 may be fixed by symmetry or normalisation, but the code sizes its SR matrix, np + 1, with all of them). Samples and iterations of the optimisation are not in any source: the script is a measurement run (itestr=2) of stored optimal parameters, 500000 generations of 200 Metropolis proposals (a random site and a random neighbour within the coupling range) each on 1 walker, one energy measurement per generation, full recomputation every 50 generations (vmc_schedule). The optimiser exists in monte_carlo_tj.f (itestr=-2, namelist &optimization nweight/ibinit/tau), but the script leaves &optimization empty. Searched: the script, all four input files, programs/vmc_gutzwiller README and sources, VarBench SM (arXiv:2302.04919 Sec. S3 C, general VMC description, no step counts), the dataset history (value entered 7b68237, 2022-02-14, Francesco Ferrari; script added to methods c2c3222, 2024-07-30). The method string names no paper, so no paper-specific optimisation protocol can be attached. No device or time is recorded."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/kagome-4x4_48_P.md (snapshot 390a21e), row 'VMC with Dirac spin liquid + Jastrow'; linked scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller.sh",
+        "reported_as": "| -82.643 | 0.005 | 10.6 | 48 | 0 | VMC with Dirac spin liquid + Jastrow | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller.sh) |",
+        "conversion": "stored = 4N x <H>/N of read_ene.x (S.S per site), sigma x 4N, variance 16 Var_S(H); per site S.S = -82.643/(4 x 48) = -0.4304323",
+        "note": "vmc_gutzwiller inputs: geometry.d 6-site supercell (two kagome cells, lattice constant 2, 60 degrees) x '2 0 0 4' = 4x4 kagome cells = 48 sites on a periodic spin torus (the '1 0' flags only set antiperiodic auxiliary fermions); nelup = neldo = 24 (Sz = 0); jperp = 1, uvv = 0.25 (H = sum S.S); Dirac spin liquid fluxes (wf.in 180-degree phases) + spin Jastrow (iesspin=8); binned error (sigma/sqrt(Var/2^20) = 1.57). Stored = 4N x <H>/N. 1.588 above the instance's ED -84.2311482540 (1.9%). Entered 7b68237 (2022-02-14, F. Ferrari), never changed; linked by Ferrari d186176 (2024-07-30).",
+        "source_entry": "VB3-varbench-code-heisenberg#24 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller.sh",
+        "script": "scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-4x4_48_P/vmc_gutzwiller.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/kagome-4x4_48_P.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -84,
+      "sigma": 0.04,
+      "energy_variance": null,
+      "dof": 48,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "GCNN",
+      "method_detail": "6 layers, 6 feature maps; symmetric: unspecified",
+      "method_as_published": "GCNN (6 layers, 6 feature maps), symmetric ansatz",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Ðurić, Chung, Yang & Sengupta, Spin-1/2 Kagome Heisenberg Antiferromagnet: Machine Learning Discovery of the Spinon Pair-Density-Wave Ground State, Phys. Rev. X 15, 011047 (2025), arXiv:2401.02866",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF text extracted locally with pypdf, no LLM transcription",
+        "reported_as": "-0.4375 per site in S.S units",
+        "note": "Sec. III: \"R = (E_GCNN - E_ED)/E_ED ~ 0.3% with E_ED = -21.057787063 and E_GCNN = -21.00 +/- 0.01\" on the 48-site (4x4x3) PBC cluster, chi0 sector. Total energy in S.S units; E/N = -0.4375. The instance's existing exact row is -0.4387039, i.e. -21.057787063/48 to 8 digits, which confirms the cluster and the convention. Sampling here is the ergodic spin-exchange update, so the objection in arXiv:2605.28861 does not apply to this size.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2401.02866v2 (9 Mar 2025, the PRX text; latest), PDF extracted locally with pypdf layout mode (sources/vp15_2401.02866.layout.clean.txt) and page 6 (Fig. 4) viewed as an image",
+          "location": "Sec. III (48-site paragraph) and Fig. 4",
+          "reported_as": "E_GCNN χ0 = −21.00 ± 0.01 (total, units of J, S.S)",
+          "conversion": "-21.00 x 4 = -84.00; sigma 0.01 x 4 = 0.04 (Pauli totals; both agree)",
+          "note": "Record row, read hardest: 4x4x3 PBC = kagome-4x4_48_P (the quoted ED -21.057787063 x 4 = QMBL's exact -84.231148254); S^z = 0, Gamma chi0, P_Z2 = +1, ergodic two-site exchange sampler (the non-ergodicity objection of arXiv:2605.28861 concerns the 108-site single-flip runs); variational; own number, 0.27% above ED. C6/C7: the value is the converged level of the SR training trace plotted in Fig. 4 (about 30,000 iterations), no separate final evaluation and no definition of '± 0.01' are given; the bar reads as the trace's fluctuation, larger than a standard error, so it cannot manufacture a record. It is the best variational row by far (next: VarBench's DSL VMC -82.643). No duplicate.",
+          "source_entry": "VP15-hubbard-j1j2-heisenberg#49 (qmbl-verify 2026-09-29)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. X 15, 011047 (2025), doi:10.1103/PhysRevX.15.011047, sources/journal/prx15-011047.pdf, sha256 66682815 (APS, ETH network; no Supplemental Material linked); arXiv:2401.02866v2 compared: no number differs; pypdf layout and plain mode",
+          "location": "Sec. III, 48-site paragraph (journal p. 6)",
+          "reported_as": "E_GCNN chi00 = -21.00 +/- 0.01 (total, S.S units, J = 1), with E_ED chi00 = -21.057787063",
+          "conversion": "-21.00 x 4 = -84.00; sigma 0.01 x 4 = 0.04",
+          "note": "4 x 4 x 3 cluster with periodic boundary conditions; GCNN with six layers and six features per layer; S^z = 0 sector (two-site exchange sampler); quoted ED x 4 = QMBL exact -84.231148254. Journal text identical to arXiv v2. Own number, variational; the +/- 0.01 is not defined (read as training-trace fluctuation, earlier reading). No duplicate.",
+          "source_entry": "JP8-j1j2-hubbard-heisenberg#58"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 4096,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Sec. II (end): Within the optimization procedure we take relatively large learning rate (imaginary time step) Delta tau = 0.05 in Eq. (5) and N_s = 2^12 or 2^13 Monte Carlo samples in each training step for the clusters with 48 and 108 lattice sites respectively. The number of samples is taken to be the maximum number allowed by the available GPU memory restrictions, since training with more samples helps the GCNN ansatz to learn the wave function representations that have better generalization properties [...] In our calculations epsilon_1 and epsilon_2 values are taken to be epsilon_1 = 0.001 and epsilon_2 = 0.001. || Sec. II: Our calculations have been performed with GCNN ansaetze having 6 layers and 6 feature maps in each layer for the kagome lattice cluster with 48 lattice sites and GCNN ansaetze having 4 layers and 4 feature maps in each layer for the kagome lattice cluster with 108 lattice sites. || Sec. I: Our numerical calculations were performed using computational speedup on GPUs and NetKet, JAX, FLAX, and OPTAX libraries. || Acknowledgments: This work was supported by the Google cloud research credits academic research grant [...] We would also like to acknowledge the NTU High Performance Computing Centre for providing computing resources, facilities, and services that have contributed to this work.",
+        "source": "Sec. II (Methods: GCNN architecture paragraph and optimization paragraph), Sec. I, Acknowledgments, Fig. 4 / Fig. 5 captions, arXiv:2401.02866 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "samples = N_s = 2^12 = 4096 Monte Carlo samples per training step, stated for the 48-site cluster (chosen as the maximum allowed by GPU memory). Architecture: GCNN, 6 layers x 6 complex feature maps, symmetrized over space group (translations x D6) and Z2 spin parity; no parameter count given. GPUs used (Google Cloud credits, NTU HPC Centre) but no GPU model, count, run time or GPU-hours stated. Number of SR training steps only visible as the x-axis of Fig. 4, no number in text. Delta tau = 0.05, QGT regularisation eps1 = eps2 = 0.001."
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "NetKet",
+            "version": null,
+            "url": "https://www.netket.org/"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Our numerical calculations were performed using computational speedup on GPUs and NetKet,65,66 JAX,120 FLAX,121 and OPTAX122 libraries.",
+          "location": "arXiv:2401.02866 (sources/2401.02866.txt), Introduction, paragraph stating the work done in this paper",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -84.1536,
+      "sigma": 0.0384,
+      "energy_variance": null,
+      "dof": 48,
+      "einf": 0,
+      "v_score": null,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "extrapolated: truncation error → 0",
+      "method_as_published": "DMRG, truncation-error extrapolated (Torus 4)",
+      "family": "tensor network",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Depenbrock, McCulloch & Schollwoeck, Nature of the Spin Liquid Ground State of the S=1/2 Heisenberg Model on the Kagome Lattice, Phys. Rev. Lett. 109, 067201 (2012), arXiv:1205.4858",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF text extracted locally with pypdf, no LLM transcription",
+        "reported_as": "-0.4383 per site in S.S units",
+        "note": "Table I row \"Torus 4 -0.4383(2)\". The paper states energies are \"extrapolated in the truncation error of single-site DMRG\", so this is not a strict variational bound (RULES.md 4). Sits above the exact -0.4387039 on this instance.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:1205.4858v2 (14 Aug 2012, latest; PDF stamp 'arXiv:1205.4858v2'), PDF text extracted locally with pypdf layout mode (sources/vp15_1205.4858.layout.clean.txt); journal version Phys. Rev. Lett. 109, 067201 (2012) not read",
+          "location": "Table I, row 'Torus 4', column E/N",
+          "reported_as": "−0.4383(2) per site (E/N), units of J, S.S; gap 0.151",
+          "conversion": "-0.4383 x 4 x 48 = -84.1536; sigma 2e-4 x 192 = 0.0384 (both agree)",
+          "note": "4 x 4 x 3 = 48-site torus = kagome-4x4_48_P (C3); bound_type extrapolated is right (truncation-error extrapolation, C6). M6 settled: the (2) is the extrapolation uncertainty ('Errors are from extrapolation'), not a Monte Carlo error; on an extrapolated row it is informational and changes no eligibility. The value sits 4.0e-4 per site (2.0 of its bars) above the instance's ED -0.43870390, as an extrapolation may. Own number; the same table's 'E earlier' -0.43591 for this torus is Jiang, Weng & Sheng's (quoted, not in QMBL). No duplicate on the instance (rows: ED, VarBench DSL VMC, Ðurić GCNN, this).",
+          "source_entry": "VP15-hubbard-j1j2-heisenberg#47 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. Lett. 109, 067201 (2012), sources/journal/prl109-067201.pdf, sha256 80049032, and EPAPS supplement prl109-067201-supp.pdf (KagomePaper_EPAPS.pdf), sha256 83020790 (journals.aps.org, node fetch); compared with arXiv:1205.4858v2: Table I torus rows identical; pypdf plain",
+          "location": "Table I, row Torus 4",
+          "reported_as": "Torus 4 −0.4383(2) 0.151",
+          "conversion": "-0.4383 x 192 = -84.1536; sigma 2e-4 x 192 = 0.0384",
+          "note": "RECORD-flagged row (the instance also carries an exact ED -0.438704/site from PRE 98, 033309; this value sits 2 sigma above it, consistent). Journal = arXiv v2. bound_type extrapolated correct; S.S per-site convention (Torus 3 row equals the 27-site exact -0.436 278 of ref. [47]). Reference title differs from the journal only by the hyphen in 'Spin-Liquid' (Crossref: 'Nature of the Spin-Liquid Ground State of the S=1/2 Heisenberg Model on the Kagome Lattice'); not worth a correction unless titles are normalised. No duplicate on the instance.",
+          "source_entry": "JP11-j1j2-heisenberg-hubbard#61"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 16000,
+        "iterations": null,
+        "reported_as": "Exploiting SU(2) spin symmetry, which allows us to keep up to 16 000 DMRG states, we consider cylinders with circumferences up to 17 lattice spacings [...] Instead of earlier Abelian U(1) DMRG with up to 8 000 ansatz states, we employ non-Abelian SU(2) DMRG [68, 69] based on irreducible representations corresponding to 16 000 ansatz states in a U(1) approach. [...] we also consider tori of up to 108 sites. [...] Energies for cylinders of fixed c and L are extrapolated in the truncation error of single-site DMRG [70] [...] At 16 000 states, DMRG is highly accurate [...] In the case of tori, which we considered mainly for reference purposes, only a single path was retained (Fig. 8).",
+        "source": "Abstract; main text 'Energies' paragraph (p. 2); Table I (Torus rows); Supplementary 'Mapping two-dimensional kagome lattices to one-dimensional chains', arXiv:1205.4858 (compute pass 2026-09-16)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "bond_dimension = 16 000 is the paper-wide maximum ('up to 16 000 DMRG states', SU(2) irreps 'corresponding to 16 000 ansatz states in a U(1) approach'); the number of states kept for the torus calculations specifically is not stated. Torus energies in Table I are 'truncation-error extrapolated'. No CPU hours, core count, wall-clock, machine or sweep count is stated anywhere; acknowledgments list only funding (DFG, ARC)."
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2512.21503"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ]
+}

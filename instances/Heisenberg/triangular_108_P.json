@@ -1,0 +1,178 @@
+{
+  "model": "Heisenberg",
+  "lattice": "triangular",
+  "n_sites": 108,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/triangular_108_P",
+  "rows": [
+    {
+      "energy": -238.9608,
+      "sigma": 0.01296,
+      "energy_variance": null,
+      "dof": 108,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "GCNN",
+      "method_detail": "",
+      "method_as_published": "GCNN (deep group-equivariant CNN)",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Roth, Szabo & MacDonald, High-accuracy variational Monte Carlo for frustrated magnets with deep neural networks, Phys. Rev. B 108, 054410 (2023), arXiv:2211.07749",
+      "peer_reviewed": true,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF extracted locally with pypdf in layout mode, no LLM transcription",
+        "reported_as": "-0.55315 (+/- 0.00003) per site in S.S units",
+        "note": "Read from Table III of arXiv:2211.07749 (J1-J2 triangular lattice, periodic, energies in units of J1 per spin, i.e. the S.S per-site convention), extracted from the PDF with pypdf in layout mode so the column positions are unambiguous. Row J2/J1 = 0, N = 108.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv PDF sources/2211.07749v2.pdf extracted locally with pypdf, layout mode (2211.07749v2.vp10.layout.txt) and plain mode (2211.07749v2.vp10.plain.txt); both modes give the same cells, and the em dash of a missing entry is distinct from the minus sign in both",
+          "location": "Table III (p. 7), \"Optimised ground-state energies (in units of J1/spin) ... for the J1−J2 triangular-lattice Heisenberg model\", row J2/J1 = 0, N = 108, column \"GCNN\"",
+          "reported_as": "−0.55315(3) per site (units of J1/spin, S.S)",
+          "conversion": "-0.55315 x 4 x 108 = -238.9608; sigma 0.00003 x 432 = 0.01296",
+          "note": "Record row, read hardest. Energy, sigma (3e-5 per site, printed (3)), J2 = 0, periodic, variational (plain GCNN, 8 layers of 6 feature maps, 4096 samples, ~2000 steps; Sec. IV) all agree. Kochkov et al.'s Graph NN −0.5519(4) sits in the same row (the runner-up, 0.23 % higher, flag M11 settled from the source). Cluster vectors are not printed; Table IV names the irreps K.A1−, M.A1− and Γ.E2+ on the 108-site cluster, which requires the full C6v space group, and among 108-site triangular tori only the (6,6) cluster (N = 3·6²) has it. The instance was created from this paper and is the only 108-site triangular instance. No duplicate on the instance (the only other row is the Graph NN quote).",
+          "source_entry": "VP10-heisenberg-j1j2#20 (qmbl-verify 2026-09-29)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. B 108, 054410 (2023), sources/journal/prb108-054410.pdf, sha256 62c13865 (pypdf layout + plain); APS abstract page lists no Supplemental Material; compared with arXiv:2211.07749v2 (qmbl/sources/2211.07749.txt/.pdf): every cell of Tables I and III identical",
+          "location": "Table III (p. 054410-7), 'Optimized ground-state energies (in units of J1/spin) ... J1-J2 triangular-lattice', row J2/J1 = 0, N = 108, column GCNN",
+          "reported_as": "−0.55315(3) per site, units of J1/spin (S.S)",
+          "conversion": "-0.55315 x 432 = -238.9608; sigma 0.00003 x 432 = 0.01296",
+          "note": "Record row, read hardest. J2 = 0, periodic, plain GCNN (no Lanczos column entry at J2 = 0), own computation (Sec. IV). Runner-up in the same row is GraphNN [68] -0.5519(4), stored separately as Kochkov's GNN-2. Energy, sigma, size, boundary, couplings and bound_type agree with the source; no other row on the instance carries the same number from this or a quoted paper.",
+          "source_entry": "JP9-heisenberg-j1j2-hubbard#0"
+        }
+      },
+      "compute": {
+        "parameters": 115074,
+        "gpu_hours": null,
+        "device": "NVIDIA A100",
+        "n_devices": 1,
+        "samples": 4096,
+        "wall_clock": "4 days",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 2000,
+        "reported_as": "For the 36-site simulations, as well as the 108-site simulation at J2 = 0, the plain GCNN introduced in Sec. II A was able to find accurate ground and excited states. We used 4096 Monte Carlo samples and GCNNs with 4 (8) layers of 6 feature maps each for the 36- (108-) site simulations. We trained the 36-site models for 12 hours (approx. 1500 steps) and the 108-site model for 4 days (approx. 2000 steps). All simulations were carried out on a single NVIDIA A100 GPU. || Sec. II A: All GCNN ansätze used in this work have a fixed number of feature maps in every layer, connected by real-valued kernels K, W. In most cases, we restrict the embedding kernels K to the local clusters shown in Fig. 1. We also impose locality on the convolutional kernels W: these are only nonzero for g = t p, where p is a point-group symmetry that leaves the origin in place, and t is a translation by a lattice vector indicated in Fig. 1. || FIG. 1. Arrangement of nonzero kernel entries for the square (left) and triangular (centre) lattices. The cross indicates the origin of the lattice and/or pure point-group symmetries. [figure, counted: triangular 3+4+5+4+3 = 19 entries, square 1+3+5+3+1 = 13 entries, cross included] || Sec. II A: The largest symmetry group for which (1b) is applicable in this basis is the direct product of the space group of the lattice and the Z2 spin parity group generated by P = prod_i sigma^x_i [42]. Irreps of this group are specified by the eigenvalue of P = ±1 and an irrep of the space group. || Sec. I: group-convolutional neural networks (GCNNs) [30,32], which allow us to impose the full space-group symmetry of the problem on the wave functions. || Sec. II A: In the output layer, we combine pairs of feature maps into complex-valued features, exponentiate them, and project the result on the desired irrep || Acknowledgments: Simulations were performed using the NetKet [24] library. || NetKet v3.8 netket/nn/symmetric_linear.py L113/L228/L348: kernel_params = self.param(\"kernel\", self.kernel_init, (self.features, in_features, len(self.kernel_indices)), self.param_dtype); L161/L292: use_bias: bool = True; L219/L339: \"bias\", self.bias_init, (self.features,) || NetKet v3.8 netket/models/equivariant.py L377-L391 (GCNN_Parity_FFT): self.equivariant_layers_flip = [DenseEquivariantFFT(... use_bias=self.extra_bias and self.use_bias, ... mask=self.hidden_mask) for layer in range(self.layers - 1)]; L322: extra_bias: bool = False || NetKet v3.8 test/models/test_gcnn.py L101-L140 test_gcnn_mask: assert vstate1.n_parameters - vstate2.n_parameters == 4; assert vstate1.n_parameters - vstate3.n_parameters == 16 || v1 (arXiv:2211.07749v1 https://arxiv.org/pdf/2211.07749v1 (route2a-fetched/2211.07749v1.pdf)) Sec. IV: The simulations is this section were performed using GCNNs with 6 features per layer, 4 (8) layers and 8192 (4096) samples per SR iteration for the 36- (108-)site simulations.",
+        "source": "Sec. IV (triangular lattice, first paragraph); Sec. II C (single A100), arXiv:2211.07749 (compute pass 2026-09-16) || arXiv:2211.07749v2 (22 May 2023, dated May 24 2023; local qmbl/sources/2211.07749.pdf) Sec. I, Sec. II A, Fig. 1, Acknowledgments; NetKet v3.8 (c4f9c0cc, 2023-05-08, last release before v2; mask-only parameters since PR #1387 = 9a8bdad0, 2022-11-28, first released in v3.7): https://github.com/netket/netket/blob/c4f9c0cc1d86caa16eedd6d80fb33c06cee32744/netket/nn/symmetric_linear.py#L113 , https://github.com/netket/netket/blob/c4f9c0cc1d86caa16eedd6d80fb33c06cee32744/netket/models/equivariant.py#L377-L391 , https://github.com/netket/netket/blob/c4f9c0cc1d86caa16eedd6d80fb33c06cee32744/test/models/test_gcnn.py#L101-L140 ; arXiv:2211.07749v1 https://arxiv.org/pdf/2211.07749v1 (route2a-fetched/2211.07749v1.pdf) Sec. IV (compute pass 2026-09-24)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Plain GCNN with 8 layers of 6 feature maps for the 108-site J2 = 0 cluster; parameter count not stated. Steps are \"approx. 2000\". GPU-hours not stated for this run (only the wall-clock on one A100). || parameters = 115074 evaluated (8-layer plain GCNN, 108-site triangular, point group C6v order 12): NetKet GCNN with spin parity and input/hidden masks = embedding F*n_in + F bias + (L-1) equivariant layers (F^2*n_h + F bias) + (L-1) parity-flip layers (F^2*n_h, no bias, extra_bias=False default) with F = 6 feature maps, L = 8 layers, n_in = 19 kernel sites (Fig. 1, origin included), n_h = 19 x |point group| 12 = 228: 120 + 57498 + 57456 = 115074. Real parameters (\"real-valued kernels\"), counted the way NetKet's n_parameters counts them (unmasked entries only, NetKet >= 3.7). Independent of N and of |G|: the masked kernels depend only on the cluster size and the point-group order, so the count changes across rows only through the depth L. Assumptions and their size: (i) spin parity doubles the hidden kernels (the paper's symmetry group is space group x Z2 parity and it labels irreps with ±; without the parity-flip layers the count would be 57618); (ii) biases are the NetKet default use_bias=True (48 parameters; not stated in the paper); (iii) \"in most cases\" the embedding is local; a full-range embedding (n_in = 108) would give 115608; (iv) with NetKet < 3.7 (e.g. at v1, Nov 2022) masked kernels were stored full-size (F x F x |G|) and multiplied by the mask, so n_parameters would print a larger number of which only the above are free. Consistency check: LayerSR (App. C) requires fewer samples than parameters per layer; with parity one triangular layer pair has 2 x 6 x 6 x 228 + 6 = 16422 parameters, just above the 16384 samples used there, without parity 8214 would not be. Existing samples = 4096 and iterations = 2000 checked against v2 Sec. IV: both are the 108-site J2 = 0 ground-state run (energy -0.55315(3) x 432 = row energy); v1 also states 4096 samples for 108 sites (v1 energy -0.5531(4), an earlier run). Kept."
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "NetKet",
+            "version": null,
+            "url": "https://www.netket.org/"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Simulations were performed using the NetKet [24] library.",
+          "location": "arXiv:2211.07749 (sources/2211.07749.txt), Acknowledgments",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -238.4208,
+      "sigma": 0.1728,
+      "energy_variance": null,
+      "dof": 108,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "GNN",
+      "method_detail": "separate network per output (GNN-2)",
+      "method_as_published": "GNN-2",
+      "family": "other NQS",
+      "bound_type": "variational",
+      "bound_type_reason": "assigned during source verification (RULES.md 4)",
+      "reference": "Kochkov, Pfaff, Sanchez-Gonzalez, Battaglia & Clark, Learning ground states of quantum Hamiltonians with graph networks, arXiv:2110.06390 (2021)",
+      "peer_reviewed": false,
+      "source": "sweep-pdf-2026-09-14",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-14",
+        "method": "arXiv PDF extracted locally with pypdf in layout mode, no LLM transcription",
+        "reported_as": "-0.5519 (+/- 0.0004) per site in S.S units",
+        "note": "Read from Table III of arXiv:2211.07749 (J1-J2 triangular lattice, periodic, energies in units of J1 per spin, i.e. the S.S per-site convention), extracted from the PDF with pypdf in layout mode so the column positions are unambiguous. Column \"Graph NN [64]\" at J2/J1 = 0, N = 108 = arXiv:2110.06390.",
+        "secondary_of": "Roth, Szabo & MacDonald, High-accuracy variational Monte Carlo for frustrated magnets with deep neural networks, Phys. Rev. B 108, 054410 (2023), arXiv:2211.07749"
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "Google Cloud TPU v4",
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": "within a day",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 800000,
+        "reported_as": "Appendix A9 Optimization parameters: We optimized all models using IT-SWO[25]. We used 30 iterations in the inner loop and chose imaginary time constant β based on the relative scale of the energy spectrum for different problems (Table V: Triangular N=108, β = 0.01). Each iteration was performed using adam optimizer[24] with b1 = 0.9; b2 = 0.99 and learning rate that was decayed exponentially with the rate of 0.1 over 8∗10^5 updates starting with 7∗10^−4 ... We optimized all GNN models for 8∗10^5 iterations (≈ 26000 IT-SWO steps). For larger system sizes we initialized the weights with values from smaller system sizes. ... All models were optimized using Google's Cloud TPU v4. All models trained within a day. ... Appendix A8b: All results were computed using MCMC using 2∗10^5 samples from equilibrated Markov chains. ... Appendix A8c: To measure computational efficiency we have timed the process of evaluating 7200 batches of 32 basis configuration within a MCMC process. The GNN-2 model took 17.4 seconds to accomplish this task, while our unstructured ResNet baseline finishes in 2.14 seconds. ... Appendix A6a: Node and edge functions of the Encoder, Processor and Decoder are implemented as MLPs with 3 hidden layers with ReLU activations. The node and edge embeddings have size 64, while hidden layers width 128. We use 6 message passing steps with residual connections in the Processor. || Sec. III Architecture: \"The encoder maps nodes and edges of input graph X to latent features of width 64. Next, the processor performs M rounds of message passing, updating the graph as Gt = Gt−1 +GNt(Gt−1). The residual GraphNet blocks GNt [41] use MLP node and edge functions. The decoder computes the final latent edge and node features Y from GM, by processing them using a MLP.\" | \"Nodes vi are initialized by concatenating c and s, and edges ejk between interacting spins are initialized to zero. The sublattice encoding s is a one-hot vector\" | \"we obtain scalar outputs by sum-pooling the latent features over nodes and edges; concatenating the results into a single vector Z of size 128; and processing it with a linear layer. ... (2) GNN-2, an ansatz which computes each output using a separate network with output size of one.\" || App. A6a: \"The final linear layer maps 128-dimensional latent vector to 2(1) outputs for GNN(GNN-2) models.\" || App. A6b: \"our selective experiments show that using shared weights in the processor module generally achieves similar performance to the unshared variation.\" || App. A7a Table III: Triangular \"≤ 0.14\" -> \"Coplanar\" (Fig. 8 'Coplanar' panel shows three colours) || App. A9: \"During training we use the same MCMC parameters as for evaluation discussed in Appendix A2.\" || App. A2: \"For efficiency we maintain a batch of MCMC chains, which evolves throughout optimization. We follow the rule of thumb of performing N MCMC steps between sampling from the chain to reduce autocorrelation effects, where N is equal to the number of degrees of freedom.\" (no chain count or batch size given)",
+        "source": "Appendix A9 (Optimization parameters, Table V); Appendix A8b (Model performance, Table IV); Appendix A8c (Computational efficiency); Appendix A6a (Model architecture), arXiv:2110.06390 (compute pass 2026-09-16) || arXiv:2110.06390v1 (only version; no journal/workshop version: arXiv abs page, OpenReview/dblp list 'CoRR 2021' only, B. K. Clark group papers page lists arXiv only), Sec. III, App. A2, A6a, A6b, A7a (Table III, Fig. 8, PDF p. 17), A9; local ~/Schreibtisch/PhD/research/qmbl/qmbl/sources/2110.06390.{txt,html,pdf}. No code release found (paper, arXiv abs page, github.com/kochkov92 repos, google-deepmind/deepmind-research README @f5de0ede8430809180254ee957abf36ed62579ef, google-research/google-research top-level dirs, GitHub repository search) (compute pass 2026-09-24)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "Row value matches the GNN-2 column of Table IV (separate amplitude/phase networks) for the 108-site triangular cluster. Blanket statements for all models: 8×10^5 Adam updates (≈26000 IT-SWO outer steps) on Google Cloud TPU v4, 'all models trained within a day' (an upper bound, recorded as wall_clock); number of TPU chips/cores not stated; larger systems were warm-started from smaller-system weights. samples = 2×10^5 MCMC samples used for the reported energy evaluation; the training batch/chain count is not stated numerically. No parameter count stated (architecture: embeddings 64, MLP hidden width 128, 3 hidden layers, 6 message-passing steps). Timing 17.4 s per 7200×32 evaluations is a relative-efficiency benchmark with unnamed hardware. || route2a kochkov-gnn (2026-09-24): parameters NOT counted. Stated: 64-wide node/edge latents, MLPs with 3 hidden layers of 128 + ReLU, 6 residual message-passing steps, decoder MLP, sum-pool of nodes and edges to Z of size 128 (so decoder outputs 64), final linear 128->1 per network, GNN-2 = two separate networks. Unstated, so no count: (1) whether processor weights are shared across the 6 steps (GN_t notation and A6b suggest unshared by default, but not said); (2) width of the zero-initialised input edge features; (3) LayerNorm or not (DeepMind encode-process-decode codes usually have it; the paper does not mention it); (4) whether the GraphNet blocks have a global block/features; (5) whether the one-hot sublattice vector has length 3 (Coplanar, Fig. 8) or a fixed padded length; (6) whether GNN-2's two networks are both full encode-process-decode stacks. Conditional evaluation for scale only (NOT a value): MLP(in) = 128·in+128 + 2·(128·128+128) + (128·64+64) = 128·in + 41408; per network = MLP(4) + MLP(1) + 6·[MLP(192) + MLP(128)] + 2·MLP(64) + 129 = 41920 + 41536 + 6·(65984 + 57792) + 99200 + 129 = 925,441; GNN-2 = 1,850,882 (unshared processor, 1-wide edge input, no LayerNorm, no globals); shared processor gives 306,561 per network, 613,122 for GNN-2; LayerNorm adds 2048 per network. Parameter count does not depend on N (all MLPs shared over nodes and edges; the sublattice one-hot is an input, not a learned per-site embedding), so the 36- and 108-site models have the same count for the same sublattice encoding. FLAG samples: 200000 is the Appendix A8b final-evaluation count ('All results were computed using MCMC using 2∗10^5 samples'); the per-step training sample count (number of chains/batch) is not stated; A9 only says training uses 'the same MCMC parameters as for evaluation discussed in Appendix A2', and A2 gives no number. The previous harvest reading (compute-harvest/fetched/parts/2110.06390.json) set samples null for this reason. Kept 200000 per rule 8 (no contradicting number), but it does not meet DATA.md's per-step definition; recommend null. FLAG iterations: 8×10^5 counts Adam updates (30 inner updates per IT-SWO outer step, ≈26000 outer steps); whether each update draws fresh MCMC samples or the 30 inner updates reuse one sample set is not stated, so iterations × samples may overcount sampling by up to 30×. The run was warm-started from a smaller-size model (A9: 'For larger system sizes we initialized the weights with values from smaller system sizes'); that pre-training is not counted. Table IV lists no smaller triangular J2 = 0 run, so the warm-start source of this 108-site model is not stated. || Ruling 2026-09-24: samples = 200000 is the final evaluation's count, not per optimisation step (DATA.md), so null."
+      },
+      "corrections": [
+        {
+          "field": "provenance",
+          "to": "primary",
+          "reported_as": "Table IV. Numerical values of variational energies per spin for GNN, GNN-2 models and ResNet baseline.",
+          "location": "arXiv:2110.06390v1 App. A8 Table IV",
+          "version_read": "arXiv:2110.06390v1",
+          "conversion": "n/a",
+          "checked_on": "2026-09-29",
+          "reason": "The number is now read in the paper that produced it (arXiv:2110.06390v1 App. A8 Table IV); the row can cite it directly. Takes effect with `direct: true` on the row (method entry above). The same loader line serves both Kochkov rows; apply once. The verified block should follow: line 85 'note: r.note, secondary_of: r.primary ? GCNN.ref : null,' -> 'note: r.note, secondary_of: r.primary && !r.direct ? GCNN.ref : null,', so a direct row does not claim to be a quote.",
+          "source_entry": "VP14-hubbard-j1j2-heisenberg-tfising#61 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "secondary"
+        },
+        {
+          "field": "peer_reviewed",
+          "to": false,
+          "reported_as": "arXiv:2110.06390 abs page: v1 only (2021-10-12), no journal reference",
+          "location": "arXiv abs page",
+          "version_read": "arXiv:2110.06390v1",
+          "conversion": "n/a",
+          "checked_on": "2026-09-29",
+          "reason": "M10 'peer_reviewed missing' settled: the producing paper is a preprint (arXiv v1 only, no journal reference); the quoting papers are refereed but only quote it. Takes effect with `pr: false` on the row (method entry above); the same loader line serves both Kochkov rows, apply once.",
+          "source_entry": "VP14-hubbard-j1j2-heisenberg-tfising#62 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": null
+        },
+        {
+          "field": "method",
+          "to": "GNN-2",
+          "reported_as": "Triangular, J2 0, N 108: <E>/N GNN -0.5508(8), GNN-2 -0.5519(4), ResNet -0.5451(2)",
+          "location": "arXiv:2110.06390v1 App. A8 Table IV, 'Triangular J2 = 0 N = 108' block, GNN-2 column; quoted as 'Graph NN [64] -0.5519(4)' in arXiv:2211.07749v2 Table III",
+          "version_read": "arXiv:2110.06390v1; arXiv:2211.07749v2",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "The stored number is Kochkov's GNN-2 energy; the GNN proper printed beside it is -0.5508(8). The row name says GNN, which is the other network. Energy, sigma, periodic 108-site triangular cluster (periodic vectors (9, 3 sqrt3) and (9, -3 sqrt3), Kochkov Table I), J2 = 0, S.S per-spin convention and bound_type variational verified; 2 x 10^5 MCMC samples. No duplicate on the instance. The new_line also sets `direct: true` and `pr: false`, which the loader changes of the next two entries read (without them those edits change nothing). method_names.mjs already maps 'GNN-2' (line 380). (Prior finding of 2026-09-15 that never reached the data.)",
+          "source_entry": "VP14-hubbard-j1j2-heisenberg-tfising#60 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "Graph neural network"
+        }
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2512.11670"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ]
+}

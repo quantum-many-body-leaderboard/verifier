@@ -1,0 +1,81 @@
+{
+  "model": "Heisenberg",
+  "lattice": "triangular",
+  "n_sites": 48,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/triangular_48_P",
+  "rows": [
+    {
+      "energy": -107.251781086,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 48,
+      "einf": 0,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "Exact Diagonalization",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "exact diagonalization|ex",
+      "reference": "[paper](https://journals.aps.org/pre/abstract/10.1103/PhysRevE.98.033309)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": "Sekirei (ISSP System B, Univ. Tokyo): nodes with two Intel Xeon E5-2680v3 12-core 2.5 GHz processors, InfiniBand FDR",
+        "n_devices": 3456,
+        "samples": null,
+        "wall_clock": "399 s per matrix-vector multiplication",
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Table I column \"Triangular 48\": computer Sekirei; point group D6; No. of symmetries 1152; dimension 2.8e10; No. of cores 3456; total memory 2.5 TB; memory lookup 151 MB; Time / MVM 399 s; % comm. time 39%; g.s. sector Gamma.A1.even; g.s. energy -26.8129452715. || TABLE I: Benchmark results for various problems on three different supercomputer systems described in the main text. The employed symmetries include translational, point group and spinflip symmetry. We show the total memory used by all MPI processes and the memory used by the lookup tables for the sublattice coding technique. We also show the amount of time spent for communication. || The benchmarks were performed on three different supercomputers. The Vienna Scientific Cluster VSC3 is built up from over 2020 nodes with two Intel Xeon E5-2650v2, 2.6 GHz, 8 core processors, the supercomputer Hydra at the Max Planck Supercomputing & Data Facility in Garching with over 3500 nodes with 20 core Intel Ivy Bridge 2.8 GHz processors and the System B Sekirei at the Institute for Solid State Physics of the University of Tokyo with over 1584 nodes with two Intel Xeon E5-2680v3 12 core 2.5GHz processors. Both the Hydra and Sekirei use InfiniBand FDR interconnect, whereas the VSC3 uses Intel TrueScale Infiniband for network communication.",
+        "source": "Sec. V Benchmarks, Table I (arXiv:1804.05028v2 = Phys. Rev. E 98, 033309); machine descriptions in Sec. V text, arXiv:1804.05028 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "n_devices = number of CPU cores (3456) used for the Lanczos run on Sekirei; wall_clock is the stated time for ONE Hamiltonian matrix-vector multiplication (399 s), not the total run time; the number of Lanczos iterations is not stated, so total time and core-hours cannot be given. Total memory 2.5 TB; Hilbert-space dimension 2.8e10 in the symmetry-adapted basis (1152 symmetries). This is the calculation VarBench imported as the exact reference for this instance (row reference PRE 98, 033309)."
+      },
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "g.s. energy -26.8129452715 (total, H = J sum_<i,j> S_i.S_j, J = 1, Eq. (44)); g.s. sector Gamma.A1.even",
+          "location": "Table I, column 'Triangular 48', row 'g.s. energy'",
+          "version_read": "arXiv:1804.05028v2 PDF, pypdf layout mode (identical cell in v1); e-print of v1 (pics/benchmarks/plot_lattice.py, Fig. 5 SVGs); journal Phys. Rev. E 98, 033309 (2018) not read (APS), v2 postdates publication",
+          "conversion": "4 x -26.8129452715 = -107.2517810860 (S.S -> Pauli, RULES §5); stored -107.251781086; E/N = -0.5586030265",
+          "checked_on": "2026-09-29",
+          "reason": "Value, cluster, sector and bound_type verified (scope value); the cited paper is peer reviewed (Phys. Rev. E 98, 033309 (2018)) and the imported row carries no peer_reviewed field.",
+          "source_entry": "VA4-hubbard-tv-heisenberg#88 (qmbl-verify 2026-09-29; skeptic upheld)"
+        },
+        {
+          "field": "sigma",
+          "to": null,
+          "reported_as": "VarBench Heisenberg/triangular_48_P.md: '-107.2517810860 | 4e-10 |  | 48 | 0 | Exact Diagonalization' (energy | Sigma | variance | DOF | Einf | method)",
+          "location": "VarBench Heisenberg/triangular_48_P.md (unchanged since the file rename 37648ad, 2023-01-30; vendored snapshot 390a21e)",
+          "version_read": "VarBench git history (qmbl-runs/qmbl-verify/varbench-history)",
+          "conversion": "none",
+          "checked_on": "2026-10-03",
+          "reason": "RULES.md 6 (rule E3, 2026-10-02): a deterministic energy needs no sigma. The 4e-10 is VarBench's Sigma column on Wietek & Läuchli, Phys. Rev. E 98, 033309 (2018)'s exact diagonalization, defined nowhere; with it the README printed this exact record with a bracket at twelve decimals, beyond the deposited digits. Exact records are printed to the stored digits. Ruling L1 (2026-10-03).",
+          "source_entry": "qmbl-verify 2026-09-29, handoff item 3, L1 (the E3 rule beyond the ruled entries); ruling L1, 2026-10-03",
+          "from": 4e-10
+        }
+      ],
+      "peer_reviewed": true,
+      "verified": {
+        "checked_on": "2026-10-15",
+        "scope": "value",
+        "method": "published PDF Phys. Rev. E 98, 033309 (2018), sources/journal/pre98-033309.pdf, sha256 e8e3383f, pypdf layout; arXiv:1804.05028v2 compared (sources/arxiv/1804.05028v2.pdf, its Table I 'g.s. energy' row identical)",
+        "location": "Table I, column 'Triangular 48', row 'Ground state energy'",
+        "reported_as": "-26.812 945 271 5 (S.S total, J = 1); sector Gamma.A1.even",
+        "conversion": "-26.8129452715 x 4 = -107.251781086",
+        "note": "H = J sum S_i . S_j, J = 1 (Eq. 44), energies in units of J ('The energy is given in units of the nearest neighbor coupling constant J = 1'), S.S total; stored Pauli total = 4 x printed. Own ED (Lanczos with sublattice coding). Uploaded to VarBench by the first author (1fa8a1c, A. Wietek, 2022-02-11). sigma null for exact (corrected). peer_reviewed true. 48-site triangular cluster with D6 (file triangular_sqrt48_PP_48).",
+        "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#51",
+        "secondary_of": null
+      }
+    }
+  ]
+}

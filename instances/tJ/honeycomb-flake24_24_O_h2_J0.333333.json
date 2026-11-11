@@ -1,0 +1,185 @@
+{
+  "model": "tJ",
+  "lattice": "honeycomb-flake24",
+  "n_sites": 24,
+  "boundary": "O",
+  "params": {
+    "t": 1,
+    "J": 0.3333333333333333,
+    "N_up": 11,
+    "N_dn": 11,
+    "nn_term": true
+  },
+  "cluster": "24-site open honeycomb flake of seven hexagons, a central hexagon and its six neighbours, C6 symmetric (arXiv:2406.16865, Fig. 2: 'A 24-site honeycomb lattice', open boundary condition and C6 rotation symmetry)",
+  "instance_id": "tJ/honeycomb-flake24_24_O_h2_J0.333333",
+  "rows": [
+    {
+      "energy": -7.166,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 22,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Bloch wave",
+      "method_detail": "two-hole Bloch-wave-like state, m = 0",
+      "method_as_published": "|Ψ_0⟩_2h",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Variational Monte Carlo study of the doped t-J model on the honeycomb lattice, Phys. Rev. B 110, 155111 (2024), doi:10.1103/PhysRevB.110.155111, arXiv:2406.16865",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2406.16865 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-21.498",
+        "note": "Table III, E_tot, row |Ψ_0⟩_2h, 24-site cluster, t/J = 3 (line 360); version read: arXiv text (sources/2406.16865.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eqs. (1)-(2): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 and t/J = 3 (lines 104-105): the instance's J/t = 1/3 and a factor 3 (scale). Tables I and III print E_tot of the 24-site cluster. QMBL's diagonalization of the 7-hexagon flake with one hole gives -8.2605976752 in units of t, -24.78179 in units of J, the printed ED -24.782 (checks/tj-ed-2026-10/).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2406.16865v1 (only version; sources/2406.16865.pdf + .txt, pypdf layout and plain modes) and the accepted manuscript of Phys. Rev. B 110, 155111 (CHORUS, dated 2024-09-23; sources/PhysRevB.110.155111-am.pdf, pypdf layout and plain modes). The publisher's version of record is closed access (APS page shows locked content); the accepted manuscript is the post-review text.",
+          "location": "Table III, row |Ψ0⟩2h, column Etot (arXiv v1 p. 6; AM p. 7)",
+          "reported_as": "|Ψ0⟩2h -21.498 -5.000 -16.498 0",
+          "conversion": "-21.498 / 3 = -7.16600000000 (source H = 3 x instance H: J = 1, t/J = 3; instance t = 1, J = 1/3); stored -7.166",
+          "note": "Et + EJ = -5.000 - 16.498 = -21.498. Hamiltonian Eqs. (1)-(2) H = P(Ht + HJ)P, Ht = -t sum (c+c + H.c.), HJ = J sum (Si.Sj - ninj/4): the instance's nn_term = true. Cluster: 24-site honeycomb with OBC and C6 rotation symmetry (Sec. II A, Fig. 2), the coronene flake, pinned by the ED reproduction. Sector: two holes, total spin S = 0 (Table III caption), N_up = N_dn = 11. Arxiv v1 and accepted manuscript print the same digits for this row. No error bar printed (sampled VMC energies; sigma stays null). Own computation (not quoted). No duplicate: the instance file holds only this paper's rows. Bound type: VMC on a variational Ansatz, the coefficients from the generalized eigenvalue problem Ht-J x = Et-J A x (App. C, Eq. C10); variational.",
+          "source_entry": "tjP5-arxiv-2406-16865#4 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t/J = 3 (units of J; lines 104-105)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      }
+    },
+    {
+      "energy": -8.892,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 22,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "phase string",
+      "method_detail": "two-hole phase-string state, m = ±1",
+      "method_as_published": "|Ψ_±1⟩_2h",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Variational Monte Carlo study of the doped t-J model on the honeycomb lattice, Phys. Rev. B 110, 155111 (2024), doi:10.1103/PhysRevB.110.155111, arXiv:2406.16865",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2406.16865 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-26.676",
+        "note": "Table III, E_tot, row |Ψ_±1⟩_2h, 24-site cluster, t/J = 3 (line 361); version read: arXiv text (sources/2406.16865.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eqs. (1)-(2): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 and t/J = 3 (lines 104-105): the instance's J/t = 1/3 and a factor 3 (scale). Tables I and III print E_tot of the 24-site cluster. QMBL's diagonalization of the 7-hexagon flake with one hole gives -8.2605976752 in units of t, -24.78179 in units of J, the printed ED -24.782 (checks/tj-ed-2026-10/).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2406.16865v1 (only version; sources/2406.16865.pdf + .txt, pypdf layout and plain modes) and the accepted manuscript of Phys. Rev. B 110, 155111 (CHORUS, dated 2024-09-23; sources/PhysRevB.110.155111-am.pdf, pypdf layout and plain modes). The publisher's version of record is closed access (APS page shows locked content); the accepted manuscript is the post-review text.",
+          "location": "Table III, row |Ψ±1⟩2h, column Etot (arXiv v1 p. 6; AM p. 7)",
+          "reported_as": "|Ψ±1⟩2h -26.676 -10.909 -15.767 ±2",
+          "conversion": "-26.676 / 3 = -8.89200000000 (source H = 3 x instance H: J = 1, t/J = 3; instance t = 1, J = 1/3); stored -8.892",
+          "note": "Et + EJ = -10.909 - 15.767 = -26.676. Hamiltonian Eqs. (1)-(2) H = P(Ht + HJ)P, Ht = -t sum (c+c + H.c.), HJ = J sum (Si.Sj - ninj/4): the instance's nn_term = true. Cluster: 24-site honeycomb with OBC and C6 rotation symmetry (Sec. II A, Fig. 2), the coronene flake, pinned by the ED reproduction. Sector: two holes, total spin S = 0 (Table III caption), N_up = N_dn = 11. Arxiv v1 and accepted manuscript print the same digits for this row. No error bar printed (sampled VMC energies; sigma stays null). Own computation (not quoted). No duplicate: the instance file holds only this paper's rows. Bound type: VMC on a variational Ansatz, the coefficients from the generalized eigenvalue problem Ht-J x = Et-J A x (App. C, Eq. C10); variational. RECORD NOTE: the accepted manuscript (post-review) adds a Table III row absent from arXiv v1: '|˜Ψ±1⟩2h -28.656 -13.029 -15.628 ±2' (AM p. 7, layout and plain modes agree; Et + EJ = -28.657). -28.656 / 3 = -9.552, below this row's -8.892 and above the ED -9.94466666667: it would take this instance's best-variational record. Not on the table (unlisted).",
+          "source_entry": "tjP5-arxiv-2406-16865#5 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t/J = 3 (units of J; lines 104-105)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      }
+    },
+    {
+      "energy": -9.552,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 22,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "phase string",
+      "method_detail": "two-hole phase-string state, m = ±1, with longitudinal spin-polaron factor",
+      "method_as_published": "|Ψ̃_±1⟩_2h",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Variational Monte Carlo study of the doped t-J model on the honeycomb lattice, Phys. Rev. B 110, 155111 (2024), doi:10.1103/PhysRevB.110.155111, accepted manuscript (CHORUS, dated 23 September 2024; the row is not in arXiv:2406.16865v1)",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2406.16865 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; found in the accepted manuscript by the adversarial reading of qmbl-verify 2026-10-23 (group tjP5) and checked against the committed text by this script's line test (2026-10-24)",
+        "reported_as": "-28.656",
+        "note": "accepted manuscript, Table III, E_tot, row |Ψ̃_±1⟩_2h, 24-site cluster, t/J = 3 (line 370); arXiv:2406.16865v1 Table III has no such row; the accepted manuscript constructs it 'as in the single-hole case' (line 359); version read: the accepted manuscript of Phys. Rev. B 110, 155111 made available via CHORUS (dated 23 September 2024; text in sources/2406.16865-am.txt); the publisher's version of record is closed access | Eqs. (1)-(2): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 and t/J = 3 (lines 104-105): the instance's J/t = 1/3 and a factor 3 (scale). Tables I and III print E_tot of the 24-site cluster. QMBL's diagonalization of the 7-hexagon flake with one hole gives -8.2605976752 in units of t, -24.78179 in units of J, the printed ED -24.782 (checks/tj-ed-2026-10/).",
+        "secondary_of": null
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t/J = 3 (units of J; lines 104-105)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      }
+    },
+    {
+      "energy": -9.944599589435,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 22,
+      "einf": null,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "ED",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "numerically exact reference as stated by the source (assigned during source reading)",
+      "reference": "Cui, Zhao & Weng, Variational Monte Carlo study of the doped t-J model on the honeycomb lattice, Phys. Rev. B 110, 155111 (2024), doi:10.1103/PhysRevB.110.155111, arXiv:2406.16865",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:2406.16865 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "-29.834",
+        "note": "Table III, E_tot, row ED, 24-site cluster, t/J = 3 (line 362); version read: arXiv text (sources/2406.16865.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eqs. (1)-(2): H = P(H_t + H_J)P, H_t = -t sum (c+c + H.c.), H_J = J sum (S_i.S_j - n_i n_j / 4), J = 1 and t/J = 3 (lines 104-105): the instance's J/t = 1/3 and a factor 3 (scale). Tables I and III print E_tot of the 24-site cluster. QMBL's diagonalization of the 7-hexagon flake with one hole gives -8.2605976752 in units of t, -24.78179 in units of J, the printed ED -24.782 (checks/tj-ed-2026-10/).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2406.16865v1 (only version; sources/2406.16865.pdf + .txt, pypdf layout and plain modes) and the accepted manuscript of Phys. Rev. B 110, 155111 (CHORUS, dated 2024-09-23; sources/PhysRevB.110.155111-am.pdf, pypdf layout and plain modes). The publisher's version of record is closed access (APS page shows locked content); the accepted manuscript is the post-review text.; and an independent recomputation: independent exact diagonalization written for this check (checks/tj-exact-recompute-2026-10/tjk.c: C/OpenMP, basis adapted to lattice translations and point-group operations with 1D characters, Lanczos to |dE| < 1e-13 per step; clusters and sectors from gen.py), run 2026-10-23; validated against a brute-force full-space ED (bf.py) on 12 small clusters (agreement to 1e-10)",
+          "location": "Table III, row ED, column Etot (arXiv v1 p. 6; AM p. 7)",
+          "reported_as": "ED -29.834 -14.433 -15.401 ±2",
+          "conversion": "-29.834 / 3 = -9.94466666667 (source H = 3 x instance H: J = 1, t/J = 3; instance t = 1, J = 1/3); stored -9.94466666667",
+          "note": "Et + EJ = -14.433 - 15.401 = -29.834. Hamiltonian Eqs. (1)-(2) H = P(Ht + HJ)P, Ht = -t sum (c+c + H.c.), HJ = J sum (Si.Sj - ninj/4): the instance's nn_term = true. Cluster: 24-site honeycomb with OBC and C6 rotation symmetry (Sec. II A, Fig. 2), the coronene flake, pinned by the ED reproduction. Sector: two holes, total spin S = 0 (Table III caption), N_up = N_dn = 11. Arxiv v1 and accepted manuscript print the same digits for this row. No error bar printed (sampled VMC energies; sigma stays null). Own computation (not quoted). No duplicate: the instance file holds only this paper's rows. Bound type: ED of the 24-site cluster, exact. Request: QMBL has recomputed only the one-hole ED; the two-hole ED (dim C(24,11)*C(13,11) = 2496144 x 78 = 1.95e8) should be recomputed on a remote host. | Recomputation: E = -9.9445995894 (t = 1); printed form E_tot in units of J (t/J = 3): -29.834 vs printed -29.834; 24-site seven-hexagon flake (coronene: central hexagon and its six neighbours, 30 bonds), open; sectors of the C6 rotation; lowest of 4 sector(s) covering the whole electron-number space (ground state), best sector cor_h2_J1o3_l2, dim 32449872; 1312 s wall on 16 threads over all sectors; not among the six reproduced by checks/tj-ed-2026-10/; the stored energy is the printed 3-decimal value / 3, so it differs from the exact total by up to 1.7e-4 by rounding alone",
+          "source_entry": "tjP5-arxiv-2406-16865#6 (qmbl-verify 2026-10-23), tjE-exact-recompute#1 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "normalised": {
+        "factor": 3,
+        "source_couplings": "J = 1, t/J = 3 (units of J; lines 104-105)",
+        "note": "the source's Hamiltonian is 3 times the instance's; its printed energy (reported_as) is divided by 3"
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -9.944599589435,
+          "reported_as": "-29.834 (E_tot in units of J (t/J = 3))",
+          "location": "Table III, E_tot, row ED, 24-site cluster, t/J = 3 (line 362)",
+          "version_read": "recomputation: checks/tj-exact-recompute-2026-10/ (tjk.c, 2026-10-23); the printed value as the generator read it (scripts/tj_2026_10_22.mjs)",
+          "conversion": "-29.834 / 3 (units of J, t/J = 3) = -9.94466666667 (stored); recomputed -9.944599589435 = -29.83379877 in the printed form, which rounds to the printed digits",
+          "checked_on": "2026-10-23",
+          "reason": "Rule for exact rows QMBL recomputed (2026-09-30; applied to the t-J rows, ruled 2026-10-24): the printed value is QMBL's value rounded to the printed digits, so the row keeps its citation and carries QMBL's digits; the printed value stays here. Recomputed by tjk.c (symmetry-adapted Lanczos, |dE| < 1e-13 per step; 4 of 4 symmetry sectors, lowest sector cor_h2_J1o3_l2, dimension 32449872), whose code agrees with the brute-force bf.py to 1e-10 on 12 small clusters; codes and outputs in checks/tj-exact-recompute-2026-10/.",
+          "source_entry": "tjE-exact-recompute#1 (qmbl-verify 2026-10-23); rule for recomputed exact rows, ruled 2026-10-24",
+          "from": -9.94466666667
+        }
+      ]
+    }
+  ]
+}

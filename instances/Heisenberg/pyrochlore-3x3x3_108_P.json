@@ -1,0 +1,234 @@
+{
+  "model": "Heisenberg",
+  "lattice": "pyrochlore-3x3x3",
+  "n_sites": 108,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/pyrochlore-3x3x3_108_P",
+  "rows": [
+    {
+      "energy": -210.4272,
+      "sigma": 0.0432,
+      "energy_variance": 39.88,
+      "dof": 108,
+      "einf": 0,
+      "v_score": 0.09726915707833951,
+      "method": "VMC",
+      "ansatz": "PP",
+      "method_detail": "projected: SU(2), unspecified",
+      "method_as_published": "mVMC with SU(2) and symmetry projections",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.11.041021)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -210.4272,
+          "reported_as": "-0.4871(1) (energy per site, S.S units, j1 = 1)",
+          "location": "Appendix H, Table II, row 4x3^3, column mVMC (identical in v1)",
+          "version_read": "arXiv:2101.08787v2 (= PRX 11, 041021) and v1, pypdf layout + plain",
+          "conversion": "-0.4871 x 4 x 108 = -210.4272",
+          "checked_on": "2026-09-29",
+          "reason": "Record row. The stored -210.43 is the printed value rounded to two decimals when it was converted to a total: the first author's first upload was exactly the printed -0.4871, sigma 1e-4 (57cdcfe, 2021-07-23), then -1.9484(4) Pauli per site (f9f25dd, 2021-09-01), then -210.43(0.04) total (1a5dbf5, 2021-09-15). No finer value stands behind the stored digits, so the exact conversion is not a precision reduction. Shift 0.0028 (0.07 sigma); the row keeps its record (runner-up DMRG -209.5632). Instance, convention, class and attribution otherwise agree.",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#3 (qmbl-verify 2026-09-29; skeptic refuted; applied as proposed under the ruling of 2026-09-30 (table over figure): VA5's Table II value stands; the skeptic's figure-decoded -210.4365 is not used)",
+          "from": -210.43
+        },
+        {
+          "field": "sigma",
+          "to": 0.0432,
+          "reported_as": "-0.4871(1) (energy per site, S.S units, j1 = 1)",
+          "location": "Appendix H, Table II, row 4x3^3, column mVMC (identical in v1)",
+          "version_read": "arXiv:2101.08787v2 (= PRX 11, 041021) and v1, pypdf layout + plain",
+          "conversion": "1e-4 x 4 x 108 = 0.0432",
+          "checked_on": "2026-09-29",
+          "reason": "Printed bar (1) = 1e-4 per site, identical to the author's own first upload (57cdcfe: sigma 1e-4); the stored 0.04 is 4e-4 x 108 = 0.0432 rounded down at conversion (1a5dbf5), not a finer measured bar. energy_variance 39.88 is printed in neither version (author upload f164ced, 2022-02-24).",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#4 (qmbl-verify 2026-09-29; skeptic upheld); same value proposed by VJ2-journal-other#13",
+          "from": 0.04
+        }
+      ],
+      "verified": {
+        "checked_on": "2026-10-15",
+        "scope": "value",
+        "method": "published PDF Phys. Rev. X 11, 041021 (2021) (open access), sources/journal/prx11-041021.pdf, sha256 e65c26b3, pypdf layout (ð1Þ = (1) in the font); arXiv:2101.08787v2 compared (qmbl/sources/2101.08787.txt Table II identical)",
+        "location": "Table II, row '4 x 3^3', column mVMC",
+        "reported_as": "-0.4871(1) per site (S.S, J = 1)",
+        "conversion": "-0.4871 x 432 = -210.4272; sigma 0.0432",
+        "note": "H = j1 sum h_lambda(i,j) + j2 sum ..., h_lambda = lambda/2 (S+S- + S-S+) + SzSz (Eqs. 1-2), Heisenberg point lambda = 1, j2 = 0; Table II: 'The ground-state energy per site is listed in the first line of every cell'; 'We consider pyrochlore clusters with periodic boundary conditions'. Geometry 4 x L^3 = 4L^3 sites. Stored Pauli total = 4 x N x E/N. Own computation (mVMC / NQS CNN columns). The paper prints no energy variance: the stored energy_variance is the VarBench upload's only. Published 29 October 2021, peer reviewed. Lies below the DMRG column -0.4851 [38] of the same row; lowest stored energy on the instance (record). Journal = arXiv v2. No duplicate.",
+        "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#53",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "mVMC",
+            "version": null,
+            "url": "https://github.com/issp-center-dev/mVMC"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "Numerical simulations were performed using the open-source codes mVMC [39] for mVMC, Netket [49, 63] for NQS and lattice symmetries [74] for ED.",
+          "location": "arXiv:2101.08787 (sources/2101.08787.txt), Acknowledgments",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -208.4832,
+      "sigma": 0.0864,
+      "energy_variance": 18.06,
+      "dof": 108,
+      "einf": 0,
+      "v_score": 0.044874474174925565,
+      "method": "VMC",
+      "ansatz": "CNN",
+      "method_detail": "projected: unspecified",
+      "method_as_published": "CNN NQS with symmetry projections",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://journals.aps.org/prx/abstract/10.1103/PhysRevX.11.041021)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -208.4832,
+          "reported_as": "-0.4826(2) (NQS CNN, energy per site, S.S units, j1 = 1)",
+          "location": "Appendix H, Table II, row 4x3^3, column NQS CNN (identical in v1)",
+          "version_read": "arXiv:2101.08787v2 (= PRX 11, 041021) and v1, pypdf layout + plain",
+          "conversion": "-0.4826 x 4 x 108 = -208.4832",
+          "checked_on": "2026-09-29",
+          "reason": "The stored -208.48 is the printed -0.4826 converted and rounded to two decimals (author upload 57cdcfe -0.4826, then f9f25dd -1.9304 Pauli per site, then 1a5dbf5 -208.48 total). Shift 0.0032 (0.04 printed sigma).",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#5 (qmbl-verify 2026-09-29; skeptic refuted; applied as proposed under the ruling of 2026-09-30 (table over figure): VA5's Table II value stands; the skeptic's figure-decoded -208.5000 is not used)",
+          "from": -208.48
+        },
+        {
+          "field": "sigma",
+          "to": 0.0864,
+          "reported_as": "-0.4826(2) (NQS CNN, energy per site, S.S units, j1 = 1)",
+          "location": "Appendix H, Table II, row 4x3^3, column NQS CNN (identical in v1)",
+          "version_read": "arXiv:2101.08787v2 (= PRX 11, 041021) and v1, pypdf layout + plain",
+          "conversion": "2e-4 x 4 x 108 = 0.0864",
+          "checked_on": "2026-09-29",
+          "reason": "Both arXiv versions print (2), i.e. 2e-4 per site. The stored 0.04 comes from the author's July 2021 upload, which gave sigma 1e-4 (57cdcfe; 4e-4 x 108 = 0.0432 -> 0.04). A (2) at the fourth decimal is the paper's explicit bar, not display rounding (that would print (1)), so the upload understates the published error by half; real slip under the 2026-09-16 ruling. energy_variance 18.06 printed in neither version (author upload f164ced).",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#6 (qmbl-verify 2026-09-29; skeptic upheld); same value proposed by VJ2-journal-other#15",
+          "from": 0.04
+        }
+      ],
+      "verified": {
+        "checked_on": "2026-10-15",
+        "scope": "value",
+        "method": "published PDF Phys. Rev. X 11, 041021 (2021) (open access), sources/journal/prx11-041021.pdf, sha256 e65c26b3, pypdf layout (ð1Þ = (1) in the font); arXiv:2101.08787v2 compared (qmbl/sources/2101.08787.txt Table II identical)",
+        "location": "Table II, row '4 x 3^3', column NQS CNN",
+        "reported_as": "-0.4826(2) per site (S.S, J = 1)",
+        "conversion": "-0.4826 x 432 = -208.4832; sigma 0.0864",
+        "note": "H = j1 sum h_lambda(i,j) + j2 sum ..., h_lambda = lambda/2 (S+S- + S-S+) + SzSz (Eqs. 1-2), Heisenberg point lambda = 1, j2 = 0; Table II: 'The ground-state energy per site is listed in the first line of every cell'; 'We consider pyrochlore clusters with periodic boundary conditions'. Geometry 4 x L^3 = 4L^3 sites. Stored Pauli total = 4 x N x E/N. Own computation (mVMC / NQS CNN columns). The paper prints no energy variance: the stored energy_variance is the VarBench upload's only. Published 29 October 2021, peer reviewed. No duplicate.",
+        "source_entry": "JA1-hubbard-j1j2-tv-heisenberg#54",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "NetKet",
+            "version": null,
+            "url": "https://www.netket.org/"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "In this work, we employ the comprehensive NetKet NQS implementation [63]. ... Numerical simulations were performed using the open-source codes mVMC [39] for mVMC, Netket [49, 63] for NQS and lattice symmetries [74] for ED.",
+          "location": "arXiv:2101.08787 (sources/2101.08787.txt), Sec. on the NQS method; Acknowledgments",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -209.5632,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 108,
+      "einf": 0,
+      "v_score": null,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "DMRG",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "Hagymasi, Schaefer, Moessner & Luitz, Phys. Rev. Lett. 126, 117204 (2021), arXiv:2010.03563 (SU(2) DMRG, best achieved energy; not printed there), as printed in Astrakhantsev et al., Phys. Rev. X 11, 041021 (2021), arXiv:2101.08787, Appendix H Table II, column 'DMRG [38]'",
+      "source": "varbench@2024-10-22",
+      "provenance": "secondary",
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": 16000,
+        "iterations": null,
+        "reported_as": "Exploiting the SU(2) symmetry of the model [50-53], we keep up to 20000 SU(2) states, (typically equivalent to >~ 80000 U(1) states). [...] For small bond dimensions (chi <~ 2000) we use the two-site version of the DMRG, and switch to the one-site variant to optimize the wave function for larger chi. [...] It turns out that even the calculation of the two-site variance becomes too costly for clusters with more than ~ 100 sites and bond dimensions >~ 8000. In certain cases, we revert to the usage of the two-site DMRG and extrapolate as a function of the truncation error (cf. 108-site cluster). [...] FIG. 5. [...] The corresponding maximal bond dimensions for the 32, 64, 108 and 128-site clusters are 20000, 16000, 16000 and 12000 respectively. [...] Some of the data presented here was produced using the SyTen toolkit, originally created by Claudius Hubig.",
+        "source": "Hagymasi, Schaefer, Moessner & Luitz, Phys. Rev. Lett. 126, 117204 (2021) = arXiv:2010.03563: 'Model and methods'; Fig. 5 caption; Acknowledgments, arXiv:2010.03563 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "bond_dimension = 16000 is the maximal SU(2) bond dimension stated for the 108-site cluster (Fig. 5 caption); the paper's SU(2) states are 'typically equivalent to >~ 80000 U(1) states' at chi = 20000. The 108-site energy was obtained with two-site DMRG and extrapolated in the truncation error (Table I: -0.4935(50) per site extrapolated; the worklist energy corresponds to -0.4851 per site in S-units, i.e. presumably a finite-chi variational value quoted by a later paper rather than the extrapolated value). No CPU hours, core count, wall-clock or machine stated; acknowledgments list only funding and the SyTen toolkit. Worklist had no arXiv id; arXiv 2010.03563 read from the repo cache."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "Hagymasi, Schaefer, Moessner & Luitz, Phys. Rev. Lett. 126, 117204 (2021), arXiv:2010.03563 (SU(2) DMRG, best achieved energy; not printed there), as printed in Astrakhantsev et al., Phys. Rev. X 11, 041021 (2021), arXiv:2101.08787, Appendix H Table II, column 'DMRG [38]'",
+          "reported_as": "-0.4851 (per site, S.S units, j1 = 1; row 4 x 3^3, column DMRG [38]; footnote 1: 'As the DMRG results, here we show the best actually obtained energy and not the bond-dimension extrapolation.')",
+          "location": "arXiv:2101.08787v2 (and v1) Appendix H, Table II, row 4 x 3^3",
+          "version_read": "arXiv:2010.03563 v1 and v2 PDFs and LaTeX sources (Table I, all text, Fig. 1 vector data decoded); arXiv:2101.08787 v1 and v2 text (shared cache, VA5 extraction)",
+          "conversion": "-0.4851 x 4 x 108 = -209.5632 (= stored)",
+          "checked_on": "2026-09-29",
+          "reason": "The cited paper does not contain the number: both versions print only the extrapolated 108-site energy, -0.493(4) (v1) and -0.4935(50) (v2), and their Fig. 1 plots only those centres and bars; no text, table or figure gives an achieved finite-bond-dimension energy for 108 sites. The number is printed by Astrakhantsev et al., who quote it from [38] = Hagymasi et al. as 'the best actually obtained energy', and it was uploaded to VarBench by Astrakhantsev (57cdcfe, 2021-07-23, 'DMRG (2010.03563)'). It is consistent with v1's Table I under the paper's own error rule (bar = half the distance from the last point to the extrapolation): -0.493 + 2 x 0.004 = -0.485. Per RULES 8 / DATA.md the row names the producing and the printing paper.",
+          "source_entry": "VA6-j1j2-heisenberg-hubbard-tfising#12 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "[paper](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.126.117204)"
+        },
+        {
+          "field": "provenance",
+          "to": "secondary",
+          "reported_as": "-0.4851 (Astrakhantsev et al. Table II, DMRG [38])",
+          "location": "arXiv:2101.08787v2 Appendix H Table II",
+          "version_read": "arXiv:2101.08787 v1/v2; arXiv:2010.03563 v1/v2",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "A number quoted from a different paper than the one that produced it is marked secondary (RULES 8, DATA.md 'Provenance and defects'); the VarBench import origin stays in source = varbench@2024-10-22. Apply together with the reference correction, or fold into it if imported rows keep provenance 'imported' by convention.",
+          "source_entry": "VA6-j1j2-heisenberg-hubbard-tfising#13 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": "imported"
+        },
+        {
+          "field": "sigma",
+          "to": null,
+          "reported_as": "-0.4851 (no error bar printed)",
+          "location": "arXiv:2101.08787v2 Appendix H Table II; VarBench 57cdcfe '| -0.4851 | 0 | ???? |'",
+          "version_read": "arXiv:2101.08787 v1/v2; VarBench history",
+          "conversion": "none",
+          "checked_on": "2026-09-29",
+          "reason": "A finite-bond-dimension DMRG energy is deterministic and needs no sigma (RULES 6); no source prints a bar for it, and VarBench's '0' is the uploader's placeholder beside '????' for the variance. A stored 0 claims infinite precision for a number printed to 1e-4 per site and suppresses the no-error-metric marker. One of 8 rows in the table with sigma exactly 0 (the others are exact rows).",
+          "source_entry": "VA6-j1j2-heisenberg-hubbard-tfising#14 (qmbl-verify 2026-09-29; skeptic upheld)",
+          "from": 0
+        },
+        {
+          "field": "peer_reviewed",
+          "to": true,
+          "reported_as": "-0.4851 (Table II, column 'DMRG [38]', row 4 x 3^3)",
+          "location": "PRX 11, 041021, Appendix H, Table II; journal ref of arXiv:2010.03563 'Phys. Rev. Lett. 126, 117204 (2021)' (arXiv abs page fetched 2026-10-15) and of arXiv:2101.08787 'Phys. Rev. X 11, 041021 (2021)'",
+          "version_read": "published PDF Phys. Rev. X 11, 041021 (2021), sources/journal/prx11-041021.pdf, sha256 e65c26b3; compared arXiv:2101.08787v2 (sources/arxiv/2101.08787v2.pdf, sha256 6006bdcf): Table II DMRG column identical; primary PRL 126, 117204 (sha256 8bc32853) read too",
+          "conversion": "-0.4851 x 4 x 108 = -209.5632 (equals stored)",
+          "checked_on": "2026-10-15",
+          "reason": "Listed in scope-pub.json: the producing paper (PRL 126, 117204) and the quoting paper (PRX 11, 041021) are both published; peer_reviewed is null. Value, cluster (108-site cubic 3x3x3, periodic) and bound_type variational ('the DMRG result of Ref. [38] without bond-dimension extrapolation', PRX Fig. 1(b) caption) verified; the PRL itself prints only the extrapolated -0.4935(50) for 108 sites, so the row stays secondary as stored.",
+          "source_entry": "JP10-hubbard-heisenberg#59"
+        }
+      ],
+      "peer_reviewed": true
+    }
+  ]
+}

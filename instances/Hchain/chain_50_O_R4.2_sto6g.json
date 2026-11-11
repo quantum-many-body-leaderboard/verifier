@@ -1,0 +1,162 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 50,
+  "boundary": "O",
+  "params": {
+    "N_up": 25,
+    "N_dn": 25,
+    "R": 4.2,
+    "basis": "STO-6G"
+  },
+  "instance_id": "Hchain/chain_50_O_R4.2_sto6g",
+  "rows": [
+    {
+      "energy": -18.95595,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 50,
+      "einf": null,
+      "v_score": null,
+      "method": "HF",
+      "ansatz": null,
+      "method_detail": "restricted",
+      "method_as_published": "RHF",
+      "family": "mean field",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "J. Hachmann, W. Cardoen & G. K.-L. Chan, Multireference correlation in long molecules with the quadratic scaling density matrix renormalization group, J. Chem. Phys. 125, 144101 (2006), arXiv:cond-mat/0606115, doi:10.1063/1.2345196",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:cond-mat/0606115 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "E_RHF -18.955 95 (total)",
+        "note": "Table VI, R = 4.2 row; sources/cond-mat-0606115.txt line 841; version read: arXiv v3 (journal copy not reached, AIP HTTP 403) | Hartree totals: E_RHF (total, with nuclear repulsion) and E_RHF,el printed side by side; at R = 1.8 bohr E_RHF + E_corr[LDMRG(500)] = -27.03865 against the 2017 STO-6G DMRG -27.03864 for H50.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "J. Chem. Phys. 125, 144101 (2006), publisher typeset PDF (author-repository copy, sources/dl-0606115-c1/jcp-125-144101-caltech.pdf, pypdf layout mode) and arXiv:cond-mat/0606115v3 PDF (pypdf layout mode); Table VI rows R = 3.2, 3.6, 4.2 identical in v1, v2, v3 and the journal",
+          "location": "Table VI (Symmetric dissociation of H50), R = 4.2 row, column E_RHF; v3 layout line 621; journal layout line 554",
+          "reported_as": "E_RHF -18.955 95 (hartrees, total)",
+          "conversion": "total = E_RHF = -18.95595; eps = -18.95595/50 = -0.379119",
+          "note": "Equidistant open H50 chain, R = 4.2 a0, STO-6G, all 50 electrons correlated (Sec. V), N_up = N_dn = 25; E_RHF total with nuclear repulsion: E_RHF - E_RHF,el equals the recomputed point-charge repulsion sum_(i<j) 1/(|i-j|R) = 41.65721 (table difference 41.65720, rounding of two 5-decimal entries) Eh; stored eps*50 matches the table sum to < 1e-12. bound_type variational (RHF, RULES 13.4); RHF orbitals from PSI3.2 (Sec. IV A). Duplicate check: only cond-mat/0606115 rows exist on Hchain/chain_50_O_R4.2_sto6g (Motta 2017 data stop at R = 3.6); no duplicate. Own computation (cited paper produced it); peer_reviewed true (JCP). The row's evidence string says the journal copy was not reached; the journal Table VI has since been read and agrees digit for digit, so the evidence/version note can say 'journal version read, identical to arXiv v3'.",
+          "secondary_of": null,
+          "source_entry": "h-p-cond-mat-0606115-c4#5 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "E_RHF -18.955 95 (total)",
+          "location": "Table VI, R = 4.2 row; sources/cond-mat-0606115.txt line 841; version read: arXiv v3 (journal copy not reached, AIP HTTP 403)",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -21.51494,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 50,
+      "einf": null,
+      "v_score": null,
+      "method": "MP2",
+      "ansatz": null,
+      "method_detail": "RHF reference",
+      "method_as_published": "MP2 [RHF reference]",
+      "family": "FCIQMC / CC",
+      "bound_type": "approximate",
+      "bound_type_reason": "finite-order perturbation theory, GW, or a perturbative correction to coupled cluster (track 3, 2026-10-21); error of unknown sign (RULES.md 13.4; assigned during source reading)",
+      "reference": "J. Hachmann, W. Cardoen & G. K.-L. Chan, Multireference correlation in long molecules with the quadratic scaling density matrix renormalization group, J. Chem. Phys. 125, 144101 (2006), arXiv:cond-mat/0606115, doi:10.1063/1.2345196",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:cond-mat/0606115 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "E_RHF -18.95595 + E_corr -2.55899 = -21.51494 (totals)",
+        "note": "Table VI, R = 4.2 row; sources/cond-mat-0606115.txt line 841; version read: arXiv v3 (journal copy not reached, AIP HTTP 403) | Hartree totals: E_RHF (total, with nuclear repulsion) and E_RHF,el printed side by side; at R = 1.8 bohr E_RHF + E_corr[LDMRG(500)] = -27.03865 against the 2017 STO-6G DMRG -27.03864 for H50.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "J. Chem. Phys. 125, 144101 (2006), publisher typeset PDF (author-repository copy, sources/dl-0606115-c1/jcp-125-144101-caltech.pdf, pypdf layout mode) and arXiv:cond-mat/0606115v3 PDF (pypdf layout mode); Table VI rows R = 3.2, 3.6, 4.2 identical in v1, v2, v3 and the journal",
+          "location": "Table VI (Symmetric dissociation of H50), R = 4.2 row, column Ecorr MP2; v3 layout line 621; journal layout line 554",
+          "reported_as": "E_RHF -18.955 95; Ecorr MP2 -2.558 99 (hartrees)",
+          "conversion": "total = E_RHF + Ecorr = -18.95595 + -2.55899 = -21.51494; eps = -21.51494/50 = -0.4302988",
+          "note": "Equidistant open H50 chain, R = 4.2 a0, STO-6G, all 50 electrons correlated (Sec. V), N_up = N_dn = 25; E_RHF total with nuclear repulsion: E_RHF - E_RHF,el equals the recomputed point-charge repulsion sum_(i<j) 1/(|i-j|R) = 41.65721 (table difference 41.65720, rounding of two 5-decimal entries) Eh; stored eps*50 matches the table sum to < 1e-12. bound_type approximate (MP2, RULES 13.4); MP2 from PSI3.2 on the RHF reference (Sec. IV B). Duplicate check: only cond-mat/0606115 rows exist on Hchain/chain_50_O_R4.2_sto6g (Motta 2017 data stop at R = 3.6); no duplicate. Own computation (cited paper produced it); peer_reviewed true (JCP). The row's evidence string says the journal copy was not reached; the journal Table VI has since been read and agrees digit for digit, so the evidence/version note can say 'journal version read, identical to arXiv v3'.",
+          "secondary_of": null,
+          "source_entry": "h-p-cond-mat-0606115-c4#6 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "E_RHF -18.95595 + E_corr -2.55899 = -21.51494 (totals)",
+          "location": "Table VI, R = 4.2 row; sources/cond-mat-0606115.txt line 841; version read: arXiv v3 (journal copy not reached, AIP HTTP 403)",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -23.74971,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 50,
+      "einf": null,
+      "v_score": null,
+      "method": "LDMRG",
+      "ansatz": null,
+      "method_detail": "M = 50",
+      "method_as_published": "LDMRG [M = 50]",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "the energy of a stated wave function (Hartree-Fock, DMRG at a stated bond dimension, MRCI, VMC, a neural-network state); an upper bound in the instance's basis (RULES.md 13.4; assigned during source reading)",
+      "reference": "J. Hachmann, W. Cardoen & G. K.-L. Chan, Multireference correlation in long molecules with the quadratic scaling density matrix renormalization group, J. Chem. Phys. 125, 144101 (2006), arXiv:cond-mat/0606115, doi:10.1063/1.2345196",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:cond-mat/0606115 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading",
+        "reported_as": "E_RHF -18.95595 + E_corr -4.79376 = -23.74971 (totals)",
+        "note": "Table VI, R = 4.2 row; sources/cond-mat-0606115.txt line 841; version read: arXiv v3 (journal copy not reached, AIP HTTP 403) | Hartree totals: E_RHF (total, with nuclear repulsion) and E_RHF,el printed side by side; at R = 1.8 bohr E_RHF + E_corr[LDMRG(500)] = -27.03865 against the 2017 STO-6G DMRG -27.03864 for H50.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "J. Chem. Phys. 125, 144101 (2006), publisher typeset PDF (author-repository copy, sources/dl-0606115-c1/jcp-125-144101-caltech.pdf, pypdf layout mode) and arXiv:cond-mat/0606115v3 PDF (pypdf layout mode); Table VI rows R = 3.2, 3.6, 4.2 identical in v1, v2, v3 and the journal",
+          "location": "Table VI (Symmetric dissociation of H50), R = 4.2 row, column Ecorr LDMRG(50); v3 layout line 621; journal layout line 554",
+          "reported_as": "E_RHF -18.955 95; Ecorr LDMRG(50) -4.793 76 (hartrees)",
+          "conversion": "total = E_RHF + Ecorr = -18.95595 + -4.79376 = -23.74971; eps = -23.74971/50 = -0.4749942",
+          "note": "Equidistant open H50 chain, R = 4.2 a0, STO-6G, all 50 electrons correlated (Sec. V), N_up = N_dn = 25; E_RHF total with nuclear repulsion: E_RHF - E_RHF,el equals the recomputed point-charge repulsion sum_(i<j) 1/(|i-j|R) = 41.65721 (table difference 41.65720, rounding of two 5-decimal entries) Eh; stored eps*50 matches the table sum to < 1e-12. bound_type variational: fixed-M DMRG expectation value, 'strictly variational in the sense of an upper bound' (Sec. II B), no extrapolation; integral screening thresh1 = 1e-7 Eh (Sec. IV A), shown converged at the microhartree level (Table V); digits of this cell set in roman (Times-Roman in the journal, CMR9 in v3), so not marked unconverged. LDMRG(100), (250), (500) cells read 'conv.', so this M = 50 value is the converged value at R = 4.2. Duplicate check: no other row on this instance. Own computation (cited paper produced it); peer_reviewed true (JCP). The row's evidence string says the journal copy was not reached; the journal Table VI has since been read and agrees digit for digit, so the evidence/version note can say 'journal version read, identical to arXiv v3'.",
+          "secondary_of": null,
+          "source_entry": "h-p-cond-mat-0606115-c4#7 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "E_RHF -18.95595 + E_corr -4.79376 = -23.74971 (totals)",
+          "location": "Table VI, R = 4.2 row; sources/cond-mat-0606115.txt line 841; version read: arXiv v3 (journal copy not reached, AIP HTTP 403)",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    }
+  ]
+}

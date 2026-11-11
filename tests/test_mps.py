@@ -238,6 +238,45 @@ def nk_mpo_vs_netket_random():
     note("random_mps_vs_netket", rows)
 
 
+LATTICE_CASES = [       # (v1.9) t-J: random states without double occupancy
+    ("tj:ladder-2x5:10:A:3,3:0.4", 2, float), ("tj:square:10:P:4,3:0.3:0.3:-0.2", 2, complex),       # v1.9: the MPO on every lattice the verifier builds (spec for score.small_system, chi_q, dtype)
+    ("shastry:4:0.7", 3, float), ("shastry:4:0.8:1:O", 3, complex), ("tfising:4x4:O:3", 0, float), ("tfising:3x4:PO:2", 0, complex),
+    ("honeycomb:3x3:0.2", 3, complex), ("kagome:2x3", 3, float), ("shuriken:2", 2, complex), ("pyrochlore-cubic:1x1x1", 3, float),
+    ("triangular:4x4:P:0.125", 3, float), ("triangular:12:P", 3, complex), ("triangular:4x4:O", 3, float),
+]
+
+
+def nk_mpo_lattices():
+    """v1.9: the MPO of every non-square lattice against NetKet's sparse Hamiltonian (the verifier's sampled
+    operator) on random states of the sector, in a random site order, and the sampling cross-check."""
+    from qrec_verify import score as SC
+    rows = []
+    for k, (spec, chi_q, dt) in enumerate(LATTICE_CASES):
+        inst, system = SC.small_system(spec)
+        rng = np.random.default_rng(100 + k)
+        n = inst["n_sites"]
+        order = rng.permutation(n).tolist()
+        basis = MPS.basis_for(inst)
+        if MPS.sector_targets(inst) or basis != "spin-half":
+            ts = random_sector_mps(n, basis, sector_target(inst), chi_q, rng, dt)
+            if inst["model"] == "tJ":       # no doubly occupied site
+                for t in ts:
+                    t[:, 3, :] = 0.0
+        else:                       # no conserved charge (transverse-field Ising): a dense random MPS
+            ts = random_mps(n, 2, 16, rng)
+            if dt is complex:
+                ts = [t * np.exp(1j * rng.uniform(0, 2 * np.pi, size=t.shape)) for t in ts]
+        mpo = MPS.build_mpo(inst, order)
+        e = MPS.contract(ts, mpo)
+        Ed, vard, _, _ = dense_reference(inst, ts, order, basis, system=system)
+        rel = abs(e["value"] - Ed) / max(1, abs(Ed))
+        print(f"  {spec} ({dt.__name__}, {mpo.description.split(': ')[1]}): MPO {e['value']:.12f}, "
+              f"NetKet {Ed:.12f}, rel {rel:.1e}")
+        rows.append({"spec": spec, "mpo": e["value"], "netket": Ed, "rel": rel})
+        assert rel < 1e-10 and abs(e["imag"]) < 1e-10, (spec, rel, e)
+    note("lattices_mpo_vs_netket", rows)
+
+
 def nk_sampling_check_random():
     inst = fake_inst("Hubbard", 4, 4, "PA", Nf=3, U=4, t2=-0.25, V1=0.5, V2=0.25)
     rng = np.random.default_rng(3)
@@ -524,7 +563,7 @@ def bench():
     note("bench", rows)
 
 
-NETKET = [nk_mpo_vs_netket_random, nk_sampling_check_random]
+NETKET = [nk_mpo_vs_netket_random, nk_mpo_lattices, nk_sampling_check_random]
 TENPY = [tp_j1j2_snake, tp_hubbard, tp_hubbard_antiperiodic]
 ITENSOR = [it_j1j2, it_hubbard, it_hubbard_antiperiodic]
 

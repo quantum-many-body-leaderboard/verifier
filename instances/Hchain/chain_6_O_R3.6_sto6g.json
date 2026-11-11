@@ -1,0 +1,207 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 6,
+  "boundary": "O",
+  "params": {
+    "N_up": 3,
+    "N_dn": 3,
+    "R": 3.6,
+    "basis": "STO-6G"
+  },
+  "instance_id": "Hchain/chain_6_O_R3.6_sto6g",
+  "rows": [
+    {
+      "energy": -2.89051,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "RBM",
+      "method_detail": "canonical orbitals, selected-configuration (SC) iteration",
+      "method_as_published": "CMO (NQS optimized using the SC iteration scheme)",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "NQS (RBM) optimised with SC iteration; Table S2 caption does not say variational energy (eq 13) or optimisation-time energy (eq 12)",
+      "reference": "Xiang Li, Jia-Cheng Huang, Guang-Ze Zhang et al., A Nonstochastic Optimization Algorithm for Neural-Network Quantum States, Journal of Chemical Theory and Computation 19, 8156-8165 (2023), arXiv:2305.12776, doi:10.1021/acs.jctc.3c00831",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.12776 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.89051 Ha per total",
+        "note": "Table S2; sources/2305.12776.txt line 1151; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | line 1143: 'ground-state energies'; no unit printed; H10 FCI 1.8 bohr -5.42439 = -0.5424/atom, matches Motta 2017 total Ha incl. nuclear repulsion | Unit Ha and nuclear repulsion inferred from agreement with the known H10 STO-6G value, not stated. CMO/LMO = NQS in canonical/localized MO basis. | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2305.12776v2 PDF (29 Jul 2023), pypdf layout and plain modes (both parse the same 8 cells per row); v1 (22 May 2023) has no Table S2 and no H4-H8 values; JCTC 19, 8156 (2023) journal copy and SI not reached (pubs.acs.org returned HTTP 403 Cloudflare challenge for article, PDF and suppl pages, 2026-10-24)",
+          "location": "Table S2 (SI p. S4, PDF page 30), row H6, column CMO under 3.6 Bohr; my extraction 2305.12776v2-layout.txt line 1181",
+          "reported_as": "−2.89051",
+          "conversion": "printed value is already the total in Ha: -2.89051 Ha total = -0.4817516667 Ha per atom (divided by N = 6); stored eps per atom matches",
+          "note": "Instance (open chain, N = 6, R = 3.6 bohr, STO-6G, neutral, Sz = 0) and column agree. Total in Ha with nuclear repulsion: the same table's FCI cell agrees with QMBL's pyscf FCI -2.8905209 Ha to the printed 5 decimals, so unit and constant are fixed although the paper prints no unit. Printed value - QMBL FCI = 1.09e-5 Ha. Deterministic selected-configuration (SC) RBM NQS, hidden-unit density alpha = 4, lambda = 1e-5, selection cutoff 1e-5 (SI section 4); no sigma exists (non-stochastic); sampled false is right. Not below FCI. No other row on this instance from another batch (sweep-rows has only this paper's 4 rows here; data/Hchain does not exist): no duplicate.",
+          "secondary_of": null,
+          "source_entry": "h-p-2305-12776-c1#15 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "−2.89051 Ha per total",
+          "location": "Table S2; sources/2305.12776.txt line 1151; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8)",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -2.89041,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "RBM",
+      "method_detail": "localized orbitals, selected-configuration (SC) iteration",
+      "method_as_published": "LMO (NQS optimized using the SC iteration scheme)",
+      "family": "RBM",
+      "bound_type": "variational",
+      "bound_type_reason": "NQS (RBM) optimised with SC iteration; Table S2 caption does not say variational energy (eq 13) or optimisation-time energy (eq 12)",
+      "reference": "Xiang Li, Jia-Cheng Huang, Guang-Ze Zhang et al., A Nonstochastic Optimization Algorithm for Neural-Network Quantum States, Journal of Chemical Theory and Computation 19, 8156-8165 (2023), arXiv:2305.12776, doi:10.1021/acs.jctc.3c00831",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.12776 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.89041 Ha per total",
+        "note": "Table S2; sources/2305.12776.txt line 1151; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | line 1143: 'ground-state energies'; no unit printed; H10 FCI 1.8 bohr -5.42439 = -0.5424/atom, matches Motta 2017 total Ha incl. nuclear repulsion | Unit Ha and nuclear repulsion inferred from agreement with the known H10 STO-6G value, not stated. CMO/LMO = NQS in canonical/localized MO basis. | Variational (ruled 2026-10-24). The paper does not state whether the printed LMO energy is the optimisation-time estimator of eq. 12 or the variational energy of the truncated state of eq. 13 at the selection cutoff 1e-3 used for these runs; it calls the two equal only for cutoffs up to 1e-5. | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2305.12776v2 PDF (29 Jul 2023), pypdf layout and plain modes (both parse the same 8 cells per row); v1 (22 May 2023) has no Table S2 and no H4-H8 values; JCTC 19, 8156 (2023) journal copy and SI not reached (pubs.acs.org returned HTTP 403 Cloudflare challenge for article, PDF and suppl pages, 2026-10-24)",
+          "location": "Table S2 (SI p. S4, PDF page 30), row H6, column LMO under 3.6 Bohr; my extraction 2305.12776v2-layout.txt line 1181",
+          "reported_as": "−2.89041",
+          "conversion": "printed value is already the total in Ha: -2.89041 Ha total = -0.4817350000 Ha per atom (divided by N = 6); stored eps per atom matches",
+          "note": "Instance (open chain, N = 6, R = 3.6 bohr, STO-6G, neutral, Sz = 0) and column agree. Total in Ha with nuclear repulsion: the same table's FCI cell agrees with QMBL's pyscf FCI -2.8905209 Ha to the printed 5 decimals, so unit and constant are fixed although the paper prints no unit. Printed value - QMBL FCI = 1.11e-4 Ha. Deterministic selected-configuration (SC) RBM NQS, hidden-unit density alpha = 4, lambda = 1e-5, selection cutoff 1e-3 (SI section 4); no sigma exists (non-stochastic); sampled false is right. Not below FCI. No other row on this instance from another batch (sweep-rows has only this paper's 4 rows here; data/Hchain does not exist): no duplicate.",
+          "secondary_of": null,
+          "source_entry": "h-p-2305-12776-c1#16 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "note",
+          "from": "Unit Ha and nuclear repulsion inferred from agreement with the known H10 STO-6G value, not stated. CMO/LMO = NQS in canonical/localized MO basis.",
+          "to": "Unit Ha and nuclear repulsion inferred from agreement with the known H10 STO-6G value, not stated. CMO/LMO = NQS in canonical/localized MO basis. | Variational (ruled 2026-10-24). The paper does not state whether the printed LMO energy is the optimisation-time estimator of eq. 12 or the variational energy of the truncated state of eq. 13 at the selection cutoff 1e-3 used for these runs; it calls the two equal only for cutoffs up to 1e-5.",
+          "checked_on": "2026-10-24",
+          "reason": "note added by the verify pass; the earlier note is kept in front",
+          "source_entry": "h-p-2305-12776-c1#17 (qmbl-verify 2026-10-23/24, ambiguous); ruling 9, 2026-10-24"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "−2.89041 Ha per total",
+          "location": "Table S2; sources/2305.12776.txt line 1151; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8)",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -2.9832,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "CCSD(T)",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "CCSD(T)",
+      "family": "FCIQMC / CC",
+      "bound_type": "approximate",
+      "bound_type_reason": "CCSD(T) unsettled (RULES 13.4)",
+      "reference": "Xiang Li, Jia-Cheng Huang, Guang-Ze Zhang et al., A Nonstochastic Optimization Algorithm for Neural-Network Quantum States, Journal of Chemical Theory and Computation 19, 8156-8165 (2023), arXiv:2305.12776, doi:10.1021/acs.jctc.3c00831",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.12776 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.98320 Ha per total",
+        "note": "Table S2; sources/2305.12776.txt line 1151; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | line 1143: 'ground-state energies'; no unit printed; H10 FCI 1.8 bohr -5.42439 = -0.5424/atom, matches Motta 2017 total Ha incl. nuclear repulsion | Unit Ha and nuclear repulsion inferred from agreement with the known H10 STO-6G value, not stated. CMO/LMO = NQS in canonical/localized MO basis. CCSD(T) at 3.6 bohr fails (paper says so, line 620). | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2305.12776v2 PDF (29 Jul 2023), pypdf layout and plain modes (both parse the same 8 cells per row); v1 (22 May 2023) has no Table S2 and no H4-H8 values; JCTC 19, 8156 (2023) journal copy and SI not reached (pubs.acs.org returned HTTP 403 Cloudflare challenge for article, PDF and suppl pages, 2026-10-24)",
+          "location": "Table S2 (SI p. S4, PDF page 30), row H6, column CCSD(T) under 3.6 Bohr; my extraction 2305.12776v2-layout.txt line 1181",
+          "reported_as": "−2.98320",
+          "conversion": "printed value is already the total in Ha: -2.9832 Ha total = -0.4972000000 Ha per atom (divided by N = 6); stored eps per atom matches",
+          "note": "Instance (open chain, N = 6, R = 3.6 bohr, STO-6G, neutral, Sz = 0) and column agree. Total in Ha with nuclear repulsion: the same table's FCI cell agrees with QMBL's pyscf FCI -2.8905209 Ha to the printed 5 decimals, so unit and constant are fixed although the paper prints no unit. Printed value - QMBL FCI = -9.27e-2 Ha. Lies 92.679 mHa below FCI; CCSD(T) is approximate in track 3 and the 2026-10-24 ruling leaves this to RULES 6.2 (no defect). The paper itself calls CCSD(T) a failure at 3.6 bohr (Sec. 4.3, Table S2). No other row on this instance from another batch (sweep-rows has only this paper's 4 rows here; data/Hchain does not exist): no duplicate.",
+          "secondary_of": null,
+          "source_entry": "h-p-2305-12776-c1#18 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "−2.98320 Ha per total",
+          "location": "Table S2; sources/2305.12776.txt line 1151; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8)",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    },
+    {
+      "energy": -2.89052,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "FCI",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "FCI",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "FCI in STO-6G",
+      "reference": "Xiang Li, Jia-Cheng Huang, Guang-Ze Zhang et al., A Nonstochastic Optimization Algorithm for Neural-Network Quantum States, Journal of Chemical Theory and Computation 19, 8156-8165 (2023), arXiv:2305.12776, doi:10.1021/acs.jctc.3c00831",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2305.12776 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.89052 Ha per total",
+        "note": "Table S2; sources/2305.12776.txt line 1151; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | line 1143: 'ground-state energies'; no unit printed; H10 FCI 1.8 bohr -5.42439 = -0.5424/atom, matches Motta 2017 total Ha incl. nuclear repulsion | Unit Ha and nuclear repulsion inferred from agreement with the known H10 STO-6G value, not stated. CMO/LMO = NQS in canonical/localized MO basis. | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2305.12776v2 PDF (29 Jul 2023), pypdf layout and plain modes (both parse the same 8 cells per row); v1 (22 May 2023) has no Table S2 and no H4-H8 values; JCTC 19, 8156 (2023) journal copy and SI not reached (pubs.acs.org returned HTTP 403 Cloudflare challenge for article, PDF and suppl pages, 2026-10-24)",
+          "location": "Table S2 (SI p. S4, PDF page 30), row H6, column FCI under 3.6 Bohr; my extraction 2305.12776v2-layout.txt line 1181",
+          "reported_as": "−2.89052",
+          "conversion": "printed value is already the total in Ha: -2.89052 Ha total = -0.4817533333 Ha per atom (divided by N = 6); stored eps per atom matches",
+          "note": "Instance (open chain, N = 6, R = 3.6 bohr, STO-6G, neutral, Sz = 0) and column agree. Total in Ha with nuclear repulsion: the same table's FCI cell agrees with QMBL's pyscf FCI -2.8905209 Ha to the printed 5 decimals, so unit and constant are fixed although the paper prints no unit. Printed value - QMBL FCI = 8.85e-7 Ha. Exact; agrees with QMBL's recompute within half a unit of the 5th decimal (|diff| 8.85e-7 < 5e-6). Only exact row on the instance. No other row on this instance from another batch (sweep-rows has only this paper's 4 rows here; data/Hchain does not exist): no duplicate.",
+          "secondary_of": null,
+          "source_entry": "h-p-2305-12776-c1#19 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    }
+  ]
+}

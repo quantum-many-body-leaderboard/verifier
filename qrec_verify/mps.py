@@ -1,7 +1,8 @@
 """Exact evaluation of a matrix product state (MPS) submitted as a file (format: MPS_FORMAT.md).
 
 The verifier reads the tensors, builds the instance's Hamiltonian as a matrix product operator (MPO)
-itself, from its own bond lists (`hamiltonians.square_bonds`) and in the file's site order, with
+itself, from its own bond lists (`hamiltonians.square_bonds`, and since v1.9 `hamiltonians.spin_lattice` for
+every spin lattice) and in the file's site order, with
 Jordan-Wigner strings for fermions, and contracts <psi|H|psi> / <psi|psi> exactly. No energy, operator
 or Hamiltonian from the submitter enters the result. Further gates: the state's particle numbers (or
 total S^z) must be those of the instance's sector, a stated energy must be reproduced, and a sample
@@ -43,10 +44,17 @@ SAMPLING_Z = 4.0                   # sampled mean vs exact energy, in standard e
 
 
 def basis_for(inst: dict) -> str:
-    if inst["model"] in ("J1J2", "Heisenberg"):
+    if inst["model"] in ("J1J2", "Heisenberg", "ShastrySutherland", "TFIsing"):
         return "spin-half"
-    if inst["model"] == "Hubbard":
+    if inst["model"] in ("Hubbard", "tJ"):
         return "electron"
+    if inst["model"] == "Impurity":
+        raise ValueError("model Impurity has no MPS route in this verifier yet: its spin-dependent complex hybridisation "
+                         "and Kanamori terms are not in the MPO builder (score a sampled state instead)")
+    if inst["model"] in ("Hchain", "Hsheet"):
+        raise ValueError(f"model {inst['model']} has no MPS route: the MPO of a full two-electron Hamiltonian has a "
+                         "bond dimension of order n_orbitals^2, which this verifier does not build (score a sampled "
+                         "state instead)")
     raise ValueError(f"model {inst['model']} has no MPS route yet")
 
 
@@ -163,7 +171,8 @@ def local_ops(basis: str) -> dict:
     if basis == "spin-half":
         sz = np.diag([1.0, -1.0])
         sp = np.array([[0.0, 1.0], [0.0, 0.0]])        # |up><down|
-        return {"I": np.eye(2), "F": np.eye(2), "z": sz, "+": sp, "-": sp.T.copy(), "Sz": sz / 2}
+        return {"I": np.eye(2), "F": np.eye(2), "z": sz, "+": sp, "-": sp.T.copy(), "Sz": sz / 2,
+                "x": sp + sp.T}
     a_up = np.zeros((4, 4))
     a_up[0, 1] = a_up[2, 3] = 1.0                       # |0><up|, |dn><updn|
     a_dn = np.zeros((4, 4))
@@ -191,21 +200,33 @@ class MPO:
 def hamiltonian_terms(inst: dict, overrides: dict | None = None) -> tuple[str, list, list]:
     """The instance's Hamiltonian as (basis, onsite, pairs) on lattice sites, from the verifier's
     bond lists. onsite: (i, op name, coef); pairs: (i, j, kind, coef), kind 'heis' (Pauli s_i.s_j),
-    'hop' (sum_sigma c+_i c_j + h.c.) or 'nn' (n_i n_j)."""
+    'hop' (sum_sigma c+_i c_j + h.c.) or 'nn' (n_i n_j). Spin models take their bonds from
+    hamiltonians.spin_lattice, the same lists the sampled Hamiltonian is built from."""
+    from . import hamiltonians as Hm
+    model = inst["model"]
+    overrides = overrides or {}
+    if model in ("J1J2", "Heisenberg", "ShastrySutherland"):
+        sl = Hm.spin_lattice(inst, overrides)
+        pairs = [(i, j, "heis", sl["J1"]) for i, j, _ in sl["nn"]]
+        if sl["J2"] != 0:
+            pairs += [(i, j, "heis", sl["J2"]) for i, j, _ in sl["nnn"]]
+        return "spin-half", [], pairs
+    if model == "tJ":               # (v1.9) qrec_verify/tj.py: projected hops and J (S.S - n n / 4)
+        from . import tj
+        p = tj.params(inst)
+        cl = tj.cluster(inst)
+        pairs = [(i, j, "tjhop", -a) for i, j, a in tj.hop_bonds(p, cl)]
+        if p["J"]:
+            pairs += [(i, j, "tjJ", p["J"]) for i, j, _ in cl["nn"]]
+        return "electron", [], pairs
+    if model == "TFIsing":          # (v1.9) -sum sz sz - h sum sx, hamiltonians.tfising_bonds
+        n, nn, h, _, _ = Hm.tfising_bonds(inst)
+        h = overrides.get("h", h)
+        onsite = [(i, "x", -h) for i in range(n)] if h != 0 else []
+        return "spin-half", onsite, [(i, j, "zz", -1.0) for i, j, _ in nn]
     lx, ly = I.lattice_dims(inst)
     axes = I.boundary_axes(inst)
     nn, nnn = square_bonds(lx, ly, axes)
-    model = inst["model"]
-    overrides = overrides or {}
-    if model in ("J1J2", "Heisenberg"):
-        if any(s != 1 for *_, s in nn + nnn):
-            raise ValueError("antiperiodic boundaries are not defined for the spin models here")
-        J2 = float(inst["params"].get("J2", 0.0)) if model == "J1J2" else 0.0
-        J2 = overrides.get("J2", J2)
-        pairs = [(i, j, "heis", 1.0) for i, j, _ in nn]
-        if J2 != 0:
-            pairs += [(i, j, "heis", J2) for i, j, _ in nnn]
-        return "spin-half", [], pairs
     if model == "Hubbard":
         hp = I.hubbard_params(inst)
         hp.update(overrides)
@@ -229,11 +250,22 @@ def hamiltonian_terms(inst: dict, overrides: dict | None = None) -> tuple[str, l
 def _pair_channels(basis: str, ops: dict) -> dict:
     if basis == "spin-half":
         return {"heis": [("z", ops["z"], ops["z"], 1.0, False), ("+", ops["+"], ops["-"], 2.0, False),
-                         ("-", ops["-"], ops["+"], 2.0, False)]}
+                         ("-", ops["-"], ops["+"], 2.0, False)],
+                "zz": [("zz", ops["z"], ops["z"], 1.0, False)]}
     au, ad, pu, pd = ops["a_up"], ops["a_dn"], ops["p_up"], ops["p_dn"]
+    qu, qd = np.eye(4) - ops["n_up"], np.eye(4) - ops["n_dn"]
+    sp = np.zeros((4, 4))
+    sp[1, 2] = 1.0                                       # |up><dn|
+    sz = 0.5 * (ops["n_up"] - ops["n_dn"])
     return {"hop": [("cu+", au.T @ pd, au, 1.0, True), ("cu-", au @ pd, au.T, 1.0, True),
                     ("cd+", ad.T, pu @ ad, 1.0, True), ("cd-", ad, pu @ ad.T, 1.0, True)],
-            "nn": [("n", ops["n"], ops["n"], 1.0, False)]}
+            "nn": [("n", ops["n"], ops["n"], 1.0, False)],
+            # (v1.9) t-J: the hops times the projector (1 - n_-s) on both sites (P c+_p c_q P; on the source site it
+            # is 1 anyway), and J (S.S - n n / 4) with S+ = |up><dn| (bosonic, no string)
+            "tjhop": [("tu+", qd @ au.T @ pd, qd @ au, 1.0, True), ("tu-", qd @ au @ pd, qd @ au.T, 1.0, True),
+                      ("td+", qu @ ad.T, qu @ pu @ ad, 1.0, True), ("td-", qu @ ad, qu @ pu @ ad.T, 1.0, True)],
+            "tjJ": [("S+", sp, sp.T, 0.5, False), ("S-", sp.T, sp, 0.5, False), ("Sz", sz, sz, 1.0, False),
+                    ("nq", ops["n"], ops["n"], -0.25, False)]}
 
 
 def build_mpo(inst: dict, order, overrides: dict | None = None) -> MPO:
@@ -295,7 +327,7 @@ def build_mpo(inst: dict, order, overrides: dict | None = None) -> MPO:
 def charge_mpo(basis: str, n: int, targets: dict) -> MPO:
     """MPO of sum_c (Q_c - target_c)^2 for the conserved charges (N_up, N_dn; or total S^z)."""
     ops = local_ops(basis)
-    names = ("n_up", "n_dn") if basis == "electron" else ("Sz",)
+    names = tuple(k for k in ("n_up", "n_dn", "nn") if k in targets) if basis == "electron" else ("Sz",)
     d = BASES[basis]
     W = []
     for k in range(n):
@@ -314,6 +346,12 @@ def charge_mpo(basis: str, n: int, targets: dict) -> MPO:
 
 
 def sector_targets(inst: dict) -> dict:
+    """The conserved charges of the instance's sector; empty for the transverse-field Ising model (v1.9)."""
+    if inst["model"] == "TFIsing":
+        return {}
+    if inst["model"] == "tJ":       # (v1.9) also no double occupancy: <(sum_i n_i,up n_i,dn)^2> = 0
+        p = inst["params"]
+        return {"n_up": int(p["N_up"]), "n_dn": int(p["N_dn"]), "nn": 0.0}
     if basis_for(inst) == "electron":
         hp = I.hubbard_params(inst)
         return {"n_up": hp["n_up"], "n_dn": hp["n_dn"]}
@@ -603,11 +641,17 @@ def evaluate(inst: dict, path: str, *, seed: int = 0, n_samples: int = 512, limi
         gate("finite", "fail", "the energy is not finite")
         return _finish(card, gates, None, div, t0, inst)
 
-    q = contract(mps, charge_mpo(mps.basis, mps.n_sites, sector_targets(inst)))
-    card["sector_deviation"] = q["value"]
-    what = "<(N_up - n_up)^2> + <(N_dn - n_dn)^2>" if mps.basis == "electron" else "<(S^z_total)^2>"
-    gate("sector", "pass" if q["value"] <= SECTOR_TOL else "fail",
-         f"{what} = {q['value']:.2e} (limit {SECTOR_TOL:g}; the instance's sector is {sector_targets(inst)})")
+    if not sector_targets(inst):
+        card["sector_deviation"] = None
+        gate("sector", "pass", "the Hamiltonian conserves no charge the instance fixes (transverse-field Ising)")
+    else:
+        q = contract(mps, charge_mpo(mps.basis, mps.n_sites, sector_targets(inst)))
+        card["sector_deviation"] = q["value"]
+        what = "<(N_up - n_up)^2> + <(N_dn - n_dn)^2>" if mps.basis == "electron" else "<(S^z_total)^2>"
+        if "nn" in sector_targets(inst):
+            what += " + <(number of doubly occupied sites)^2>"
+        gate("sector", "pass" if q["value"] <= SECTOR_TOL else "fail",
+             f"{what} = {q['value']:.2e} (limit {SECTOR_TOL:g}; the instance's sector is {sector_targets(inst)})")
 
     claim = mps.attrs.get("energy")
     if claim is None:

@@ -1,0 +1,47 @@
+{
+  "model": "Heisenberg",
+  "lattice": "honeycomb-7x7",
+  "n_sites": 98,
+  "boundary": "P",
+  "params": {},
+  "cluster": "7 x 7 rhombic two-site unit cells, periodic (arXiv:2110.06390 App. A.5.a Table I: b1 = 7 a1, b2 = 7 a2)",
+  "instance_id": "Heisenberg/honeycomb-7x7_98_P",
+  "rows": [
+    {
+      "energy": -212.5032,
+      "sigma": 0.1568,
+      "energy_variance": null,
+      "dof": 98,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "LCN",
+      "method_detail": "",
+      "method_as_published": "LCN",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Fu, Zhang, Zhang, Ling, Xu & Ji, Lattice Convolutional Networks for Learning Ground States of Quantum Many-Body Systems, Proc. 2024 SIAM Int. Conf. on Data Mining (SDM), pp. 490-498 (2024), arXiv:2206.07370",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2206.07370 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.5421(4)",
+        "note": "Table 1, Honeycomb N = 98, J2 = 0, column LCN; version read: arXiv text (sources/2206.07370.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Same Hamiltonian, lattices and references as arXiv:2110.06390 (Sec. 'Lattice': 'Following Kochkov et al. [27]'); Table 1 'energy per site'.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2206.07370v1 (only arXiv version); SDM 2024 published text not reachable (epubs.siam.org HTTP 403)",
+          "location": "Table 1 (p. 8), Honeycomb 98, J2 = 0, column 'LCN (ours)'",
+          "reported_as": "-0.5421(4) (per site, S.S units)",
+          "conversion": "-0.5421 x 392 = -212.5032; sigma 0.0004 x 392 = 0.1568",
+          "note": "Value checked: Table 1 Honeycomb 98, J2 = 0, column 'LCN (ours)' prints -0.5421(4); -0.5421 x 392 = -212.5032 (stored -212.5032), sigma 0.0004 x 392 = 0.1568 (stored 0.1568); per site, S.S units (Reference column), Kochkov's periodic 98-site cluster, own computation, final 200,000-sample evaluation, variational. Published in refereed proceedings, Proc. 2024 SIAM SDM, pp. 490-498 (Crossref doi:10.1137/1.9781611978032.57); the SDM text itself was not read (epubs.siam.org 403).",
+          "source_entry": "famP6-shastrysutherland-j1j2-heisenberg#7 (qmbl-verify 2026-10-23; skeptic upheld)"
+        }
+      }
+    }
+  ]
+}

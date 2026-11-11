@@ -54,6 +54,64 @@ A state is a flax module or a JAX function (`--state jax:...`) of the electron p
   limit of its reciprocal cut, `tests/xcheck_fvmc.json`) and the verifier's own sum at a second
   splitting (1e-11).
 
+## v1.9 (2026-11-11): the lattices of qrec-verifier, t-J, hydrogen in a Gaussian basis, impurity models
+
+The public line and qrec-verifier (the QMBL record loops' own verifier) split after v1.7. The public line went on
+with MPS files, framework adapters and the electron gas (its v1.8, above); qrec-verifier added the triangular lattice
+(its v1.8), kagome, pyrochlore and shuriken (its v1.9), Shastry-Sutherland (its v1.10) and the transverse-field Ising
+model (its v1.11). The version numbers collide; the merge is v1.9 of the public line. What came from where:
+
+| part | from | where |
+|---|---|---|
+| MPS files, adapters, electron gas, statistics, scorecard | public line v1.7-v1.8, unchanged | `mps.py`, `external.py`, `continuum.py`, `stats.py`, `measure.py` |
+| triangular L x L and 3 m^2 (C6v) clusters, stripe known state | qrec-verifier v1.8 | `hamiltonians.triangular_cluster`, `score.stripe_check` |
+| kagome, pyrochlore (primitive and 16-site cubic cells), shuriken, configuration-pair known state | qrec-verifier v1.9 | `hamiltonians.frustrated_cluster`, `score.frustrated_check` |
+| Shastry-Sutherland on the torus, Neel-pair known state | qrec-verifier v1.10 | `hamiltonians.shastry_dimers`, `score.shastry_check` |
+| Shastry-Sutherland on the open square (setup B of arXiv:2309.10955) | new | `hamiltonians.shastry_dimers(L, "O")` |
+| transverse-field Ising, ferromagnetic-pair known state, single-flip sampler | qrec-verifier v1.11 | `hamiltonians.tfising`, `score.tfising_check` |
+| honeycomb L x M tori (Heisenberg, J1-J2) | new | `frustrated_cluster("honeycomb", ...)` |
+| t-J (clusters, Hilbert space without double occupancy, operator, sampler) | new | `tj.py` |
+| hydrogen chains in a Gaussian basis | new | `chem.py` |
+| Anderson impurity models (VarBench's parameters, forkTPS's Kanamori form) | new | `impurity.py`, `instances/Impurity/HamParams/` (VarBench, Apache-2.0) |
+| MPOs of every new spin lattice, of TFIsing and of t-J | new | `mps.py` (`spin_lattice`, channels `zz`, `tjhop`, `tjJ`) |
+
+Not taken from qrec-verifier: its continuum hydrogen path (`molecule.py`, `molecular_score.py`, its v2.1, for the
+`basis: none` instances) and the record loops' own bookkeeping. Comments ported from qrec-verifier are rewritten for
+the public command line (`op_verify.py`).
+
+One bond list per lattice: `hamiltonians.spin_lattice(inst)` returns the bonds and couplings of every Heisenberg-type
+instance (square, rectangular, triangular, kagome, pyrochlore, shuriken, honeycomb, Shastry-Sutherland); the sampled
+NetKet Hamiltonian, the spin sampler's exchange moves, the MPO and the exact diagonalisations of the tests are all
+built from it. Square and Hubbard systems are unchanged bit for bit.
+
+MPS route (`mps-score`): the new spin lattices, TFIsing and t-J are built as MPOs (checked against NetKet's operators
+in `tests/test_mps.py`). Hydrogen (an MPO of the full two-electron Hamiltonian has bond dimension of order n_orb^2) and
+the impurity models (spin-dependent complex hybridisation, Kanamori terms) are refused with that reason.
+
+Gates of the new models (the statistics are unchanged):
+- Hamiltonian identity: every new lattice or model reproduces QMBL's exact rows (1e-8 relative, or half a unit of the
+  row's last printed decimal when it is printed to fewer digits) where a diagonalisation fits: NetKet's Lanczos up to
+  about 24 sites, `tests/ed_sz.py` (matrix-free S^z-sector Lanczos on the verifier's bond lists) up to 32 spins,
+  `tests/ed_tj.py` (matrix-free t-J Lanczos) up to about 2e8 states, `tests/dmrg_mpo.py` (DMRG on the verifier's own
+  MPO) for long chains, pyscf's FCI for hydrogen. Where QMBL has no exact row, a small cluster of the same
+  construction against an independent one: NetKet's lattices and operators (honeycomb, open Shastry-Sutherland,
+  t-J matrix elements), pyscf's own FCI in canonical orbitals (hydrogen), TeNPy's independently built model on a
+  truncated bath, forkTPS's atomic-limit test and full-size DMRG against VarBench's rows (three-band impurity
+  models). The spin-orbit impurity models fail the last check (DMRG of the verifier's Hamiltonian goes below
+  VarBench's converged energy) and are refused. The exact rows that are not reproduced
+  (clusters beyond a plain S^z Lanczos) are listed in `COVERAGE.md`.
+- Known state at full size (`op_verify.py neel-check`): a state whose energy follows in closed form from the geometry
+  or the parameters: the stripe pair (triangular), configuration pairs (kagome, pyrochlore, shuriken, honeycomb), the
+  Neel pair (Shastry-Sutherland), the ferromagnetic pair (TFIsing), and single configurations for t-J, hydrogen and
+  impurity models (the diagonal of H, by the Slater-Condon rule from the integrals for hydrogen).
+- Sector: t-J configurations never hold a doubly occupied site (constrained Hilbert space; the sampler only exchanges
+  site occupations; the MPS sector gate counts doubly occupied sites). Hydrogen and impurity states are sampled at
+  fixed (N_dn, N_up).
+- Size: hydrogen is built up to 128 orbitals (n_orb^4 two-electron integrals); above, the verifier refuses with the
+  count. Continuous-space hydrogen (`basis: none`) is refused.
+- Units and per-site divisors (DATA.md): Pauli totals for spin models (TFIsing per site E / N), units of t for t-J
+  (E / N), hartree per atom with the nuclear repulsion for hydrogen, totals for impurity models (divisor 1).
+
 ## Input to the statistics
 
 Arrays shaped `(n_chains, n_steps)` in sampling order, after the declared burn-in:

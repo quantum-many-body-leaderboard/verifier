@@ -1,0 +1,91 @@
+{
+  "model": "Heisenberg",
+  "lattice": "shuriken",
+  "n_sites": 96,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/shuriken_96_P",
+  "rows": [
+    {
+      "energy": -168.2918,
+      "sigma": 0.0048,
+      "energy_variance": 7.563,
+      "dof": 96,
+      "einf": 0,
+      "v_score": 0.025635360100123884,
+      "method": "VMC",
+      "ansatz": "PP",
+      "method_detail": "projected: SU(2), point group",
+      "method_as_published": "mVMC with SU(2) and point group projection",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[paper](https://doi.org/10.1126/science.adg9774) (Wu et al., Science 386, 296 (2024), arXiv:2302.04919: VarBench dataset, number uploaded by Nikita Astrakhantsev on 2021-09-15, commit 9d01a77; method: Astrakhantsev et al., Phys. Rev. B 104, L220408 (2021), arXiv:2110.08198, which shows this energy only as a plotted point (Fig. 4))",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "compute": {
+        "parameters": 2304,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Supplemental Material, Sec. II.C (many-variable wave function, mVMC): The parameters f_ij are optimised using the stochastic reconfiguration optimization technique [S8] ... In this work, for systems with more than 36 sites, we partially impose translational symmetry directly on the variational parameters f_ij. Namely, we introduce translational symmetry modulo 2 × 2 unit cells sublattice structure and project the 2×2 translations and the point-group symmetries using Eq. (S15). The resulting procedure amounts into 2 × 2 × 6^2 × L^2 variational parameters with L being the number of unit cells in each lattice direction. Such partial translational symmetry imposition is a reasonable compromise between the ability to express complicated wave function and and the required time to learn the wave function. ... Acknowledgments: The mVMC simulations (results section) were supported by the RSF grant (project No. 21-12-00237). The authors acknowledge the usage of computing resources of the federal collective usage center \"Complex for simulation and data processing for mega-science facilities\" at NRC \"Kurchatov Institute\", http://ckp.nrcki.ru.",
+        "source": "arXiv:2110.08198 Supplemental Material Sec. II.C (mVMC); Acknowledgments, arXiv:2110.08198 (compute pass 2026-09-16)",
+        "scope": "ansatz",
+        "confidence": "medium",
+        "note": "Resolved PRB 104, L220408 to arXiv:2110.08198 (Astrakhantsev et al., Pinwheel valence-bond-crystal ground state ... shuriken lattice); PDF fetched to fetched/2110.08198.pdf. parameters = 2304 is our evaluation of the paper's stated formula 2×2×6^2×L^2 for this cluster (L = 4 unit cells per direction, 96 sites), not a number printed by the paper; it counts the pairing parameters f_ij under the imposed 2×2 translational symmetry. No sample count, iteration count, wall-clock, core/GPU count or hours stated anywhere in main text, Figs. 1-5, or Supplement; only the qualitative remark about 'the required time to learn the wave function' and the named computing centre."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "[paper](https://doi.org/10.1126/science.adg9774) (Wu et al., Science 386, 296 (2024), arXiv:2302.04919: VarBench dataset, number uploaded by Nikita Astrakhantsev on 2021-09-15, commit 9d01a77; method: Astrakhantsev et al., Phys. Rev. B 104, L220408 (2021), arXiv:2110.08198, which shows this energy only as a plotted point (Fig. 4))",
+          "reported_as": "VarBench upload: |    -168.2918           |  0.0048           | 0.1152           | mVMC with SU(2) and point group projection                       | SKL/mVMC96                          |",
+          "location": "VarBench history of Heisenberg/shuriken_96_P.md (then J1J2/square_kagome_4_PP_96.md): first appearance of the stored energy in commit 9d01a77 (2021-09-15, Nikita Astrakhantsev, \"Update square_kagome_4_PP_96.md\")",
+          "version_read": "VarBench git history (qmbl-runs/qmbl-verify-2026-09-29/varbench-history, git log -p --follow); arXiv:2110.08198v3 (= Phys. Rev. B 104, L220408 (2021)) and v1, main text and Supplement, read by VA5-hubbard-heisenberg-tfising-j1j2",
+          "conversion": "none (citation)",
+          "checked_on": "2026-10-02",
+          "reason": "Ruling 1 (2026-09-30), applied to this row by ruling A5 (2026-10-02): the number is cited to where it was published, the VarBench dataset (Wu et al., Science 386, 296 (2024)), with the author's paper kept as the method reference; not a RULES.md 8 removal, because the number is printed, in the dataset. The paper prints no finite-cluster mVMC energy (main text, Table I, Supplement); it shows this one only as a plotted point in Fig. 4, which is not read (table over figure, 2026-09-30; VA5's decoded -168.331008 is not used). The stored total is the first author's upload of 2021-09-15 (VarBench 9d01a77), his per-site -0.438260 of 2021-07-23 (50f2b37, before arXiv v1 of 2021-10-15) as a Pauli total, unchanged since.",
+          "source_entry": "VA5-hubbard-heisenberg-tfising-j1j2#9, VA5-hubbard-heisenberg-tfising-j1j2#10 (qmbl-verify 2026-09-29; skeptic upheld; figure-decoded, not applied); ruling 1, 2026-09-30; ruling A5, 2026-10-02",
+          "from": "[paper](https://journals.aps.org/prb/abstract/10.1103/PhysRevB.104.L220408)"
+        }
+      ],
+      "artifacts": {
+        "libraries": [
+          {
+            "name": "mVMC",
+            "version": null,
+            "url": "https://github.com/issp-center-dev/mVMC"
+          }
+        ],
+        "libraries_read_from": {
+          "quote": "In this work, we employ the mVMC implementation from Ref. [S16,S17]. ... [S16] T. Misawa, S. Morita, K. Yoshimi, M. Kawamura, Y. Motoyama, K. Ido, T. Ohgoe, M. Imada, and T. Kato, Comput. Phys. Commun 235, 447 (2019).",
+          "location": "arXiv:2110.08198 (sources/2110.08198.txt), Supplemental Material Sec. C 'Many-variable wave function (mVMC)' and ref. [S16] (the mVMC open-source software paper); this is the method paper the rows cite",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/libraries-2026-10-22.json"
+        }
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "citation screen of Astrakhantsev et al. 2021 (PRB 104, L220408, shuriken): citing works from OpenAlex and Semantic Scholar (scripts/cited_by.mjs)",
+      "screened": [
+        "arXiv:2603.10998",
+        "arXiv:2407.20629",
+        "arXiv:2308.12358",
+        "arXiv:2304.04257",
+        "arXiv:2211.16932",
+        "arXiv:2302.04171",
+        "arXiv:2310.05219",
+        "arXiv:2110.08160"
+      ],
+      "found": 0,
+      "note": "48 citing works, 28 on arXiv, 28 fetched; 8 read in full, 20 excluded by a text filter (no energy to four decimals, or no QMBL model named)."
+    }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "model": "Hsheet",
+  "lattice": "square",
+  "n_sites": 4,
+  "boundary": "O",
+  "params": {
+    "N_up": 2,
+    "N_dn": 2,
+    "R": 2.4,
+    "basis": "none"
+  },
+  "instance_id": "Hsheet/square_4_O_R2.4_none",
+  "rows": [
+    {
+      "energy": -2.0694,
+      "sigma": 0.0004,
+      "energy_variance": null,
+      "dof": 4,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "SJ",
+      "method_detail": "cc-pVDZ trial basis",
+      "method_as_published": "JSD(cc-pVDZ) [trial state in cc-pVDZ]",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "VMC, optimised Jastrow Slater determinant",
+      "reference": "Claudio Genovese, Antonella Meninno, Sandro Sorella, Assessing the accuracy of the Jastrow antisymmetrized geminal power in the H4 model system, The Journal of Chemical Physics 150, 084102 (2019), arXiv:1905.06971, doi:10.1063/1.5081933",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1905.06971 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.0694± 0.0004 Ha per total",
+        "note": "Table I; sources/1905.06971.txt line 214; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | Table I caption (line 210): 'All the energies are expressed in Hartree'; Fig. 1 caption (line 134-135): ry fixed at 2.4 a.u., so rx = 2.40 is the square (2x2) geometry; energies ~ -2.1 are totals for H4 | Only the rx = ry = 2.4 a.u. row is a square; rx=1.8 and 3.0 rows are rectangles (not rows). Row/column alignment checked against the header; a.u. = bohr. Basis is that of the AGP/SD determinant; Jastrow-correlated VMC is a continuum Hamiltonian, so the mapping to basis instance (cc-pVDZ vs none) is a ruling. Printed as '-2.0694± 0.0004' (glued minus). | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:1905.06971v1 (only version; submitted 2019-01-29, comment 'Accepted on Journal of Chemical Physics'), PDF fetched 2026-10-24 into the shared cache, pypdf layout mode (byte-identical to qmbl-wt-hydrogen/sources/1905.06971.txt); journal version J. Chem. Phys. 150, 084102 (2019) not reached: doi.org -> pubs.aip.org and the crossref PDF link both returned HTTP 403 (Cloudflare challenge page), 2026-10-24",
+          "location": "Table I, row rx = 2.40, column JSD(cc-pVDZ) (layout text line 214)",
+          "reported_as": "−2.0694± 0.0004 (Hartree, total)",
+          "conversion": "total -2.0694 Ha; per atom -2.0694/4 = -0.51735 (stored eps); sigma 0.0004/4 = 0.0001 (stored)",
+          "note": "rx = ry = 2.4 bohr square, open, neutral singlet H4, all-electron continuum (basis = none per RULES 13.1: the Gaussian basis is the trial state's), total in Ha with nuclear repulsion; arXiv value only, journal unreachable; variational (VMC of optimised Jastrow-SD) correct; 9.4 mHa above the JAGP rows as the paper describes; no duplicate on the instance (data/Hsheet does not exist, no other sweep row on it)",
+          "secondary_of": null,
+          "source_entry": "h-p-1905-06971#0 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    },
+    {
+      "energy": -2.1075,
+      "sigma": 0.0004,
+      "energy_variance": null,
+      "dof": 4,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "JAGP",
+      "method_detail": "cc-pVDZ trial basis",
+      "method_as_published": "JAGP(cc-pVDZ) [trial state in cc-pVDZ]",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "VMC, Jastrow AGP",
+      "reference": "Claudio Genovese, Antonella Meninno, Sandro Sorella, Assessing the accuracy of the Jastrow antisymmetrized geminal power in the H4 model system, The Journal of Chemical Physics 150, 084102 (2019), arXiv:1905.06971, doi:10.1063/1.5081933",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1905.06971 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.1075± 0.0004 Ha per total",
+        "note": "Table I; sources/1905.06971.txt line 214; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | Table I caption (line 210): 'All the energies are expressed in Hartree'; Fig. 1 caption (line 134-135): ry fixed at 2.4 a.u., so rx = 2.40 is the square (2x2) geometry; energies ~ -2.1 are totals for H4 | Only the rx = ry = 2.4 a.u. row is a square; rx=1.8 and 3.0 rows are rectangles (not rows). Row/column alignment checked against the header; a.u. = bohr. Basis is that of the AGP/SD determinant; Jastrow-correlated VMC is a continuum Hamiltonian, so the mapping to basis instance (cc-pVDZ vs none) is a ruling. | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:1905.06971v1 (only version; submitted 2019-01-29, comment 'Accepted on Journal of Chemical Physics'), PDF fetched 2026-10-24 into the shared cache, pypdf layout mode (byte-identical to qmbl-wt-hydrogen/sources/1905.06971.txt); journal version J. Chem. Phys. 150, 084102 (2019) not reached: doi.org -> pubs.aip.org and the crossref PDF link both returned HTTP 403 (Cloudflare challenge page), 2026-10-24",
+          "location": "Table I, row rx = 2.40, column JAGP(cc-pVDZ) (layout text line 214)",
+          "reported_as": "−2.1075± 0.0004 (Hartree, total)",
+          "conversion": "total -2.1075 Ha; per atom -2.1075/4 = -0.526875 (stored eps); sigma 0.0004/4 = 0.0001 (stored)",
+          "note": "rx = ry = 2.4 bohr square, open, neutral singlet H4, all-electron continuum (basis = none per RULES 13.1: the Gaussian basis is the trial state's), total in Ha with nuclear repulsion; arXiv value only, journal unreachable; variational correct; above the LRDMC row -2.1125 as it must be; no duplicate",
+          "secondary_of": null,
+          "source_entry": "h-p-1905-06971#1 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    },
+    {
+      "energy": -2.1084,
+      "sigma": 0.0003,
+      "energy_variance": null,
+      "dof": 4,
+      "einf": null,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "JAGP",
+      "method_detail": "cc-pVTZ trial basis",
+      "method_as_published": "JAGP(cc-pVTZ) [trial state in cc-pVTZ]",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "VMC, Jastrow AGP",
+      "reference": "Claudio Genovese, Antonella Meninno, Sandro Sorella, Assessing the accuracy of the Jastrow antisymmetrized geminal power in the H4 model system, The Journal of Chemical Physics 150, 084102 (2019), arXiv:1905.06971, doi:10.1063/1.5081933",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1905.06971 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.1084± 0.0003 Ha per total",
+        "note": "Table I; sources/1905.06971.txt line 214; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | Table I caption (line 210): 'All the energies are expressed in Hartree'; Fig. 1 caption (line 134-135): ry fixed at 2.4 a.u., so rx = 2.40 is the square (2x2) geometry; energies ~ -2.1 are totals for H4 | Only the rx = ry = 2.4 a.u. row is a square; rx=1.8 and 3.0 rows are rectangles (not rows). Row/column alignment checked against the header; a.u. = bohr. Basis is that of the AGP/SD determinant; Jastrow-correlated VMC is a continuum Hamiltonian, so the mapping to basis instance (cc-pVDZ vs none) is a ruling. | reader confidence medium",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:1905.06971v1 (only version; submitted 2019-01-29, comment 'Accepted on Journal of Chemical Physics'), PDF fetched 2026-10-24 into the shared cache, pypdf layout mode (byte-identical to qmbl-wt-hydrogen/sources/1905.06971.txt); journal version J. Chem. Phys. 150, 084102 (2019) not reached: doi.org -> pubs.aip.org and the crossref PDF link both returned HTTP 403 (Cloudflare challenge page), 2026-10-24",
+          "location": "Table I, row rx = 2.40, column JAGP(cc-pVTZ) (layout text line 214)",
+          "reported_as": "−2.1084± 0.0003 (Hartree, total)",
+          "conversion": "total -2.1084 Ha; per atom -2.1084/4 = -0.5271 (stored eps); sigma 0.0003/4 = 0.000075 (stored)",
+          "note": "rx = ry = 2.4 bohr square, open, neutral singlet H4, all-electron continuum (basis = none per RULES 13.1: the Gaussian basis is the trial state's), total in Ha with nuclear repulsion; arXiv value only, journal unreachable; variational correct; above the LRDMC row; no duplicate",
+          "secondary_of": null,
+          "source_entry": "h-p-1905-06971#2 (qmbl-verify 2026-10-23/24, verified)"
+        }
+      }
+    },
+    {
+      "energy": -2.1125,
+      "sigma": 0.0002,
+      "energy_variance": null,
+      "dof": 4,
+      "einf": null,
+      "v_score": null,
+      "method": "LR-DMC",
+      "ansatz": "JAGP",
+      "method_detail": "cc-pVDZ trial basis",
+      "method_as_published": "LRDMC with JAGP(cc-pVDZ) nodes [trial state in cc-pVDZ]",
+      "family": "DMC",
+      "bound_type": "projected",
+      "bound_type_reason": "fixed-node lattice-regularized DMC (LRDMC)",
+      "reference": "Claudio Genovese, Antonella Meninno, Sandro Sorella, Assessing the accuracy of the Jastrow antisymmetrized geminal power in the H4 model system, The Journal of Chemical Physics 150, 084102 (2019), arXiv:1905.06971, doi:10.1063/1.5081933",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1905.06971 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−2.1125± 0.0002 Ha per total",
+        "note": "Table II; sources/1905.06971.txt line 243; version read: arXiv text; journal copy not reached (publisher returned HTTP 403 or a login page, 2026-10-21); read again when reachable (RULES.md §8) | Table I caption (line 210): 'All the energies are expressed in Hartree'; Fig. 1 caption (line 134-135): ry fixed at 2.4 a.u., so rx = 2.40 is the square (2x2) geometry; energies ~ -2.1 are totals for H4 | Table II caption says 'Difference between the energies calculated with the DMC...' but entries are absolute energies in Ha. Assumes ry = 2.4 a.u. as in Fig. 1; rx = 2.400 is the square row. Nodes from JAGP(cc-pVDZ) (Fig. 4 caption), continuum DMC. | reader confidence medium",
+        "secondary_of": null
+      },
+      "corrections": [
+        {
+          "field": "method",
+          "from": "DMC with JAGP nodes (JAGP column)",
+          "to": "LRDMC with JAGP(cc-pVDZ) nodes",
+          "checked_on": "2026-10-24",
+          "reported_as": "−2.1125± 0.0002 (Hartree, total)",
+          "location": "Table II row rx = 2.400, column JAGP; p. 1 'a particular method for implementing the FNA that is called lattice regularized diffusion Monte Carlo (LRDMC)'; p. 5 'the DMC energies calculated using the nodes of the JAGP (cc-pVDZ)'; Fig. 4 caption 'node of the JAGP (cc-pVDZ)'",
+          "version_read": "arXiv:1905.06971v1 (only version; submitted 2019-01-29, comment 'Accepted on Journal of Chemical Physics'), PDF fetched 2026-10-24 into the shared cache, pypdf layout mode (byte-identical to qmbl-wt-hydrogen/sources/1905.06971.txt); journal version J. Chem. Phys. 150, 084102 (2019) not reached: doi.org -> pubs.aip.org and the crossref PDF link both returned HTTP 403 (Cloudflare challenge page), 2026-10-24",
+          "conversion": "value unchanged: total -2.1125 Ha; per atom -0.528125; sigma 0.0002/4 = 0.00005",
+          "reason": "The paper states its fixed-node projection is LRDMC and that the nodes are those of the JAGP(cc-pVDZ) trial state; '(JAGP column)' is a reader artefact, not a printed name. With basis cc-pVDZ on the reader entry, readers.mjs line 51 then fills method_detail 'trial state in cc-pVDZ' (now empty) and keeps basis = none.",
+          "source_entry": "h-p-1905-06971#3 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "method_detail",
+          "from": "",
+          "to": "trial state in cc-pVDZ",
+          "checked_on": "2026-10-24",
+          "reported_as": "−2.1125± 0.0002 (Hartree, total)",
+          "location": "Table II row rx = 2.400, column JAGP; p. 1 'a particular method for implementing the FNA that is called lattice regularized diffusion Monte Carlo (LRDMC)'; p. 5 'the DMC energies calculated using the nodes of the JAGP (cc-pVDZ)'; Fig. 4 caption 'node of the JAGP (cc-pVDZ)'",
+          "version_read": "arXiv:1905.06971v1 (only version; submitted 2019-01-29, comment 'Accepted on Journal of Chemical Physics'), PDF fetched 2026-10-24 into the shared cache, pypdf layout mode (byte-identical to qmbl-wt-hydrogen/sources/1905.06971.txt); journal version J. Chem. Phys. 150, 084102 (2019) not reached: doi.org -> pubs.aip.org and the crossref PDF link both returned HTTP 403 (Cloudflare challenge page), 2026-10-24",
+          "conversion": "value unchanged: total -2.1125 Ha; per atom -0.528125; sigma 0.0002/4 = 0.00005",
+          "reason": "goes with the method correction of the same entry: the reader entry's basis becomes cc-pVDZ (the trial state's basis); the energy stays on the basis-free instance (RULES.md §13.1)",
+          "source_entry": "h-p-1905-06971#3 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "bound_type_reason",
+          "from": "fixed-node DMC",
+          "to": "fixed-node lattice-regularized DMC (LRDMC)",
+          "checked_on": "2026-10-24",
+          "reported_as": "−2.1125± 0.0002 (Hartree, total)",
+          "location": "Table II row rx = 2.400, column JAGP; p. 1 'a particular method for implementing the FNA that is called lattice regularized diffusion Monte Carlo (LRDMC)'; p. 5 'the DMC energies calculated using the nodes of the JAGP (cc-pVDZ)'; Fig. 4 caption 'node of the JAGP (cc-pVDZ)'",
+          "version_read": "arXiv:1905.06971v1 (only version; submitted 2019-01-29, comment 'Accepted on Journal of Chemical Physics'), PDF fetched 2026-10-24 into the shared cache, pypdf layout mode (byte-identical to qmbl-wt-hydrogen/sources/1905.06971.txt); journal version J. Chem. Phys. 150, 084102 (2019) not reached: doi.org -> pubs.aip.org and the crossref PDF link both returned HTTP 403 (Cloudflare challenge page), 2026-10-24",
+          "conversion": "value unchanged: total -2.1125 Ha; per atom -0.528125; sigma 0.0002/4 = 0.00005",
+          "reason": "goes with the method correction of the same entry",
+          "source_entry": "h-p-1905-06971#3 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        }
+      ]
+    }
+  ]
+}

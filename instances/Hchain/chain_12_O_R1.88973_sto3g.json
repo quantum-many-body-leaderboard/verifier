@@ -1,0 +1,77 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 12,
+  "boundary": "O",
+  "params": {
+    "N_up": 6,
+    "N_dn": 6,
+    "R": 1.88973,
+    "basis": "STO-3G"
+  },
+  "instance_id": "Hchain/chain_12_O_R1.88973_sto3g",
+  "rows": [
+    {
+      "energy": -6.452816,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 12,
+      "einf": null,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "the source calls it the exact ground-state energy in the basis and does not name the method",
+      "method_as_published": "exact ground-state energy",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "paper calls it the exact ground-state energy in the basis (method not named, presumably FCI/ED)",
+      "reference": "Jiale Huang, Xiangjian Qian, Zhendong Li, Mingpu Qin, Augmenting Density Matrix Renormalization Group with Matchgates and Clifford Circuits, Chinese Physics Letters 43, 040708 (2026), arXiv:2505.08635, doi:10.1088/0256-307X/43/4/040708",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2505.08635 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−6.452816 Ha per total; R = 1 Å = 1.88973 bohr",
+        "note": "text Results; sources/2505.08635.txt line 233; version read: arXiv text; no journal version found | 'in the given basis is −6.452816 Hartree' (l.232-233); R = 1 A, STO-3G l.175-176 | boundary not stated (open assumed, H12 chain [45]); nuclear repulsion not stated; basis STO-3G on RHF orbitals; method of the exact value not named | reader confidence medium",
+        "secondary_of": null
+      },
+      "sampled": false,
+      "corrections": [
+        {
+          "field": "reference",
+          "from": "Jiale Huang, Xiangjian Qian, Zhendong Li, Mingpu Qin, Augmenting Density Matrix Renormalization Group with Matchgates and Clifford circuits, arXiv:2505.08635",
+          "to": "Jiale Huang, Xiangjian Qian, Zhendong Li, Mingpu Qin, Augmenting Density Matrix Renormalization Group with Matchgates and Clifford Circuits, Chinese Physics Letters 43, 040708 (2026), arXiv:2505.08635, doi:10.1088/0256-307X/43/4/040708",
+          "checked_on": "2026-10-24",
+          "reported_as": "The exact ground-state energy for the hydrogen chain H12 in the given basis is −6.452816 Hartree.",
+          "location": "CPL 43, 040708 (2026), Sec. 4 Results, p. 040708-3; same sentence in arXiv v1 (l.190-191) and v2 (l.232-233)",
+          "version_read": "arXiv:2505.08635v1, arXiv:2505.08635v2, publisher PDF (iopscience, Chinese Physics Letters 43, 040708, received 2026-01-14, accepted 2026-03-03); pypdf layout mode",
+          "conversion": "-6.452816 Ha total = 12 x -0.537734667 Ha per atom; stored eps -0.5377346666666667 x 12 = -6.452816 (agrees)",
+          "reason": "The paper is published (Crossref DOI 10.1088/0256-307x/43/4/040708, issued 2026-04). The arXiv abstract page has no DOI or journal-ref, so refs.mjs line 16 (peer_reviewed = !!doi from the arXiv API only) missed it. Energy, basis, R, electron count and bound_type are unchanged in the journal version. The row's evidence string ('no journal version found', readers.mjs line 77) should then read that the journal version was read on 2026-10-24.",
+          "source_entry": "h-p-2505-08635#0 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "Chinese Physics Letters 43, 040708 (2026) ... (Received 14 January 2026; accepted manuscript online 3 March 2026) ... DOI:10.1088/0256-307X/43/4/040708",
+          "location": "CPL publisher PDF p. 040708-1 header",
+          "version_read": "publisher PDF from iopscience.iop.org, fetched 2026-10-24",
+          "conversion": "none",
+          "reason": "Peer-reviewed journal publication; the journal prints the same value -6.452816 Hartree.",
+          "source_entry": "h-p-2505-08635#1 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "sampled",
+          "to": false,
+          "reported_as": "−6.452816 Ha per total; R = 1 Å = 1.88973 bohr",
+          "location": "text Results; sources/2505.08635.txt line 233; version read: arXiv text; no journal version found",
+          "checked_on": "2026-10-20",
+          "reason": "Deterministic, not a Monte Carlo estimate, as the track-3 reader recorded it (pass row `sampled`); the method string alone reads the other way (units.mjs, isSampled).",
+          "source_entry": "passes/track3/sweep-rows-2026-10-20-hydrogen.json"
+        }
+      ]
+    }
+  ]
+}

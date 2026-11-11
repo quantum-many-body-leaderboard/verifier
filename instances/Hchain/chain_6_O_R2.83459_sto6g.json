@@ -1,0 +1,67 @@
+{
+  "model": "Hchain",
+  "lattice": "chain",
+  "n_sites": 6,
+  "boundary": "O",
+  "params": {
+    "N_up": 3,
+    "N_dn": 3,
+    "R": 2.83459,
+    "basis": "STO-6G"
+  },
+  "instance_id": "Hchain/chain_6_O_R2.83459_sto6g",
+  "rows": [
+    {
+      "energy": -3.020198,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 6,
+      "einf": null,
+      "v_score": null,
+      "method": "FCI",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "FCI",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "FCI in STO-6G",
+      "reference": "Nicholas H. Stair, Renke Huang, Francesco A. Evangelista, A Multireference Quantum Krylov Algorithm for Strongly Correlated Electrons, Journal of Chemical Theory and Computation 16, 2236-2245 (2020), arXiv:1911.05163, doi:10.1021/acs.jctc.9b01125",
+      "peer_reviewed": true,
+      "source": "track3-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:1911.05163 read locally (pypdf layout text; the generator finds every value again on its line), no LLM transcription of numbers; single reading (Sonnet reader)",
+        "reported_as": "−3.020198 Ha per total; R = 1.5 Å = 2.83459 bohr",
+        "note": "Table 1 (also Table 2, line 378); sources/1911.05163.txt line 283; version read: arXiv text; no journal version found | line 268 Table 1 caption: 'Ground-state energies (in Eh)'; rHH = 1.5 Å (line 277/284); line 299 'minimal (STO-6G) basis' | Boundary not stated, linear H6/H8 molecule taken as open. Minus sign printed as U+2212. Nuclear repulsion not stated; magnitude consistent with total energy (e.g. H6 -3.02). | reader confidence medium",
+        "secondary_of": null
+      },
+      "corrections": [
+        {
+          "field": "peer_reviewed",
+          "from": null,
+          "to": true,
+          "checked_on": "2026-10-24",
+          "reported_as": "FCI  −3.020198",
+          "location": "Table 1, block 'H6 (rHH = 1.5 Å)', row FCI (layout line 283); same value in Table 2 row FCI (layout line 378)",
+          "version_read": "arXiv:1911.05163v1 (the only arXiv version; byte-identical to qmbl-wt-hydrogen/sources/1911.05163.pdf), pypdf layout and plain modes, extracted 2026-10-24 into the verify sources/s1911-05163/. Journal version (J. Chem. Theory Comput. 16, 2236 (2020)) not reached: pubs.acs.org PDF and HTML returned HTTP 403 (Cloudflare challenge) and the OSTI copy timed out, 2026-10-24.",
+          "conversion": "none (metadata)",
+          "reason": "Crossref record doi:10.1021/acs.jctc.9b01125 (fetched 2026-10-24): 'A Multireference Quantum Krylov Algorithm for Strongly Correlated Electrons', J. Chem. Theory Comput. 16(4), 2236-2245, issued 2020-02-24, authors N. H. Stair, R. Huang, F. A. Evangelista; OpenAlex lists the arXiv copy as the green-OA submitted version of this DOI. The arXiv record carries no journal DOI, which is why refs.mjs (doi taken from arXiv metadata) left it unpublished. Value re-derived: printed 'FCI  −3.020198' Eh total (Table 1 caption 'Ground-state energies (in Eh)'); stored eps -0.5033663333333334 x 6 = -3.020198. QMBL pyscf FCI (fci/results.jsonl) -3.020198097: difference 9.7e-8 Ha, inside the printed 6-decimal rounding, so the paper's total includes nuclear repulsion. Chain of 6 equally spaced H at 1.5 Å (1.5/0.529177210903 = 2.834589 bohr), open molecule, STO-6G (RHF orbitals from Psi4), neutral, S_z = 0; bound_type exact (FCI in the basis) agrees; method string 'FCI' as printed. No other row on this instance in the sweep file or data/ (track 3 not loaded), so no duplicate.",
+          "source_entry": "h-p-1911-05163#0 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        },
+        {
+          "field": "reference",
+          "from": "Nicholas H. Stair, Renke Huang, Francesco A. Evangelista, A Multireference Quantum Krylov Algorithm for Strongly Correlated Electrons, arXiv:1911.05163",
+          "to": "Nicholas H. Stair, Renke Huang, Francesco A. Evangelista, A Multireference Quantum Krylov Algorithm for Strongly Correlated Electrons, Journal of Chemical Theory and Computation 16, 2236-2245 (2020), arXiv:1911.05163, doi:10.1021/acs.jctc.9b01125",
+          "checked_on": "2026-10-24",
+          "reported_as": "FCI  −3.020198",
+          "location": "Table 1, block 'H6 (rHH = 1.5 Å)', row FCI (layout line 283); same value in Table 2 row FCI (layout line 378)",
+          "version_read": "arXiv:1911.05163v1 (the only arXiv version; byte-identical to qmbl-wt-hydrogen/sources/1911.05163.pdf), pypdf layout and plain modes, extracted 2026-10-24 into the verify sources/s1911-05163/. Journal version (J. Chem. Theory Comput. 16, 2236 (2020)) not reached: pubs.acs.org PDF and HTML returned HTTP 403 (Cloudflare challenge) and the OSTI copy timed out, 2026-10-24.",
+          "conversion": "none (metadata)",
+          "reason": "Published version per Crossref (see peer_reviewed entry); reference should carry journal, volume, pages, year and DOI as the other track-3 refs do. Row evidence string 'no journal version found' is then also wrong: a journal version exists but could not be reached (HTTP 403).",
+          "source_entry": "h-p-1911-05163#1 (qmbl-verify 2026-10-23/24, correction; skeptic upheld)"
+        }
+      ]
+    }
+  ]
+}

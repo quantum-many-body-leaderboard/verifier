@@ -1,0 +1,203 @@
+{
+  "model": "ShastrySutherland",
+  "lattice": "square",
+  "n_sites": 100,
+  "boundary": "P",
+  "params": {
+    "J": 0.8,
+    "Jd": 1
+  },
+  "cluster": "10 x 10 square lattice with orthogonal dimers, periodic boundaries",
+  "instance_id": "ShastrySutherland/square_100_P_J0.8_Jd1",
+  "rows": [
+    {
+      "energy": -179.6248,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 100,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Transformer",
+      "method_detail": "n_l = 2 layers",
+      "method_as_published": "Transformer, n_l = 2",
+      "family": "transformer / ViT",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Viteritti, Rende, Parola, Goldt & Becca, Transformer wave function for two dimensional frustrated magnets: Emergence of a spin-liquid phase in the Shastry-Sutherland model, Phys. Rev. B 111, 134411 (2025), doi:10.1103/PhysRevB.111.134411, arXiv:2311.16889",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2311.16889 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.449062",
+        "note": "Table I, L = 10, column n_l = 2; the caption says the Monte Carlo error is on the last digit; version read: arXiv text (sources/2311.16889.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Eq. (1) H = J sum S.S (square bonds) + J' sum S.S (dimer bonds), spin-1/2, J/J' = 0.8, energies per site in units of J' (Table I caption).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2311.16889v4 (10 Apr 2025, journal-ref Phys. Rev. B 111, 134411) PDF, pypdf layout and plain mode (sources/2311.16889v4.layout.txt, .plain.txt; byte-identical to the repo's sources/2311.16889.pdf) and the arXiv v4 HTML Table 1 parsed with node (sources/2311.16889v4.html); v1, v2, v3 PDFs read for comparison. Journal PDF not reached: journals.aps.org/prb/pdf/10.1103/PhysRevB.111.134411 returned HTTP 401 to node fetch on 2026-10-24, no accepted-manuscript link (link.aps.org/accepted 404), harvest.aps.org 'not authorized'. v4 was posted two days after the journal publication date (Crossref published 2025-04-08; accepted 17 March 2025).",
+          "location": "Table I (Appendix C), row L = 10, column '2 layers'",
+          "reported_as": "-0.449062 per site (in units of J')",
+          "conversion": "-0.449062 x 4 x 100 = -179.624800",
+          "note": "H = J sum_<r,r'> S.S + J' sum_<<r,r'>> S.S, S = 1/2 (Eq. 1), J square bonds, J' dimer bonds, J/J' = 0.8 = instance J 0.8, Jd 1; energies per site in units of J' (Table I caption, Appendix C text); L x L sites, periodic along a1 = (2,0), a2 = (0,2), N = L^2 = 100; Sz = 0, ground state in Ka = (0,0) with the symmetrised state of Eq. (A1). bound_type variational agrees: a symmetrised (C4 x sigma_xy, Eq. A1) ViT state sampled in Sz = 0, final energy of the optimisation. Versions: v3 (28 Nov 2024) prints the same value to its printed precision. Duplicate check: other rows on the instance: ConvNext (6,3,3)[2,2] -179.7368 (arXiv:2505.03466); none repeats this number or quotes this paper (the ConvNext rows are Nutakki et al.'s own results). sigma: the caption says only 'The Monte Carlo error due to finite sampling effects is on the last digit'; a table-wide 'error on the last digit' is not a sigma, so sigma stays null (rule of 2026-09-17). Journal version not reached (HTTP 401); the value is from arXiv v4, posted after the journal publication.",
+          "source_entry": "famP1-arxiv-2311-16889#0 (qmbl-verify 2026-10-23)"
+        }
+      }
+    },
+    {
+      "energy": -179.6884,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 100,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Transformer",
+      "method_detail": "n_l = 4 layers",
+      "method_as_published": "Transformer, n_l = 4",
+      "family": "transformer / ViT",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Viteritti, Rende, Parola, Goldt & Becca, Transformer wave function for two dimensional frustrated magnets: Emergence of a spin-liquid phase in the Shastry-Sutherland model, Phys. Rev. B 111, 134411 (2025), doi:10.1103/PhysRevB.111.134411, arXiv:2311.16889",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2311.16889 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.449221",
+        "note": "Table I, L = 10, column n_l = 4; the caption says the Monte Carlo error is on the last digit; version read: arXiv text (sources/2311.16889.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Eq. (1) H = J sum S.S (square bonds) + J' sum S.S (dimer bonds), spin-1/2, J/J' = 0.8, energies per site in units of J' (Table I caption).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2311.16889v4 (10 Apr 2025, journal-ref Phys. Rev. B 111, 134411) PDF, pypdf layout and plain mode (sources/2311.16889v4.layout.txt, .plain.txt; byte-identical to the repo's sources/2311.16889.pdf) and the arXiv v4 HTML Table 1 parsed with node (sources/2311.16889v4.html); v1, v2, v3 PDFs read for comparison. Journal PDF not reached: journals.aps.org/prb/pdf/10.1103/PhysRevB.111.134411 returned HTTP 401 to node fetch on 2026-10-24, no accepted-manuscript link (link.aps.org/accepted 404), harvest.aps.org 'not authorized'. v4 was posted two days after the journal publication date (Crossref published 2025-04-08; accepted 17 March 2025).",
+          "location": "Table I (Appendix C), row L = 10, column '4 layers'",
+          "reported_as": "-0.449221 per site (in units of J')",
+          "conversion": "-0.449221 x 4 x 100 = -179.688400",
+          "note": "H = J sum_<r,r'> S.S + J' sum_<<r,r'>> S.S, S = 1/2 (Eq. 1), J square bonds, J' dimer bonds, J/J' = 0.8 = instance J 0.8, Jd 1; energies per site in units of J' (Table I caption, Appendix C text); L x L sites, periodic along a1 = (2,0), a2 = (0,2), N = L^2 = 100; Sz = 0, ground state in Ka = (0,0) with the symmetrised state of Eq. (A1). bound_type variational agrees: a symmetrised (C4 x sigma_xy, Eq. A1) ViT state sampled in Sz = 0, final energy of the optimisation. Versions: v3 (28 Nov 2024) prints the same value to its printed precision. Duplicate check: other rows on the instance: ConvNext (6,3,3)[2,2] -179.7368 (arXiv:2505.03466); none repeats this number or quotes this paper (the ConvNext rows are Nutakki et al.'s own results). sigma: the caption says only 'The Monte Carlo error due to finite sampling effects is on the last digit'; a table-wide 'error on the last digit' is not a sigma, so sigma stays null (rule of 2026-09-17). Journal version not reached (HTTP 401); the value is from arXiv v4, posted after the journal publication.",
+          "source_entry": "famP1-arxiv-2311-16889#2 (qmbl-verify 2026-10-23)"
+        }
+      }
+    },
+    {
+      "energy": -179.7316,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 100,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Transformer",
+      "method_detail": "n_l = 8 layers",
+      "method_as_published": "Transformer, n_l = 8",
+      "family": "transformer / ViT",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Viteritti, Rende, Parola, Goldt & Becca, Transformer wave function for two dimensional frustrated magnets: Emergence of a spin-liquid phase in the Shastry-Sutherland model, Phys. Rev. B 111, 134411 (2025), doi:10.1103/PhysRevB.111.134411, arXiv:2311.16889",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2311.16889 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.449329",
+        "note": "Table I, L = 10, column n_l = 8; the caption says the Monte Carlo error is on the last digit; version read: arXiv text (sources/2311.16889.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Eq. (1) H = J sum S.S (square bonds) + J' sum S.S (dimer bonds), spin-1/2, J/J' = 0.8, energies per site in units of J' (Table I caption).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2311.16889v4 (10 Apr 2025, journal-ref Phys. Rev. B 111, 134411) PDF, pypdf layout and plain mode (sources/2311.16889v4.layout.txt, .plain.txt; byte-identical to the repo's sources/2311.16889.pdf) and the arXiv v4 HTML Table 1 parsed with node (sources/2311.16889v4.html); v1, v2, v3 PDFs read for comparison. Journal PDF not reached: journals.aps.org/prb/pdf/10.1103/PhysRevB.111.134411 returned HTTP 401 to node fetch on 2026-10-24, no accepted-manuscript link (link.aps.org/accepted 404), harvest.aps.org 'not authorized'. v4 was posted two days after the journal publication date (Crossref published 2025-04-08; accepted 17 March 2025).",
+          "location": "Table I (Appendix C), row L = 10, column '8 layers'",
+          "reported_as": "-0.449329 per site (in units of J')",
+          "conversion": "-0.449329 x 4 x 100 = -179.731600",
+          "note": "H = J sum_<r,r'> S.S + J' sum_<<r,r'>> S.S, S = 1/2 (Eq. 1), J square bonds, J' dimer bonds, J/J' = 0.8 = instance J 0.8, Jd 1; energies per site in units of J' (Table I caption, Appendix C text); L x L sites, periodic along a1 = (2,0), a2 = (0,2), N = L^2 = 100; Sz = 0, ground state in Ka = (0,0) with the symmetrised state of Eq. (A1). bound_type variational agrees: a symmetrised (C4 x sigma_xy, Eq. A1) ViT state sampled in Sz = 0, final energy of the optimisation. Versions: v3 (28 Nov 2024) prints -0.44929 in this cell, which is not the v4 value rounded; the stored value follows v4. Duplicate check: other rows on the instance: ConvNext (6,3,3)[2,2] -179.7368 (arXiv:2505.03466); none repeats this number or quotes this paper (the ConvNext rows are Nutakki et al.'s own results). sigma: the caption says only 'The Monte Carlo error due to finite sampling effects is on the last digit'; a table-wide 'error on the last digit' is not a sigma, so sigma stays null (rule of 2026-09-17). Journal version not reached (HTTP 401); the value is from arXiv v4, posted after the journal publication.",
+          "source_entry": "famP1-arxiv-2311-16889#4 (qmbl-verify 2026-10-23)"
+        }
+      }
+    },
+    {
+      "energy": -179.788,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 100,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Transformer",
+      "method_detail": "extrapolated: variance → 0 (n_l = 2, 4, 8 layers)",
+      "method_as_published": "Transformer, Extrap. (n_l → ∞, variance extrapolation)",
+      "family": "transformer / ViT",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "zero-variance or bond-dimension extrapolation; not an upper bound (assigned during source reading)",
+      "reference": "Viteritti, Rende, Parola, Goldt & Becca, Transformer wave function for two dimensional frustrated magnets: Emergence of a spin-liquid phase in the Shastry-Sutherland model, Phys. Rev. B 111, 134411 (2025), doi:10.1103/PhysRevB.111.134411, arXiv:2311.16889",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2311.16889 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.44947",
+        "note": "Table I, L = 10, column Extrap.; the caption says the Monte Carlo error is on the last digit; version read: arXiv text (sources/2311.16889.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Eq. (1) H = J sum S.S (square bonds) + J' sum S.S (dimer bonds), spin-1/2, J/J' = 0.8, energies per site in units of J' (Table I caption).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:2311.16889v4 (10 Apr 2025, journal-ref Phys. Rev. B 111, 134411) PDF, pypdf layout and plain mode (sources/2311.16889v4.layout.txt, .plain.txt; byte-identical to the repo's sources/2311.16889.pdf) and the arXiv v4 HTML Table 1 parsed with node (sources/2311.16889v4.html); v1, v2, v3 PDFs read for comparison. Journal PDF not reached: journals.aps.org/prb/pdf/10.1103/PhysRevB.111.134411 returned HTTP 401 to node fetch on 2026-10-24, no accepted-manuscript link (link.aps.org/accepted 404), harvest.aps.org 'not authorized'. v4 was posted two days after the journal publication date (Crossref published 2025-04-08; accepted 17 March 2025).",
+          "location": "Table I (Appendix C), row L = 10, column 'Extrap.'",
+          "reported_as": "-0.44947 per site (in units of J')",
+          "conversion": "-0.44947 x 4 x 100 = -179.788000",
+          "note": "H = J sum_<r,r'> S.S + J' sum_<<r,r'>> S.S, S = 1/2 (Eq. 1), J square bonds, J' dimer bonds, J/J' = 0.8 = instance J 0.8, Jd 1; energies per site in units of J' (Table I caption, Appendix C text); L x L sites, periodic along a1 = (2,0), a2 = (0,2), N = L^2 = 100; Sz = 0, ground state in Ka = (0,0) with the symmetrised state of Eq. (A1). bound_type extrapolated agrees: the caption and Appendix C say the Extrap. column is obtained 'through variance extrapolation' over n_l = 2, 4, 8 for an infinite number of layers. Versions: v3 (28 Nov 2024) prints the same value to its printed precision. Duplicate check: other rows on the instance: ConvNext (6,3,3)[2,2] -179.7368 (arXiv:2505.03466); none repeats this number or quotes this paper (the ConvNext rows are Nutakki et al.'s own results). sigma: the caption says only 'The Monte Carlo error due to finite sampling effects is on the last digit'; a table-wide 'error on the last digit' is not a sigma, so sigma stays null (rule of 2026-09-17). Journal version not reached (HTTP 401); the value is from arXiv v4, posted after the journal publication.",
+          "source_entry": "famP1-arxiv-2311-16889#6 (qmbl-verify 2026-10-23)"
+        }
+      }
+    },
+    {
+      "energy": -179.7368,
+      "sigma": 0.0016,
+      "energy_variance": null,
+      "dof": 100,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "ConvNeXt",
+      "method_detail": "(6,3,3)[2,2]",
+      "method_as_published": "ConvNext (6,3,3)[2,2]",
+      "family": "CNN / ResNet",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Nutakki, Shokry & Vicentini, Design principles of deep translationally symmetric neural quantum states for frustrated magnets, Phys. Rev. Research 7, 043099 (2025), doi:10.1103/ybgv-35jm, arXiv:2505.03466",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-20",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-20",
+        "method": "source text of arXiv:2505.03466 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-20)",
+        "reported_as": "-0.449342(4)",
+        "note": "Table I, Shastry-Sutherland column, ConvNext; L = 10 per Sec. IV.G; version read: arXiv text (sources/2505.03466.txt); the journal version was not reached from this session, to be read on the verification pass (RULES.md 8) | Eq. (1) H = J1 sum S.S + J2 sum S.S with S = sigma/2, Table I '(J1 = 0.8, J2 = 1)', J2 on the dimer bonds (the text's 'J1 = 1, J2 = 0.8' is swapped: Table I's quoted ED -0.4517531 and fViT -0.449329 are arXiv:2311.16889's at J/J' = 0.8); E/N per site, L x L with periodic boundaries (Sec. II).",
+        "secondary_of": null,
+        "journal_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "Phys. Rev. Research 7, 043099 (2025) publisher PDF, pypdf layout mode; arXiv:2505.03466v1 and v2 print the same value",
+          "location": "Table I, Shastry-Sutherland (J1 = 0.8, J2 = 1), ConvNext row; network (6,3,3)[2,2] and L = 10 from Sec. IV.G",
+          "reported_as": "-0.449 342(4) (E/N, S = sigma/2)",
+          "conversion": "-0.449342 x 4 x 100 = -179.7368; sigma 4e-6 x 400 = 0.0016",
+          "note": "Own computation; Eq. (1) is the instance's H with J1 = 0.8 on square bonds, J2 = 1 on dimers (Table I label; the Sec. I phrase 'J1 = 1, J2 = 0.8' is a slip, still in the journal text); 10 x 10 periodic; k = 0, point-group and spin-parity symmetric; final evaluation with 6.4x10^5 samples (App. C), variational, sampled. Not a duplicate: Table I's quoted fViT -0.449 329(1) is the separate Transformer n_l = 8 row (-179.7316) of arXiv:2311.16889.",
+          "source_entry": "famP6-shastrysutherland-j1j2-heisenberg#11 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "artifacts": {
+        "code": "https://github.com/NeuralQXLab/convnextnnqs",
+        "read_from": {
+          "quote": "Code for the implementation and optimization of the ConvNext is available at [71] and all data supporting the findings of this article at [72]. [...] [71] Convnext neural quantum states and lattice symmetries, https://github.com/NeuralQXLab/convnextnnqs (2025).",
+          "location": "Data and Code Availability, and Ref. [71] (sources/2505.03466.html and .txt)",
+          "checked_on": "2026-10-22",
+          "pass": "passes/rows/sweep-rows-2026-10-20-families.json"
+        }
+      }
+    }
+  ]
+}

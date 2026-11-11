@@ -1,0 +1,44 @@
+{
+ "about": "DMRG (tests/xcheck_impurity_tenpy.py, TeNPy 1.1.1, chi 400) of the three-band impurity models built in TeNPy from the VarBench parameters, against VarBench forkTPS rows (lowest variational row). Recorded runs, not rerun by the suite. TB-DMFT_9 agrees (7.7e-9 relative, DMRG above). TB-DMFT-SOC_9 does not: both hybridisation conventions (plain: V d+ c, conj: V* d+ c) give energies below VarBench, so the spin-orbit models are refused.",
+ "runs": [
+  {
+   "instance": "Impurity/TB-DMFT_9",
+   "energy": -112.90428437298625,
+   "chi": 400,
+   "variance": 7.051483407849446e-06,
+   "N": 37.99999999999999,
+   "Sz": 3.441577280880592e-13,
+   "hyb": "plain",
+   "wall_s": 675.2514312160201,
+   "varbench": [
+    -112.90428524370733
+   ]
+  },
+  {
+   "instance": "Impurity/TB-DMFT-SOC_9",
+   "energy": -112.8719811235509,
+   "chi": 400,
+   "variance": 3.2830248528625816e-06,
+   "N": 35.999999999999986,
+   "Sz": -3.2375775377449693e-12,
+   "hyb": "plain",
+   "wall_s": 668.4944593610708,
+   "varbench": [
+    -112.87177033736539
+   ]
+  },
+  {
+   "instance": "Impurity/TB-DMFT-SOC_9",
+   "energy": -112.87305513515682,
+   "chi": 400,
+   "variance": 3.851959263556637e-06,
+   "N": 35.999999999999986,
+   "Sz": 1.4244444315056113e-11,
+   "hyb": "conj",
+   "wall_s": 660.3560054999543,
+   "varbench": [
+    -112.87177033736539
+   ]
+  }
+ ]
+}

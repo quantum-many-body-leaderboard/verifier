@@ -1,0 +1,67 @@
+{
+  "model": "tJ",
+  "lattice": "ladder-2x11",
+  "n_sites": 22,
+  "boundary": "P",
+  "params": {
+    "t": 1,
+    "J": 0.5,
+    "N_up": 10,
+    "N_dn": 10,
+    "nn_term": true
+  },
+  "cluster": "two-leg ladder of 11 rungs, periodic along the legs (arXiv:cond-mat/0010072: '2 x L ladder geometry with periodic boundary conditions')",
+  "instance_id": "tJ/ladder-2x11_22_P_h2_J0.5",
+  "rows": [
+    {
+      "energy": -12.999784429648,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 20,
+      "einf": null,
+      "v_score": null,
+      "method": "ED",
+      "ansatz": null,
+      "method_detail": "Lanczos in the sector S = 0, K = (0, 0), named the ground state by the source",
+      "method_as_published": "ED (sector S = 0, K = (0,0))",
+      "family": "other",
+      "bound_type": "exact",
+      "bound_type_reason": "numerically exact reference as stated by the source (assigned during source reading)",
+      "reference": "Chiappa, Capponi & Poilblanc, Truncated Lanczos method: Application to hole-doped spin ladders, Phys. Rev. B 63, 115120 (2001), doi:10.1103/PhysRevB.63.115120, arXiv:cond-mat/0010072",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-10-22",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-22",
+        "method": "source text of arXiv:cond-mat/0010072 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; first reading and an adversarial second reading (2026-10-22)",
+        "reported_as": "−  12.99978",
+        "note": "footnote 7: E_GS of the 2 x 11 ladder with two holes, sector (S = 0, K = (0, 0)), J/t = 0.5 (line 288); version read: arXiv text (sources/cond-mat-0010072.txt); the journal version was not reached from this session (the publisher returned 403), to be read on the verification pass (RULES.md 8) | Eq. (3): H = J sum (S.S - n n / 4) on legs and rungs + t sum (c+c + h.c.) with t = -1, i.e. -|t| sum (c+c + h.c.), J/t = 0.5 'throughout'; footnote 7 prints total energies (E_GS, the ground state of the sector S = 0, K = (0, 0)). QMBL's diagonalization of the 2 x 11 ladder, unrestricted in momentum and spin, gives -12.9997844296 (checks/tj-ed-2026-10/).",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-24",
+          "scope": "value",
+          "method": "arXiv:cond-mat/0010072v3 PDF, pypdf layout (sources/tjP7-dl/cond-mat-0010072v3.layout.txt); journal PDF not reachable (APS 401); and an independent recomputation: independent exact diagonalization written for this check (checks/tj-exact-recompute-2026-10/tjk.c: C/OpenMP, basis adapted to lattice translations and point-group operations with 1D characters, Lanczos to |dE| < 1e-13 per step; clusters and sectors from gen.py), run 2026-10-23; validated against a brute-force full-space ED (bf.py) on 12 small clusters (agreement to 1e-10)",
+          "location": "footnote 7",
+          "reported_as": "E2×11GS = − 12.99978",
+          "conversion": "total, no conversion",
+          "note": "Own ED (p. 3: 'we used the ED Lanczos method on 2 × L ladders of maximum size L = 13'). Hopping t = -1 in '+t sum(c+c + h.c.)' = QMBL -t with t = 1; on this odd-L periodic ladder the sign matters and agrees. QMBL ED (checks/tj-ed-2026-10, unrestricted) -12.9997844296 agrees to the printed digits. Footnote 7 prints the two Hilbert-space dimensions in swapped order (969,969 belongs to 2x11), energies unaffected. No duplicate. | Recomputation: E = -12.9997844296 (t = 1); printed form E_GS total, units of t: -12.99978 vs printed -12.99978; 2 x 11 ladder, periodic along the legs, open across; sectors of leg translations (K_x) and the leg exchange (K_y = 0, pi); lowest of 12 sector(s) covering the whole electron-number space (ground state), best sector lad2x11P_h2_J0.5_n0_p+, dim 1940064; 417 s wall on 16 threads over all sectors; QMBL's earlier ED (checks/tj-ed-2026-10/) gave -12.9997844296, difference -4.8e-11",
+          "source_entry": "tjP7-tj#3 (qmbl-verify 2026-10-23), tjE-exact-recompute#2 (qmbl-verify 2026-10-23)"
+        }
+      },
+      "corrections": [
+        {
+          "field": "energy",
+          "to": -12.999784429648,
+          "reported_as": "-12.99978 (E_GS total, units of t)",
+          "location": "footnote 7: E_GS of the 2 x 11 ladder with two holes, sector (S = 0, K = (0, 0)), J/t = 0.5 (line 288)",
+          "version_read": "recomputation: checks/tj-exact-recompute-2026-10/ (tjk.c, 2026-10-23); the printed value as the generator read it (scripts/tj_2026_10_22.mjs)",
+          "conversion": "-12.99978 (total) = -12.99978 (stored); recomputed -12.999784429648 = -12.9997844296 in the printed form, which rounds to the printed digits",
+          "checked_on": "2026-10-23",
+          "reason": "Rule for exact rows QMBL recomputed (2026-09-30; applied to the t-J rows, ruled 2026-10-24): the printed value is QMBL's value rounded to the printed digits, so the row keeps its citation and carries QMBL's digits; the printed value stays here. Recomputed by tjk.c (symmetry-adapted Lanczos, |dE| < 1e-13 per step; 12 of 12 symmetry sectors, lowest sector lad2x11P_h2_J0.5_n0_p+, dimension 1940064), whose code agrees with the brute-force bf.py to 1e-10 on 12 small clusters; codes and outputs in checks/tj-exact-recompute-2026-10/.",
+          "source_entry": "tjE-exact-recompute#2 (qmbl-verify 2026-10-23); rule for recomputed exact rows, ruled 2026-10-24",
+          "from": -12.99978
+        }
+      ]
+    }
+  ]
+}

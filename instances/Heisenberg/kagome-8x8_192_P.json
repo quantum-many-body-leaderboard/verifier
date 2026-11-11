@@ -1,0 +1,273 @@
+{
+  "model": "Heisenberg",
+  "lattice": "kagome-8x8",
+  "n_sites": 192,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/kagome-8x8_192_P",
+  "rows": [
+    {
+      "energy": -330.143,
+      "sigma": 0.011,
+      "energy_variance": 42.3,
+      "dof": 192,
+      "einf": 0,
+      "v_score": 0.07451391967425162,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "Dirac spin liquid + Jastrow",
+      "method_as_published": "VMC with Dirac spin liquid + Jastrow",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "vmc|\\brbm\\b|\\brnn\\b|jast",
+      "reference": "[code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller.sh)",
+      "source": "varbench@2024-10-22",
+      "provenance": "imported",
+      "baseline": true,
+      "compute": {
+        "parameters": 31,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller_inputs/VMC.in: \"&montecarlo itestr=2 iseed=121 iopt=1 iread=0 nw=1 ngen=500000 nscra=190 / &vmc nbra=200 /\" || scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller_inputs/datprep.in: \"&rangeham ioptPH=-1 irange=1 / &nelectrons nelup=96 neldo=96 / &wavefunction ieskin=2 iesspin=27 /\" || programs/vmc_gutzwiller/monte_carlo_tj.f: \"np=iesspin+iesdens+2*iesBCS+2*ieskin+iesmu+2*iesonsite+iesaf\" (\"the factor 2 is due to the fact that there are real and imaginary parts\"), \"c     itestr=2 VMC\", \"c     itestr=-2 Full Minimizator\" || README: \"Bash scripts to reproduce results in the dataset are collected in the \\\"scripts\\\" folder, together with the input files containing the optimal variational parameters.\"",
+        "source": "run script and inputs, VarBench methods repository at ed31bb0: https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller.sh, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller_inputs/VMC.in, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller_inputs/datprep.in, with https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_gutzwiller/monte_carlo_tj.f, https://github.com/varbench/methods/blob/ed31bb0f7949cce5be9274bfa67a2d5e7d4383cc/programs/vmc_gutzwiller/README (compute pass 2026-09-24)",
+        "scope": "row",
+        "confidence": "medium",
+        "note": "Parameters evaluated with the code's own count: iesspin=27 + 2*ieskin=2 = 31 (vjspin 27 (27 nonzero), dek_r 2 (2 nonzero), dek_i 2 (0 nonzero); 29 of the stated values are nonzero; entries stated as exactly 0 or 1 may be fixed by symmetry or normalisation, but the code sizes its SR matrix, np + 1, with all of them). Samples and iterations of the optimisation are not in any source: the script is a measurement run (itestr=2) of stored optimal parameters, 500000 generations of 200 Metropolis proposals (a random site and a random neighbour within the coupling range) each on 1 walker, one energy measurement per generation, full recomputation every 190 generations (vmc_schedule). The optimiser exists in monte_carlo_tj.f (itestr=-2, namelist &optimization nweight/ibinit/tau), but the script leaves &optimization empty. Searched: the script, all four input files, programs/vmc_gutzwiller README and sources, VarBench SM (arXiv:2302.04919 Sec. S3 C, general VMC description, no step counts), the dataset history (value entered d940e97, 2022-02-14, Francesco Ferrari; script added to methods 1430f9f, 2024-07-30). The method string names no paper, so no paper-specific optimisation protocol can be attached. No device or time is recorded."
+      },
+      "verified": {
+        "checked_on": "2026-09-29",
+        "scope": "config",
+        "method": "VarBench snapshot 390a21e (vendor/varbench) and full upstream history (varbench-history, git log --follow on the file, every version); varbench/methods ed31bb0 run script and program read as text; no output log or result file exists in the methods repo for any Heisenberg row",
+        "location": "vendor/varbench/Heisenberg/kagome-8x8_192_P.md (snapshot 390a21e), row 'VMC with Dirac spin liquid + Jastrow'; linked scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller.sh",
+        "reported_as": "| -330.143 | 0.011 | 42.3 | 192 | 0 | VMC with Dirac spin liquid + Jastrow | [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller.sh) |",
+        "conversion": "program J = jham = 4 (Pauli: datprep.in last line '4.d0', preptj_2d.f reads it as jham(1), never rescaled); read_ene.x prints <H>/N in Pauli units, stored = N x <H>/N = 192 x -1.7194948 = -330.143 (sigma x N, variance N^2 Var(H/N))",
+        "note": "Record (no exact row). vmc_gutzwiller inputs: 6-site supercell x '4 0 0 8' = 8x8 kagome cells = 192 sites, periodic spin torus (abs(ivicn); '1 0' = antiperiodic auxiliary fermions along a1), nelup = neldo = 96 (Sz = 0), jperp = 1, uvv = 0.25 (H = J sum S.S, no constant), Dirac spin liquid ([0,pi] fluxes) + spin Jastrow (iesspin=27), VMC measurement (itestr=2, ngen = 5e5), read_ene.x binned error (bins of 10^4, first 4 dropped). Stored = 4N x <H>/N: -0.4298737 per site (S.S). The instance's other rows are projected Dirac spin liquids without Jastrow (He, Yu & Li -0.42868(3) P-A, -0.42724(3) P-P; Ran et al. -0.42866): the Jastrow lowers the energy by 1.2e-3 per site, which is the M11 0.28% margin. V-score 0.0745, the same as the 48-site row of the same code (0.0745): one wave-function class. sigma/sqrt(Var/2^20) = 1.73 (binned; implied 3.5e5 effective samples). No independent value: config only. Entered d940e97 (2022-02-14, F. Ferrari), never changed; linked by Ferrari d186176 (2024-07-30). Not published in the dataset paper (arXiv:2302.04919 prints no energies).",
+        "source_entry": "VB3-varbench-code-heisenberg#25 (qmbl-verify 2026-09-29; only the conversion was refuted; the skeptic's conversion is used (value, instance and record status upheld))",
+        "secondary_of": null
+      },
+      "artifacts": {
+        "code": "https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller.sh",
+        "script": "scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller.sh",
+        "read_from": {
+          "quote": "VarBench README.md: \"`Reference`: the literature reference and the code repository to reproduce the result.\" | Reference cell: [code](https://github.com/varbench/methods/blob/main/scripts/Heisenberg/kagome-8x8_192_P/vmc_gutzwiller.sh)",
+          "location": "VarBench table vendor/varbench/Heisenberg/kagome-8x8_192_P.md, Reference column (VarBench 390a21e); README.md defines the column",
+          "checked_on": "2026-10-22",
+          "pass": "passes/code/code-links-2026-10-22.json"
+        }
+      }
+    },
+    {
+      "energy": -328.12032,
+      "sigma": 0.02304,
+      "energy_variance": null,
+      "dof": 192,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "U(1) Dirac spin liquid, [0,π] flux, periodic spinon boundaries",
+      "method_as_published": "VMC, Gutzwiller-projected U(1) Dirac spin liquid (NN hopping, [0,pi] flux, no Jastrow), periodic-periodic spinon boundary conditions",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "He, Yu & Li, Variational Monte Carlo study of the 1/9-magnetization plateau in kagome antiferromagnets, Phys. Rev. Lett. 133, 096501 (2024), arXiv:2407.20629, Supplemental Material S4",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2407.20629 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; verified 2026-09-16 by an independent second reading (arXiv versions, VarBench history)",
+        "reported_as": "0.42724 ± 0.00003 (printed without a sign)",
+        "note": "Supplemental Material S4 of arXiv:2407.20629 (identical in the PRL supplement) | 8x8x3 = 192-site periodic kagome torus, H = J sum S_i.S_j (Eq. 1), energy per site | Printed unsigned (\"E = 0.42868 ± 0.00003 (E = 0.42724 ± 0.00003) for P-A (periodic-periodic (P-P)) BC\"); the sign is the paper's own: its Fig. S7 plots the same quantity on an axis from -0.4280 to -0.4290, and it quotes Ran et al.'s -0.42866(2) as 0.42866(2). P-A and P-P are boundary conditions on the spinon mean-field state; the spin torus is periodic in both, as in VarBench's own baseline for this cluster. The paper does not say how the degenerate Dirac-point level is filled under P-P.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2407.20629v1 (only version, 30 Jul 2024; PDF stamp 'arXiv:2407.20629v1', abs comment 'Accepted by Phys. Rev. Lett'), main text and Supplemental Material in one PDF, text extracted locally with pypdf layout mode (sources/vp15_2407.20629.layout.clean.txt); journal version Phys. Rev. Lett. 133, 096501 (2024) and its supplement not read (APS returns 403)",
+          "location": "Supplemental Material S4 'Finite-size effect' (paragraph on the 8 x 8 x 3 lattice), sign from Fig. S7 (axis −0.4280 to −0.4290)",
+          "reported_as": "E = 0. 42724 ± 0. 00003 (the parenthesised value, 'for ... (periodic-periodic (P-P)) BC'), per site, printed without a sign",
+          "conversion": "-0.42724 x 4 x 192 = -328.12032 (agrees with the stored -328.12032); sigma 3e-5 x 768 = 0.02304 (agrees)",
+          "note": "Second reading from the source. P-P (periodic-periodic spinon BC): the spinon boundary condition of the mean-field state; the spin torus is 8 x 8 x 3 = 192 sites, periodic = kagome-8x8_192_P. Zero field, M/M_s = 0 (S^z = 0), H = J sum S_i.S_j (Eq. 1) in S.S units, no constant. The unsigned print is settled as negative by Fig. S7 and by the quoted Ran et al. value (prior-findings agree). Own computation, VMC with 4e5 samples, variational. Method string checked: projected U(1) DSL with NN hopping and [0,pi] flux, no Jastrow factor (S2; a PSG-allowed second-neighbour hopping 'almost disappears' in the optimisation, so 'NN hopping' describes the optimised state). The P-P state sits 1.44e-3 per site above the P-A state of the same paper because, with L2 = 8 = 4n, the Dirac points lie on the P-P momentum grid (S4); it is still a projected variational state on the periodic spin torus, so bound_type variational is right. How the degenerate Dirac-point level is filled is not stated (C4); this does not affect the bound. No duplicate on the instance (rows: VarBench's DSL + Jastrow -330.143, Ran et al. -329.21088, and this paper's two).",
+          "source_entry": "VP15-hubbard-j1j2-heisenberg#51 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 400000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "In Ref. [8], the variational energy per site E = 0.42866(2) for the lattice size 8 x 8 x 3 with the periodic-antiperiodic (P-A) boundary condition (BC). And our calculation indicates E = 0.42868 +/- 0.00003 (E = 0.42724 +/- 0.00003) for P-A (periodic-periodic (P-P)) BC with 4 x 10^5 samples for the averages, one sample after 240 update with sufficient statistical independent.",
+        "source": "Supplemental Material Sec. S4 Finite-size effect, arXiv:2407.20629 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Statement covers both the P-A and P-P 8x8x3 DSL energies: 4 x 10^5 Monte Carlo samples, one sample every 240 updates. The DSL trial state here has nearest-neighbour hopping with fixed [0, pi] flux and no Jastrow, so it is essentially parameter-free, but the paper does not state a parameter count for it (it states \"15 variational parameters\" only for the Z3 QSL ansatz); parameters left null. No hardware, core-hours or wall-clock stated anywhere in the main text or supplement."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "He, Yu & Li, Variational Monte Carlo study of the 1/9-magnetization plateau in kagome antiferromagnets, Phys. Rev. Lett. 133, 096501 (2024), arXiv:2407.20629, Supplemental Material S4",
+          "reported_as": "PHYSICAL REVIEW LETTERS 133, 096501 (2024) 'Variational Monte Carlo Study of the 1/9-Magnetization Plateau in Kagome Antiferromagnets' (Crossref title)",
+          "location": "journal title page; Crossref 10.1103/PhysRevLett.133.096501",
+          "version_read": "published PDF Phys. Rev. Lett. 133, 096501 (2024), sources/journal/prl133-096501.pdf, sha256 bf0cd9d7, and Supplemental Material sm_kagome_field.pdf = sources/journal/prl133-096501-supp.pdf, sha256 bf9444af (journals.aps.org, node fetch); compared with arXiv:2407.20629v1 (SM appended): Sec. S4 sentence identical",
+          "conversion": "n/a",
+          "checked_on": "2026-10-15",
+          "reason": "The stored reference names no title (every other row cites author, title and venue). Value check: SM Sec. S4 '(E = 0.42724 ± 0.00003) for ... (periodic-periodic (P-P)) BC', printed without a sign; -0.42724 x 768 = -328.12032; sigma 3e-5 x 768 = 0.02304; 8 × 8 × 3 torus, P-P spinon BC, variational. Journal SM = arXiv v1. Not a duplicate of Ran et al.'s -0.42866(2) row (different number, quoted by this SM).",
+          "source_entry": "JP11-j1j2-heisenberg-hubbard#63",
+          "from": "He, Yu & Li, Phys. Rev. Lett. 133, 096501 (2024), arXiv:2407.20629, Supplemental Material S4"
+        }
+      ]
+    },
+    {
+      "energy": -329.22624,
+      "sigma": 0.02304,
+      "energy_variance": null,
+      "dof": 192,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "U(1) Dirac spin liquid, [0,π] flux, periodic-antiperiodic spinon boundaries",
+      "method_as_published": "VMC, Gutzwiller-projected U(1) Dirac spin liquid (NN hopping, [0,pi] flux, no Jastrow), periodic-antiperiodic spinon boundary conditions",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "He, Yu & Li, Variational Monte Carlo study of the 1/9-magnetization plateau in kagome antiferromagnets, Phys. Rev. Lett. 133, 096501 (2024), arXiv:2407.20629, Supplemental Material S4",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:2407.20629 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; verified 2026-09-16 by an independent second reading (arXiv versions, VarBench history)",
+        "reported_as": "0.42868 ± 0.00003 (printed without a sign)",
+        "note": "Supplemental Material S4 of arXiv:2407.20629 (identical in the PRL supplement) | 8x8x3 = 192-site periodic kagome torus, H = J sum S_i.S_j (Eq. 1), energy per site | Printed unsigned (\"E = 0.42868 ± 0.00003 (E = 0.42724 ± 0.00003) for P-A (periodic-periodic (P-P)) BC\"); the sign is the paper's own: its Fig. S7 plots the same quantity on an axis from -0.4280 to -0.4290, and it quotes Ran et al.'s -0.42866(2) as 0.42866(2). P-A and P-P are boundary conditions on the spinon mean-field state; the spin torus is periodic in both, as in VarBench's own baseline for this cluster. The paper does not say how the degenerate Dirac-point level is filled under P-P.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2407.20629v1 (only version, 30 Jul 2024; PDF stamp 'arXiv:2407.20629v1', abs comment 'Accepted by Phys. Rev. Lett'), main text and Supplemental Material in one PDF, text extracted locally with pypdf layout mode (sources/vp15_2407.20629.layout.clean.txt); journal version Phys. Rev. Lett. 133, 096501 (2024) and its supplement not read (APS returns 403)",
+          "location": "Supplemental Material S4 'Finite-size effect' (paragraph on the 8 x 8 x 3 lattice), sign from Fig. S7 (axis −0.4280 to −0.4290)",
+          "reported_as": "E = 0. 42868 ± 0. 00003 ('for P-A ... BC'), per site, printed without a sign",
+          "conversion": "-0.42868 x 4 x 192 = -329.22624 (agrees with the stored -329.22624); sigma 3e-5 x 768 = 0.02304 (agrees)",
+          "note": "Second reading from the source. P-A (periodic-antiperiodic spinon BC): the spinon boundary condition of the mean-field state; the spin torus is 8 x 8 x 3 = 192 sites, periodic = kagome-8x8_192_P. Zero field, M/M_s = 0 (S^z = 0), H = J sum S_i.S_j (Eq. 1) in S.S units, no constant. The unsigned print is settled as negative by Fig. S7 and by the quoted Ran et al. value (prior-findings agree). Own computation, VMC with 4e5 samples, variational. Method string checked: projected U(1) DSL with NN hopping and [0,pi] flux, no Jastrow factor (S2; a PSG-allowed second-neighbour hopping 'almost disappears' in the optimisation, so 'NN hopping' describes the optimised state). Consistent with Ran, Hermele, Lee & Wen's -0.42866(2) for the same ansatz and cluster (0.6 of the combined bars apart), which the paper quotes; that row is on the instance from Ran et al.'s own paper and is a different number from a different computation, so this row is not a duplicate of it. No duplicate on the instance (rows: VarBench's DSL + Jastrow -330.143, Ran et al. -329.21088, and this paper's two).",
+          "source_entry": "VP15-hubbard-j1j2-heisenberg#52 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": null,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": 400000,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "In Ref. [8], the variational energy per site E = 0.42866(2) for the lattice size 8 x 8 x 3 with the periodic-antiperiodic (P-A) boundary condition (BC). And our calculation indicates E = 0.42868 +/- 0.00003 (E = 0.42724 +/- 0.00003) for P-A (periodic-periodic (P-P)) BC with 4 x 10^5 samples for the averages, one sample after 240 update with sufficient statistical independent.",
+        "source": "Supplemental Material Sec. S4 Finite-size effect, arXiv:2407.20629 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "Statement covers both the P-A and P-P 8x8x3 DSL energies: 4 x 10^5 Monte Carlo samples, one sample every 240 updates. The DSL trial state here has nearest-neighbour hopping with fixed [0, pi] flux and no Jastrow, so it is essentially parameter-free, but the paper does not state a parameter count for it (it states \"15 variational parameters\" only for the Z3 QSL ansatz); parameters left null. No hardware, core-hours or wall-clock stated anywhere in the main text or supplement."
+      },
+      "corrections": [
+        {
+          "field": "reference",
+          "to": "He, Yu & Li, Variational Monte Carlo study of the 1/9-magnetization plateau in kagome antiferromagnets, Phys. Rev. Lett. 133, 096501 (2024), arXiv:2407.20629, Supplemental Material S4",
+          "reported_as": "PHYSICAL REVIEW LETTERS 133, 096501 (2024) 'Variational Monte Carlo Study of the 1/9-Magnetization Plateau in Kagome Antiferromagnets' (Crossref title)",
+          "location": "journal title page; Crossref 10.1103/PhysRevLett.133.096501",
+          "version_read": "published PDF Phys. Rev. Lett. 133, 096501 (2024), sources/journal/prl133-096501.pdf, sha256 bf0cd9d7, and Supplemental Material sm_kagome_field.pdf = sources/journal/prl133-096501-supp.pdf, sha256 bf9444af (journals.aps.org, node fetch); compared with arXiv:2407.20629v1 (SM appended): Sec. S4 sentence identical",
+          "conversion": "n/a",
+          "checked_on": "2026-10-15",
+          "reason": "The stored reference names no title (every other row cites author, title and venue). Value check: SM Sec. S4 'E = 0.42868 ± 0.00003 ... for P-A', printed without a sign; -0.42868 x 768 = -329.22624; sigma 3e-5 x 768 = 0.02304; 8 × 8 × 3 torus, P-A spinon BC, variational. Journal SM = arXiv v1. Not a duplicate of Ran et al.'s -0.42866(2) row (different number, quoted by this SM).",
+          "source_entry": "JP11-j1j2-heisenberg-hubbard#64",
+          "from": "He, Yu & Li, Phys. Rev. Lett. 133, 096501 (2024), arXiv:2407.20629, Supplemental Material S4"
+        }
+      ]
+    },
+    {
+      "energy": -329.21088,
+      "sigma": 0.01536,
+      "energy_variance": null,
+      "dof": 192,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "Gutzwiller",
+      "method_detail": "U(1) Dirac spin liquid, [0,π] flux, mixed spinon boundaries",
+      "method_as_published": "VMC, Gutzwiller-projected U(1) Dirac spin liquid SL-[0,pi], mixed spinon boundary conditions",
+      "family": "classic VMC",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Ran, Hermele, Lee & Wen, Projected wavefunction study of spin-1/2 Heisenberg model on the kagome lattice, Phys. Rev. Lett. 98, 117205 (2007), arXiv:cond-mat/0611414",
+      "peer_reviewed": true,
+      "source": "sweep-allresults-2026-09-15",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-15",
+        "method": "source text of arXiv:cond-mat/0611414 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; located by the independent verification of arXiv:2407.20629, which quotes it",
+        "reported_as": "-0.42866(2)",
+        "note": "Table I of arXiv:cond-mat/0611414 (SL-[0,pi], 8x8x3 lattice), text committed as sources/cond-mat-0611414.txt | energy per site in units of J (caption); \"mixed boundary conditions; i.e., periodic along one Bravais lattice vector, and anti-periodic\" applies to the spinon mean-field state, the spin torus is periodic",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:cond-mat/0611414v1 PDF fetched 2026-09-29 into sources/cond-mat-0611414v1.pdf, pypdf layout + plain (sources/cond-mat-0611414v1.vp14.{layout,plain}.txt, 5 pages); cross-read against the committed qmbl/sources/cond-mat-0611414.txt (same Table I/III digits); abs page sources/cond-mat-0611414.abs.html for version and journal ref; He, Yu & Li arXiv:2407.20629 SM S4 (sources/vp15_2407.20629.layout.clean.txt) for the boundary-condition reading; no LLM transcription",
+          "location": "Table I, row 'SL-[0, pi]', column '8x8x3 lattice' (p. 2); the same value is printed again in Table III, row 'U(1)-Dirac spin liquid', column '8x8x3 lattice'",
+          "reported_as": "-0.42866(2) (energy per site in unit of J, S . S)",
+          "conversion": "-0.42866 x 4 x 192 = -329.21088; sigma 2e-5 x 768 = 0.01536",
+          "note": "Energy, sigma, lattice (8x8 three-site unit cells, 192 sites), periodic spin torus with periodic-antiperiodic spinon boundary conditions (C3; He, Yu & Li quote the number as the 8 x 8 x 3 P-A value), S.S per-site convention (Eq. 1, no constant), couplings (J only), bound_type variational (parameter-free projected state, MC energy, no extrapolation), peer_reviewed true (PRL 98, 117205 (2007)), provenance primary and the reference all agree with the source. The method string is accurate ('mixed spinon boundary conditions' is the reading C3 settles). No duplicate: data/Heisenberg/kagome-8x8_192_P.json (read 2026-09-29) holds four rows: VarBench's 'VMC with Dirac spin liquid + Jastrow' -330.143, He, Yu & Li's own P-P -0.42724 and P-A -0.42868 (their computation, 0.55 combined sigma from this one, with 4e5 samples, not a quote), and this row. The row holds no record (VarBench's Jastrow-improved -0.4298737 is lower).",
+          "source_entry": "VP14-hubbard-j1j2-heisenberg-tfising#80 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        },
+        "journal_read": {
+          "checked_on": "2026-10-15",
+          "scope": "value",
+          "method": "published PDF Phys. Rev. Lett. 98, 117205 (2007), sources/journal/prl98-117205.pdf, sha256 7b36b979; compared with arXiv:cond-mat/0611414v1 (only version; qmbl/sources/cond-mat-0611414.txt): Table I and III digits identical; pypdf plain + layout mode (with fonttools), local extraction, no LLM transcription",
+          "location": "journal Table I, row 'SL-[0, π]', column '8×8×3 lattice' (p. 117205-3); same value in Table III, row 'U(1)-Dirac spin liquid'",
+          "reported_as": "−0.42866(2) (energy per site in units of J; printed with a font-encoded minus '/.0255' and '(2)' as '/.0133 2 /.0134' in the extracted text)",
+          "conversion": "-0.42866 x 4 x 192 = -329.21088; sigma 0.00002 x 768 = 0.01536",
+          "note": "H = J sum_<ij> S_i.S_j, J > 0, no constant (Eq. 1); 8x8 unit cells x 3 sites = 192, periodic spin torus with 'mixed boundary conditions, i.e., periodic along one Bravais lattice vector, and antiperiodic along the other' for the spinon mean-field state (method string says so); parameter-free Gutzwiller-projected U(1) Dirac state, Monte Carlo energy, variational. peer_reviewed true, reference agrees. Journal and arXiv identical. Not a duplicate: kagome-8x8_192_P also carries VarBench's Jastrow-improved Dirac state (-330.143) and He, Yu & Li's own P-P/P-A values, which are separate computations.",
+          "source_entry": "JP6-heisenberg-j1j2#59"
+        }
+      },
+      "compute": {
+        "parameters": 0,
+        "gpu_hours": null,
+        "device": null,
+        "n_devices": null,
+        "samples": null,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": null,
+        "reported_as": "Abstract: Furthermore, even without variational parameters, the energy turns out to be very close to that found by exact diagonalization. || Main text: For spin-1/2 nearest neighbor anti-ferromagnetic Heisenberg model Eq.(1), we did the Monte Carlo calculation for energies of projected spin liquid states on lattices with 8x8 and 12x12 unit cells (each unit cell has 3 sites). We choose mixed boundary conditions; i.e., periodic along one Bravais lattice vector, and anti-periodic along the other Bravais lattice vector. The results are summarized in Table I. [...] It is striking that even though the projected U(1)-Dirac state has no variational parameter, it has an energy which is even lower than some numerical estimates of ground state energy. [...] It turns out that the calculation of energy <Psi_prj|H|Psi_prj> can be implemented by a Monte Carlo approach with power law complexity, which means that one can do a fairly large lattice.[12]",
+        "source": "Abstract; main text (Monte Carlo study paragraph and discussion of Table I/II); Table I, arXiv:cond-mat/0611414 (compute pass 2026-09-16)",
+        "scope": "row",
+        "confidence": "high",
+        "note": "parameters = 0 is verbatim: the projected U(1)-Dirac spin liquid SL-[0,pi] 'has no variational parameter' (the mean-field hopping pattern is fixed; the Gutzwiller projection is exact). No sample count, Monte Carlo sweeps, hardware or run time stated anywhere in the paper (statistical error 2e-5 per site in Table I only). Energy = -0.42866(2) per site (8x8x3 lattice, mixed boundary conditions) in the worklist's units. Source file: sources/cond-mat-0611414.txt."
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "checked_on": "2026-09-15",
+      "method": "table harvest of cached arXiv sources (match_tables.mjs --all), every matched paper read for this instance",
+      "screened": [
+        "arXiv:2009.01821",
+        "arXiv:2501.00096",
+        "arXiv:2607.00398"
+      ],
+      "found": 0,
+      "note": "Only papers whose tables matched the instance by size were read; not a citation screen."
+    }
+  ]
+}

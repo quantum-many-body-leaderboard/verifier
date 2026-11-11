@@ -1,0 +1,126 @@
+{
+  "model": "TFIsing",
+  "lattice": "square",
+  "n_sites": 144,
+  "boundary": "O",
+  "params": {
+    "h": 4
+  },
+  "instance_id": "TFIsing/square_144_O_4",
+  "rows": [
+    {
+      "energy": -593.500599999,
+      "sigma": 0.0072,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "2D RNN",
+      "method_detail": "Euclidean cells",
+      "method_as_published": "Euclidean 2DRNN",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "H. L. Dao, Two-dimensional Hyperbolic RNN Neural Quantum State, arXiv:2606.25600 (v1, 2026-06-24; v2, 2026-10-10)",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-10-16",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-16",
+        "method": "source text of arXiv:2606.25600 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−593.5006 (0.0072)",
+        "note": "Table 6, row Euclidean 2DRNN , column Best, upper line (error in lower line); sources/2606.25600.txt line 799; version read: arXiv v1 text (sources/2606.25600.txt); every energy string checked identical in v2 (2026-10-10); no journal version (Crossref, arXiv abs page); best over runs with distinct initialisations; the line below the energy prints its standard error, 0.0072 | Eq. (17): H = -J sum_<ij> sigma^z sigma^z - B_x sum_i sigma^x, Pauli matrices, J = 1, open boundaries in both directions; energies are totals (they scale with N: DMRG -202.5077/64, -316.9770/100, -457.0416/144 = -3.164, -3.170, -3.174 per site); QMBL's h is B_x.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-10-19",
+          "scope": "value",
+          "method": "arXiv:2606.25600v2 PDF (sources/2606.25600v2.pdf, pypdf layout mode, sources/2606.25600v2.layout.txt); v1 (sources/2606.25600v1.layout.txt) prints the same numbers; no journal version",
+          "location": "Table 6, Best column, row Euclidean 2DRNN (v2 layout line 757)",
+          "reported_as": "−593.5006 (0.0072) total; standard error from 10^4 inference samples, best run of several seeds",
+          "conversion": "none (totals)",
+          "note": "Eq. (17), J = 1, OBC, h = B_x; 'Best' column (best of runs with different seeds), 'standard error (corresponding to VMC sampling)'; 10^4 inference samples. Variational (autoregressive NQS, exact sampling). Energy carries float noise from the per-site round trip (loader issue, not row-by-row).",
+          "source_entry": "SP7-heg3d-tfising#69"
+        }
+      }
+    },
+    {
+      "energy": -593.4953,
+      "sigma": 0.0077,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "2D RNN",
+      "method_detail": "Lorentz (hyperbolic) cells, L_max = 2.0",
+      "method_as_published": "Lorentz 2DRNN (L_max = 2.0)",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "H. L. Dao, Two-dimensional Hyperbolic RNN Neural Quantum State, arXiv:2606.25600 (v1, 2026-06-24; v2, 2026-10-10)",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-10-16",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-16",
+        "method": "source text of arXiv:2606.25600 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−593.4953 (0.0077)",
+        "note": "Table 6, row Lorentz 2DRNN Lmax=2.0, column Best, upper line (error in lower line); sources/2606.25600.txt line 802; version read: arXiv v1 text (sources/2606.25600.txt); every energy string checked identical in v2 (2026-10-10); no journal version (Crossref, arXiv abs page); best over runs with distinct initialisations; the line below the energy prints its standard error, 0.0077; qmbl-verify 2026-10-19 SP7-heg3d-tfising#70: sigma 0.007632 -> 0.0077 (The printed error bar is 0.0077 (total). The loader stored sigma_per_site rounded to two significant digits (\"sigma_per_site\": 0.000053,), so sigma = round(0.0077/144, 2 s.f.) x 144 = 0.007632. One lo) | Eq. (17): H = -J sum_<ij> sigma^z sigma^z - B_x sum_i sigma^x, Pauli matrices, J = 1, open boundaries in both directions; energies are totals (they scale with N: DMRG -202.5077/64, -316.9770/100, -457.0416/144 = -3.164, -3.170, -3.174 per site); QMBL's h is B_x.",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -593.4719,
+      "sigma": 0.0068,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "2D RNN",
+      "method_detail": "Lorentz (hyperbolic) cells, L_max = 1.5",
+      "method_as_published": "Lorentz 2DRNN (L_max = 1.5)",
+      "family": "RNN",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "H. L. Dao, Two-dimensional Hyperbolic RNN Neural Quantum State, arXiv:2606.25600 (v1, 2026-06-24; v2, 2026-10-10)",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-10-16",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-10-16",
+        "method": "source text of arXiv:2606.25600 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "−593.4719 (0.0068)",
+        "note": "Table 6, row Lorentz 2DRNN Lmax=1.5, column Best, upper line (error in lower line); sources/2606.25600.txt line 805; version read: arXiv v1 text (sources/2606.25600.txt); every energy string checked identical in v2 (2026-10-10); no journal version (Crossref, arXiv abs page); best over runs with distinct initialisations; the line below the energy prints its standard error, 0.0068; qmbl-verify 2026-10-19 SP7-heg3d-tfising#71: sigma 0.006768 -> 0.0068 (The printed error bar is 0.0068 (total). The loader stored sigma_per_site rounded to two significant digits (\"sigma_per_site\": 0.000047,), so sigma = round(0.0068/144, 2 s.f.) x 144 = 0.006768. One lo) | Eq. (17): H = -J sum_<ij> sigma^z sigma^z - B_x sum_i sigma^x, Pauli matrices, J = 1, open boundaries in both directions; energies are totals (they scale with N: DMRG -202.5077/64, -316.9770/100, -457.0416/144 = -3.164, -3.170, -3.174 per site); QMBL's h is B_x.",
+        "secondary_of": null
+      }
+    },
+    {
+      "energy": -593.53890192,
+      "sigma": null,
+      "energy_variance": null,
+      "dof": 144,
+      "einf": 0,
+      "v_score": null,
+      "method": "DMRG",
+      "ansatz": null,
+      "method_detail": "",
+      "method_as_published": "DMRG (bond dimension χ = 1024)",
+      "family": "tensor network",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "M. Hibat-Allah, M. Ganahl, L. E. Hayward, R. G. Melko & J. Carrasquilla, Recurrent neural network wave functions, Phys. Rev. Research 2, 023358 (2020), arXiv:2002.02973, doi:10.1103/PhysRevResearch.2.023358",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-10-16",
+      "provenance": "secondary",
+      "verified": {
+        "checked_on": "2026-10-16",
+        "method": "source text of arXiv:2606.25600 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading",
+        "reported_as": "-593.5389 (primary: -4.12179793 (E/N, Hibat-Allah et al. Table II, DMRG, h = 4))",
+        "note": "Table 6, row DMRG (not exact); sources/2606.25600.txt line 808; version read: arXiv v1 text (sources/2606.25600.txt); every energy string checked identical in v2 (2026-10-10); no journal version (Crossref, arXiv abs page); the paper's own DMRG, labelled 'DMRG (not exact)'; no bond dimension, code or reference given; qmbl-verify 2026-10-19 SP7-heg3d-tfising#72: reference \"H. L. Dao, Two-dimensional Hyperbolic RNN Neural Quantum State, arXiv:2606.25600 (v1, 2026-06-24; v2, 2026-10-10)\" -> \"M. Hibat-Allah, M. Ganahl, L. E. Hayward, R. G. Melko & J. Carrasquilla, Recurrent neural network wave functions, Phys. Rev. Research 2, 023358 (2020), arXiv:2002.02973, doi:10.1103/PhysRevResearch.2.023358\" (Dao quotes this DMRG energy; it is Hibat-Allah et al.'s. Hibat-Allah et al. arXiv:2002.02973 (qmbl sources/2002.02973.txt line 1734-1736), Table II (App. F): 'h E/N ... DMRG' row h = 4: -4.12179793; c); qmbl-verify 2026-10-19 SP7-heg3d-tfising#73: provenance \"primary\" -> \"secondary\" (Quoted from arXiv:2002.02973 Table II (see the reference correction on this row).); qmbl-verify 2026-10-19 SP7-heg3d-tfising#74: energy -593.5389 -> -593.53890192 (Dao prints the primary value rounded to 4 decimals of the total (-593.5389); the primary prints 8 decimals per site. Carry the primary's digits (stored -593.5389 differs by 1.92e-6).); qmbl-verify 2026-10-19 SP7-heg3d-tfising#75: method \"DMRG (not exact)\" -> \"DMRG (bond dimension χ = 1024)\" (Method string of the primary source; the label 'DMRG (not exact)' is Dao v1's table label only (v2 prints 'DMRG').) | Eq. (17): H = -J sum_<ij> sigma^z sigma^z - B_x sum_i sigma^x, Pauli matrices, J = 1, open boundaries in both directions; energies are totals (they scale with N: DMRG -202.5077/64, -316.9770/100, -457.0416/144 = -3.164, -3.170, -3.174 per site); QMBL's h is B_x.",
+        "secondary_of": "arXiv:2606.25600"
+      }
+    }
+  ]
+}

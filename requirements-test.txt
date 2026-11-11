@@ -1,0 +1,2 @@
+# Optional: running tests/test_continuum.py, which is a pytest module (python -m pytest tests/test_continuum.py).
+pytest==9.2.0

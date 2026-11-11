@@ -67,6 +67,13 @@ def n_dof(inst: dict) -> int:
     n = int(inst["n_sites"])
     if inst["model"] in I.HEG_MODELS:
         return n * (2 if inst["model"] == "HEG2D" else 3)   # electron coordinates
+    if inst["model"] == "Impurity":                         # (v1.9) 2 x (impurity + bath orbitals)
+        from . import impurity
+        p = impurity.read(impurity.file_for(inst))
+        return 2 * p["M"] * (1 + p["Nb"])
+    if inst["model"] in ("Hchain", "Hsheet"):               # (v1.9) 2 x the Gaussian basis' orbitals
+        from . import chem
+        return 2 * chem.n_orbitals(inst)
     return n if inst["model"] in I.SPIN_MODELS else 2 * n
 
 

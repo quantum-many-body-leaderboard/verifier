@@ -1,0 +1,164 @@
+{
+  "model": "Heisenberg",
+  "lattice": "triangular",
+  "n_sites": 1764,
+  "boundary": "P",
+  "params": {},
+  "instance_id": "Heisenberg/triangular_1764_P",
+  "rows": [
+    {
+      "energy": -3890.883024,
+      "sigma": 0.007056,
+      "energy_variance": null,
+      "dof": 1764,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "ViT",
+      "method_detail": "spatial attention, b = 3; projected: translations, C6v",
+      "method_as_published": "ViT with Spatial Attention, translations + C6v projection",
+      "family": "transformer / ViT",
+      "bound_type": "variational",
+      "bound_type_reason": "variational ansatz at a stated size; energy is an upper bound (assigned during source reading)",
+      "reference": "Viteritti, Rende, Sachdev & Carleo, Approaching the Thermodynamic Limit with Neural-Network Quantum States, arXiv:2602.02665",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-28",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-28",
+        "method": "source text of arXiv:2602.02665 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading, parsed from the committed HTML table and matched against the PDF text",
+        "reported_as": "-0.551429(1)",
+        "note": "Table 1, 42 × 42 block, row 'ViT', printed '-0.551429(1)', 'This work'; caption: 'The results of this work are obtained by enforcing translational and C6v point-group symmetries (refer to Section V.2)'. | Table 1 prints ground-state energies per site of the spin-1/2 triangular Heisenberg model on periodic L x L clusters (Sec. III: 'All calculations are performed on periodic L x L clusters with L chosen as a multiple of 3', H = J sum S_i.S_j), S.S units. Magnitude check: the values lie between -0.5517 and -0.5520, next to the 12 x 12 value -0.55315 (GCNN, per site, S.S) on Heisenberg/triangular_144_P, not four times it (Pauli) or a total.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2602.02665v1 (only version, 2 Feb 2026; no journal reference on the abs page 2026-09-29): PDF extracted with pypdf layout mode (sources/vp12_2602.02665v1.layout.txt) and arXiv HTML v1 parsed with node (sources/vp12_2602.02665v1.html); the two agree digit for digit",
+          "location": "Table I, 42 x 42 block, row 'ViT', column Energy, 'This work'",
+          "reported_as": "-0.551429(1) per site, S.S units",
+          "conversion": "-0.551429 x 4 x 1764 = -3890.883024; sigma 1e-6 x 7056 = 0.007056",
+          "note": "Record row, read hardest. Table I prints it as 'This work' (own computation), fully projected (T + C6v) state, periodic 42 x 42 torus (Sec. III, SI I A), S.S units per site, J = 1; bound_type variational (VMC energy of the projected state, not the zero-variance number printed below it). sigma = printed (1) on the last digit x 4N; how it was estimated (SEM, binning, final sample count) is not stated (card C7: a 2^14-sample standard error would be several times larger, so the final measurement used more samples than the optimization); the record margin (>= 0.5% over the runner-up) does not depend on it. No variance printed as a number (Fig. 6 only), energy_variance null stays. Sz sector not stated; trivial irrep of translations and C6v. peer_reviewed false correct (arXiv v1 only). No other row on the instance carries this number.",
+          "source_entry": "VP12-heisenberg-j1j2-hubbard#3 (qmbl-verify 2026-09-29)"
+        }
+      },
+      "compute": {
+        "parameters": 450000,
+        "gpu_hours": 25000,
+        "device": "NVIDIA GH200",
+        "n_devices": null,
+        "samples": 16384,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 5600,
+        "evaluation": {
+          "stages": [
+            {
+              "iterations": 5000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 1
+            },
+            {
+              "iterations": 500,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 9
+            },
+            {
+              "iterations": 100,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 108
+            }
+          ],
+          "sr": {
+            "kind": "minsr"
+          }
+        },
+        "reported_as": "The Vision Transformer architecture used in this work comprises h = 12 attention heads, n_l = 8 layers, and an embedding dimension of d = 72, resulting in approximately P ≈ 4.5 × 10^5 trainable parameters for different system sizes, from L = 18 to L = 42. [...] we set b = 3 for the triangular lattice [...] (C6v group for the triangular lattice [...]) [...] Variational Monte Carlo (VMC) optimizations employing M = 2^14 samples for the stochastic estimates were carried out using SR with the linear algebra trick being in the regime P ≫ M enhanced with SPRING. The optimization proceeded in three stages: 5000 steps without symmetry summation, followed by 500 steps including translational symmetries, and a final 100 steps with both rotational and reflection symmetries restored. || Acknowledgments: The numerical experiments performed in this work required 25000 hours on GH200 GPUs.",
+        "source": "Sec. V B Architecture and Optimization Details; Acknowledgments, arXiv:2602.02665 (mining pass 2026-09-28)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "gpu_hours = 25000 is the total for ALL numerical experiments in the paper (triangular L = 18-42 and the 20x20 J1-J2 run), not for this row. parameters 'approximately 4.5 x 10^5', stated for every triangular size. iterations = 5000 + 500 + 100 stated stages; samples = 2^14 per step. Stages: 1 evaluation per amplitude unsymmetrised; b^2 = 9 translations within a 3x3 patch; those 9 x the 12 C6v elements = 108. sr minsr (the P >> M linear-algebra trick with SPRING)."
+      }
+    },
+    {
+      "energy": -3892.86576,
+      "sigma": 0.07056,
+      "energy_variance": null,
+      "dof": 1764,
+      "einf": 0,
+      "v_score": null,
+      "method": "VMC",
+      "ansatz": "ViT",
+      "method_detail": "spatial attention, b = 3; extrapolated: variance → 0",
+      "method_as_published": "ViT with Spatial Attention, zero-variance extrapolation (triangular)",
+      "family": "transformer / ViT",
+      "bound_type": "extrapolated",
+      "bound_type_reason": "zero-variance or bond-dimension extrapolation; not an upper bound (assigned during source reading)",
+      "reference": "Viteritti, Rende, Sachdev & Carleo, Approaching the Thermodynamic Limit with Neural-Network Quantum States, arXiv:2602.02665",
+      "peer_reviewed": false,
+      "source": "sweep-allresults-2026-09-28",
+      "provenance": "primary",
+      "verified": {
+        "checked_on": "2026-09-28",
+        "method": "source text of arXiv:2602.02665 read locally (arXiv HTML or pypdf layout text); value copied from the harvested cell and the text, no LLM transcription of numbers; single reading, parsed from the committed HTML table and matched against the PDF text",
+        "reported_as": "-0.55171(1)",
+        "note": "Table 1, 42 × 42 block, row 'Zero Variance', printed '-0.55171(1)', 'This work'; caption: 'For each system size the zero-variance extrapolated energy is also reported'. Sec. V.3 / Fig. 6: linear fit of energy against variance per site over the unprojected, translation-projected and fully projected ViT states at this L; an extrapolation of the same runs, not a separate calculation. | Table 1 prints ground-state energies per site of the spin-1/2 triangular Heisenberg model on periodic L x L clusters (Sec. III: 'All calculations are performed on periodic L x L clusters with L chosen as a multiple of 3', H = J sum S_i.S_j), S.S units. Magnitude check: the values lie between -0.5517 and -0.5520, next to the 12 x 12 value -0.55315 (GCNN, per site, S.S) on Heisenberg/triangular_144_P, not four times it (Pauli) or a total.",
+        "secondary_of": null,
+        "second_read": {
+          "checked_on": "2026-09-29",
+          "scope": "value",
+          "method": "arXiv:2602.02665v1 (only version, 2 Feb 2026; no journal reference on the abs page 2026-09-29): PDF extracted with pypdf layout mode (sources/vp12_2602.02665v1.layout.txt) and arXiv HTML v1 parsed with node (sources/vp12_2602.02665v1.html); the two agree digit for digit",
+          "location": "Table I, 42 x 42 block, row 'Zero Variance', 'This work'",
+          "reported_as": "-0.55171(1) per site, S.S units",
+          "conversion": "-0.55171 x 7056 = -3892.86576; sigma 1e-5 x 7056 = 0.07056",
+          "note": "Zero-variance extrapolation over the three projection levels (Fig. 6, Methods V C): not a bound, bound_type extrapolated correct. Periodic 42 x 42, S.S per site. Same run as the ViT row, own computation.",
+          "source_entry": "VP12-heisenberg-j1j2-hubbard#7 (qmbl-verify 2026-09-29; reader verification, not in a skeptic's scope; applied by ruling A2, 2026-10-02)"
+        }
+      },
+      "compute": {
+        "parameters": 450000,
+        "gpu_hours": 25000,
+        "device": "NVIDIA GH200",
+        "n_devices": null,
+        "samples": 16384,
+        "wall_clock": null,
+        "cpu_core_hours": null,
+        "bond_dimension": null,
+        "iterations": 5600,
+        "evaluation": {
+          "stages": [
+            {
+              "iterations": 5000,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 1
+            },
+            {
+              "iterations": 500,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 9
+            },
+            {
+              "iterations": 100,
+              "samples": null,
+              "parameters": null,
+              "evaluations_per_amplitude": 108
+            }
+          ],
+          "sr": {
+            "kind": "minsr"
+          }
+        },
+        "reported_as": "The Vision Transformer architecture used in this work comprises h = 12 attention heads, n_l = 8 layers, and an embedding dimension of d = 72, resulting in approximately P ≈ 4.5 × 10^5 trainable parameters for different system sizes, from L = 18 to L = 42. [...] we set b = 3 for the triangular lattice [...] (C6v group for the triangular lattice [...]) [...] Variational Monte Carlo (VMC) optimizations employing M = 2^14 samples for the stochastic estimates were carried out using SR with the linear algebra trick being in the regime P ≫ M enhanced with SPRING. The optimization proceeded in three stages: 5000 steps without symmetry summation, followed by 500 steps including translational symmetries, and a final 100 steps with both rotational and reflection symmetries restored. || Acknowledgments: The numerical experiments performed in this work required 25000 hours on GH200 GPUs.",
+        "source": "Sec. V B Architecture and Optimization Details; Acknowledgments, arXiv:2602.02665 (mining pass 2026-09-28)",
+        "scope": "paper",
+        "confidence": "medium",
+        "note": "gpu_hours = 25000 is the total for ALL numerical experiments in the paper (triangular L = 18-42 and the 20x20 J1-J2 run), not for this row. parameters 'approximately 4.5 x 10^5', stated for every triangular size. iterations = 5000 + 500 + 100 stated stages; samples = 2^14 per step. Stages: 1 evaluation per amplitude unsymmetrised; b^2 = 9 translations within a 3x3 patch; those 9 x the 12 C6v elements = 108. sr minsr (the P >> M linear-algebra trick with SPRING). This row is the zero-variance extrapolation of the same three stages (Fig. 6), not a separate run, so it draws the same cost again."
+      }
+    }
+  ]
+}
