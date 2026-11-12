@@ -19,8 +19,9 @@ Local energy: the potential by this module's own pair sums (JAX), the kinetic en
 (grad log psi)^2) by the forward Laplacian (continuum.py's vendored fwdlap), never by the submitter's code.
 
 Sampler (qrec-verifier v2.1's settings): all-electron Gaussian Metropolis moves from the verifier's own starts (each
-electron on a proton of a random permutation plus a Gaussian of width 0.5 bohr), the step tuned to an acceptance of
-0.5 during the first 80 % of the burn-in and then frozen; 50 moves between recorded samples.
+electron on a proton, spins alternating by sublattice, plus a Gaussian of width 0.5 bohr), the step tuned to an acceptance of
+0.5 during the first 80 % of the burn-in and then frozen; 50 moves between recorded samples. Chains: 4096 on a GPU
+(qrec-verifier v2.1's count), 512 on CPU (`CHAINS`); the card's sampler description and `device` say which ran.
 
 Gates on every score (physics_gates on the card):
   - coulomb: the JAX potential on the verifier's own samples against pyscf's point-charge Coulomb sum
@@ -49,10 +50,17 @@ import numpy as np
 H_ATOM_EXACT = -0.5
 H2_EXACT = {1.4: -1.1744757142204434}          # Pachucki 2010, Table 4 (Born-Oppenheimer, nuclear repulsion included)
 
-MOLECULE = dict(n_chains=512, n_burn=4000, thin=50, block=16, min_samples=2 ** 20, target_acc=0.5,
+MOLECULE = dict(n_chains=None, n_burn=4000, thin=50, block=16, min_samples=2 ** 20, target_acc=0.5,
                 start_width=0.5, max_step=2.0)
+CHAINS = {"gpu": 4096, "cpu": 512}  # n_chains=None: by JAX's default backend
 KINETIC_PATHS_RTOL = 1e-8
 KINETIC_Z_FAIL = 5.0
+
+
+def default_chains() -> int:
+    """The number of Markov chains when none is given: CHAINS by JAX's default backend."""
+    import jax
+    return CHAINS["gpu"] if jax.default_backend() == "gpu" else CHAINS["cpu"]
 
 
 def is_continuum_hydrogen(inst: dict) -> bool:
@@ -229,11 +237,22 @@ def _wrap_angle(a):
 
 
 def start_positions(rng: np.random.Generator, mol: Molecule, n_conf: int, width: float) -> np.ndarray:
-    """Each electron on a proton (a random permutation per configuration), plus a Gaussian of the given width."""
+    """Each electron on a proton, plus a Gaussian of the given width. The spins alternate on the chain or sheet (the
+    up electrons on the protons of one sublattice, by i + j parity in nearest-neighbour units, the down electrons on
+    the other), shuffled within each sublattice per configuration. A random permutation over all protons (v1.10 before
+    2026-11-12) puts same-spin electrons on both atoms of a bond: |psi|^2 there is tiny, the Slater matrices of long
+    chains reach condition numbers of 1e15 (H102), and chains of a short-step sampler stay there through the burn-in."""
     sites = np.repeat(np.arange(len(mol.atoms)), np.round(mol.charges).astype(int))
+    if len(mol.atoms) > 1:
+        d = np.linalg.norm(mol.atoms[:, None] - mol.atoms[None], axis=-1)
+        nn = d[d > 1e-9].min()
+        parity = np.round(mol.atoms.sum(axis=1) / nn).astype(int) % 2
+    else:
+        parity = np.zeros(1, int)
     out = np.empty((n_conf, mol.n, 3))
     for c in range(n_conf):
         p = rng.permutation(len(sites))
+        p = np.r_[p[parity[sites[p]] == 0], p[parity[sites[p]] == 1]]   # sublattice A first: the up electrons
         out[c] = mol.atoms[sites[p[np.arange(mol.n) % len(sites)]]] + width * rng.standard_normal((mol.n, 3))
     return out.reshape(n_conf, -1)
 
@@ -398,6 +417,8 @@ def evaluate(inst: dict, model, variables, *, seed: int, max_hours: float = 12.0
     from . import measure as Me
     mol = molecule_of(inst)
     cfg = dict(MOLECULE, **overrides)
+    if cfg["n_chains"] is None:
+        cfg["n_chains"] = default_chains()
     budget = min_samples or cfg["min_samples"]
     desc = (f"all-electron Gaussian Metropolis, {cfg['n_chains']} chains, {cfg['thin']} moves per sample, step tuned "
             f"to acceptance {cfg['target_acc']} in the first 80 % of {cfg['n_burn']} burn-in moves")
@@ -475,7 +496,7 @@ def rhf_model(inst: dict, basis: str = "cc-pvdz"):
     import flax.linen as nn
     import jax
     import jax.numpy as jnp
-    from pyscf import scf
+    from pyscf import lo, scf
     mol = molecule_of(inst)
     pm = _pyscf_mol(mol, basis)
     mf = scf.RHF(pm) if mol.n_up == mol.n_dn else scf.ROHF(pm)
@@ -485,8 +506,12 @@ def rhf_model(inst: dict, basis: str = "cc-pvdz"):
     if not mf.converged:
         mf = scf.newton(mf)
         mf.kernel()
-    cu = jnp.asarray(mf.mo_coeff[:, mf.mo_occ > 0][:, :mol.n_up])
-    cd = jnp.asarray(mf.mo_coeff[:, mf.mo_occ > 1.5][:, :mol.n_dn])
+    # Localized occupied orbitals (pivoted Cholesky of the density matrix): the same determinant up to a constant,
+    # but its Slater matrices stay well conditioned on long chains. With the canonical (delocalized) orbitals H102's
+    # matrices reach condition numbers of 1e15, and the Laplacian of log det through them is noise (1e13 hartree).
+    occ = lambda c: lo.cholesky_mos(c) if c.shape[1] else c                      # noqa: E731
+    cu = jnp.asarray(occ(mf.mo_coeff[:, mf.mo_occ > 0][:, :mol.n_up]))
+    cd = jnp.asarray(occ(mf.mo_coeff[:, mf.mo_occ > 1.5][:, :mol.n_dn]))
     aos = jax.vmap(jax.vmap(ao_fn(basis_shells(pm))))
     n_up = mol.n_up
 

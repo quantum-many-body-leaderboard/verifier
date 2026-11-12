@@ -215,7 +215,8 @@ By model and lattice (v1.10; `DESIGN.md` has the checks behind each):
   the 24-site honeycomb flake.
 - Hydrogen chains and sheets in a Gaussian basis (STO-nG, cc-pVXZ, aug-cc-pVXZ): any state up to 128 orbitals;
   Slater determinants up to 850 orbitals (v1.10) (`requirements-chem.txt`).
-- Hydrogen chains and sheets in continuous space (`basis: none`, v1.10), open boundary.
+- Hydrogen chains and sheets in continuous space (`basis: none`, v1.10), open boundary; 4096 Markov chains on a GPU, 512 on CPU
+  (a 2^20-sample score of the largest chains takes hours on CPU).
 - Anderson impurity models: VarBench's single-band and three-band models, with spin-orbit coupling since v1.10.
 - The electron gas (since v1.8): 2D and 3D cells.
 

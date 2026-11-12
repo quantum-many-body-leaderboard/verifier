@@ -60,7 +60,7 @@ from qrec_verify import score as SC            # noqa: E402
 from qrec_verify import external as EX         # noqa: E402
 from qrec_verify import continuum as CT       # noqa: E402
 
-VERSION = "op-verify 1 (qrec_verify v1.10)"
+VERSION = "op-verify 1 (qrec_verify v1.10.1)"
 AGREE_SIGMAS = 2.5
 RECORD_SIGMAS = 2.0
 DETERMINISTIC_RTOL = 1e-11      # two exact evaluations of one state (sigma 0) must agree to this
@@ -261,7 +261,7 @@ def main(argv=None):
                                                   "bound_type": t.get("bound_type")},
                 "qmbl_record": None if q is None else {"energy_per_site": q["energy"] / div,
                                                        "method": q.get("method"), "bound_type": q.get("bound_type")},
-                "budget_samples": MOL.MOLECULE["min_samples"], "sampler": MOL.MOLECULE,
+                "budget_samples": MOL.MOLECULE["min_samples"], "sampler": dict(MOL.MOLECULE, n_chains=MOL.CHAINS),
                 "known_state": "neel-check scores the RHF determinant (cc-pVDZ) against pyscf's RHF energy"}
         print(SC.to_json(info))
         return 0

@@ -405,7 +405,7 @@ def evaluate(inst: dict, model, variables, *, seed: int, max_hours: float = MAX_
     card["qualified"] = bool(card["status"] != "fail" and card["stop"] in ("budget", "target", "max_samples")
                              and all(c["pass"] for c in ser["kernel_checks"]))
     card["__METRIC__"] = card["energy_per_site"]
-    card["scorer"] = "qrec_verify.score v1.10"
+    card["scorer"] = "qrec_verify.score v1.10.1"
     return card
 
 

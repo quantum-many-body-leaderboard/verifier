@@ -336,7 +336,7 @@ def test_molecule_rhf_known_state_h10():
     energy within 3 sigma, and lies above the sources' near-exact rows of that instance (MRCI+Q, LR-DMC)."""
     _pyscf()
     inst = _load("Hchain/chain_10_O_R1.8_none")
-    r = MOL.rhf_check(inst, min_samples=512 * 128, log=_quiet)
+    r = MOL.rhf_check(inst, min_samples=512 * 128, n_chains=512, log=_quiet)   # 128 samples per chain on any device
     assert r["pass"], r
     lowest = min(row["energy"] for row in inst["rows"])
     assert r["energy_total"] > lowest + 0.1, (r["energy_total"], lowest)
