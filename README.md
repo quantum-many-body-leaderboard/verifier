@@ -217,6 +217,9 @@ By model and lattice (v1.10; `DESIGN.md` has the checks behind each):
   Slater determinants up to 850 orbitals (v1.10) (`requirements-chem.txt`).
 - Hydrogen chains and sheets in continuous space (`basis: none`, v1.10), open boundary; 4096 Markov chains on a GPU, 512 on CPU
   (a 2^20-sample score of the largest chains takes hours on CPU).
+  Known limit (v1.10.1): on long chains the sampler's log|psi| decorrelates slowly, so the R-hat gate on log|psi|
+  fails even for a correct state. Tested: H10 passes every gate; H102 gives the right energy (RHF determinant
+  -54.637 +- 0.036 against pyscf's -54.628) but log|psi| R-hat 1.34. Sizes in between are not tested yet.
 - Anderson impurity models: VarBench's single-band and three-band models, with spin-orbit coupling since v1.10.
 - The electron gas (since v1.8): 2D and 3D cells.
 
