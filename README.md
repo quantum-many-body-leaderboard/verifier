@@ -218,8 +218,9 @@ By model and lattice (v1.10; `DESIGN.md` has the checks behind each):
 - Hydrogen chains and sheets in continuous space (`basis: none`, v1.10), open boundary; 4096 Markov chains on a GPU, 512 on CPU
   (a 2^20-sample score of the largest chains takes hours on CPU).
   Known limit (v1.10.1): on long chains the sampler's log|psi| decorrelates slowly, so the R-hat gate on log|psi|
-  fails even for a correct state. Tested: H10 passes every gate; H102 gives the right energy (RHF determinant
-  -54.637 +- 0.036 against pyscf's -54.628) but log|psi| R-hat 1.34. Sizes in between are not tested yet.
+  fails even for a correct state, while the energy stays right. RHF determinants, 512 chains x 256 samples:
+  H10 passes; H30 warns (R-hat 1.048); H50 (1.081), H82 (1.127) and H102 (1.34) fail. A state from 50 atoms up
+  scores status "fail" until the sampler mixes log|psi| faster.
 - Anderson impurity models: VarBench's single-band and three-band models, with spin-orbit coupling since v1.10.
 - The electron gas (since v1.8): 2D and 3D cells.
 
